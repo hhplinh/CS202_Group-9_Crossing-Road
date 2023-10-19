@@ -10,7 +10,7 @@ LIB_DIRS = "./SFML/lib"
 
 LDLIBS = -lsfml-graphics -lsfml-network -lsfml-window -lsfml-main -lsfml-system
 
-BIN = Account
+BIN = RoadCrossingGame
 
 BUILD_DIR = ./release
 JUNK_DIR = $(BUILD_DIR)/junk

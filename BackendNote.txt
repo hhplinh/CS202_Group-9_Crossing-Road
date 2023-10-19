@@ -1,0 +1,8 @@
+- Hướng dẫn chạy makefile: https://linuxhint.com/run-makefile-windows/
+- Nếu chạy vs code, mở external terminal: ctrl + shift + c
+- Lệnh:
+
+Máy t chạy mingw32-make nên sẽ đặt tên v, check xem file exe của make tên gì mình cop y chang là đc, có trong hướng dẫn ở trên
+
+mingw32-make rebuild
+.\release\RoadCrossingGame.exe
