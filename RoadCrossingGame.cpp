@@ -4,5 +4,5 @@
 
 void a()
 {
-	std::cout << "a" << std::endl;
+	std::cout << "b" << std::endl;
 }
