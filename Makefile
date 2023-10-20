@@ -8,7 +8,7 @@ INC_DIRS = \
 	"."
 LIB_DIRS = "./SFML/lib"
 
-LDLIBS = -lsfml-graphics -lsfml-network -lsfml-window -lsfml-main -lsfml-system
+LDLIBS = -lsfml-graphics -lsfml-network -lsfml-window -lsfml-main -lsfml-system -lsfml-audio
 
 BIN = RoadCrossingGame
 
