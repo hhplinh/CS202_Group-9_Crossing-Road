@@ -109,6 +109,7 @@ void run_test()
         }
 
         window.clear();
+
         window.draw(shape);
         window.draw(sprite);
         window.display();
@@ -237,6 +238,9 @@ if(Keyboard::isKeyPressed(Keyboard::Up))
 
         window.clear();
         menu.draw(window);
+        window.draw(background);
+                menu.draw(window);
+
         p.draw(window);
         window.display();
     }
