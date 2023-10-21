@@ -169,7 +169,7 @@ int main()
         p.draw(window);
         window.display();
     }*/
-        sf::RenderWindow window(sf::VideoMode(1080, 720), "NGUYENPHAM");
+       sf::RenderWindow window(sf::VideoMode(1080, 720), "NGUYENPHAM");
            player p("resources/player.png");
 
     Menu menu(window.getSize().x, window.getSize().y);
@@ -371,3 +371,4 @@ if(Keyboard::isKeyPressed(Keyboard::Up))
 //     }
 //     // Backend::saveData();
 // }
+ 
