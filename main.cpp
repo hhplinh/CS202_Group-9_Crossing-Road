@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include"player.hpp"
+#include"MAINMENU.h"
 void runStudentManager()
 {
     // Create a window with the size of 800x600 pixels
@@ -117,7 +118,7 @@ void run_test()
 int main()
 {
    // run_test();
-   RenderWindow window;
+ /*  RenderWindow window;
    player p("resources/player.png");
     window.create(VideoMode(1920,1080),"SFML works!");
     while(window.isOpen())
@@ -146,10 +147,100 @@ int main()
         {
             p.move('r',0.1);
         }
+        else if(Keyboard::isKeyPressed(Keyboard::Space))
+        {
+            p.hopping();
+        }
+        else if(Keyboard::isKeyPressed(Keyboard::Escape))
+        {
+            window.close();
+        }
+        else if(Keyboard::isKeyPressed(Keyboard::A))
+        {
+            p.hopleft();
+        }
+        else if(Keyboard::isKeyPressed(Keyboard::D))
+        {
+            p.hopright();
+        }
+     
         window.clear();
         p.draw(window);
         window.display();
+    }*/
+        sf::RenderWindow window(sf::VideoMode(1080, 720), "NGUYENPHAM");
+           player p("resources/player.png");
+
+    Menu menu(window.getSize().x, window.getSize().y);
+    sf::Texture BackgroundTexture;
+    sf::Sprite background;
+    sf::Vector2u TextureSize;  //Added to store texture size.
+    sf::Vector2u WindowSize;   //Added to store window size.
+
+    if (!BackgroundTexture.loadFromFile("resources/background.png"))
+    {
+        return -1;
     }
+    else
+    {
+        TextureSize = BackgroundTexture.getSize(); //Get size of texture.
+        WindowSize = window.getSize();             //Get size of window.
+
+        float ScaleX = (float)WindowSize.x / TextureSize.x;
+        float ScaleY = (float)WindowSize.y / TextureSize.y;     //Calculate scale.
+
+        background.setTexture(BackgroundTexture);
+        background.setScale(ScaleX, ScaleY);      //Set scale.  
+    }
+    while (window.isOpen())
+    {
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+        
+if(Keyboard::isKeyPressed(Keyboard::Up))
+        {
+            p.move('u',0.1);
+        }
+        else if(Keyboard::isKeyPressed(Keyboard::Down))
+        {
+            p.move('d',0.1);
+        }
+        else if(Keyboard::isKeyPressed(Keyboard::Left))
+        {
+            p.move('l',0.1);
+        }
+        else if(Keyboard::isKeyPressed(Keyboard::Right))
+        {
+            p.move('r',0.1);
+        }
+        else if(Keyboard::isKeyPressed(Keyboard::Space))
+        {
+            p.hopping();
+        }
+        else if(Keyboard::isKeyPressed(Keyboard::Escape))
+        {
+            window.close();
+        }
+        else if(Keyboard::isKeyPressed(Keyboard::A))
+        {
+            p.hopleft();
+        }
+        else if(Keyboard::isKeyPressed(Keyboard::D))
+        {
+            p.hopright();
+        }
+     
+
+        window.clear();
+        menu.draw(window);
+        p.draw(window);
+        window.display();
+    }
+ 
     return 0;
 }
 

@@ -15,11 +15,24 @@ class player
       if( !texture.loadFromFile(path)) cout<<" can't load player texture"<<endl;
         sprite.setTexture(texture);
         sprite.setPosition(0, 0);
-        sprite.setScale(0.5, 0.5);
+        sprite.setScale(0.1, 0.1);
     }
     void draw(RenderWindow &window)
     {
         window.draw(sprite);
+    }
+    void hopping()
+    {
+        sprite.move(0,-0.2);
+        
+    }
+    void hopleft()
+    {
+        sprite.move(-0.1,-0.1);
+    }
+    void hopright()
+    {
+        sprite.move(0.1,-0.1);
     }
     void move(char direction , float speed)
     {
