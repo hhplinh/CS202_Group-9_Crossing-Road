@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-
+#include"player.hpp"
 void runStudentManager()
 {
     // Create a window with the size of 800x600 pixels
@@ -116,7 +116,40 @@ void run_test()
 
 int main()
 {
-    run_test();
+   // run_test();
+   RenderWindow window;
+   player p("resources/player.png");
+    window.create(VideoMode(1920,1080),"SFML works!");
+    while(window.isOpen())
+    {
+        Event event;
+        while(window.pollEvent(event))
+        {
+            if(event.type == Event::Closed)
+            {
+                window.close();
+            }
+        }
+        if(Keyboard::isKeyPressed(Keyboard::Up))
+        {
+            p.move('u',0.1);
+        }
+        else if(Keyboard::isKeyPressed(Keyboard::Down))
+        {
+            p.move('d',0.1);
+        }
+        else if(Keyboard::isKeyPressed(Keyboard::Left))
+        {
+            p.move('l',0.1);
+        }
+        else if(Keyboard::isKeyPressed(Keyboard::Right))
+        {
+            p.move('r',0.1);
+        }
+        window.clear();
+        p.draw(window);
+        window.display();
+    }
     return 0;
 }
 
