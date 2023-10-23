@@ -17,13 +17,13 @@ class player
     player(string path);
   
    
-    void move(int x,int y);
+    void move();
  
     void setPosition(int x,int y);
   
     Vector2f getPosition();
   
-  
+   
 
 };
 

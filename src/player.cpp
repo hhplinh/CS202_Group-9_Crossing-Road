@@ -24,9 +24,60 @@
         LoadContent(path);
     }
    
-    void player:: move(int x,int y)
-    {
-        p.move(x,y); 
+    void player:: move()
+    {   Vector2u size = texture.getSize();
+        size.x /=4;
+        size.y /=4;
+         
+        if(Keyboard::isKeyPressed(Keyboard::Right))
+        {  
+        int xtexture=0;
+        xtexture=(int)getPosition().x/20%4;
+        xtexture*=size.x;
+
+        p.setTextureRect(IntRect(xtexture,size.y*2,size.x,size.y));
+        p.move(5,0);
+
+        
+        }
+         if(Keyboard::isKeyPressed(Keyboard::Right))
+        {  
+        int xtexture=0;
+        xtexture=(int)getPosition().x/60%4;
+        xtexture*=size.x;
+
+        p.setTextureRect(IntRect(xtexture,size.y*2,size.x,size.y));
+        p.move(5,0);
+
+        
+        }
+         if(Keyboard::isKeyPressed(Keyboard::Left))
+        {  
+        p.setTextureRect(IntRect(size.x*3,size.y,size.x,size.y));
+        int xtexture=0;
+        xtexture=(int)getPosition().x/20%4;
+        xtexture*=size.x;
+
+        p.setTextureRect(IntRect(xtexture,size.y,size.x,size.y));
+        p.move(-5,0);
+
+
+        
+        }
+         if(Keyboard::isKeyPressed(Keyboard::Up))
+        {  
+        
+
+        int ytexture=0;
+        ytexture=(int)getPosition().y/20%4;
+        ytexture*=size.x;
+
+        p.setTextureRect(IntRect(ytexture,size.y*3,size.x,size.y));
+
+        p.move(0,-5);
+
+        
+        }
     }
     void player:: setPosition(int x,int y)
     {

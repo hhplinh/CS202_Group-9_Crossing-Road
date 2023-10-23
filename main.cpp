@@ -7,7 +7,7 @@
 using namespace std;
 int main() {
     RenderWindow window(VideoMode(WIDTH, HEIGHT), "SFML works!");
-
+    window.setFramerateLimit(60);
     player p1("resources/orge.png");
     p1.setPosition(WIDTH/2,HEIGHT/2);
     while(window.isOpen())
@@ -20,6 +20,7 @@ int main() {
                 window.close();
             }
         }
+        p1.move();
         window.clear(Color ::White);
         p1.draw(window);
         window.display();
