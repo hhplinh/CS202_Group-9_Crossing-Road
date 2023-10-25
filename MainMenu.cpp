@@ -107,7 +107,7 @@ void MainMenu::render()
     sf::RectangleShape background;
 
     //insert image
-    texture.loadFromFile("../resources/Image/bgMenu.jpg");
+    texture.loadFromFile("../resources/Textures/bgMenu.jpg");
 
     background.setSize(sf::Vector2f(960, 720));
     background.setTexture(&texture);
