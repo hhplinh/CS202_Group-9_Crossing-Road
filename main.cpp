@@ -1,8 +1,12 @@
 #include <FrontendGlobal.hpp>
+// #include <MainMenu.hpp>
 
 int main()
 {
-    mainMenu.create(800, 600);
+    // float width = 800;
+    // float height = 600;
+    // mainMenu.create(width, height);
+    // MainMenu mainMenu;
     mainMenu.render();
     
     return 0;

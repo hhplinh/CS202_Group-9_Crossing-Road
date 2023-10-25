@@ -51,9 +51,6 @@ void MainMenu::create(float width, float height)
     selectedItemIndex = -1;
 }
 
-MainMenu::~MainMenu()
-{
-}
 
 void MainMenu::draw(sf::RenderWindow &window)
 {
@@ -98,6 +95,7 @@ int MainMenu::GetPressedItem()
 
 void MainMenu::render()
 {
+    create(960, 720);
     sf::RenderWindow MENU(sf::VideoMode(960, 720), "Main Menu", sf::Style::Default);
     MainMenu mainMenu;
     mainMenu.create(MENU.getSize().x, MENU.getSize().y);
