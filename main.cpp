@@ -22,7 +22,7 @@ int main() {
         }
         p1.move();
         window.clear(Color ::White);
-        p1.draw(window);
+        p1.drawchar(window);
         window.display();
     }
     return 0;

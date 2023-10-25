@@ -1,5 +1,5 @@
 #include"player.hpp"
-   void player:: LoadContent(string path)
+   void player:: LoadContent(string path )
     {   
         if( !texture.loadFromFile(path)) 
         cout<<" can't load player texture"<<endl;
@@ -14,7 +14,7 @@
 
 
     }
-    void player:: draw(RenderWindow &window)
+    void player:: drawchar(RenderWindow &window)
     {
         window.draw(p);
     }
@@ -28,7 +28,7 @@
     {   Vector2u size = texture.getSize();
         size.x /=4;
         size.y /=4;
-         
+        RenderWindow window; 
         if(Keyboard::isKeyPressed(Keyboard::Right))
         {  
         int xtexture=0;
@@ -37,17 +37,20 @@
 
         p.setTextureRect(IntRect(xtexture,size.y*2,size.x,size.y));
         p.move(5,0);
+        
+
 
         
         }
-         if(Keyboard::isKeyPressed(Keyboard::Right))
-        {  
+         if(Keyboard::isKeyPressed(Keyboard::Up))
+        {  p.setTextureRect(IntRect(size.x*3,size.y*3,size.x,size.y));
+
         int xtexture=0;
-        xtexture=(int)getPosition().x/60%4;
+        xtexture=(int)getPosition().y/60%4;
         xtexture*=size.x;
 
-        p.setTextureRect(IntRect(xtexture,size.y*2,size.x,size.y));
-        p.move(5,0);
+        p.setTextureRect(IntRect(xtexture,size.y*3,size.x,size.y));
+        p.move(0,-5);
 
         
         }
@@ -64,17 +67,18 @@
 
         
         }
-         if(Keyboard::isKeyPressed(Keyboard::Up))
+         if(Keyboard::isKeyPressed(Keyboard::Down))
         {  
         
+        p.setTextureRect(IntRect(0,0,size.x,size.y));
 
         int ytexture=0;
         ytexture=(int)getPosition().y/20%4;
         ytexture*=size.x;
 
-        p.setTextureRect(IntRect(ytexture,size.y*3,size.x,size.y));
+        p.setTextureRect(IntRect(ytexture,0,size.x,size.y));
 
-        p.move(0,-5);
+        p.move(0,5);
 
         
         }

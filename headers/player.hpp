@@ -11,7 +11,7 @@ class player
 
     void LoadContent(string path);
  
-    void draw(RenderWindow &window);
+    void drawchar(RenderWindow &window);
   
     
     player(string path);
