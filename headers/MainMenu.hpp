@@ -3,27 +3,24 @@
 
 #include <Library.hpp>
 
-#define Max_Number_Of_Items 5
-
 class MainMenu
 {
 private:
     int selectedItemIndex;
     sf::Font font;
     std::vector<sf::Text> menu;
+    int MAX_NUMBER_OF_ITEMS = 5;
 
 public:
-    MainMenu(float width, float height);
-    ~MainMenu();
+    MainMenu(){};
+    ~MainMenu(){};
 
     void draw(sf::RenderWindow &window);
     void MoveUp();
     void MoveDown();
     int GetPressedItem();
 
-    void MoveLeft();
-    void MoveRight();
-
+    void create(float width, float height);
     void render();
 };
 

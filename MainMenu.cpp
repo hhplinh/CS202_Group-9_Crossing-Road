@@ -1,6 +1,6 @@
-#include "MainMenu.hpp"
+#include <MainMenu.hpp>
 
-MainMenu::MainMenu(float width, float height)
+void MainMenu::create(float width, float height)
 {
     if (!font.loadFromFile("fonts/arial.ttf"))
     {
@@ -26,27 +26,27 @@ MainMenu::MainMenu(float width, float height)
         }
     }
 
-    menu.resize(Max_Number_Of_Items);
+    menu.resize(MAX_NUMBER_OF_ITEMS);
 
     menu[0].setFont(font);
     menu[0].setFillColor(sf::Color::Red);
     menu[0].setString("Play");
-    menu[0].setPosition(sf::Vector2f(width / 2, height / (Max_Number_Of_Items + 1) * 1));
+    menu[0].setPosition(sf::Vector2f(width / 2, height / (MAX_NUMBER_OF_ITEMS + 1) * 1));
 
     menu[1].setFont(font);
     menu[1].setFillColor(sf::Color::White);
     menu[1].setString("Options");
-    menu[1].setPosition(sf::Vector2f(width / 2, height / (Max_Number_Of_Items + 1) * 2));
+    menu[1].setPosition(sf::Vector2f(width / 2, height / (MAX_NUMBER_OF_ITEMS + 1) * 2));
 
     menu[2].setFont(font);
     menu[2].setFillColor(sf::Color::White);
     menu[2].setString("Credits");
-    menu[2].setPosition(sf::Vector2f(width / 2, height / (Max_Number_Of_Items + 1) * 3));
+    menu[2].setPosition(sf::Vector2f(width / 2, height / (MAX_NUMBER_OF_ITEMS + 1) * 3));
 
     menu[3].setFont(font);
     menu[3].setFillColor(sf::Color::White);
     menu[3].setString("Exit");
-    menu[3].setPosition(sf::Vector2f(width / 2, height / (Max_Number_Of_Items + 1) * 4));
+    menu[3].setPosition(sf::Vector2f(width / 2, height / (MAX_NUMBER_OF_ITEMS + 1) * 4));
 
     selectedItemIndex = -1;
 }
@@ -57,7 +57,7 @@ MainMenu::~MainMenu()
 
 void MainMenu::draw(sf::RenderWindow &window)
 {
-    for (int i = 0; i < Max_Number_Of_Items; i++)
+    for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
     {
         window.draw(menu[i]);
     }
@@ -71,7 +71,7 @@ void MainMenu::MoveUp()
         selectedItemIndex--;
         if (selectedItemIndex == -1)
         {
-            selectedItemIndex = Max_Number_Of_Items - 1;
+            selectedItemIndex = MAX_NUMBER_OF_ITEMS - 1;
         }
         menu[selectedItemIndex].setFillColor(sf::Color::Blue);
     }
@@ -79,11 +79,11 @@ void MainMenu::MoveUp()
 
 void MainMenu::MoveDown()
 {
-    if (selectedItemIndex + 1 <= Max_Number_Of_Items)
+    if (selectedItemIndex + 1 <= MAX_NUMBER_OF_ITEMS)
     {
         menu[selectedItemIndex].setFillColor(sf::Color::White);
         selectedItemIndex++;
-        if (selectedItemIndex == Max_Number_Of_Items)
+        if (selectedItemIndex == MAX_NUMBER_OF_ITEMS)
         {
             selectedItemIndex = 0;
         }
@@ -98,9 +98,9 @@ int MainMenu::GetPressedItem()
 
 void MainMenu::render()
 {
-    
     sf::RenderWindow MENU(sf::VideoMode(960, 720), "Main Menu", sf::Style::Default);
-    MainMenu mainMenu(MENU.getSize().x, MENU.getSize().y);
+    MainMenu mainMenu;
+    mainMenu.create(MENU.getSize().x, MENU.getSize().y);
 
     //set background
     sf::Texture texture;

@@ -1,5 +1,5 @@
-#ifndef APP_HPP
-#define APP_HPP
+#ifndef RUNMENU_HPP
+#define RUNMENU_HPP
 
 #include <Library.hpp>
 #include <ScreenMenu.hpp>
