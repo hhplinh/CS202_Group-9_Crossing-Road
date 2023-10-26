@@ -1,4 +1,22 @@
 #include"player.hpp"
+
+void player:: initvariables()
+{
+
+}
+void player:: initshape()
+{
+this->shape.setFillColor(sf::Color::Green);
+this->shape.setSize(sf::Vector2f(100.f,100.f));
+this->texture.loadFromFile("resources/orge.png");
+this->p.setTexture(this->texture);
+
+}
+player::player(string path)
+{   this->LoadContent(path);
+    this->initvariables();
+    this->initshape();
+}
    void player:: LoadContent(string path )
     {   
         if( !texture.loadFromFile(path)) 
@@ -19,10 +37,7 @@
         window.draw(p);
     }
     
-   player:: player(string path)
-    {
-        LoadContent(path);
-    }
+ 
    
     void player:: move()
     {   Vector2u size = texture.getSize();
@@ -92,4 +107,7 @@
     {
         return p.getPosition();
     }
-  
+  void player:: render(sf:: RenderTarget *target )
+  {
+      target->draw(this->p);
+  }
