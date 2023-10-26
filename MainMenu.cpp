@@ -2,9 +2,9 @@
 
 void MainMenu::create(float width, float height)
 {
-    if (!font.loadFromFile("fonts/arial.ttf"))
+    if (!font.loadFromFile("resources/Font/Fira Code/FiraCode-Bold.ttf"))
     {
-        sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+        sf::RenderWindow window(sf::VideoMode(200, 200), "" ,sf::Style::Close);
         sf::Text text;
         text.setFont(font);
         text.setString("Error loading font");
@@ -59,7 +59,7 @@ void MainMenu::a()
 void MainMenu::renderNavigateWithButtons()
 {
     create(960, 720);
-    sf::RenderWindow MENU(sf::VideoMode(960, 720), "Main Menu", sf::Style::Default);
+    sf::RenderWindow MENU(sf::VideoMode(960, 720), "Main Menu", sf::Style::Close);
     MainMenu mainMenu;
     mainMenu.create(MENU.getSize().x, MENU.getSize().y);
 
@@ -68,7 +68,7 @@ void MainMenu::renderNavigateWithButtons()
     sf::RectangleShape background;
 
     //insert image
-    texture.loadFromFile("../resources/Textures/bgMenu.jpg");
+    texture.loadFromFile("resources/Textures/bgMenu.jpg");
 
     background.setSize(sf::Vector2f(960, 720));
     background.setTexture(&texture);

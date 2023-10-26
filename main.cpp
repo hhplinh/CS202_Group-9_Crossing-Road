@@ -9,7 +9,7 @@ int main()
     // mainMenu.create(width, height);
 
     MainMenu mainMenu;
-    mainMenu.a();
+    mainMenu.renderNavigateWithButtons();
     
     return 0;
 }
