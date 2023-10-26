@@ -14,14 +14,16 @@ private:
 public:
     MainMenu(){};
     ~MainMenu(){};
+    void create(float width, float height);
+    void renderNavigateWithButtons();
 
     void draw(sf::RenderWindow &window);
     void MoveUp();
     void MoveDown();
     int GetPressedItem();
 
-    void create(float width, float height);
-    void render();
+    void a();
+
 };
 
 #endif

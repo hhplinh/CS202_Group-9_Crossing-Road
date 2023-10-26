@@ -51,49 +51,12 @@ void MainMenu::create(float width, float height)
     selectedItemIndex = -1;
 }
 
-
-void MainMenu::draw(sf::RenderWindow &window)
+void MainMenu::a()
 {
-    for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
-    {
-        window.draw(menu[i]);
-    }
+    std::cerr << "a";
 }
 
-void MainMenu::MoveUp()
-{
-    if (selectedItemIndex - 1 >= 0)
-    {
-        menu[selectedItemIndex].setFillColor(sf::Color::White);
-        selectedItemIndex--;
-        if (selectedItemIndex == -1)
-        {
-            selectedItemIndex = MAX_NUMBER_OF_ITEMS - 1;
-        }
-        menu[selectedItemIndex].setFillColor(sf::Color::Blue);
-    }
-}
-
-void MainMenu::MoveDown()
-{
-    if (selectedItemIndex + 1 <= MAX_NUMBER_OF_ITEMS)
-    {
-        menu[selectedItemIndex].setFillColor(sf::Color::White);
-        selectedItemIndex++;
-        if (selectedItemIndex == MAX_NUMBER_OF_ITEMS)
-        {
-            selectedItemIndex = 0;
-        }
-        menu[selectedItemIndex].setFillColor(sf::Color::Blue);
-    }
-}
-
-int MainMenu::GetPressedItem()
-{
-    return selectedItemIndex;
-}
-
-void MainMenu::render()
+void MainMenu::renderNavigateWithButtons()
 {
     create(960, 720);
     sf::RenderWindow MENU(sf::VideoMode(960, 720), "Main Menu", sf::Style::Default);
@@ -211,4 +174,45 @@ void MainMenu::render()
         // display the MENU
         MENU.display();
     }
+}
+
+void MainMenu::draw(sf::RenderWindow &window)
+{
+    for (int i = 0; i < MAX_NUMBER_OF_ITEMS; i++)
+    {
+        window.draw(menu[i]);
+    }
+}
+
+void MainMenu::MoveUp()
+{
+    if (selectedItemIndex - 1 >= 0)
+    {
+        menu[selectedItemIndex].setFillColor(sf::Color::White);
+        selectedItemIndex--;
+        if (selectedItemIndex == -1)
+        {
+            selectedItemIndex = MAX_NUMBER_OF_ITEMS - 1;
+        }
+        menu[selectedItemIndex].setFillColor(sf::Color::Blue);
+    }
+}
+
+void MainMenu::MoveDown()
+{
+    if (selectedItemIndex + 1 <= MAX_NUMBER_OF_ITEMS)
+    {
+        menu[selectedItemIndex].setFillColor(sf::Color::White);
+        selectedItemIndex++;
+        if (selectedItemIndex == MAX_NUMBER_OF_ITEMS)
+        {
+            selectedItemIndex = 0;
+        }
+        menu[selectedItemIndex].setFillColor(sf::Color::Blue);
+    }
+}
+
+int MainMenu::GetPressedItem()
+{
+    return selectedItemIndex;
 }
