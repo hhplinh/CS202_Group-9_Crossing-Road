@@ -1,6 +1,6 @@
-#include <FrontendGlobal.hpp>
+// #include <FrontendGlobal.hpp>
 // #include <MainMenu.hpp>
-// #include <MainMenu.hpp>
+#include "MainMenu.hpp"
 
 int main()
 {
@@ -8,8 +8,8 @@ int main()
     // float height = 600;
     // mainMenu.create(width, height);
 
-    // MainMenu mainMenu;
-    mainMenu.renderNavigateWithButtons();
+    MainMenu mainMenu;
+    mainMenu.a();
     
     return 0;
 }
