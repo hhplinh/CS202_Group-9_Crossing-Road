@@ -12,8 +12,8 @@ private:
     int MAX_NUMBER_OF_ITEMS = 5;
 
 public:
-    MainMenu(){};
-    ~MainMenu(){};
+    // MainMenu(){};
+    // ~MainMenu(){};
     void create(float width, float height);
     void renderNavigateWithButtons();
 

@@ -7,7 +7,7 @@ int main()
     // float width = 800;
     // float height = 600;
     // mainMenu.create(width, height);
-    // MainMenu mainMenu;
+
     MainMenu mainMenu;
     mainMenu.a();
     
