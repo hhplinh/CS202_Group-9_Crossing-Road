@@ -36,7 +36,7 @@ bool ScreenMenu::checkStrViet(std::string &str)
 
 std::unique_ptr<ScreenMenu> HomeMenu::render(sf:: RenderWindow& window)
 {
-    draw(window);
+    // draw(window);
 }
 
 void HomeMenu::setValueButtons(float width, float height)

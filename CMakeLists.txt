@@ -9,12 +9,12 @@ set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR "C:/SFML-2.6.0/lib/cmake/SFML") 
 find_package(SFML 2.6 COMPONENTS system window graphics network audio REQUIRED)
 
-file(GLOB_RECURSE ASTERI_SRC_FILES CONFIGURE_DEPENDS
-    "*.cpp"
+file(GLOB SRC CONFIGURE_DEPENDS
+ "*.cpp"
 )
 
 # Add your source files here
-add_executable(main main.cpp ${ASTERI_SRC_FILES})
+add_executable(main main.cpp ${SRCS})
 
 # Link your executable to SFML
 target_link_libraries(main PRIVATE sfml-system sfml-window sfml-graphics sfml-network sfml-audio opengl32)
