@@ -1,6 +1,5 @@
 #pragma once
 #include <Button.hpp>
-#include <Class.hpp>
 
 class ButtonTable : public sf::Drawable
 {
@@ -15,7 +14,7 @@ public:
 
     // Draw
 
-    void drawTexture(const List<Backend::Class> &list, int page);
+   
 
     // Misc
 
@@ -37,7 +36,8 @@ protected:
     virtual void draw(sf::RenderTarget &target, sf::RenderStates state) const;
 private:
     float x, y;
-    Button *Table = nullptr;
+    // Button *Table = nullptr;
+    std::vector<Button> Table;
     unsigned int MAX_ROW, MAX_COL, MAX_CELL, numCell, width, height, Offset_x, Offset_y;
     sf::RenderTexture Texture;
     sf::RectangleShape Background;

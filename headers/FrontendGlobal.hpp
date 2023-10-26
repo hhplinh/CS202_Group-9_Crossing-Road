@@ -5,5 +5,6 @@
 #include <MainMenu.hpp>
 
 extern MainMenu mainMenu;
+extern sf::Color BackgroundColor;
 
 #endif

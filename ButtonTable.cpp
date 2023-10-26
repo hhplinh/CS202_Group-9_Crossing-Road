@@ -35,7 +35,6 @@ void ButtonTable::create(unsigned int row, unsigned int col,
 
     // Table
 
-    Table = new Button[MAX_CELL];
     for (int i = 0; i < row; i++)
         for (int j = 0; j < col; j++)
         {
@@ -48,22 +47,6 @@ void ButtonTable::create(unsigned int row, unsigned int col,
 }
 
 // Draw //////////////////////////////////////////////////////////////////////////////////
-
-void ButtonTable::drawTexture(const List<Backend::Class> &list, int page)
-{
-    numCell = min(list.size() - (page - 1) * MAX_CELL, MAX_CELL);
-    auto start = list.begin() + (page - 1) * MAX_CELL;
-    Texture.draw(Background);
-    for (int i = 0; i < numCell; ++i)
-    {
-        auto Tmp = start + i;
-        Table[i].setText((*Tmp).getID());
-        Table[i].setTextPos();
-        Table[i].drawTexture();
-        Texture.draw(Table[i]);
-    }
-    Texture.display();
-}
 
 void ButtonTable::draw(sf::RenderTarget &target, sf::RenderStates state) const
 {
@@ -88,14 +71,14 @@ void ButtonTable::setPosition(float a, float b)
 {
     x = a;
     y = b;
-    if (Table)
+    if (!Table.empty())
         for (int i = 0; i < MAX_CELL; i++)
             Table[i].setGlobalPosition(a, b);
 }
 
 bool ButtonTable::isPressed(sf::Event event)
 {
-    if (Table)
+    if (!Table.empty())
     {
         for (int i = 0; i < numCell; i++)
             Texture.draw(Table[i]);
@@ -123,7 +106,7 @@ void ButtonTable::setColString(unsigned int col, sf::String s)
 
 void ButtonTable::setFillColor(sf::Color color)
 {
-    if (Table)
+    if (!Table.empty())
         for (int i = 0; i < MAX_CELL; i++)
             Table[i].setFillColor(color);
     else
@@ -132,7 +115,7 @@ void ButtonTable::setFillColor(sf::Color color)
 
 void ButtonTable::setTextColor(sf::Color color)
 {
-    if (Table)
+    if (!Table.empty())
         for (int i = 0; i < MAX_CELL; i++)
             Table[i].setTextColor(color);
     else
@@ -141,7 +124,7 @@ void ButtonTable::setTextColor(sf::Color color)
 
 void ButtonTable::setCoverColor(sf::Color color)
 {
-    if (Table)
+    if (!Table.empty())
         for (int i = 0; i < MAX_CELL; i++)
             Table[i].setCoverColor(color);
     else
@@ -159,5 +142,4 @@ int ButtonTable::min(int x, int y)
 
 ButtonTable::~ButtonTable()
 {
-    delete[] Table;
 }
