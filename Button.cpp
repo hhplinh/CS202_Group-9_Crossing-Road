@@ -1,8 +1,5 @@
-#include <StudentManager.hpp>
-
-extern sf::RenderWindow window;
-
 // Constructor //////////////////////////////////////////////////////////////////////////////////
+#include <Button.hpp>
 
 Button::Button()
 {
@@ -166,6 +163,7 @@ sf::Color Button::getContrastColor(sf::Color color, float ratio)
 sf::Vector2i Button::getMousePosition() const
 {
     sf::Mouse mouse;
+    sf::RenderWindow window;
     return mouse.getPosition(window);
 }
 

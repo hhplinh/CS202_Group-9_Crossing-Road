@@ -9,7 +9,7 @@ set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR "C:/SFML-2.6.0/lib/cmake/SFML") 
 find_package(SFML 2.6 COMPONENTS system window graphics network audio REQUIRED)
 
-file(GLOB_RECURSE ASTERI_SRC_FILES CONFIGURE_DEPENDS
+file(GLOB ASTERI_SRC_FILES CONFIGURE_DEPENDS
     "*.cpp"
 )
 

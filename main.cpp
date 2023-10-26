@@ -1,6 +1,6 @@
 // #include <FrontendGlobal.hpp>
 // #include <MainMenu.hpp>
-#include "MainMenu.hpp"
+#include <MainMenu.hpp>
 
 int main()
 {

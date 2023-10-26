@@ -1,5 +1,5 @@
 #include <ButtonTable.hpp>
-#include <FrontendGlobal.hpp>
+
 
 // Constructor ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -25,6 +25,7 @@ void ButtonTable::create(unsigned int row, unsigned int col,
     Fill = sf::Color::White;
     Cover = sf::Color(40, 40, 40, 255);
     Text = sf::Color::Black;
+    sf::Color BackgroundColor = sf::Color(255, 255, 255, 255);
 
     // Background
 

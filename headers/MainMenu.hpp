@@ -1,7 +1,9 @@
 #ifndef MAINMENU_HPP
 #define MAINMENU_HPP
 
-#include <Library.hpp>
+#include <SFML/Graphics.hpp>
+#include <vector>
+#include <iostream>
 
 class MainMenu
 {

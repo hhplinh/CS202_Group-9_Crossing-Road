@@ -1,7 +1,8 @@
 #ifndef SCREENMENU_HPP
 #define SCREENMENU_HPP
 
-#include <Library.hpp>
+#include <SFML/Graphics.hpp>
+#include <memory>
 
 class ScreenMenu
 {

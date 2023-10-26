@@ -1,8 +1,9 @@
 #ifndef RUNMENU_HPP
 #define RUNMENU_HPP
 
-#include <Library.hpp>
+#include <SFML/Graphics.hpp>
 #include <ScreenMenu.hpp>
+#include <memory>
 
 class RunMenu
 {
