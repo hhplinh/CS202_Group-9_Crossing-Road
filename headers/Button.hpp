@@ -1,5 +1,6 @@
 #pragma once
-#include <Library.hpp>
+
+#include <SFML/Graphics.hpp>
 
 class Button : public sf::Drawable
 {
