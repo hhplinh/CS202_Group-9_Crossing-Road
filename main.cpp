@@ -2,8 +2,8 @@
 #include"player.hpp"
 #include"MAINMENU.h"
 #include"terrain.hpp"
-#define WIDTH 1920
-#define HEIGHT 1080
+#define WIDTH 1280
+#define HEIGHT 720
 #include<iostream>
 #include<ctime>
 #include"game.hpp"
