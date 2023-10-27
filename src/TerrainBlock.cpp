@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "TerrainBlock.hpp"
 
-terrainBlock::TerrainBlock(std::string terrainName, float x, float y, bool isPassable)
+TerrainBlock::TerrainBlock(std::string terrainName, float x, float y, bool isPassable)
 {
 	if (!setUpSprite(terrainName))
 	{
@@ -9,7 +9,7 @@ terrainBlock::TerrainBlock(std::string terrainName, float x, float y, bool isPas
 	}
 	pos = sf::Vector2f(x, y);
 	sprite.setPosition(pos);
-	isPassable = passable;
+	isPassable = true;
 }
 
 bool TerrainBlock::setUpSprite(std::string terrainName)

@@ -1,4 +1,4 @@
-#include "gameWorld.h"
+//#include "GameWorld.h"
 #include "GameMap.hpp"
 
 void gameWorld::setUpInitialState()
