@@ -48,6 +48,7 @@ void game::pollEvents()
 void game :: render()
 {   
     this->window->clear( sf::Color::White);
+    this->gameWorld1.render(this->window);
     this->player1.render(this->window);
     this->player1.move();
     this->window->display();

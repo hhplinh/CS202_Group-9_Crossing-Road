@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 
-
+#ifndef TERRAINBLOCK_H
+#define TERRAINBLOCK_H
 class TerrainBlock
 {
 public:
@@ -11,3 +12,4 @@ public:
 	TerrainBlock(std::string, float, float, bool);
 	bool setUpSprite(std::string);
 };
+#endif
