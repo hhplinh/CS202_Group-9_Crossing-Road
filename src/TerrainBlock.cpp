@@ -23,6 +23,6 @@ bool TerrainBlock::setUpSprite(std::string terrainName)
 
 	texture.setSmooth(true);
 	sprite.setTexture(texture);
-	sprite.setTextureRect(sf::IntRect(0, 0, 400, 500));
+	//sprite.setTextureRect(sf::IntRect(0, 0, 400, 500));
 	return true;
 }
