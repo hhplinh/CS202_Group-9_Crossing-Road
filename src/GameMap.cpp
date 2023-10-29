@@ -19,25 +19,26 @@ void gameWorld::setUpObstaclePositions()
 
 void gameWorld::setUpTerrain()
 {
-	tiles.clear();
-	std:: vector < TerrainBlock* > firstrow;
-	firstrow.push_back(new TerrainBlock("resources/Road.png", 0, 0, true,false));
-		firstrow.push_back(new TerrainBlock("resources/Rock 1.png", 50, 0, true,false));
-			firstrow.push_back(new TerrainBlock("resources/Rock2.png", 100, 0, true,false));
-					firstrow.push_back(new TerrainBlock("resources/Rock 1.png", 200, 0, true,false));
+    tiles.clear();
 
-		firstrow.push_back(new TerrainBlock("resources/Rock 1.png", 250, 0, true,false));
+    // Define the available terrain types
+    const std::vector<std::string> terrainTypes = 
+	{
+        "Road", "River", "Rock 1", "Rock 2", "Traffic light", "Car 1", "Car 2", "Car 3", "Car 4",
+        "Car 5",   "Tree 1"
+    };
 
-		firstrow.push_back(new TerrainBlock("resources/Rock 1.png", 300, 0, true,false));
+    for (int i = 0; i < gridLength; i++) {
+        std::vector<TerrainBlock*> row;
 
-		firstrow.push_back(new TerrainBlock("resources/Rock 1.png", 400, 0, true,false));
-				firstrow.push_back(new TerrainBlock("resources/Rock 1.png", 450, 0, true,false));
+        // Generate a row with random terrain types
+        for (int j = 0; j < gridLength; j++) {
+            int terrainIndex = std::rand() % terrainTypes.size();
+            row.push_back(new TerrainBlock("resources/" + terrainTypes[terrainIndex] + ".png", j * 100, i *200 , true, false));
+        }
 
-
-
-
-	tiles.push_back(firstrow);
-
+        tiles.push_back(row);
+    }
 }
 
 gameWorld::gameWorld()
@@ -55,24 +56,13 @@ gameWorld::~gameWorld()
 		}
 	}
 }
-void gameWorld::render( sf::RenderTarget *target)
-{ 
-	//for (int i = 0; i < gridLength; i++)
-//{
-		//for (int j = 0; j < gridLength; j++)
-		//{
-			//draw the tiles[i][j]
-
-  for(int i=0;i<gridLength;i++)
-  {
-	  	target -> draw(this->tiles[0][i]->sprite);
-
-  }
-	
-
-
-
-			
-		//}
-	//}
+void gameWorld::render(sf::RenderTarget* target)
+{
+    for (int i = 0; i < gridLength; i++)
+    {
+        for (int j = 0; j < gridLength; j++)
+        {
+            target->draw(this->tiles[i][j]->sprite);
+        }
+    }
 }
