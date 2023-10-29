@@ -12,9 +12,9 @@ void gameWorld::setUpInitialState()
 void gameWorld::setUpObstaclePositions()
 {
 	obstaclepos.clear();
-	obstaclepos.push_back(sf::Vector2i(0, 2)); //Insert obstacle position here
-	obstaclepos.push_back(sf::Vector2i(6, 0));
-	obstaclepos.push_back(sf::Vector2i(2, 7));
+//obstaclepos.push_back(sf::Vector2i(0, 2)); //Insert obstacle position here
+//	obstaclepos.push_back(sf::Vector2i(6, 0));
+//	obstaclepos.push_back(sf::Vector2i(2, 7));
 }
 
 void gameWorld::setUpTerrain()
@@ -22,6 +22,7 @@ void gameWorld::setUpTerrain()
 	tiles.clear();
 	std:: vector < TerrainBlock* > firstrow;
 	firstrow.push_back(new TerrainBlock("resources/Road.png", 0, 0, true));
+	tiles.push_back(firstrow);
 
 }
 
