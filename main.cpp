@@ -15,10 +15,11 @@ int main()
 {
  srand (static_cast <unsigned>(time(0)));
   game game1;
-gameWorld gameWorld1;
+
   while( game1.running())
   { game1.update();
     game1.render();
+    
     game1.pollEvents();
     game1.render();    
 

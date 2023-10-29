@@ -51,7 +51,7 @@ player::player(string path)
         xtexture*=size.x;
 
         p.setTextureRect(IntRect(xtexture,size.y*2,size.x,size.y));
-        p.move(5,0);
+        p.move(0.5,0);
         
 
 
@@ -65,7 +65,7 @@ player::player(string path)
         xtexture*=size.x;
 
         p.setTextureRect(IntRect(xtexture,size.y*3,size.x,size.y));
-        p.move(0,-5);
+        p.move(0,-0.5);
 
         
         }
@@ -77,7 +77,7 @@ player::player(string path)
         xtexture*=size.x;
 
         p.setTextureRect(IntRect(xtexture,size.y,size.x,size.y));
-        p.move(-5,0);
+        p.move(-0.5,0);
 
 
         
@@ -93,7 +93,7 @@ player::player(string path)
 
         p.setTextureRect(IntRect(ytexture,0,size.x,size.y));
 
-        p.move(0,5);
+        p.move(0,0.5);
 
         
         }

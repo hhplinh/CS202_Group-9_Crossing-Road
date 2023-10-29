@@ -19,7 +19,7 @@ void game :: initwindow()
 {  //set the background to white
     
 //set the color background to white
-    this-> videomode = sf:: VideoMode(1280,720);
+    this-> videomode = sf:: VideoMode(1920,1080);
     this-> window = new sf :: RenderWindow( this->videomode,"CrossyRoad",sf::Style::Titlebar | sf::Style::Close  );
 }
 const bool game :: running() const
@@ -47,7 +47,7 @@ void game::pollEvents()
 }
 void game :: render()
 {   
-    this->window->clear( sf::Color::White);
+    this->window->clear( sf::Color::Green);
     this->gameWorld1.render(this->window);
     this->player1.render(this->window);
     this->player1.move();

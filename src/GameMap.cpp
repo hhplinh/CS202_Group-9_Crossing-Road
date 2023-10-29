@@ -11,7 +11,7 @@ void gameWorld::setUpInitialState()
 
 void gameWorld::setUpObstaclePositions()
 {
-	obstaclepos.clear();
+	//obstaclepos.clear();
 //obstaclepos.push_back(sf::Vector2i(0, 2)); //Insert obstacle position here
 //	obstaclepos.push_back(sf::Vector2i(6, 0));
 //	obstaclepos.push_back(sf::Vector2i(2, 7));
@@ -21,7 +21,7 @@ void gameWorld::setUpTerrain()
 {
 	tiles.clear();
 	std:: vector < TerrainBlock* > firstrow;
-	firstrow.push_back(new TerrainBlock("resources/Road.png", 0, 0, true));
+	firstrow.push_back(new TerrainBlock("resources/Road.png", 0, 0, true,false));
 	tiles.push_back(firstrow);
 
 }
@@ -42,14 +42,14 @@ gameWorld::~gameWorld()
 	}
 }
 void gameWorld::render( sf::RenderTarget *target)
-{
+{ 
 	//for (int i = 0; i < gridLength; i++)
-	//{
-	//	for (int j = 0; j < gridLength; j++)
-	//	{
+//{
+		//for (int j = 0; j < gridLength; j++)
+		//{
 			//draw the tiles[i][j]
 
-
+  
 	target -> draw(this->tiles[0][0]->sprite);
 
 

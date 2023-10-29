@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "TerrainBlock.hpp"
 #include <vector>
-#ifndef GAMEWORLD_H
+#ifndef GAMEWORLD_H	
 #define GAMEWORLD_H
 class gameWorld
 {

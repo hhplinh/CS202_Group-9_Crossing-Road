@@ -6,7 +6,8 @@
 class game
 {
     private :
-     sf :: RenderWindow *window; 
+     sf :: 
+     RenderWindow *window; 
     player player1;
     gameWorld gameWorld1;
     bool end;
