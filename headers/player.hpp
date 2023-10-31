@@ -1,34 +1,46 @@
 #pragma once
 #include <iostream>
+#include"state.h"
+#include"system.h"
 #include <SFML/Graphics.hpp>
-using namespace std;
-using namespace sf;
-class player
+
+class player: public state
 {  
 
     private :
+    int row , col;
+    data * _data;
     sf :: RectangleShape shape;
-    void initvariables();
+    
+    public :
+     void initvariables();
     
     void initshape();
-     public :
-    Texture texture;
-    Sprite p;
+    player(data* _data);
+    
+    void init();
+	void processInput();
+	void update();
+	void draw();
+     //
+    sf:: Texture texture;
+    sf::Sprite p;
 
-    void LoadContent(string path);
+   // void LoadContent(std::string path);
  
-    void drawchar(RenderWindow &window);
-    void update();
+    void drawchar(sf::RenderWindow &window);
+    
     void render(sf:: RenderTarget *target );  
     
-    player(string path);
+    player(std::string path);
     
    
     void move();
  
     void setPosition(int x,int y);
   
-    Vector2f getPosition();
+   sf:: Vector2f getPosition();
+    sf::Vector2u size = texture.getSize();
   
    
 

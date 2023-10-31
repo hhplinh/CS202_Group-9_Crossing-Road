@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+#include <SFML/Graphics.hpp>
+#include"state.h"
+#include"system.h"
+#pragma once
+enum State 
+{
+    IDLE,
+    WALKING,
+    RUNNING,
+    JUMPING,
+    FALLING
+};
+class maincharacter: public state
+{
+    private : int row , col;
+    data * _data;
+    sf :: RectangleShape shape;
+    sf::Texture texture;
+    sf::Sprite p;
+    sf::Vector2f velocity;
+
+    public:
+    maincharacter(data* _data);
+    
+    void init();
+	void processInput();
+	void update();
+	void draw();
+    void move();
+    void setPosition(int x,int y);
+    sf::Vector2f getPosition();
+    sf::Vector2u size ;
+
+};

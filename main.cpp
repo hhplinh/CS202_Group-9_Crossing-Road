@@ -1,4 +1,4 @@
-#include <SFML/Graphics.hpp>
+/*#include <SFML/Graphics.hpp>
 #include"player.hpp"
 #include"MAINMENU.h"
 #include"terrain.hpp"
@@ -26,5 +26,11 @@ int main()
   }
 
 
+}*/
+
+#include "system.h"
+int main()
+{
+  System system;
+  return 0;
 }
-//     }
