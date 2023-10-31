@@ -19,7 +19,7 @@ void System::run()
 			timeSinceLastFrame += clock.restart();
 			while (timeSinceLastFrame > TIME_PER_FRAME)
 			{
-				timeSinceLastFrame -= TIME_PER_FRAME;
+				//timeSinceLastFrame -= TIME_PER_FRAME;
 				_data->_states->processStateChange();
 				_data->_states->getCurrentState()->processInput();
 				_data->_states->getCurrentState()->update();
