@@ -2,7 +2,7 @@
 #include"SFML/Graphics.hpp"
 enum
 {
-	PLAYER=0 , BACKGROUND
+	PLAYER=0 , BACKGROUND , ROCK , ROCK1 , ROCK2 ,ROCK3 ,ROCK4 , TRAFFICLIGHT , TREE1 , TREE2 , RIVER , ROAD , MAIN_FONT
 
 };
 class assetManager
