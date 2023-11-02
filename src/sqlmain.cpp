@@ -9,7 +9,6 @@ void loadLibSQL()
 {
    HMODULE sqlite3DLL = LoadLibrary("sqlite3.dll");
     if (!sqlite3DLL) {
-        // Handle the error
         std::cerr << "Error loading sqlite3.dll" << std::endl;
     }
 }
