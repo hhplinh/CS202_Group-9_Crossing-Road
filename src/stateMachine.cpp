@@ -22,10 +22,11 @@ void stateMachine::processStateChange()
 		state *top = stackState.top();
 		delete top;
 		stackState.pop();
+		delete tmp;
 		stackState.top()->init();
 		_remove = 0;
 	}
-	if (_add)
+	 if (_add)
 	{
 		if (!stackState.empty())
 		{
@@ -34,6 +35,7 @@ void stateMachine::processStateChange()
 				state *top = stackState.top();
 				delete top;
 				stackState.pop();
+				delete tmp;
 			}
 		}
 		stackState.push(newState);

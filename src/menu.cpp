@@ -191,7 +191,38 @@ void menu::update()
 
 void menu::draw()
 {
-    _data->_window->clear();
+    m_play.setFillColor(sf::Color::Black);
+    m_exit.setFillColor(sf::Color::White);
+    m_loadGame.setFillColor(sf::Color::White);
+}
+if(m_exitselected)
+{
+    m_exit.setFillColor(sf::Color::Black);
+    m_play.setFillColor(sf::Color::White);
+    m_loadGame.setFillColor(sf::Color::White);
+}
+if (m_playpressed)
+{   
+    _data->_states->addState(new maincharacter(_data));
+    m_playpressed = false;
+}
+ if (m_exitpressed)
+{
+    _data->_window->close();
+}
+ if (m_loadGamePressed)
+{
+    // Implement your "Load Game" logic here
+     _data->_states->addState(new maincharacter(_data));
+    m_loadGamePressed = false;
+}
+}
+
+
+
+void menu::draw(){
+   _data->_window->clear();
+ 
     _data->_window->draw(background);
     _data->_window->draw(m_gametitle);
     _data->_window->draw(m_loadGame);
