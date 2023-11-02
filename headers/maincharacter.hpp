@@ -20,7 +20,7 @@ class maincharacter: public state
     sf::Texture texture;
     sf::Sprite p;
     sf::Vector2f velocity;
-
+    bool mApressed=0;
     public:
     maincharacter(data* _data);
     

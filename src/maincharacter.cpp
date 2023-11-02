@@ -77,16 +77,23 @@ void maincharacter::processInput()
         {
             _data->_window->close();
         }
-        //popstate 
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+        //popstate //change to is key release
+
+      else if( sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         {
-            _data->_states->removeState();
+         mApressed = true;
         }
        
     }
 }
 void maincharacter::update()
-{
+{    // sf keyrelease
+
+     if(mApressed)
+        {
+           _data->_states->removeState( );
+           mApressed = false;
+        }
     this->move();
 
 }

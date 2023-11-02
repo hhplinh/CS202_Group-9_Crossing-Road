@@ -20,18 +20,21 @@ void stateMachine::removeState()
 void stateMachine::processStateChange()
 {
 	if (_remove && !stackState.empty())
-	{
+	{   state * tmp = stackState.top();
 		stackState.pop();
+		delete tmp;
 		stackState.top()->init();
 		_remove = 0;
 	}
-	if (_add)
+	 if (_add)
 	{
 		if (!stackState.empty())
 		{
 			if (_replace)
-			{
+			{   state * tmp = stackState.top();
+
 				stackState.pop();
+				delete tmp;
 			}
 		}
 		stackState.push(newState);

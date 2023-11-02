@@ -170,15 +170,17 @@ if(m_exitselected)
 if (m_playpressed)
 {   
     _data->_states->addState(new maincharacter(_data));
+    m_playpressed = false;
 }
-else if (m_exitpressed)
+ if (m_exitpressed)
 {
     _data->_window->close();
 }
-else if (m_loadGamePressed)
+ if (m_loadGamePressed)
 {
     // Implement your "Load Game" logic here
      _data->_states->addState(new maincharacter(_data));
+    m_loadGamePressed = false;
 }
 }
 
