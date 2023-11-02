@@ -182,20 +182,14 @@ void menu::update()
 
 void menu::draw()
 {
-    _data->_window->clear();
-    _data->_window->draw(background);
-    _data->_window->draw(m_gametitle);
-    _data->_window->draw(m_loadGame);
-    _data->_window->draw(m_play);
-    _data->_window->draw(m_exit);
-    _data->_window->display();
+    run();
 }
 
-void menu::run(sf:: RenderWindow& window)
+void menu::run()
 {
     while (CurrentScreen != nullptr)
     {
-        std::unique_ptr<ScreenMenu> NextScreen = CurrentScreen->render(window);
+        std::unique_ptr<ScreenMenu> NextScreen = CurrentScreen->render();
 
         if (NextScreen != CurrentScreen)
         {
@@ -203,4 +197,15 @@ void menu::run(sf:: RenderWindow& window)
         }
     }
     return;
+}
+
+void menu::drawTemplate()
+{
+    _data->_window->clear();
+    _data->_window->draw(background);
+    _data->_window->draw(m_gametitle);
+    _data->_window->draw(m_loadGame);
+    _data->_window->draw(m_play);
+    _data->_window->draw(m_exit);
+    _data->_window->display();
 }

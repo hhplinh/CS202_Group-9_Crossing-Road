@@ -11,7 +11,7 @@ private:
     bool checkStrViet(std::string &str);
 
 public:
-    virtual std::unique_ptr<ScreenMenu> render(sf:: RenderWindow& window);
+    virtual std::unique_ptr<ScreenMenu> render();
 };
 
 class HomeMenu : public ScreenMenu
@@ -23,11 +23,9 @@ private:
     std::vector<sf::Text> menu;
 
 public:
-    std::unique_ptr<ScreenMenu> render(sf:: RenderWindow& window);
+    std::unique_ptr<ScreenMenu> render();
 
-    void draw(sf::RenderWindow &window);
-
-    void setValueButtons(float width, float height);
+    void draw();
 };
 
 class SettingMenu : public ScreenMenu
@@ -39,11 +37,9 @@ private:
     std::vector<sf::Text> menu;
 
 public:
-    std::unique_ptr<ScreenMenu> render(sf:: RenderWindow& window);
+    std::unique_ptr<ScreenMenu> render();
 
-    void draw(sf::RenderWindow &window);
-
-    void setValueButtons(float width, float height);
+    void draw();
 };
 
 #endif

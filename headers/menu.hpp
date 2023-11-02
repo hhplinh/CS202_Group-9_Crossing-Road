@@ -27,6 +27,8 @@ private:
     bool m_loadGameSelected;
     bool m_loadGamePressed;
 
+    friend ScreenMenu;
+
 public:
     menu(data *data);
     ~menu();
@@ -34,6 +36,6 @@ public:
     void processInput();
     void update();
     void draw();
-
-    void run(sf::RenderWindow &window);
+    void drawTemplate();
+    void run();
 };
