@@ -16,13 +16,13 @@ void menu::init()
     _data->_assets->addTexture(ROAD, "resources//Texture//River.png");
     _data->_assets->addTexture(RIVER, "resources//Texture//road.png");
     _data->_assets->addTexture(MENU_BOARD, "resources//Texture//menuBoard.png");
-    background.setTexture(&_data->_assets->getTexture(BACKGROUND));
-
-    background.setSize(sf::Vector2f(1920, 1080));
-    background.setFillColor(sf::Color::White);
 
     _data->_assets->addFont(MAIN_FONT, "resources//Font//LilitaOne-Regular.ttf");
     _data->_assets->addFont(TITLE, "resources//Font//BlackOpsOne-Regular.ttf");
+
+    background.setTexture(&_data->_assets->getTexture(BACKGROUND));
+    background.setSize(sf::Vector2f(1920, 1080));
+    background.setFillColor(sf::Color::White);
 
     // Title
     m_gametitle.setFont(_data->_assets->getFont(TITLE));

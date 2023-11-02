@@ -10,9 +10,7 @@ endgameMenu::endgameMenu(data *data)
 endgameMenu::~endgameMenu() {}
 void endgameMenu::init()
 {
-
     background.setTexture(&_data->_assets->getTexture(BACKGROUND));
-
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
 
@@ -22,7 +20,7 @@ void endgameMenu::init()
     m_gametitle.setOrigin(m_gametitle.getLocalBounds().width / 2,
                           m_gametitle.getLocalBounds().height / 2);
     m_gametitle.setPosition(_data->_window->getSize().x / 2,
-                            _data->_window->getSize().y / 2 - 150.f);
+                            _data->_window->getSize().y / 2 - 250.f);
     m_gametitle.setCharacterSize(100);
 
     // Score
@@ -32,7 +30,9 @@ void endgameMenu::init()
     score.setOrigin(score.getLocalBounds().width / 2,
                     score.getLocalBounds().height / 2);
     score.setPosition(_data->_window->getSize().x / 2,
-                      _data->_window->getSize().y / 2 - 75.f);
+                      _data->_window->getSize().y / 2 - 150.f);
+    score.setCharacterSize(100);
+
 
     // Restart Button
     m_restart.setFont(_data->_assets->getFont(MAIN_FONT));
@@ -40,8 +40,8 @@ void endgameMenu::init()
     m_restart.setOrigin(m_restart.getLocalBounds().width / 2,
                         m_restart.getLocalBounds().height / 2);
     m_restart.setPosition(_data->_window->getSize().x / 2,
-                          _data->_window->getSize().y / 2 - 25.f);
-    m_restart.setCharacterSize(60);
+                          _data->_window->getSize().y / 2 + 80.f);
+    m_restart.setCharacterSize(100);
 
     // Return main menu Button
     m_returnMainMenu.setFont(_data->_assets->getFont(MAIN_FONT));
@@ -50,7 +50,7 @@ void endgameMenu::init()
                                m_returnMainMenu.getLocalBounds().height / 2);
     m_returnMainMenu.setPosition(_data->_window->getSize().x / 2,
                                  _data->_window->getSize().y / 2 + 25.f);
-    m_returnMainMenu.setCharacterSize(60);
+    m_returnMainMenu.setCharacterSize(100);
 }
 void endgameMenu::processInput()
 {
