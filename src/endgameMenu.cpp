@@ -120,18 +120,16 @@ void endgameMenu::update()
 {
     if (m_restartSelected)
     {
-        m_restartSelected = false;
         m_restart.setFillColor(COLOR_SELECT);
         m_returnMainMenu.setFillColor(sf::Color::White);
     }
-    if (m_returnMainMenuSelected)
+    else if (m_returnMainMenuSelected)
     {
-        m_returnMainMenuSelected = false;
         m_returnMainMenu.setFillColor(COLOR_SELECT);
         m_restart.setFillColor(sf::Color::White);
     }
 
-    else if (m_restartPressed)
+    if (m_restartPressed)
     {
         m_restartPressed = false;
         //before endgameMenu is game

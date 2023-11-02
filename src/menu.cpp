@@ -161,25 +161,23 @@ void menu::update()
 
     if (m_loadGameSelected)
     {
-        m_loadGameSelected = false;
         m_loadGame.setFillColor(COLOR_SELECT);
         m_play.setFillColor(sf::Color::White);
         m_exit.setFillColor(sf::Color::White);
     }
     if (m_playselected)
     {
-        m_playselected = false;
         m_play.setFillColor(COLOR_SELECT);
         m_exit.setFillColor(sf::Color::White);
         m_loadGame.setFillColor(sf::Color::White);
     }
     if (m_exitselected)
     {
-        m_exitselected = false;
         m_exit.setFillColor(COLOR_SELECT);
         m_play.setFillColor(sf::Color::White);
         m_loadGame.setFillColor(sf::Color::White);
     }
+    
     if (m_playpressed)
     {
         m_playpressed = false;
@@ -207,7 +205,7 @@ void menu::draw()
     _data->_window->draw(menuBoard);
 
     // condition for loading game, if there is no save file, then the load game button will be disabled
-    // _data->_window->draw(m_loadGame);
+    _data->_window->draw(m_loadGame);
 
     _data->_window->draw(m_play);
     _data->_window->draw(m_exit);

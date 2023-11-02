@@ -117,18 +117,16 @@ void menuPause::update()
 {
     if (m_resumeSelected)
     {
-        m_resumeSelected = false;
         m_resume.setFillColor(COLOR_SELECT);
         m_returnMainMenu.setFillColor(sf::Color::White);
     }
-    if (m_returnMainMenuSelected)
+    else if (m_returnMainMenuSelected)
     {
-        m_returnMainMenuSelected = false;
         m_returnMainMenu.setFillColor(COLOR_SELECT);
         m_resume.setFillColor(sf::Color::White);
     }
 
-    else if (m_resumePressed)
+    if (m_resumePressed)
     {
         m_resumePressed = false;
         _data->_states->removeState();
