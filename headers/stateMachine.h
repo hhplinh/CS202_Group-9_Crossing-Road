@@ -16,5 +16,7 @@ public:
 	void removeState();
 	void processStateChange();
 	state*& getCurrentState();
+
+	void removeStateUntilOne();
 };
 

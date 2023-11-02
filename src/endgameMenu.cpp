@@ -4,12 +4,13 @@
 #include "menu.hpp"
 
 endgameMenu::endgameMenu(data *data)
-    : _data(data), m_returnMainMenuSelected(false), m_returnMainMenuPressed(false), m_restartSelected(true), m_restartPressed(false)
+    : _data(data), m_returnMainMenuSelected(true), m_returnMainMenuPressed(false), m_restartSelected(false), m_restartPressed(false)
 {
 }
 endgameMenu::~endgameMenu() {}
 void endgameMenu::init()
 {
+    
     background.setTexture(&_data->_assets->getTexture(BACKGROUND));
 
     background.setSize(sf::Vector2f(1920, 1080));
@@ -119,23 +120,28 @@ void endgameMenu::update()
 {
     if (m_restartSelected)
     {
-        m_restart.setFillColor(sf::Color::Black);
+        m_restartSelected = false;
+        m_restart.setFillColor(COLOR_SELECT);
         m_returnMainMenu.setFillColor(sf::Color::White);
     }
     if (m_returnMainMenuSelected)
     {
-        m_returnMainMenu.setFillColor(sf::Color::Black);
+        m_returnMainMenuSelected = false;
+        m_returnMainMenu.setFillColor(COLOR_SELECT);
         m_restart.setFillColor(sf::Color::White);
     }
 
     else if (m_restartPressed)
     {
-        _data->_states->addState(new maincharacter(_data));
+        m_restartPressed = false;
+        //before endgameMenu is game
+        _data->_states->removeState();
     }
     else if (m_returnMainMenuPressed)
     {
+        m_returnMainMenuPressed = false;
         // // Implement your "Load Game" logic here
-        _data->_states->addState(new menu(_data));
+        _data->_states->removeStateUntilOne();
     }
 }
 

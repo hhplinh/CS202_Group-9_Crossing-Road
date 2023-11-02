@@ -15,6 +15,17 @@ void stateMachine::removeState()
 {
 	_remove = 1;
 }
+
+void stateMachine::removeStateUntilOne()
+{
+	while (stackState.size() > 1)
+	{
+		state *top = stackState.top();
+		delete top;
+		stackState.pop();
+	}
+}
+
 void stateMachine::processStateChange()
 {
 	if (_remove && !stackState.empty())

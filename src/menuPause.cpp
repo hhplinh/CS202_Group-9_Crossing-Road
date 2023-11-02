@@ -16,6 +16,9 @@ void menuPause::init()
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
 
+    
+
+
     // Title
     m_gametitle.setFont(_data->_assets->getFont(MAIN_FONT));
     m_gametitle.setString("CrossyRoad");
@@ -114,25 +117,26 @@ void menuPause::update()
 {
     if (m_resumeSelected)
     {
-        m_resume.setFillColor(sf::Color::Black);
+        m_resumeSelected = false;
+        m_resume.setFillColor(COLOR_SELECT);
         m_returnMainMenu.setFillColor(sf::Color::White);
     }
     if (m_returnMainMenuSelected)
     {
-        m_returnMainMenu.setFillColor(sf::Color::Black);
+        m_returnMainMenuSelected = false;
+        m_returnMainMenu.setFillColor(COLOR_SELECT);
         m_resume.setFillColor(sf::Color::White);
     }
 
     else if (m_resumePressed)
     {
-        // _data->_window->close();
-        _data->_states->addState(new maincharacter(_data));
+        m_resumePressed = false;
+        _data->_states->removeState();
     }
     else if (m_returnMainMenuPressed)
     {
-        // // Implement your "Load Game" logic here
-        // _data->_states->addState(new maincharacter(_data));
-        _data->_states->addState(new menu(_data));
+        m_returnMainMenuPressed = false;
+        _data->_states->removeStateUntilOne();
     }
 }
 

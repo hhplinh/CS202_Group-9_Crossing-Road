@@ -18,6 +18,8 @@ private:
     sf::Text m_returnMainMenu;
 
     sf::RectangleShape menuBoard;
+    const sf::Color COLOR_SELECT = sf::Color(248, 153, 56, 255);
+
 
     bool m_resumeSelected;
     bool m_resumePressed;

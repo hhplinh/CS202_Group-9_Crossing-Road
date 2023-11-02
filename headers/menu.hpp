@@ -18,7 +18,7 @@ private:
     sf::Text m_load;
 
     sf::RectangleShape menuBoard;
-
+    const sf::Color COLOR_SELECT = sf::Color(248, 153, 56, 255);
 
     bool m_playselected;
     bool m_exitselected;

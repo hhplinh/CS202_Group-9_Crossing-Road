@@ -9,7 +9,6 @@
 class endgameMenu : public state
 {
 private:
-
     data *_data;
     sf::Sprite backgroundTexture;
     sf::RectangleShape background;
@@ -19,6 +18,7 @@ private:
     sf::Text m_returnMainMenu;
 
     sf::RectangleShape menuBoard;
+    const sf::Color COLOR_SELECT = sf::Color(248, 153, 56, 255);
 
     bool m_returnMainMenuSelected;
     bool m_returnMainMenuPressed;

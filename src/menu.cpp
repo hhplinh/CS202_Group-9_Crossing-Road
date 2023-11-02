@@ -20,6 +20,8 @@ void menu::init()
 
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
+
+    
     
     _data->_assets->addFont(MAIN_FONT, "resources//Font//LilitaOne-Regular.ttf");
 
@@ -159,32 +161,38 @@ void menu::update()
 
     if (m_loadGameSelected)
     {
-        m_loadGame.setFillColor(sf::Color::Black);
+        m_loadGameSelected = false;
+        m_loadGame.setFillColor(COLOR_SELECT);
         m_play.setFillColor(sf::Color::White);
         m_exit.setFillColor(sf::Color::White);
     }
     if (m_playselected)
     {
-        m_play.setFillColor(sf::Color::Black);
+        m_playselected = false;
+        m_play.setFillColor(COLOR_SELECT);
         m_exit.setFillColor(sf::Color::White);
         m_loadGame.setFillColor(sf::Color::White);
     }
     if (m_exitselected)
     {
-        m_exit.setFillColor(sf::Color::Black);
+        m_exitselected = false;
+        m_exit.setFillColor(COLOR_SELECT);
         m_play.setFillColor(sf::Color::White);
         m_loadGame.setFillColor(sf::Color::White);
     }
     if (m_playpressed)
     {
+        m_playpressed = false;
         _data->_states->addState(new maincharacter(_data));
     }
     else if (m_exitpressed)
     {
+        m_exitpressed = false;
         _data->_window->close();
     }
     else if (m_loadGamePressed)
     {
+        m_loadGamePressed = false;
         // Implement your "Load Game" logic here
         _data->_states->addState(new maincharacter(_data));
     }
@@ -197,7 +205,10 @@ void menu::draw()
     _data->_window->draw(background);
     _data->_window->draw(m_gametitle);
     _data->_window->draw(menuBoard);
-    _data->_window->draw(m_loadGame);
+
+    // condition for loading game, if there is no save file, then the load game button will be disabled
+    // _data->_window->draw(m_loadGame);
+
     _data->_window->draw(m_play);
     _data->_window->draw(m_exit);
     _data->_window->display();
