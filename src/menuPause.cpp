@@ -1,27 +1,26 @@
-#include "menu.hpp"
+#include "menuPause.hpp"
 
 #include "maincharacter.hpp"
 #include "map.hpp"
 
-menu::menu(data *data)
+menuPause::menuPause(data *data)
     : _data(data), m_playselected(true), m_playpressed(false),
       m_exitselected(false), m_exitpressed(false),
       m_loadGameSelected(false), m_loadGamePressed(false)
 {
 }
-menu::~menu() {}
-void menu::init()
+menuPause::~menuPause() {}
+void menuPause::init()
 {
-    _data->_assets->addTexture(BACKGROUND, "resources//Texture//bgMenu.png");
-    _data->_assets->addTexture(ROAD, "resources//Texture//River.png");
-    _data->_assets->addTexture(RIVER, "resources//Texture//road.png");
-    _data->_assets->addTexture(MENU_BOARD, "resources//Texture//menuBoard.png");
+    _data->_assets->addTexture(BACKGROUND, "resources//background.png");
+    _data->_assets->addTexture(ROAD, "resources//road.png");
+    _data->_assets->addTexture(RIVER, "resources//river.png");
     background.setTexture(&_data->_assets->getTexture(BACKGROUND));
 
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
-    
-    _data->_assets->addFont(MAIN_FONT, "resources//Font//LilitaOne-Regular.ttf");
+
+    _data->_assets->addFont(MAIN_FONT, "resources//arial.ttf");
 
     // Title
     m_gametitle.setFont(_data->_assets->getFont(MAIN_FONT));
@@ -57,9 +56,8 @@ void menu::init()
     m_loadGame.setPosition(_data->_window->getSize().x / 2,
                            _data->_window->getSize().y / 2 + 75.f);
     m_loadGame.setCharacterSize(50);
-
 }
-void menu::processInput()
+void menuPause::processInput()
 {
     sf::Event event;
     while (_data->_window->pollEvent(event))
@@ -146,7 +144,7 @@ void menu::processInput()
     }
 }
 
-void menu::update()
+void menuPause::update()
 {
 
     if (m_loadGameSelected)
@@ -182,36 +180,36 @@ void menu::update()
     }
 }
 
-void menu::draw()
+void menuPause::draw()
 {
     m_play.setFillColor(sf::Color::Black);
     m_exit.setFillColor(sf::Color::White);
     m_loadGame.setFillColor(sf::Color::White);
-
-    if (m_exitselected)
-    {
-        m_exit.setFillColor(sf::Color::Black);
-        m_play.setFillColor(sf::Color::White);
-        m_loadGame.setFillColor(sf::Color::White);
-    }
-    if (m_playpressed)
-    {
-        _data->_states->addState(new maincharacter(_data));
-        m_playpressed = false;
-    }
-    if (m_exitpressed)
-    {
-        _data->_window->close();
-    }
-    if (m_loadGamePressed)
-    {
-        // Implement your "Load Game" logic here
-        _data->_states->addState(new maincharacter(_data));
-        m_loadGamePressed = false;
-    }
+}
+if (m_exitselected)
+{
+    m_exit.setFillColor(sf::Color::Black);
+    m_play.setFillColor(sf::Color::White);
+    m_loadGame.setFillColor(sf::Color::White);
+}
+if (m_playpressed)
+{
+    _data->_states->addState(new maincharacter(_data));
+    m_playpressed = false;
+}
+if (m_exitpressed)
+{
+    _data->_window->close();
+}
+if (m_loadGamePressed)
+{
+    // Implement your "Load Game" logic here
+    _data->_states->addState(new maincharacter(_data));
+    m_loadGamePressed = false;
+}
 }
 
-void menu::draw()
+void menuPause::draw()
 {
     _data->_window->clear();
 

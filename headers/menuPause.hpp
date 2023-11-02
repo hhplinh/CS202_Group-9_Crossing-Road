@@ -6,19 +6,18 @@
 #include <ScreenMenu.hpp>
 
 #include <memory>
-#include <string>
 #include <SFML/Graphics/Text.hpp>
-class menu : public state
+class menuPause : public state
 {
 private:
+
     data *_data;
     sf::Sprite backgroundTexture;
     sf::RectangleShape background;
     sf::Text m_gametitle;
-    sf::Text m_play;
-    sf::Text m_exit;
-    sf::Text m_load;
-
+    sf::Text m_pause;
+    sf::Text m_returnMainMenu;
+    sf::Text m_resume;
 
     bool m_playselected;
     bool m_exitselected;
@@ -28,9 +27,11 @@ private:
     bool m_loadGameSelected;
     bool m_loadGamePressed;
 
+    
+
 public:
-    menu(data *data);
-    ~menu();
+    menuPause(data *data);
+    ~menuPause();
     void init();
     void processInput();
     void update();
