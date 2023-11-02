@@ -45,7 +45,7 @@ void endgameMenu::init()
 
     // Return main menu Button
     m_returnMainMenu.setFont(_data->_assets->getFont(MAIN_FONT));
-    m_returnMainMenu.setString("Return to main menu");
+    m_returnMainMenu.setString("Main menu");
     m_returnMainMenu.setOrigin(m_returnMainMenu.getLocalBounds().width / 2,
                                m_returnMainMenu.getLocalBounds().height / 2);
     m_returnMainMenu.setPosition(_data->_window->getSize().x / 2,

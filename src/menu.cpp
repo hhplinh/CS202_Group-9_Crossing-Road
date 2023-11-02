@@ -29,7 +29,8 @@ void menu::init()
     m_gametitle.setString("CrossyRoad");
     // m_gametitle.setOrigin(m_gametitle.getLocalBounds().width / 2, m_gametitle.getLocalBounds().height / 2);
     // m_gametitle.setPosition(_data->_window->getSize().x * 0.65f,_data->_window->getSize().y / 2 - 150.f);
-    m_gametitle.setPosition(1216, 275);
+    // m_gametitle.setPosition(1210, 258);
+    m_gametitle.setPosition(1209, 195);
     m_gametitle.setCharacterSize(80);
 
     // Play Button
