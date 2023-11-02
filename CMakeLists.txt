@@ -23,5 +23,4 @@ target_include_directories(main PRIVATE ./headers)
 # cmake -S. -Bbuild -G "MinGW Makefiles"
 # cmake --build build
 # cmake --build build --verbose
-# build/main
-# build/main.exe
+# build/main 
