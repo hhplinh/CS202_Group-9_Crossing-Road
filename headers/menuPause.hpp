@@ -23,8 +23,6 @@ private:
     bool m_returnMainMenuSelected;
     bool m_returnMainMenuPressed;
 
-    
-
 public:
     menuPause(data *data);
     ~menuPause();
