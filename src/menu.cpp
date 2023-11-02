@@ -194,7 +194,6 @@ void menu::update()
 void menu::draw()
 {
     _data->_window->clear();
-
     _data->_window->draw(background);
     _data->_window->draw(m_gametitle);
     _data->_window->draw(menuBoard);

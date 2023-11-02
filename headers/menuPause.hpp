@@ -17,6 +17,8 @@ private:
     sf::Text m_resume;
     sf::Text m_returnMainMenu;
 
+    sf::RectangleShape menuBoard;
+
     bool m_resumeSelected;
     bool m_resumePressed;
 

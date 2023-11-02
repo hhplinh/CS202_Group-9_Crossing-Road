@@ -18,6 +18,8 @@ private:
     sf::Text m_restart;
     sf::Text m_returnMainMenu;
 
+    sf::RectangleShape menuBoard;
+
     bool m_returnMainMenuSelected;
     bool m_returnMainMenuPressed;
 
