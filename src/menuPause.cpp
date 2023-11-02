@@ -17,12 +17,14 @@ void menuPause::init()
     background.setFillColor(sf::Color::White);
 
     // Title
-    m_gametitle.setFont(_data->_assets->getFont(MAIN_FONT));
+    m_gametitle.setFont(_data->_assets->getFont(TITLE));
     m_gametitle.setString("CrossyRoad");
     m_gametitle.setOrigin(m_gametitle.getLocalBounds().width / 2,
                           m_gametitle.getLocalBounds().height / 2);
     m_gametitle.setPosition(_data->_window->getSize().x / 2,
                             _data->_window->getSize().y / 2 - 150.f);
+    m_gametitle.setCharacterSize(100);
+
 
     // Resume Button
     m_resume.setFont(_data->_assets->getFont(MAIN_FONT));
@@ -31,7 +33,7 @@ void menuPause::init()
                        m_resume.getLocalBounds().height / 2);
     m_resume.setPosition(_data->_window->getSize().x / 2,
                          _data->_window->getSize().y / 2 - 25.f);
-    m_resume.setCharacterSize(50);
+    m_resume.setCharacterSize(60);
 
     // Return main menu Button
     m_returnMainMenu.setFont(_data->_assets->getFont(MAIN_FONT));
@@ -40,7 +42,7 @@ void menuPause::init()
                                m_returnMainMenu.getLocalBounds().height / 2);
     m_returnMainMenu.setPosition(_data->_window->getSize().x / 2,
                                  _data->_window->getSize().y / 2 + 25.f);
-    m_returnMainMenu.setCharacterSize(50);
+    m_returnMainMenu.setCharacterSize(60);
 
     
 }

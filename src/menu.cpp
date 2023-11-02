@@ -22,24 +22,24 @@ void menu::init()
     background.setFillColor(sf::Color::White);
 
     _data->_assets->addFont(MAIN_FONT, "resources//Font//LilitaOne-Regular.ttf");
+    _data->_assets->addFont(TITLE, "resources//Font//BlackOpsOne-Regular.ttf");
 
     // Title
-    m_gametitle.setFont(_data->_assets->getFont(MAIN_FONT));
+    m_gametitle.setFont(_data->_assets->getFont(TITLE));
     m_gametitle.setString("CrossyRoad");
-    m_gametitle.setOrigin(m_gametitle.getLocalBounds().width / 2,
-                          m_gametitle.getLocalBounds().height / 2);
-    m_gametitle.setPosition(_data->_window->getSize().x / 2,
-                            _data->_window->getSize().y / 2 - 150.f);
-    m_gametitle.setCharacterSize(150);
+    // m_gametitle.setOrigin(m_gametitle.getLocalBounds().width / 2, m_gametitle.getLocalBounds().height / 2);
+    // m_gametitle.setPosition(_data->_window->getSize().x * 0.65f,_data->_window->getSize().y / 2 - 150.f);
+    m_gametitle.setPosition(1216, 275);
+    m_gametitle.setCharacterSize(80);
 
     // Play Button
     m_play.setFont(_data->_assets->getFont(MAIN_FONT));
     m_play.setString("Play");
-    m_play.setOrigin(m_play.getLocalBounds().width / 2,
-                     m_play.getLocalBounds().height / 2);
-    m_play.setPosition(_data->_window->getSize().x / 2,
-                       _data->_window->getSize().y / 2 - 25.f);
-    m_play.setCharacterSize(50);
+    m_play.setOrigin(m_play.getLocalBounds().width / 2, m_play.getLocalBounds().height / 2);
+    int pos_x = _data->_window->getSize().x;
+    int pos_y = _data->_window->getSize().y;
+    m_play.setPosition(pos_x * 0.7f, _data->_window->getSize().y / 2 - 25.f);
+    m_play.setCharacterSize(70);
 
     // Exit Button
     m_exit.setFont(_data->_assets->getFont(MAIN_FONT));
@@ -48,7 +48,7 @@ void menu::init()
                      m_exit.getLocalBounds().height / 2);
     m_exit.setPosition(_data->_window->getSize().x / 2,
                        _data->_window->getSize().y / 2 + 25.f);
-    m_exit.setCharacterSize(50);
+    m_exit.setCharacterSize(60);
 
     // Load button
     m_loadGame.setFont(_data->_assets->getFont(MAIN_FONT));
@@ -57,7 +57,7 @@ void menu::init()
                          m_loadGame.getLocalBounds().height / 2);
     m_loadGame.setPosition(_data->_window->getSize().x / 2,
                            _data->_window->getSize().y / 2 + 75.f);
-    m_loadGame.setCharacterSize(50);
+    m_loadGame.setCharacterSize(60);
 }
 void menu::processInput()
 {

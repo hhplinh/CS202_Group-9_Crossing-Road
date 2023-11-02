@@ -14,6 +14,7 @@ void System::run()
 {
 	sf::Clock clock;
 	sf::Time timeSinceLastFrame = sf::Time::Zero;
+
 	while (_data->_window->isOpen())
 		{
 			timeSinceLastFrame += clock.restart();

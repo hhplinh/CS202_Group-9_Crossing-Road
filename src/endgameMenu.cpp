@@ -10,19 +10,20 @@ endgameMenu::endgameMenu(data *data)
 endgameMenu::~endgameMenu() {}
 void endgameMenu::init()
 {
-    
+
     background.setTexture(&_data->_assets->getTexture(BACKGROUND));
 
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
 
     // Title
-    m_gametitle.setFont(_data->_assets->getFont(MAIN_FONT));
+    m_gametitle.setFont(_data->_assets->getFont(TITLE));
     m_gametitle.setString("CrossyRoad");
     m_gametitle.setOrigin(m_gametitle.getLocalBounds().width / 2,
                           m_gametitle.getLocalBounds().height / 2);
     m_gametitle.setPosition(_data->_window->getSize().x / 2,
                             _data->_window->getSize().y / 2 - 150.f);
+    m_gametitle.setCharacterSize(100);
 
     // Score
     score.setFont(_data->_assets->getFont(MAIN_FONT));
@@ -40,7 +41,7 @@ void endgameMenu::init()
                         m_restart.getLocalBounds().height / 2);
     m_restart.setPosition(_data->_window->getSize().x / 2,
                           _data->_window->getSize().y / 2 - 25.f);
-    m_restart.setCharacterSize(50);
+    m_restart.setCharacterSize(60);
 
     // Return main menu Button
     m_returnMainMenu.setFont(_data->_assets->getFont(MAIN_FONT));
@@ -49,7 +50,7 @@ void endgameMenu::init()
                                m_returnMainMenu.getLocalBounds().height / 2);
     m_returnMainMenu.setPosition(_data->_window->getSize().x / 2,
                                  _data->_window->getSize().y / 2 + 25.f);
-    m_returnMainMenu.setCharacterSize(50);
+    m_returnMainMenu.setCharacterSize(60);
 }
 void endgameMenu::processInput()
 {
@@ -132,7 +133,7 @@ void endgameMenu::update()
     if (m_restartPressed)
     {
         m_restartPressed = false;
-        //before endgameMenu is game
+        // before endgameMenu is game
         _data->_states->removeState();
     }
     else if (m_returnMainMenuPressed)
@@ -148,7 +149,7 @@ void endgameMenu::draw()
     _data->_window->clear();
     _data->_window->draw(background);
     _data->_window->draw(m_gametitle);
-    
+
     _data->_window->draw(score);
     _data->_window->draw(m_restart);
     _data->_window->draw(m_returnMainMenu);
