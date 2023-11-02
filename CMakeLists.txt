@@ -14,7 +14,7 @@ file(GLOB_RECURSE ASTERI_SRC_FILES CONFIGURE_DEPENDS
 )
 
 # Add your source files here
-add_executable(main main.cpp ${ASTERI_SRC_FILES})
+add_executable(main ${ASTERI_SRC_FILES})
 
 # Link your executable to SFML
 target_link_libraries(main PRIVATE sqlite3 sfml-system sfml-window sfml-graphics sfml-network sfml-audio opengl32)
