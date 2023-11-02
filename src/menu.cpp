@@ -31,6 +31,14 @@ void menu::init()
     m_gametitle.setPosition(_data->_window->getSize().x / 2,
                             _data->_window->getSize().y / 2 - 150.f);
 
+    //Menu Board
+    menuBoard.setTexture(&_data->_assets->getTexture(MENU_BOARD));
+    menuBoard.setSize(sf::Vector2f(500, 500));
+    menuBoard.setOrigin(menuBoard.getLocalBounds().width / 2,
+                          menuBoard.getLocalBounds().height / 2);
+    menuBoard.setPosition(_data->_window->getSize().x / 2,
+                            _data->_window->getSize().y / 2);
+
     // Play Button
     m_play.setFont(_data->_assets->getFont(MAIN_FONT));
     m_play.setString("Play");
@@ -189,6 +197,7 @@ void menu::draw()
 
     _data->_window->draw(background);
     _data->_window->draw(m_gametitle);
+    _data->_window->draw(menuBoard);
     _data->_window->draw(m_loadGame);
     _data->_window->draw(m_play);
     _data->_window->draw(m_exit);
