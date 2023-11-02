@@ -4,7 +4,7 @@
 #include "menu.hpp"
 
 endgameMenu::endgameMenu(data *data)
-    : _data(data), m_returnMainMenuSelected(false), m_returnMainMenuPressed(false), m_restartSelected(false), m_restartPressed(false)
+    : _data(data), m_returnMainMenuSelected(false), m_returnMainMenuPressed(false), m_restartSelected(true), m_restartPressed(false)
 {
 }
 endgameMenu::~endgameMenu() {}

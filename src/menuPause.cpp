@@ -5,7 +5,7 @@
 #include "menu.hpp"
 
 menuPause::menuPause(data *data)
-    : _data(data), m_resumeSelected(false), m_resumePressed(false), m_returnMainMenuSelected(false), m_returnMainMenuPressed(false)
+    : _data(data), m_resumeSelected(true), m_resumePressed(false), m_returnMainMenuSelected(false), m_returnMainMenuPressed(false)
 {
 }
 menuPause::~menuPause() {}
