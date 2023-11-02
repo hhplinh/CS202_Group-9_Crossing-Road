@@ -3,7 +3,6 @@
 #include "system.h"
 #include "map.hpp"
 #include "maincharacter.hpp"
-#include <ScreenMenu.hpp>
 
 #include <memory>
 #include <string>

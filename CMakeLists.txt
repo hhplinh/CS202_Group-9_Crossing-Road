@@ -24,3 +24,4 @@ target_include_directories(main PRIVATE ./headers)
 # cmake --build build
 # cmake --build build --verbose
 # build/main
+# build/main.exe

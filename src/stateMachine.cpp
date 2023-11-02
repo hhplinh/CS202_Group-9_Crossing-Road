@@ -22,7 +22,6 @@ void stateMachine::processStateChange()
 		state *top = stackState.top();
 		delete top;
 		stackState.pop();
-		delete tmp;
 		stackState.top()->init();
 		_remove = 0;
 	}
@@ -35,7 +34,6 @@ void stateMachine::processStateChange()
 				state *top = stackState.top();
 				delete top;
 				stackState.pop();
-				delete tmp;
 			}
 		}
 		stackState.push(newState);
