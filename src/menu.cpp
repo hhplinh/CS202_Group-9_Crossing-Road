@@ -8,7 +8,6 @@ menu::menu(data *data)
       m_exitselected(false), m_exitpressed(false),
       m_loadGameSelected(false), m_loadGamePressed(false)
 {
-    CurrentScreen = std::make_unique<HomeMenu>();
 }
 menu::~menu() {}
 void menu::init()
@@ -49,12 +48,22 @@ void menu::init()
                        _data->_window->getSize().y / 2 + 25.f);
     m_exit.setCharacterSize(50);
 
+    // Load button
     m_loadGame.setFont(_data->_assets->getFont(MAIN_FONT));
     m_loadGame.setString("Load Game");
     m_loadGame.setOrigin(m_loadGame.getLocalBounds().width / 2,
                          m_loadGame.getLocalBounds().height / 2);
     m_loadGame.setPosition(_data->_window->getSize().x / 2,
                            _data->_window->getSize().y / 2 + 75.f);
+    m_loadGame.setCharacterSize(50);
+
+    // Pause button
+    m_loadGame.setFont(_data->_assets->getFont(MAIN_FONT));
+    m_loadGame.setString("Load Game");
+    m_loadGame.setOrigin(m_loadGame.getLocalBounds().width / 2,
+                         m_loadGame.getLocalBounds().height / 2);
+    m_loadGame.setPosition(_data->_window->getSize().x / 2,
+                           _data->_window->getSize().y / 2 + -25.f);
     m_loadGame.setCharacterSize(50);
 }
 void menu::processInput()
@@ -181,25 +190,6 @@ void menu::update()
 }
 
 void menu::draw()
-{
-    run();
-}
-
-void menu::run()
-{
-    while (CurrentScreen != nullptr)
-    {
-        std::unique_ptr<ScreenMenu> NextScreen = CurrentScreen->render();
-
-        if (NextScreen != CurrentScreen)
-        {
-            CurrentScreen = std::move(NextScreen);
-        }
-    }
-    return;
-}
-
-void menu::drawTemplate()
 {
     _data->_window->clear();
     _data->_window->draw(background);

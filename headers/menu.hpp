@@ -10,7 +10,7 @@
 class menu : public state
 {
 private:
-    std::unique_ptr<ScreenMenu> CurrentScreen;
+    
 
     data *_data;
     sf::Sprite backgroundTexture;
@@ -18,6 +18,7 @@ private:
     sf::Text m_gametitle;
     sf::Text m_play;
     sf::Text m_exit;
+    sf::Text m_load;
 
     bool m_playselected;
     bool m_exitselected;
@@ -27,7 +28,7 @@ private:
     bool m_loadGameSelected;
     bool m_loadGamePressed;
 
-    friend ScreenMenu;
+    
 
 public:
     menu(data *data);
@@ -36,6 +37,4 @@ public:
     void processInput();
     void update();
     void draw();
-    void drawTemplate();
-    void run();
 };

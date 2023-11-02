@@ -16,7 +16,7 @@ public:
 		CurrentScreen = std::make_unique<HomeMenu>();
 	};
 
-	void run(sf:: RenderWindow& window);
+	void run();
 };
 
 #endif
