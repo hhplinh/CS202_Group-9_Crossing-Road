@@ -148,7 +148,7 @@ void endgameMenu::draw()
     _data->_window->clear();
     _data->_window->draw(background);
     _data->_window->draw(m_gametitle);
-    _data->_window->draw(menuBoard);
+    
     _data->_window->draw(score);
     _data->_window->draw(m_restart);
     _data->_window->draw(m_returnMainMenu);

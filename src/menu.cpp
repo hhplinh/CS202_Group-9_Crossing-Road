@@ -21,8 +21,6 @@ void menu::init()
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
 
-    
-    
     _data->_assets->addFont(MAIN_FONT, "resources//Font//LilitaOne-Regular.ttf");
 
     // Title
@@ -32,14 +30,7 @@ void menu::init()
                           m_gametitle.getLocalBounds().height / 2);
     m_gametitle.setPosition(_data->_window->getSize().x / 2,
                             _data->_window->getSize().y / 2 - 150.f);
-
-    //Menu Board
-    menuBoard.setTexture(&_data->_assets->getTexture(MENU_BOARD));
-    menuBoard.setSize(sf::Vector2f(500, 500));
-    menuBoard.setOrigin(menuBoard.getLocalBounds().width / 2,
-                          menuBoard.getLocalBounds().height / 2);
-    menuBoard.setPosition(_data->_window->getSize().x / 2,
-                            _data->_window->getSize().y / 2);
+    m_gametitle.setCharacterSize(150);
 
     // Play Button
     m_play.setFont(_data->_assets->getFont(MAIN_FONT));
@@ -67,7 +58,6 @@ void menu::init()
     m_loadGame.setPosition(_data->_window->getSize().x / 2,
                            _data->_window->getSize().y / 2 + 75.f);
     m_loadGame.setCharacterSize(50);
-
 }
 void menu::processInput()
 {
@@ -158,7 +148,6 @@ void menu::processInput()
 
 void menu::update()
 {
-
     if (m_loadGameSelected)
     {
         m_loadGame.setFillColor(COLOR_SELECT);
@@ -177,7 +166,7 @@ void menu::update()
         m_play.setFillColor(sf::Color::White);
         m_loadGame.setFillColor(sf::Color::White);
     }
-    
+
     if (m_playpressed)
     {
         m_playpressed = false;
@@ -196,14 +185,11 @@ void menu::update()
     }
 }
 
-
 void menu::draw()
 {
     _data->_window->clear();
     _data->_window->draw(background);
     _data->_window->draw(m_gametitle);
-    _data->_window->draw(menuBoard);
-
     // condition for loading game, if there is no save file, then the load game button will be disabled
     _data->_window->draw(m_loadGame);
 
