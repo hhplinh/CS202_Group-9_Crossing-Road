@@ -1,15 +1,14 @@
-#include "menuPause.hpp"
+#include "endgameMenu.hpp"
 
-#include "maincharacter.hpp"
 #include "map.hpp"
 #include "menu.hpp"
 
-menuPause::menuPause(data *data)
-    : _data(data), m_resumeSelected(false), m_resumePressed(false), m_returnMainMenuSelected(false), m_returnMainMenuPressed(false)
+endgameMenu::endgameMenu(data *data)
+    : _data(data), m_returnMainMenuSelected(false), m_returnMainMenuPressed(false), m_restartSelected(false), m_restartPressed(false)
 {
 }
-menuPause::~menuPause() {}
-void menuPause::init()
+endgameMenu::~endgameMenu() {}
+void endgameMenu::init()
 {
     background.setTexture(&_data->_assets->getTexture(BACKGROUND));
 
@@ -24,14 +23,23 @@ void menuPause::init()
     m_gametitle.setPosition(_data->_window->getSize().x / 2,
                             _data->_window->getSize().y / 2 - 150.f);
 
-    // Resume Button
-    m_resume.setFont(_data->_assets->getFont(MAIN_FONT));
-    m_resume.setString("Resume");
-    m_resume.setOrigin(m_resume.getLocalBounds().width / 2,
-                       m_resume.getLocalBounds().height / 2);
-    m_resume.setPosition(_data->_window->getSize().x / 2,
-                         _data->_window->getSize().y / 2 - 25.f);
-    m_resume.setCharacterSize(50);
+    // Score
+    score.setFont(_data->_assets->getFont(MAIN_FONT));
+    // score.setString("Score: " + std::to_string());
+    score.setString("Score: ");
+    score.setOrigin(score.getLocalBounds().width / 2,
+                    score.getLocalBounds().height / 2);
+    score.setPosition(_data->_window->getSize().x / 2,
+                      _data->_window->getSize().y / 2 - 75.f);
+
+    // Restart Button
+    m_restart.setFont(_data->_assets->getFont(MAIN_FONT));
+    m_restart.setString("Restart");
+    m_restart.setOrigin(m_restart.getLocalBounds().width / 2,
+                        m_restart.getLocalBounds().height / 2);
+    m_restart.setPosition(_data->_window->getSize().x / 2,
+                          _data->_window->getSize().y / 2 - 25.f);
+    m_restart.setCharacterSize(50);
 
     // Return main menu Button
     m_returnMainMenu.setFont(_data->_assets->getFont(MAIN_FONT));
@@ -41,10 +49,8 @@ void menuPause::init()
     m_returnMainMenu.setPosition(_data->_window->getSize().x / 2,
                                  _data->_window->getSize().y / 2 + 25.f);
     m_returnMainMenu.setCharacterSize(50);
-
-    
 }
-void menuPause::processInput()
+void endgameMenu::processInput()
 {
     sf::Event event;
     while (_data->_window->pollEvent(event))
@@ -59,41 +65,40 @@ void menuPause::processInput()
             {
             case sf::Keyboard::Up:
             {
-                if (!m_resumeSelected && m_returnMainMenuSelected)
+                if (!m_restartSelected && m_returnMainMenuSelected)
                 {
-                    m_resumeSelected = true;
+                    m_restartSelected = true;
                     m_returnMainMenuSelected = false;
                 }
-                else if (m_resumeSelected && !m_returnMainMenuSelected)
+                else if (m_restartSelected && !m_returnMainMenuSelected)
                 {
-                    m_returnMainMenuSelected = false;
-                    m_resumeSelected = false;
+                    m_returnMainMenuSelected = true;
+                    m_restartSelected = false;
                 }
                 break;
             }
             case sf::Keyboard::Down:
             {
-                if (!m_resumeSelected && m_returnMainMenuSelected)
+                if (!m_restartSelected && m_returnMainMenuSelected)
                 {
-                    m_resumeSelected = true;
+                    m_restartSelected = true;
                     m_returnMainMenuSelected = false;
                 }
-                else if (m_resumeSelected && !m_returnMainMenuSelected)
+                else if (m_restartSelected && !m_returnMainMenuSelected)
                 {
                     m_returnMainMenuSelected = true;
-                    m_resumeSelected = false;
+                    m_restartSelected = false;
                 }
                 break;
             }
             case sf::Keyboard::Return:
             {
-                m_resumePressed = false;
+                m_restartPressed = false;
                 m_returnMainMenuPressed = false;
 
-
-                if (m_resumeSelected)
+                if (m_restartSelected)
                 {
-                    m_resumePressed = true;
+                    m_restartPressed = true;
                 }
                 else if (m_returnMainMenuSelected)
                 {
@@ -110,38 +115,36 @@ void menuPause::processInput()
     }
 }
 
-void menuPause::update()
+void endgameMenu::update()
 {
-    if (m_resumeSelected)
+    if (m_restartSelected)
     {
-        m_resume.setFillColor(sf::Color::Black);
+        m_restart.setFillColor(sf::Color::Black);
         m_returnMainMenu.setFillColor(sf::Color::White);
     }
     if (m_returnMainMenuSelected)
     {
         m_returnMainMenu.setFillColor(sf::Color::Black);
-        m_resume.setFillColor(sf::Color::White);
+        m_restart.setFillColor(sf::Color::White);
     }
 
-    else if (m_resumePressed)
+    else if (m_restartPressed)
     {
-        // _data->_window->close();
         _data->_states->addState(new maincharacter(_data));
     }
     else if (m_returnMainMenuPressed)
     {
         // // Implement your "Load Game" logic here
-        // _data->_states->addState(new maincharacter(_data));
         _data->_states->addState(new menu(_data));
     }
 }
 
-void menuPause::draw()
+void endgameMenu::draw()
 {
     _data->_window->clear();
     _data->_window->draw(background);
     _data->_window->draw(m_gametitle);
-    _data->_window->draw(m_resume);
+    _data->_window->draw(m_restart);
     _data->_window->draw(m_returnMainMenu);
     _data->_window->display();
 }
