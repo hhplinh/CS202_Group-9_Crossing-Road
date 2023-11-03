@@ -35,40 +35,6 @@ void menu::init()
         button.setPosition(1363, 254 + 90 * i);
         m_buttons.push_back(button);
     }
-
-
-    // // Play Button
-    // m_play.setFont(_data->_assets->getFont(MAIN_FONT));
-    // m_play.setString("Play");
-    // m_play.setOrigin(m_play.getLocalBounds().width / 2, m_play.getLocalBounds().height / 2);
-    // int pos_x = _data->_window->getSize().x;
-    // int pos_y = _data->_window->getSize().y;
-    // m_play.setPosition(1363, 254);
-    // m_play.setCharacterSize(110);
-
-    // // Load button
-    // m_loadGame.setFont(_data->_assets->getFont(MAIN_FONT));
-    // m_loadGame.setString("Load Game");
-    // m_loadGame.setOrigin(m_loadGame.getLocalBounds().width / 2,
-    //                      m_loadGame.getLocalBounds().height / 2);
-    // m_loadGame.setPosition(1208, 540);
-    // m_loadGame.setCharacterSize(110);
-
-    // // Settings button
-    // m_settings.setFont(_data->_assets->getFont(MAIN_FONT));
-    // m_settings.setString("Settings");
-    // m_settings.setOrigin(m_settings.getLocalBounds().width / 2,
-    //                      m_settings.getLocalBounds().height / 2);
-    // m_settings.setPosition(1288, 630);
-    // m_settings.setCharacterSize(110);
-
-    // // Exit Button
-    // m_exit.setFont(_data->_assets->getFont(MAIN_FONT));
-    // m_exit.setString("Exit");
-    // m_exit.setOrigin(m_exit.getLocalBounds().width / 2,
-    //                      m_exit.getLocalBounds().height / 2);
-    // m_exit.setPosition(1372, 814);
-    // m_exit.setCharacterSize(110);
 }
 void menu::processInput()
 {
@@ -91,34 +57,6 @@ void menu::processInput()
                 }
                 break;
             }
-                // if (!m_playselected && !m_exitselected && m_loadGameSelected && !m_settingsSelected)
-                // {
-                //     m_playselected = true;
-                //     m_loadGameSelected = false;
-                //     m_exitselected = false;
-                //     m_settingsSelected = false;
-                // }
-                // else if (!m_loadGameSelected && !m_playselected && !m_exitselected && m_settingsSelected)
-                // {
-                //     m_loadGameSelected = true;
-                //     m_exitselected = false;
-                //     m_playselected = false;
-                //     m_settingsSelected = false;
-                // }
-                // else if (!m_settingsSelected && m_exitselected && !m_playselected && !m_loadGameSelected)
-                // {
-                //     m_settingsSelected = true;
-                //     m_exitselected = false;
-                //     m_playselected = false;
-                //     m_loadGameSelected = false;
-                // }
-                // else if (m_playselected && !m_exitselected && !m_loadGameSelected && !m_settingsSelected)
-                // {
-                //     m_playselected = false;
-                //     m_loadGameSelected = false;
-                //     m_exitselected = true;
-                //     m_settingsSelected = false;
-                // }
 
             case sf::Keyboard::Down:
             {
@@ -130,27 +68,6 @@ void menu::processInput()
             }
             case sf::Keyboard::Return:
             {
-                // m_playpressed = false;
-                // m_exitpressed = false;
-                // m_loadGamePressed = false;
-                // m_settingsPressed = false;
-
-                // if (m_settingsSelected)
-                // {
-                //     m_settingsPressed = true;
-                // }
-                // else if (m_playselected)
-                // {
-                //     m_playpressed = true;
-                // }
-                // else if (m_exitselected)
-                // {
-                //     m_exitpressed = true;
-                // }
-                // else if (m_loadGameSelected)
-                // {
-                //     m_loadGamePressed = true;
-                // }
                 turnOnButtonKeyEnter(m_buttonsSelected, m_buttonsPressed);
                 break;
             }
@@ -165,35 +82,6 @@ void menu::processInput()
 
     void menu::update()
     {
-
-        // if (m_loadGameSelected)
-        // {
-        //     m_loadGame.setFillColor(COLOR_SELECT);
-        //     m_play.setFillColor(sf::Color::White);
-        //     m_exit.setFillColor(sf::Color::White);
-        //     m_settings.setFillColor(sf::Color::White);
-        // }
-        // if (m_playselected)
-        // {
-        //     m_play.setFillColor(COLOR_SELECT);
-        //     m_exit.setFillColor(sf::Color::White);
-        //     m_loadGame.setFillColor(sf::Color::White);
-        //     m_settings.setFillColor(sf::Color::White);
-        // }
-        // if (m_exitselected)
-        // {
-        //     m_exit.setFillColor(COLOR_SELECT);
-        //     m_play.setFillColor(sf::Color::White);
-        //     m_loadGame.setFillColor(sf::Color::White);
-        //     m_settings.setFillColor(sf::Color::White);
-        // }
-        // if (m_settingsSelected)
-        // {
-        //     m_settings.setFillColor(COLOR_SELECT);
-        //     m_play.setFillColor(sf::Color::White);
-        //     m_loadGame.setFillColor(sf::Color::White);
-        //     m_exit.setFillColor(sf::Color::White);
-        // }
 
         setColorSelect(m_buttons, m_buttonsSelected);
 
@@ -231,11 +119,6 @@ void menu::processInput()
         _data->_window->draw(background);
 
         // condition for loading game, if there is no save file, then the load game button will be disabled
-
-        // _data->_window->draw(m_loadGame);
-        // _data->_window->draw(m_settings);
-        // _data->_window->draw(m_play);
-        // _data->_window->draw(m_exit);
 
         for (int i = 0; i < m_buttons.size(); i++)
         {
