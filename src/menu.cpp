@@ -2,8 +2,8 @@
 #include "maincharacter.hpp"
 #include "map.hpp"
 
-// #include "menuPause.hpp"
-// #include "endgameMenu.hpp"
+#include "menuPause.hpp"
+#include "endgameMenu.hpp"
 
 menu::menu(data *data) : _data(data), m_buttonsSelected(NUM_BUTTONS, false), m_buttonsPressed(NUM_BUTTONS, false)
 {
@@ -114,7 +114,7 @@ void menu::update()
         // Implement your "Settings" logic here
     }
 
-    // // test section
+    // test section
     // else if (m_buttonsPressed[PAUSE])
     // {
     //     m_buttonsPressed[PAUSE] = false;

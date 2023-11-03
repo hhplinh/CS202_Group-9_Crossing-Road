@@ -1,10 +1,6 @@
 #pragma once
 #include "state.h"
 #include "system.h"
-#include "map.hpp"
-#include "maincharacter.hpp"
-#include "menu.hpp"
-
 
 #include <memory>
 #include <string>

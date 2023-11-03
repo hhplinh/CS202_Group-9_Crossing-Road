@@ -1,7 +1,8 @@
 #include "menuPause.hpp"
 
-#include "maincharacter.hpp"
 #include "map.hpp"
+#include "maincharacter.hpp"
+#include "menu.hpp"
 
 menuPause::menuPause(data *data) : _data(data), m_buttonsSelected(NUM_BUTTONS, false), m_buttonsPressed(NUM_BUTTONS, false)
 {

@@ -50,8 +50,7 @@ private:
         {LOAD, "Load"},
         {SETTINGS, "Settings"},
         {EXIT, "Exit"},
-    };
-        
+    };        
 
     data *_data;
     sf::RectangleShape background;
