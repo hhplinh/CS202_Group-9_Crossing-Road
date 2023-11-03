@@ -3,6 +3,8 @@
 #include "system.h"
 #include "map.hpp"
 #include "maincharacter.hpp"
+#include "menu.hpp"
+
 
 #include <memory>
 #include <string>
@@ -10,7 +12,7 @@
 #include <SFML/Graphics/Text.hpp>
 #include <map>
 
-class endgameMenu : public state
+class endgameMenu : public state, public menu
 {
 private:
     enum Button
@@ -42,9 +44,9 @@ public:
     void update();
     void draw();
 
-    bool isOnlyOneButtonOn(const std::vector<bool> &buttons);
-    void turnOnButtonKeyDown(std::vector<bool> &buttonsSelected);
-    void turnOnButtonKeyUp(std::vector<bool> &buttonsSelected);
-    void turnOnButtonKeyEnter(std::vector<bool> &buttonsSelected, std::vector<bool> &buttonsPressed);
-    void setColorSelect(std::vector<sf::Text> &m_buttons, std::vector<bool> &m_buttonsSelected);
+    // bool isOnlyOneButtonOn(const std::vector<bool> &buttons);
+    // void turnOnButtonKeyDown(std::vector<bool> &buttonsSelected);
+    // void turnOnButtonKeyUp(std::vector<bool> &buttonsSelected);
+    // void turnOnButtonKeyEnter(std::vector<bool> &buttonsSelected, std::vector<bool> &buttonsPressed);
+    // void setColorSelect(std::vector<sf::Text> &m_buttons, std::vector<bool> &m_buttonsSelected);
 };

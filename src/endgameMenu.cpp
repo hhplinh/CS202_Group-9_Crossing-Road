@@ -3,11 +3,10 @@
 #include "maincharacter.hpp"
 #include "map.hpp"
 
-endgameMenu::endgameMenu(data *data)
-    : _data(data), m_buttonsSelected(NUM_BUTTONS, false), m_buttonsPressed(NUM_BUTTONS, false)
+endgameMenu::endgameMenu(data *data) : menu(data)
 {
-    m_buttonsSelected[0] = true;
 }
+
 endgameMenu::~endgameMenu() {}
 
 void endgameMenu::init()
@@ -119,83 +118,83 @@ void endgameMenu::draw()
     _data->_window->display();
 }
 
-bool endgameMenu::isOnlyOneButtonOn(const std::vector<bool> &buttons)
-{
-    int count = 0;
-    for (int i = 0; i < buttons.size(); i++)
-    {
-        if (buttons[i] == true)
-        {
-            ++count;
-        }
-    }
-    return count == 1;
-}
+// bool endgameMenu::isOnlyOneButtonOn(const std::vector<bool> &buttons)
+// {
+//     int count = 0;
+//     for (int i = 0; i < buttons.size(); i++)
+//     {
+//         if (buttons[i] == true)
+//         {
+//             ++count;
+//         }
+//     }
+//     return count == 1;
+// }
 
-void endgameMenu::turnOnButtonKeyDown(std::vector<bool> &buttonsSelected)
-{
-    for (int i = 0; i < m_buttonsSelected.size(); i++)
-    {
-        if (m_buttonsSelected[i] == true)
-        {
-            m_buttonsSelected[i] = false;
-            if (i == m_buttonsSelected.size() - 1)
-            {
-                m_buttonsSelected[0] = true;
-            }
-            else
-            {
-                m_buttonsSelected[i + 1] = true;
-            }
-            break;
-        }
-    }
-}
+// void endgameMenu::turnOnButtonKeyDown(std::vector<bool> &buttonsSelected)
+// {
+//     for (int i = 0; i < m_buttonsSelected.size(); i++)
+//     {
+//         if (m_buttonsSelected[i] == true)
+//         {
+//             m_buttonsSelected[i] = false;
+//             if (i == m_buttonsSelected.size() - 1)
+//             {
+//                 m_buttonsSelected[0] = true;
+//             }
+//             else
+//             {
+//                 m_buttonsSelected[i + 1] = true;
+//             }
+//             break;
+//         }
+//     }
+// }
 
-void endgameMenu::turnOnButtonKeyUp(std::vector<bool> &m_buttonsSelected)
-{
-    for (int i = 0; i < m_buttonsSelected.size(); i++)
-    {
-        if (m_buttonsSelected[i] == true)
-        {
-            m_buttonsSelected[i] = false;
-            if (i == 0)
-            {
-                m_buttonsSelected[m_buttonsSelected.size() - 1] = true;
-            }
-            else
-            {
-                m_buttonsSelected[i - 1] = true;
-            }
-            break;
-        }
-    }
-}
+// void endgameMenu::turnOnButtonKeyUp(std::vector<bool> &m_buttonsSelected)
+// {
+//     for (int i = 0; i < m_buttonsSelected.size(); i++)
+//     {
+//         if (m_buttonsSelected[i] == true)
+//         {
+//             m_buttonsSelected[i] = false;
+//             if (i == 0)
+//             {
+//                 m_buttonsSelected[m_buttonsSelected.size() - 1] = true;
+//             }
+//             else
+//             {
+//                 m_buttonsSelected[i - 1] = true;
+//             }
+//             break;
+//         }
+//     }
+// }
 
-void endgameMenu::turnOnButtonKeyEnter(std::vector<bool> &buttonsSelected, std::vector<bool> &buttonsPressed)
-{
-    for (int i = 0; i < buttonsSelected.size(); i++)
-    {
-        buttonsPressed[i] = false;
-        if (buttonsSelected[i] == true)
-        {
-            buttonsPressed[i] = true;
-        }
-    }
-}
+// void endgameMenu::turnOnButtonKeyEnter(std::vector<bool> &buttonsSelected, std::vector<bool> &buttonsPressed)
+// {
+//     for (int i = 0; i < buttonsSelected.size(); i++)
+//     {
+//         buttonsPressed[i] = false;
+//         if (buttonsSelected[i] == true)
+//         {
+//             buttonsPressed[i] = true;
+//         }
+//     }
+// }
 
-void endgameMenu::setColorSelect(std::vector<sf::Text> &m_buttons, std::vector<bool> &m_buttonsSelected)
-{
-    for (int i = 0; i < m_buttons.size(); i++)
-    {
-        std::cerr << m_buttons.size() << std::endl;
-        if (m_buttonsSelected[i])
-        {
-            m_buttons[i].setFillColor(COLOR_SELECT);
-        }
-        else
-        {
-            m_buttons[i].setFillColor(sf::Color::White);
-        }
-    }
-}
+// void endgameMenu::setColorSelect(std::vector<sf::Text> &m_buttons, std::vector<bool> &m_buttonsSelected)
+// {
+//     for (int i = 0; i < m_buttons.size(); i++)
+//     {
+//         std::cerr << m_buttons.size() << std::endl;
+//         if (m_buttonsSelected[i])
+//         {
+//             m_buttons[i].setFillColor(COLOR_SELECT);
+//         }
+//         else
+//         {
+//             m_buttons[i].setFillColor(sf::Color::White);
+//         }
+//     }
+// }
