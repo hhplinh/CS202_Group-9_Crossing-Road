@@ -26,6 +26,11 @@ void stateMachine::removeStateUntilOne()
 	}
 }
 
+int stateMachine::sizeState()
+{
+	return stackState.size();
+}
+
 void stateMachine::processStateChange()
 {
 	if (_remove && !stackState.empty())

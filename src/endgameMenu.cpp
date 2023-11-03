@@ -15,10 +15,12 @@ endgameMenu::~endgameMenu() {}
 
 void endgameMenu::init()
 {
-    
+    if (!m_buttons.empty())
+    {
+        return;
+    }
 
     // set font, name and origin for each button
-    std::cerr << "data end" << _data << std::endl;
     std::string buttonNames[NUM_BUTTONS];
     for (int i = 0; i < NUM_BUTTONS; i++)
     {
@@ -40,7 +42,6 @@ void endgameMenu::init()
     score.setOrigin(score.getLocalBounds().width / 2, score.getLocalBounds().height / 2);
     score.setCharacterSize(90);
     score.setPosition(1253, 254);
-
 }
 
 void endgameMenu::processInput()

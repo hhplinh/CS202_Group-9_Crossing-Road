@@ -7,17 +7,22 @@
 
 mainMenu::mainMenu(data *data) : menu(data)
 {
+    std::cerr << "construct main menu" << std::endl;
+
     m_buttonsSelected.resize(NUM_BUTTONS, false);
     m_buttonsPressed.resize(NUM_BUTTONS, false);
     m_buttonsSelected[0] = true;
-
-    std::cerr << "init main menu" << std::endl;
 }
 
 mainMenu::~mainMenu() {}
 
 void mainMenu::init()
 {
+    if (!m_buttons.empty())
+    {
+        return;
+    }
+
     std::string buttonNames[NUM_BUTTONS];
     for (int i = 0; i < NUM_BUTTONS; i++)
     {
@@ -103,8 +108,8 @@ void mainMenu::update()
         // Implement your "Settings" logic here
     }
 
-    // test section 
-    
+    // test section
+
     // else if (m_buttonsPressed[PAUSE])
     // {
     //     m_buttonsPressed[PAUSE] = false;

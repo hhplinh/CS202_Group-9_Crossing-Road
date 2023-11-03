@@ -18,5 +18,6 @@ public:
 	state*& getCurrentState();
 
 	void removeStateUntilOne();
+	int sizeState();
 };
 

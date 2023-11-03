@@ -15,6 +15,11 @@ menuPause::~menuPause() {}
 
 void menuPause::init()
 {
+    if (!m_buttons.empty())
+    {
+        return;
+    }
+    
     background.setTexture(&_data->_assets->getTexture(BACKGROUND));
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
