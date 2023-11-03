@@ -5,6 +5,7 @@ System::System() : _data(new data)
 {
 	_data->_window->create(sf::VideoMode(1920, 1080), "Crossing Road", sf::Style::Close);
 	_data->_states->addState(new menu(_data));
+	_data->_window->setMouseCursorVisible(false);
 
 	run();
 }
