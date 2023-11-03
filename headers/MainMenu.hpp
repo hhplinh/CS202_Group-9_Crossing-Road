@@ -1,31 +1,47 @@
-#ifndef MAINMENU_HPP
-#define MAINMENU_HPP
+#pragma once
+#include "state.h"
+#include "system.h"
+#include "map.hpp"
+#include "maincharacter.hpp"
+#include "menu.hpp"
 
-#include <SFML/Graphics.hpp>
+// #include "endgamemainMenu.hpp"
+// #include "mainMenuPause.hpp"
+
+#include <memory>
+#include <string>
 #include <vector>
-#include <iostream>
+#include <SFML/Graphics/Text.hpp>
+#include <map>
 
-class MainMenu
+class mainMenu : public menu
 {
 private:
-    int selectedItemIndex;
-    sf::Font font;
-    std::vector<sf::Text> menu;
-    int MAX_NUMBER_OF_ITEMS = 5;
+    enum Button
+    {
+        PLAY,
+        LOAD,
+        SETTINGS,
+        EXIT,
+        PAUSE,
+        END,
+        NUM_BUTTONS
+    };
+
+    std::map<Button, std::string> buttonToString = {
+        {PLAY, "Play"},
+        {LOAD, "Load"},
+        {SETTINGS, "Settings"},
+        {EXIT, "Exit"},
+        {PAUSE, "Pause"},
+        {END, "End"}
+    };
 
 public:
-    // MainMenu(){};
-    // ~MainMenu(){};
-    void create(float width, float height);
-    void renderNavigateWithButtons();
-
-    void draw(sf::RenderWindow &window);
-    void MoveUp();
-    void MoveDown();
-    int GetPressedItem();
-
-    void a();
-
+    mainMenu(data *data);
+    ~mainMenu();
+    void init();
+    void processInput();
+    void update();
+    void draw();
 };
-
-#endif

@@ -1,25 +1,21 @@
-#include "menuPause.hpp"
-
-#include "map.hpp"
+#include "mainMenu.hpp"
 #include "maincharacter.hpp"
-#include "menu.hpp"
+#include "map.hpp"
 
-menuPause::menuPause(data *data) : menu(data)
+#include "menuPause.hpp"
+#include "endgameMenu.hpp"
+
+mainMenu::mainMenu(data *data) : menu(data)
 {
-     m_buttonsSelected.resize(NUM_BUTTONS, false);
+    m_buttonsSelected.resize(NUM_BUTTONS, false);
     m_buttonsPressed.resize(NUM_BUTTONS, false);
     m_buttonsSelected[0] = true;
 }
 
-menuPause::~menuPause() {}
+mainMenu::~mainMenu() {}
 
-void menuPause::init()
+void mainMenu::init()
 {
-    background.setTexture(&_data->_assets->getTexture(BACKGROUND));
-    background.setSize(sf::Vector2f(1920, 1080));
-    background.setFillColor(sf::Color::White);
-
-    // set font, name and origin for each button
     std::string buttonNames[NUM_BUTTONS];
     for (int i = 0; i < NUM_BUTTONS; i++)
     {
@@ -29,13 +25,14 @@ void menuPause::init()
         button.setString(buttonNames[i]);
         button.setOrigin(button.getLocalBounds().width / 2, button.getLocalBounds().height / 2);
         button.setCharacterSize(110);
-        button.setPosition(1353, 254 + 150 * i);
+        button.setPosition(1393, 254 + 150 * i);
         m_buttons.push_back(button);
     }
 
-    m_buttons[MAIN_MENU].setPosition(1280, 254 + 150 * MAIN_MENU);
+    // set pos for setting button
+    m_buttons[SETTINGS].setPosition(1333, 254 + 150 * SETTINGS);
 }
-void menuPause::processInput()
+void mainMenu::processInput()
 {
     sf::Event event;
     while (_data->_window->pollEvent(event))
@@ -79,23 +76,47 @@ void menuPause::processInput()
     }
 }
 
-void menuPause::update()
+void mainMenu::update()
 {
+
     setColorSelect(m_buttons, m_buttonsSelected);
 
-    if (m_buttonsPressed[RESUME])
+    if (m_buttonsPressed[PLAY])
     {
-        m_buttonsPressed[RESUME] = false;
-        _data->_states->removeState();
+        m_buttonsPressed[PLAY] = false;
+        _data->_states->addState(new maincharacter(_data));
     }
-    else if (m_buttonsPressed[MAIN_MENU])
+    else if (m_buttonsPressed[EXIT])
     {
-        m_buttonsPressed[MAIN_MENU] = false;
-        _data->_states->removeStateUntilOne();
+        m_buttonsPressed[EXIT] = false;
+        _data->_window->close();
+    }
+    else if (m_buttonsPressed[LOAD])
+    {
+        m_buttonsPressed[LOAD] = false;
+        // Implement your "Load Game" logic here
+        _data->_states->addState(new maincharacter(_data));
+    }
+    else if (m_buttonsPressed[SETTINGS])
+    {
+        m_buttonsPressed[SETTINGS] = false;
+        // Implement your "Settings" logic here
+    }
+
+    // test section 
+    else if (m_buttonsPressed[PAUSE])
+    {
+        m_buttonsPressed[PAUSE] = false;
+        _data->_states->addState(new menuPause(_data));
+    }
+    else if (m_buttonsPressed[END])
+    {
+        m_buttonsPressed[END] = false;
+        _data->_states->addState(new endgameMenu(_data));
     }
 }
 
-void menuPause::draw()
+void mainMenu::draw()
 {
     _data->_window->clear();
     _data->_window->draw(background);

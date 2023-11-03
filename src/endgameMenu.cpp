@@ -4,8 +4,10 @@
 #include "map.hpp"
 #include "menu.hpp"
 
-endgameMenu::endgameMenu(data *data) : _data(data), m_buttonsSelected(NUM_BUTTONS, false), m_buttonsPressed(NUM_BUTTONS, false)
+endgameMenu::endgameMenu(data *data) : menu(data)
 {
+    m_buttonsSelected.resize(NUM_BUTTONS, false);
+    m_buttonsPressed.resize(NUM_BUTTONS, false);
     m_buttonsSelected[0] = true;
 }
 
@@ -13,11 +15,10 @@ endgameMenu::~endgameMenu() {}
 
 void endgameMenu::init()
 {
-    background.setTexture(&_data->_assets->getTexture(BACKGROUND));
-    background.setSize(sf::Vector2f(1920, 1080));
-    background.setFillColor(sf::Color::White);
+    
 
     // set font, name and origin for each button
+    std::cerr << "data end" << _data << std::endl;
     std::string buttonNames[NUM_BUTTONS];
     for (int i = 0; i < NUM_BUTTONS; i++)
     {
@@ -39,6 +40,7 @@ void endgameMenu::init()
     score.setOrigin(score.getLocalBounds().width / 2, score.getLocalBounds().height / 2);
     score.setCharacterSize(90);
     score.setPosition(1253, 254);
+
 }
 
 void endgameMenu::processInput()
