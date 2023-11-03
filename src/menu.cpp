@@ -114,7 +114,7 @@ void menu::update()
         // Implement your "Settings" logic here
     }
 
-    test section
+    // test section
     else if (m_buttonsPressed[PAUSE])
     {
         m_buttonsPressed[PAUSE] = false;

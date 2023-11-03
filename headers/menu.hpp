@@ -4,6 +4,9 @@
 #include "map.hpp"
 #include "maincharacter.hpp"
 
+#include "endgameMenu.hpp"
+#include "menuPause.hpp"
+
 #include <memory>
 #include <string>
 #include <vector>
