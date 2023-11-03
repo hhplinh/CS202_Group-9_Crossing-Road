@@ -25,9 +25,11 @@ void menuPause::init()
         button.setString(buttonNames[i]);
         button.setOrigin(button.getLocalBounds().width / 2, button.getLocalBounds().height / 2);
         button.setCharacterSize(110);
-        button.setPosition(1393, 254 + 150 * i);
+        button.setPosition(1353, 254 + 150 * i);
         m_buttons.push_back(button);
     }
+
+    m_buttons[MAIN_MENU].setPosition(1280, 254 + 150 * MAIN_MENU);
 }
 void menuPause::processInput()
 {

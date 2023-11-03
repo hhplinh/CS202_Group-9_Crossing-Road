@@ -2,8 +2,8 @@
 #include "maincharacter.hpp"
 #include "map.hpp"
 
-#include "menuPause.hpp"
-#include "endgameMenu.hpp"
+// #include "menuPause.hpp"
+// #include "endgameMenu.hpp"
 
 menu::menu(data *data) : _data(data), m_buttonsSelected(NUM_BUTTONS, false), m_buttonsPressed(NUM_BUTTONS, false)
 {
@@ -19,6 +19,7 @@ void menu::init()
     _data->_assets->addTexture(ROAD, "resources//Texture//River.png");
     _data->_assets->addTexture(RIVER, "resources//Texture//road.png");
     _data->_assets->addFont(MAIN_FONT, "resources//Font//LilitaOne-Regular.ttf");
+    _data->_assets->addFont(FONT2, "resources//Font//BlackOpsOne-Regular.ttf");
 
     background.setTexture(&_data->_assets->getTexture(BACKGROUND));
     background.setSize(sf::Vector2f(1920, 1080));
@@ -114,16 +115,16 @@ void menu::update()
     }
 
     //test section
-    else if (m_buttonsPressed[PAUSE])
-    {
-        m_buttonsPressed[PAUSE] = false;
-        _data->_states->addState(new menuPause(_data));
-    }
-    else if (m_buttonsPressed[END])
-    {
-        m_buttonsPressed[END] = false;
-        _data->_states->addState(new endgameMenu(_data));
-    }
+    // else if (m_buttonsPressed[PAUSE])
+    // {
+    //     m_buttonsPressed[PAUSE] = false;
+    //     _data->_states->addState(new menuPause(_data));
+    // }
+    // else if (m_buttonsPressed[END])
+    // {
+    //     m_buttonsPressed[END] = false;
+    //     _data->_states->addState(new endgameMenu(_data));
+    // }
 }
 
 void menu::draw()

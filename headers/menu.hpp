@@ -13,7 +13,6 @@
 class menu : public state
 {
 private:
-    
     enum Button
     {
         PLAY,
@@ -32,7 +31,7 @@ private:
         {EXIT, "Exit"},
     };
         // {PAUSE, "Pause"},
-        // {END, "End"}};
+        // {END, "End"}
 
     data *_data;
     sf::RectangleShape background;
