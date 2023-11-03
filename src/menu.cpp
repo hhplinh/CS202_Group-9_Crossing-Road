@@ -114,17 +114,17 @@ void menu::update()
         // Implement your "Settings" logic here
     }
 
-    //test section
-    // else if (m_buttonsPressed[PAUSE])
-    // {
-    //     m_buttonsPressed[PAUSE] = false;
-    //     _data->_states->addState(new menuPause(_data));
-    // }
-    // else if (m_buttonsPressed[END])
-    // {
-    //     m_buttonsPressed[END] = false;
-    //     _data->_states->addState(new endgameMenu(_data));
-    // }
+    test section
+    else if (m_buttonsPressed[PAUSE])
+    {
+        m_buttonsPressed[PAUSE] = false;
+        _data->_states->addState(new menuPause(_data));
+    }
+    else if (m_buttonsPressed[END])
+    {
+        m_buttonsPressed[END] = false;
+        _data->_states->addState(new endgameMenu(_data));
+    }
 }
 
 void menu::draw()

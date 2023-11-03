@@ -19,19 +19,36 @@ private:
         LOAD,
         SETTINGS,
         EXIT,
+        PAUSE,
+        END,
         NUM_BUTTONS
     };
-        // PAUSE,
-        // END,
 
     std::map<Button, std::string> buttonToString = {
         {PLAY, "Play"},
         {LOAD, "Load"},
         {SETTINGS, "Settings"},
         {EXIT, "Exit"},
+        {PAUSE, "Pause"},
+        {END, "End"}
     };
-        // {PAUSE, "Pause"},
-        // {END, "End"}
+
+    // enum Button
+    // {
+    //     PLAY,
+    //     LOAD,
+    //     SETTINGS,
+    //     EXIT,
+    //     NUM_BUTTONS
+    // };
+
+    // std::map<Button, std::string> buttonToString = {
+    //     {PLAY, "Play"},
+    //     {LOAD, "Load"},
+    //     {SETTINGS, "Settings"},
+    //     {EXIT, "Exit"},
+    // };
+        
 
     data *_data;
     sf::RectangleShape background;
