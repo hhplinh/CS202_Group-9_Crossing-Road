@@ -1,11 +1,14 @@
 #include "menu.hpp"
-
 #include "maincharacter.hpp"
 #include "map.hpp"
+
+#include "menuPause.hpp"
+#include "endgameMenu.hpp"
 
 menu::menu(data *data) : _data(data), m_buttonsSelected(NUM_BUTTONS, false), m_buttonsPressed(NUM_BUTTONS, false)
 {
     m_buttonsSelected[0] = true;
+
 }
 
 menu::~menu() {}
@@ -111,6 +114,16 @@ void menu::update()
     }
 
     //test section
+    else if (m_buttonsPressed[PAUSE])
+    {
+        m_buttonsPressed[PAUSE] = false;
+        _data->_states->addState(new menuPause(_data));
+    }
+    else if (m_buttonsPressed[END])
+    {
+        m_buttonsPressed[END] = false;
+        _data->_states->addState(new endgameMenu(_data));
+    }
 }
 
 void menu::draw()
@@ -127,7 +140,7 @@ void menu::draw()
     _data->_window->display();
 }
 
-bool menu::isOnlyOneButtonOn(const std::vector<bool> &buttons)
+bool isOnlyOneButtonOn(const std::vector<bool> &buttons)
 {
     int count = 0;
     for (int i = 0; i < buttons.size(); i++)
@@ -140,7 +153,7 @@ bool menu::isOnlyOneButtonOn(const std::vector<bool> &buttons)
     return count == 1;
 }
 
-void menu::turnOnButtonKeyDown(std::vector<bool> &buttonsSelected)
+void turnOnButtonKeyDown(std::vector<bool> &m_buttonsSelected)
 {
     for (int i = 0; i < m_buttonsSelected.size(); i++)
     {
@@ -160,7 +173,7 @@ void menu::turnOnButtonKeyDown(std::vector<bool> &buttonsSelected)
     }
 }
 
-void menu::turnOnButtonKeyUp(std::vector<bool> &m_buttonsSelected)
+void turnOnButtonKeyUp(std::vector<bool> &m_buttonsSelected)
 {
     for (int i = 0; i < m_buttonsSelected.size(); i++)
     {
@@ -180,7 +193,7 @@ void menu::turnOnButtonKeyUp(std::vector<bool> &m_buttonsSelected)
     }
 }
 
-void menu::turnOnButtonKeyEnter(std::vector<bool> &buttonsSelected, std::vector<bool> &buttonsPressed)
+void turnOnButtonKeyEnter(std::vector<bool> &buttonsSelected, std::vector<bool> &buttonsPressed)
 {
     for (int i = 0; i < buttonsSelected.size(); i++)
     {
@@ -192,7 +205,7 @@ void menu::turnOnButtonKeyEnter(std::vector<bool> &buttonsSelected, std::vector<
     }
 }
 
-void menu::setColorSelect(std::vector<sf::Text> &m_buttons, std::vector<bool> &m_buttonsSelected)
+void setColorSelect(std::vector<sf::Text> &m_buttons, std::vector<bool> &m_buttonsSelected, sf::Color COLOR_SELECT)
 {
     for (int i = 0; i < m_buttons.size(); i++)
     {

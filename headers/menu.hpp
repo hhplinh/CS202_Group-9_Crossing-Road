@@ -13,6 +13,7 @@
 class menu : public state
 {
 private:
+    
     enum Button
     {
         PLAY,
@@ -21,12 +22,17 @@ private:
         EXIT,
         NUM_BUTTONS
     };
+        // PAUSE,
+        // END,
 
     std::map<Button, std::string> buttonToString = {
         {PLAY, "Play"},
         {LOAD, "Load"},
         {SETTINGS, "Settings"},
-        {EXIT, "Exit"}};
+        {EXIT, "Exit"},
+    };
+        // {PAUSE, "Pause"},
+        // {END, "End"}};
 
     data *_data;
     sf::RectangleShape background;
@@ -45,10 +51,9 @@ public:
     void processInput();
     void update();
     void draw();
-
-    bool isOnlyOneButtonOn(const std::vector<bool> &buttons);
-    void turnOnButtonKeyDown(std::vector<bool> &buttonsSelected);
-    void turnOnButtonKeyUp(std::vector<bool> &buttonsSelected);
-    void turnOnButtonKeyEnter(std::vector<bool> &buttonsSelected, std::vector<bool> &buttonsPressed);
-    void setColorSelect(std::vector<sf::Text> &m_buttons, std::vector<bool> &m_buttonsSelected);
 };
+bool isOnlyOneButtonOn(const std::vector<bool> &buttons);
+void turnOnButtonKeyDown(std::vector<bool> &buttonsSelected);
+void turnOnButtonKeyUp(std::vector<bool> &buttonsSelected);
+void turnOnButtonKeyEnter(std::vector<bool> &buttonsSelected, std::vector<bool> &buttonsPressed);
+void setColorSelect(std::vector<sf::Text> &m_buttons, std::vector<bool> &m_buttonsSelected, sf::Color COLOR_SELECT = sf::Color(248, 153, 56, 255));

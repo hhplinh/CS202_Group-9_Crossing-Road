@@ -3,8 +3,9 @@
 #include "maincharacter.hpp"
 #include "map.hpp"
 
-endgameMenu::endgameMenu(data *data) : menu(data)
+endgameMenu::endgameMenu(data *data) : _data(data), m_buttonsSelected(NUM_BUTTONS, false), m_buttonsPressed(NUM_BUTTONS, false)
 {
+    m_buttonsSelected[0] = true;
 }
 
 endgameMenu::~endgameMenu() {}
@@ -25,7 +26,7 @@ void endgameMenu::init()
         button.setString(buttonNames[i]);
         button.setOrigin(button.getLocalBounds().width / 2, button.getLocalBounds().height / 2);
         button.setCharacterSize(110);
-        button.setPosition(1363, 254 + 90 * i);
+        button.setPosition(1393, 254 + 150 * i);
         m_buttons.push_back(button);
     }
 
