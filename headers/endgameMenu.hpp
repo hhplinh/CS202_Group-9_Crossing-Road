@@ -10,9 +10,9 @@ class endgameMenu : public state
 {
 private:
     data *_data;
-    sf::Sprite backgroundTexture;
+    
     sf::RectangleShape background;
-    sf::Text m_gametitle;
+    
     sf::Text score;
     sf::Text m_restart;
     sf::Text m_returnMainMenu;

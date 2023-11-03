@@ -16,16 +16,6 @@ void menuPause::init()
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
 
-    // Title
-    m_gametitle.setFont(_data->_assets->getFont(TITLE));
-    m_gametitle.setString("CrossyRoad");
-    m_gametitle.setOrigin(m_gametitle.getLocalBounds().width / 2,
-                          m_gametitle.getLocalBounds().height / 2);
-    m_gametitle.setPosition(_data->_window->getSize().x / 2,
-                            _data->_window->getSize().y / 2 - 150.f);
-    m_gametitle.setCharacterSize(100);
-
-
     // Resume Button
     m_resume.setFont(_data->_assets->getFont(MAIN_FONT));
     m_resume.setString("Resume");
@@ -141,7 +131,7 @@ void menuPause::draw()
 {
     _data->_window->clear();
     _data->_window->draw(background);
-    _data->_window->draw(m_gametitle);
+    
     
     _data->_window->draw(m_resume);
     _data->_window->draw(m_returnMainMenu);

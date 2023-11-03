@@ -11,9 +11,8 @@ class menuPause : public state
 private:
 
     data *_data;
-    sf::Sprite backgroundTexture;
     sf::RectangleShape background;
-    sf::Text m_gametitle;
+    
     sf::Text m_resume;
     sf::Text m_returnMainMenu;
 
