@@ -85,11 +85,11 @@ void endgameMenu::processInput()
             }
         }
     }
+    setColorSelect(m_buttons, m_buttonsSelected);
 }
 
 void endgameMenu::update()
 {
-    setColorSelect(m_buttons, m_buttonsSelected);
 
     if (m_buttonsPressed[RESTART])
     {

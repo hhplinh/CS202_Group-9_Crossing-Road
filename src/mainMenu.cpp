@@ -10,6 +10,8 @@ mainMenu::mainMenu(data *data) : menu(data)
     m_buttonsSelected.resize(NUM_BUTTONS, false);
     m_buttonsPressed.resize(NUM_BUTTONS, false);
     m_buttonsSelected[0] = true;
+
+    std::cerr << "init main menu" << std::endl;
 }
 
 mainMenu::~mainMenu() {}
@@ -74,13 +76,11 @@ void mainMenu::processInput()
             }
         }
     }
+    setColorSelect(m_buttons, m_buttonsSelected);
 }
 
 void mainMenu::update()
 {
-
-    setColorSelect(m_buttons, m_buttonsSelected);
-
     if (m_buttonsPressed[PLAY])
     {
         m_buttonsPressed[PLAY] = false;

@@ -77,11 +77,11 @@ void menuPause::processInput()
             }
         }
     }
+    setColorSelect(m_buttons, m_buttonsSelected);
 }
 
 void menuPause::update()
 {
-    setColorSelect(m_buttons, m_buttonsSelected);
 
     if (m_buttonsPressed[RESUME])
     {
