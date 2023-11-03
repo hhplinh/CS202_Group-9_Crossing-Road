@@ -4,8 +4,8 @@
 #include "map.hpp"
 #include "maincharacter.hpp"
 
-#include "endgameMenu.hpp"
-#include "menuPause.hpp"
+// #include "endgameMenu.hpp"
+// #include "menuPause.hpp"
 
 #include <memory>
 #include <string>
@@ -16,32 +16,14 @@
 class menu : public state
 {
 private:
-    enum Button
-    {
-        PLAY,
-        LOAD,
-        SETTINGS,
-        EXIT,
-        PAUSE,
-        END,
-        NUM_BUTTONS
-    };
-
-    std::map<Button, std::string> buttonToString = {
-        {PLAY, "Play"},
-        {LOAD, "Load"},
-        {SETTINGS, "Settings"},
-        {EXIT, "Exit"},
-        {PAUSE, "Pause"},
-        {END, "End"}
-    };
-
     // enum Button
     // {
     //     PLAY,
     //     LOAD,
     //     SETTINGS,
     //     EXIT,
+    //     PAUSE,
+    //     END,
     //     NUM_BUTTONS
     // };
 
@@ -50,7 +32,25 @@ private:
     //     {LOAD, "Load"},
     //     {SETTINGS, "Settings"},
     //     {EXIT, "Exit"},
+    //     {PAUSE, "Pause"},
+    //     {END, "End"}
     // };
+
+    enum Button
+    {
+        PLAY,
+        LOAD,
+        SETTINGS,
+        EXIT,
+        NUM_BUTTONS
+    };
+
+    std::map<Button, std::string> buttonToString = {
+        {PLAY, "Play"},
+        {LOAD, "Load"},
+        {SETTINGS, "Settings"},
+        {EXIT, "Exit"},
+    };
         
 
     data *_data;
