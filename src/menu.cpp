@@ -118,7 +118,7 @@ void menu::processInput()
         _data->_window->clear();
         _data->_window->draw(background);
 
-        // condition for loading game, if there is no save file, then the load game button will be disabled
+        // condition for loading game, if there is no save file, the load game button will be disabled
 
         for (int i = 0; i < m_buttons.size(); i++)
         {

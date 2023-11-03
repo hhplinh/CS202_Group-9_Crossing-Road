@@ -31,28 +31,12 @@ private:
     data *_data;
     sf::RectangleShape background;
 
-    // sf::Text m_play;
-    // sf::Text m_exit;
-    // sf::Text m_load;
-    // sf::Text m_settings;
-
     std::vector<sf::Text> m_buttons;
 
     const sf::Color COLOR_SELECT = sf::Color(248, 153, 56, 255);
 
     std::vector<bool> m_buttonsSelected{};
     std::vector<bool> m_buttonsPressed{};
-
-    // bool m_playselected;
-    // bool m_exitselected;
-    // bool m_playpressed;
-    // bool m_exitpressed;
-    // sf::Text m_loadGame;
-    // bool m_loadGameSelected;
-    // bool m_loadGamePressed;
-
-    // bool m_settingsSelected;
-    // bool m_settingsPressed;
 
 public:
     menu(data *data);
