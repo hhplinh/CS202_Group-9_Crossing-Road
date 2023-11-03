@@ -31,9 +31,13 @@ void menu::init()
         button.setString(buttonNames[i]);
         button.setOrigin(button.getLocalBounds().width / 2, button.getLocalBounds().height / 2);
         button.setCharacterSize(110);
-        button.setPosition(1363, 254 + 90 * i);
+        button.setPosition(1393, 254 + 150 * i);
         m_buttons.push_back(button);
     }
+
+    //set pos for setting button
+    m_buttons[SETTINGS].setPosition(1333, 254 + 150 * SETTINGS);
+
 }
 void menu::processInput()
 {
@@ -105,6 +109,8 @@ void menu::update()
         m_buttonsPressed[SETTINGS] = false;
         // Implement your "Settings" logic here
     }
+
+    //test section
 }
 
 void menu::draw()
