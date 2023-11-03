@@ -1,47 +1,47 @@
 #include "endgameMenu.hpp"
 
+#include "maincharacter.hpp"
 #include "map.hpp"
-#include "menu.hpp"
 
 endgameMenu::endgameMenu(data *data)
-    : _data(data), m_returnMainMenuSelected(true), m_returnMainMenuPressed(false), m_restartSelected(false), m_restartPressed(false)
+    : _data(data), m_buttonsSelected(NUM_BUTTONS, false), m_buttonsPressed(NUM_BUTTONS, false)
 {
+    m_buttonsSelected[0] = true;
 }
 endgameMenu::~endgameMenu() {}
+
 void endgameMenu::init()
 {
+    // _data->_assets->addTexture(BACKGROUND, "resources//Texture//bgendgameMenu.png");
+    // _data->_assets->addTexture(ROAD, "resources//Texture//River.png");
+    // _data->_assets->addTexture(RIVER, "resources//Texture//road.png");
+
+    // _data->_assets->addFont(MAIN_FONT, "resources//Font//LilitaOne-Regular.ttf");
+
     background.setTexture(&_data->_assets->getTexture(BACKGROUND));
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
 
-    // Score
+    // set font, name and origin for each button
+    std::string buttonNames[NUM_BUTTONS];
+    for (int i = 0; i < NUM_BUTTONS; i++)
+    {
+        sf::Text button;
+        button.setFont(_data->_assets->getFont(MAIN_FONT));
+        buttonNames[i] = buttonToString[static_cast<Button>(i)];
+        button.setString(buttonNames[i]);
+        button.setOrigin(button.getLocalBounds().width / 2, button.getLocalBounds().height / 2);
+        button.setCharacterSize(110);
+        button.setPosition(1363, 254 + 90 * i);
+        m_buttons.push_back(button);
+    }
+
     score.setFont(_data->_assets->getFont(MAIN_FONT));
-    // score.setString("Score: " + std::to_string());
+    // score.setString("Score: " + std::to_string(_data->_score));
     score.setString("Score: ");
-    score.setOrigin(score.getLocalBounds().width / 2,
-                    score.getLocalBounds().height / 2);
-    score.setPosition(_data->_window->getSize().x / 2,
-                      _data->_window->getSize().y / 2 - 150.f);
-    score.setCharacterSize(100);
-
-
-    // Restart Button
-    m_restart.setFont(_data->_assets->getFont(MAIN_FONT));
-    m_restart.setString("Restart");
-    m_restart.setOrigin(m_restart.getLocalBounds().width / 2,
-                        m_restart.getLocalBounds().height / 2);
-    m_restart.setPosition(_data->_window->getSize().x / 2,
-                          _data->_window->getSize().y / 2 + 80.f);
-    m_restart.setCharacterSize(100);
-
-    // Return main menu Button
-    m_returnMainMenu.setFont(_data->_assets->getFont(MAIN_FONT));
-    m_returnMainMenu.setString("Main menu");
-    m_returnMainMenu.setOrigin(m_returnMainMenu.getLocalBounds().width / 2,
-                               m_returnMainMenu.getLocalBounds().height / 2);
-    m_returnMainMenu.setPosition(_data->_window->getSize().x / 2,
-                                 _data->_window->getSize().y / 2 + 25.f);
-    m_returnMainMenu.setCharacterSize(100);
+    score.setOrigin(score.getLocalBounds().width / 2, score.getLocalBounds().height / 2);
+    score.setCharacterSize(110);
+    score.setPosition(1363, 254);
 }
 void endgameMenu::processInput()
 {
@@ -58,45 +58,24 @@ void endgameMenu::processInput()
             {
             case sf::Keyboard::Up:
             {
-                if (!m_restartSelected && m_returnMainMenuSelected)
+                if (isOnlyOneButtonOn(m_buttonsSelected))
                 {
-                    m_restartSelected = true;
-                    m_returnMainMenuSelected = false;
-                }
-                else if (m_restartSelected && !m_returnMainMenuSelected)
-                {
-                    m_returnMainMenuSelected = true;
-                    m_restartSelected = false;
+                    turnOnButtonKeyUp(m_buttonsSelected);
                 }
                 break;
             }
+
             case sf::Keyboard::Down:
             {
-                if (!m_restartSelected && m_returnMainMenuSelected)
+                if (isOnlyOneButtonOn(m_buttonsSelected))
                 {
-                    m_restartSelected = true;
-                    m_returnMainMenuSelected = false;
-                }
-                else if (m_restartSelected && !m_returnMainMenuSelected)
-                {
-                    m_returnMainMenuSelected = true;
-                    m_restartSelected = false;
+                    turnOnButtonKeyDown(m_buttonsSelected);
                 }
                 break;
             }
             case sf::Keyboard::Return:
             {
-                m_restartPressed = false;
-                m_returnMainMenuPressed = false;
-
-                if (m_restartSelected)
-                {
-                    m_restartPressed = true;
-                }
-                else if (m_returnMainMenuSelected)
-                {
-                    m_returnMainMenuPressed = true;
-                }
+                turnOnButtonKeyEnter(m_buttonsSelected, m_buttonsPressed);
                 break;
             }
             default:
@@ -110,27 +89,17 @@ void endgameMenu::processInput()
 
 void endgameMenu::update()
 {
-    if (m_restartSelected)
-    {
-        m_restart.setFillColor(COLOR_SELECT);
-        m_returnMainMenu.setFillColor(sf::Color::White);
-    }
-    else if (m_returnMainMenuSelected)
-    {
-        m_returnMainMenu.setFillColor(COLOR_SELECT);
-        m_restart.setFillColor(sf::Color::White);
-    }
+    setColorSelect(m_buttons, m_buttonsSelected);
 
-    if (m_restartPressed)
+    if (m_buttonsPressed[RESTART])
     {
-        m_restartPressed = false;
-        // before endgameMenu is game
-        _data->_states->removeState();
+        m_buttonsPressed[RESTART] = false;
+        _data->_states->removeStateUntilOne();
+        _data->_states->addState(new maincharacter(_data));
     }
-    else if (m_returnMainMenuPressed)
+    else if (m_buttonsPressed[MAIN_MENU])
     {
-        m_returnMainMenuPressed = false;
-        // // Implement your "Load Game" logic here
+        m_buttonsPressed[MAIN_MENU] = false;
         _data->_states->removeStateUntilOne();
     }
 }
@@ -139,10 +108,94 @@ void endgameMenu::draw()
 {
     _data->_window->clear();
     _data->_window->draw(background);
-    
-
     _data->_window->draw(score);
-    _data->_window->draw(m_restart);
-    _data->_window->draw(m_returnMainMenu);
+
+    // condition for loading game, if there is no save file, the load game button will be disabled
+
+    for (int i = 0; i < m_buttons.size(); i++)
+    {
+        _data->_window->draw(m_buttons[i]);
+    }
     _data->_window->display();
+}
+
+bool endgameMenu::isOnlyOneButtonOn(const std::vector<bool> &buttons)
+{
+    int count = 0;
+    for (int i = 0; i < buttons.size(); i++)
+    {
+        if (buttons[i] == true)
+        {
+            ++count;
+        }
+    }
+    return count == 1;
+}
+
+void endgameMenu::turnOnButtonKeyDown(std::vector<bool> &buttonsSelected)
+{
+    for (int i = 0; i < m_buttonsSelected.size(); i++)
+    {
+        if (m_buttonsSelected[i] == true)
+        {
+            m_buttonsSelected[i] = false;
+            if (i == m_buttonsSelected.size() - 1)
+            {
+                m_buttonsSelected[0] = true;
+            }
+            else
+            {
+                m_buttonsSelected[i + 1] = true;
+            }
+            break;
+        }
+    }
+}
+
+void endgameMenu::turnOnButtonKeyUp(std::vector<bool> &m_buttonsSelected)
+{
+    for (int i = 0; i < m_buttonsSelected.size(); i++)
+    {
+        if (m_buttonsSelected[i] == true)
+        {
+            m_buttonsSelected[i] = false;
+            if (i == 0)
+            {
+                m_buttonsSelected[m_buttonsSelected.size() - 1] = true;
+            }
+            else
+            {
+                m_buttonsSelected[i - 1] = true;
+            }
+            break;
+        }
+    }
+}
+
+void endgameMenu::turnOnButtonKeyEnter(std::vector<bool> &buttonsSelected, std::vector<bool> &buttonsPressed)
+{
+    for (int i = 0; i < buttonsSelected.size(); i++)
+    {
+        buttonsPressed[i] = false;
+        if (buttonsSelected[i] == true)
+        {
+            buttonsPressed[i] = true;
+        }
+    }
+}
+
+void endgameMenu::setColorSelect(std::vector<sf::Text> &m_buttons, std::vector<bool> &m_buttonsSelected)
+{
+    for (int i = 0; i < m_buttons.size(); i++)
+    {
+        std::cerr << m_buttons.size() << std::endl;
+        if (m_buttonsSelected[i])
+        {
+            m_buttons[i].setFillColor(COLOR_SELECT);
+        }
+        else
+        {
+            m_buttons[i].setFillColor(sf::Color::White);
+        }
+    }
 }

@@ -6,13 +6,13 @@
 menu::menu(data *data)
     : _data(data), m_buttonsSelected(NUM_BUTTONS, false), m_buttonsPressed(NUM_BUTTONS, false)
 {
-    m_buttonsSelected[PLAY] = true;
+    m_buttonsSelected[0] = true;
 }
 menu::~menu() {}
 
 void menu::init()
 {
-    _data->_assets->addTexture(BACKGROUND, "resources//Texture//bgMenu.png");
+    _data->_assets->addTexture(BACKGROUND, "resources//Texture//bgmenuPause.png");
     _data->_assets->addTexture(ROAD, "resources//Texture//River.png");
     _data->_assets->addTexture(RIVER, "resources//Texture//road.png");
 
@@ -101,11 +101,6 @@ void menu::processInput()
             // Implement your "Load Game" logic here
             _data->_states->addState(new maincharacter(_data));
         }
-        // else if (m_settingsPressed)
-        // {
-        //     m_settingsPressed = false;
-        //     // Implement your "Settings" logic here
-        // }
         else if (m_buttonsPressed[SETTINGS])
         {
             m_buttonsPressed[SETTINGS] = false;
