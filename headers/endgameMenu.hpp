@@ -12,7 +12,7 @@
 #include <SFML/Graphics/Text.hpp>
 #include <map>
 
-class endgameMenu : public state, public menu
+class endgameMenu : public menu
 {
 private:
     enum Button

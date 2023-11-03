@@ -36,6 +36,7 @@ void endgameMenu::init()
     score.setCharacterSize(110);
     score.setPosition(1363, 254);
 }
+
 void endgameMenu::processInput()
 {
     sf::Event event;

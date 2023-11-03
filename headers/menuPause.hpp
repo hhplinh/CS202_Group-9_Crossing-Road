@@ -11,7 +11,7 @@
 #include <SFML/Graphics/Text.hpp>
 #include <map>
 
-class menuPause : public state, public menu
+class menuPause : public menu
 {
 private:
     enum Button

@@ -190,7 +190,6 @@ void menu::setColorSelect(std::vector<sf::Text> &m_buttons, std::vector<bool> &m
 {
     for (int i = 0; i < m_buttons.size(); i++)
     {
-        std::cerr << m_buttons.size() << std::endl;
         if (m_buttonsSelected[i])
         {
             m_buttons[i].setFillColor(COLOR_SELECT);
