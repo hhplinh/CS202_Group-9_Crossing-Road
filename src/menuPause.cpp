@@ -10,12 +10,6 @@ menuPause::~menuPause() {}
 
 void menuPause::init()
 {
-    // _data->_assets->addTexture(BACKGROUND, "resources//Texture//bgMenu.png");
-    // _data->_assets->addTexture(ROAD, "resources//Texture//River.png");
-    // _data->_assets->addTexture(RIVER, "resources//Texture//road.png");
-
-    // _data->_assets->addFont(MAIN_FONT, "resources//Font//LilitaOne-Regular.ttf");
-
     background.setTexture(&_data->_assets->getTexture(BACKGROUND));
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
