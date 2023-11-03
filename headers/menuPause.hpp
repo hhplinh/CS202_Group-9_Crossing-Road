@@ -42,10 +42,4 @@ public:
     void processInput();
     void update();
     void draw();
-
-    // bool isOnlyOneButtonOn(const std::vector<bool> &buttons);
-    // void turnOnButtonKeyDown(std::vector<bool> &buttonsSelected);
-    // void turnOnButtonKeyUp(std::vector<bool> &buttonsSelected);
-    // void turnOnButtonKeyEnter(std::vector<bool> &buttonsSelected, std::vector<bool> &buttonsPressed);
-    // void setColorSelect(std::vector<sf::Text> &m_buttons, std::vector<bool> &m_buttonsSelected);
 };
