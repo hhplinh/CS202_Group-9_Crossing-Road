@@ -91,8 +91,9 @@ void maincharacter::update()
 
      if(mApressed)
         {
-           _data->_states->removeState( );
            mApressed = false;
+           _data->_states->removeState( );
+            // _data->_states->removeStateUntilOne();
         }
     this->move();
 
