@@ -23,5 +23,6 @@ public:
 	void processInput();
 	void update();
 	void draw();
-
+    //implement the get function to get pos
+    sf::Vector2f getpos(){return sprite.getPosition();}
 };

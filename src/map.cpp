@@ -34,25 +34,27 @@ void map::update()
     float characterY = player->getPosition().y;
     float screenHeight = _data->_window->getSize().y;
 
-    if (characterY >= 0.75 * screenHeight)
+    if (characterY > 0.75 * screenHeight&& characterY<0.8*screenHeight)
     {
         // Add more blocks when the character is close to the top
-        int numNewBlocks = 5; // Adjust this value as needed
-        for (int i = 0; i < numNewBlocks; i++)
+       createmap();
+       std::cout<<blocks.size()<<std::endl;
+    }
+     sf::Vector2f screenSize(1920, 1080); // Adjust this based on your screen size
+      for (auto it = blocks.begin(); it != blocks.end();)
+    {
+        sf::Vector2f blockPosition = (*it)->getpos();
+        sf::Vector2u blockSize = _data->_assets->getTexture(ROAD).getSize();
+
+        if (blockPosition.y > screenHeight)
         {
-            int z = rand() % 3;
-            if (z == 0)
-            {
-                addblock("road");
-            }
-            else if (z == 1)
-            {
-                addblock("grass");
-            }
-            else if (z == 2)
-            {
-                addblock("river");
-            }
+            // Block is below the screen, delete it
+            delete *it;
+            it = blocks.erase(it);
+        }
+        else
+        {
+            ++it;
         }
     }
 }
