@@ -33,8 +33,9 @@ void map::update()
     // Check if the character has reached 0.75 * height of the screen
     float characterY = player->getPosition().y;
     float screenHeight = _data->_window->getSize().y;
-
-    if (characterY > 0.75 * screenHeight&& characterY<0.8*screenHeight)
+     float screenHeight2 = player->getPosition().y-screenHeight/2;
+    std:: cout << characterY << " "<< screenHeight << std::endl;
+    if ((characterY > 0.25 * screenHeight&& characterY<0.4*screenHeight)||(characterY>screenHeight2-100&&characterY<screenHeight2))
     {
         // Add more blocks when the character is close to the top
        createmap();
