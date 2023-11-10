@@ -24,6 +24,7 @@ protected:
     std::vector<bool> m_buttonsPressed{};
 
 public:
+   
     menu(data *data);
     ~menu();
 

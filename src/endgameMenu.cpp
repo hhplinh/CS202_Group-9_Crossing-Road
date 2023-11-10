@@ -96,7 +96,7 @@ void endgameMenu::update()
     {
         m_buttonsPressed[RESTART] = false;
         _data->_states->removeStateUntilOne();
-        _data->_states->addState(new maincharacter(_data));
+       // _data->_states->addState(new maincharacter(_data));
     }
     else if (m_buttonsPressed[MAIN_MENU])
     {

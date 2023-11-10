@@ -3,7 +3,7 @@
 void gameplay :: init()
 {
     createmap();
-    player = new maincharacter(_data);
+   // player = new maincharacter(_data);
     player->init();
 
 }

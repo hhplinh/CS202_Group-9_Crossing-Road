@@ -17,7 +17,8 @@ mainMenu::mainMenu(data *data) : menu(data)
 mainMenu::~mainMenu() {}
 
 void mainMenu::init()
-{
+{ 
+   
     if (!m_buttons.empty())
     {
         return;
@@ -40,7 +41,7 @@ void mainMenu::init()
     m_buttons[SETTINGS].setPosition(1333, 254 + 150 * SETTINGS);
 }
 void mainMenu::processInput()
-{
+{  
     sf::Event event;
     while (_data->_window->pollEvent(event))
     {
@@ -85,11 +86,11 @@ void mainMenu::processInput()
 }
 
 void mainMenu::update()
-{
+{   // player->update();
     if (m_buttonsPressed[PLAY])
     {
         m_buttonsPressed[PLAY] = false;
-        _data->_states->addState(new maincharacter(_data));
+        //_data->_states->addState(new maincharacter(_data));
     }
     else if (m_buttonsPressed[EXIT])
     {
@@ -100,7 +101,7 @@ void mainMenu::update()
     {
         m_buttonsPressed[LOAD] = false;
         // Implement your "Load Game" logic here
-        _data->_states->addState(new maincharacter(_data));
+        _data->_states->addState(new map(_data));
     }
     else if (m_buttonsPressed[SETTINGS])
     {
@@ -125,6 +126,7 @@ void mainMenu::update()
 void mainMenu::draw()
 {
     _data->_window->clear();
+    //player->draw();
     _data->_window->draw(background);
 
     // condition for loading game, if there is no save file, the load game button will be disabled
@@ -133,5 +135,6 @@ void mainMenu::draw()
     {
         _data->_window->draw(m_buttons[i]);
     }
+   
     _data->_window->display();
 }

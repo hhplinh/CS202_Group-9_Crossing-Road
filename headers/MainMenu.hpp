@@ -13,10 +13,11 @@
 #include <vector>
 #include <SFML/Graphics/Text.hpp>
 #include <map>
-
+#include"maincharacter.hpp"
 class mainMenu : public menu
 {
 private:
+
     enum Button
     {
         PLAY,
@@ -38,6 +39,7 @@ private:
         // {END, "End"}
 
 public:
+
     mainMenu(data *data);
     ~mainMenu();
     void init();

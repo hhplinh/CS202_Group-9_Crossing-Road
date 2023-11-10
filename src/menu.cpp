@@ -12,7 +12,7 @@ menu::menu(data *data) : _data(data)
     _data->_assets->addTexture(RIVER, "resources//Texture//road.png");
     _data->_assets->addFont(MAIN_FONT, "resources//Font//LilitaOne-Regular.ttf");
     _data->_assets->addFont(FONT2, "resources//Font//BlackOpsOne-Regular.ttf");
-
+    _data->_assets->addTexture(GRASS, "resources//Texture//grass.png");
     background.setTexture(&_data->_assets->getTexture(BACKGROUND));
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
