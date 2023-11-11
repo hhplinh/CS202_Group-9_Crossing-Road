@@ -5,7 +5,7 @@ void map::init()
 {  player = new maincharacter(_data);
     player->init();
     
-
+   this->currentIndex=0;
     //set player position to the bottom of the screen
     
     this->length = 10;
@@ -27,37 +27,45 @@ void map::processInput()
     player->processInput();
 }
 void map::update()
-{
+{   float prePos= player->getPosition().y;
     player->update();
+    float pos= player->getPosition().y;
+    
     std:: cout<< blocks.size()<<std::endl;
-    // Check if the character has reached 0.75 * height of the screen
-    float characterY = player->getPosition().y;
-    float screenHeight = _data->_window->getSize().y;
-     float screenHeight2 = player->getPosition().y-screenHeight/2;
-    std:: cout << characterY << " "<< screenHeight << std::endl;
-    if ((characterY > 0.25 * screenHeight&& characterY<0.4*screenHeight)||(characterY>screenHeight2-100&&characterY<screenHeight2))
+    float i = ( pos/1080.0 +1)*6;
+    float j=-i;
+    int k= int (i);
+    int f= int (j);
+    if(k>this->currentIndex)
     {
-        // Add more blocks when the character is close to the top
-       createmap();
-       std::cout<<blocks.size()<<std::endl;
+        this->currentIndex=k;
+      
     }
-     sf::Vector2f screenSize(1920, 1080); // Adjust this based on your screen size
-      for (auto it = blocks.begin(); it != blocks.end();)
+    if( ((i-k)<0.3&& pos>0)||(j-f>0.7&&(j-f)<0.8&&pos<0))
     {
-        sf::Vector2f blockPosition = (*it)->getpos();
-        sf::Vector2u blockSize = _data->_assets->getTexture(ROAD).getSize();
+        int z;
+        for( int i=0;i<1;i++){
+         z=rand()%3;
 
-        if (blockPosition.y > screenHeight)
+        if(z==0)
         {
-            // Block is below the screen, delete it
-            delete *it;
-            it = blocks.erase(it);
+            addblock("road");
         }
-        else
+        else if(z==1)
         {
-            ++it;
+            addblock("grass");
+        }
+        else if(z==2)
+        {
+            addblock("river");
+        }
+  
         }
     }
+    //delete from index 0 to currentIndex-1
+  
+     sf::Vector2f screenSize(1920, 1080); // Adjust this based on your screen size
+     
 }
 
 
@@ -81,7 +89,7 @@ void map::draw()
 // generate the block to fill the screen with the road is at bottom  and then all random
 
 
-for (int i = 0; i < blocks.size(); i++) {
+for (int i = currentIndex; i < blocks.size(); i++) {
     blocks[i]->setpos(pos);
     blocks[i]->draw();
     pos.y -= sizeBlock.y;
@@ -95,9 +103,7 @@ for (int i = 0; i < blocks.size(); i++) {
 }
 void map::createmap()
 {
-    addblock("road");
-    addblock("river");
-    addblock("grass");
+  
     int z;
     for(int i=0;i<length;i++)
     {    z=rand()%3;

@@ -11,7 +11,7 @@ class map: public state
     sf::Vector2i exitPos;
     sf::Vector2i playerPos;
     std:: vector <sf::Vector2i> enemyPos;
-
+    int currentIndex;
     public:
     std::vector < std:: vector < block* > > tiles;
     int length;
