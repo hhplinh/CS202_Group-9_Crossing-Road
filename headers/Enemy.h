@@ -2,13 +2,15 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <vector>
+#include"state.h"
+#include"system.h"
 
 class Enemy {
 protected:
     float x;
     float y;
     float speed;
-
+    data* _data;
 public:
     virtual void move() = 0;
     virtual void draw(sf::RenderWindow& window) = 0;
@@ -20,7 +22,6 @@ public:
 class Car : public Enemy {
 public:
     Car(float startX, float startY, float speed);
-
     void move() override;
     void draw(sf::RenderWindow& window) override;
     void die(float playerX, float playerY) override;
@@ -50,7 +51,7 @@ public:
 class Spawn {
 private:
     std::vector<Enemy*> enemies;
-
+    data* _data;
 public:
     Spawn();
     ~Spawn();

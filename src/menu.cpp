@@ -13,6 +13,11 @@ menu::menu(data *data) : _data(data)
     _data->_assets->addFont(MAIN_FONT, "resources//Font//LilitaOne-Regular.ttf");
     _data->_assets->addFont(FONT2, "resources//Font//BlackOpsOne-Regular.ttf");
     _data->_assets->addTexture(GRASS, "resources//Texture//grass.png");
+    _data->_assets->addTexture(CAR1, "resources//Texture//Car 1.png");
+    _data->_assets->addTexture(CAR2, "resources//Texture//Car 2.png");
+    _data->_assets->addTexture(CAR3, "resources//Texture//Car 3.png");
+    _data->_assets->addTexture(CAR4, "resources//Texture//Car 4.png");
+    _data->_assets->addTexture(CAR5, "resources//Texture//Car 5.png");
     background.setTexture(&_data->_assets->getTexture(BACKGROUND));
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
