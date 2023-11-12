@@ -13,12 +13,23 @@ class map: public state
     std:: vector <sf::Vector2i> enemyPos;
     int currentIndex;
     public:
-    std::vector < std:: vector < block* > > tiles;
+   
     int length;
-
+    std:: vector < sf::Vector2f> river;
     map(data* data);
     map();
-    ~map();
+    ~map()
+    { //delete dynamically alocated memory
+      
+        for(int i=0;i<blocks.size();i++)
+        {
+            delete blocks[i];
+        }
+        delete player;
+
+
+
+    }
     void init();
     void processInput();
     void update();

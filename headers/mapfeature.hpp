@@ -17,8 +17,9 @@ private:
    
 public:
     block();
+    std::string getTerrainName(){return terrainName;}
     block(data* _data){this->_data = _data;}
-    void setpos( sf::Vector2f pos);
+    void setpos( sf::Vector2f posblock);
     void init( std:: string terrainName  ,sf :: Vector2f pos , bool isPassable , bool isExit );
 	void processInput();
 	void update();

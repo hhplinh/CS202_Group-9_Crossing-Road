@@ -1,13 +1,15 @@
 #include"map.hpp"
 #include<iostream>
 #include<random>
+#include"endgameMenu.hpp"
 void map::init()
-{  player = new maincharacter(_data);
+{   player = new maincharacter(_data);
     player->init();
-    
+    this->blocks.clear();
+
    this->currentIndex=0;
     //set player position to the bottom of the screen
-    
+    this->river.clear();
     this->length = 10;
     createmap();
     background.setSize(sf::Vector2f(1920,1080));
@@ -41,7 +43,7 @@ void map::update()
         this->currentIndex=k;
       
     }
-    if( ((i-k)<0.3&& pos>0)||(j-f>0.7&&(j-f)<0.8&&pos<0))
+    if( ((i-k)<0.2&& pos>0)||(j-f>0.7&&(j-f)<0.8&&pos<0))
     {
         int z;
         for( int i=0;i<1;i++){
@@ -62,10 +64,36 @@ void map::update()
   
         }
     }
-    //delete from index 0 to currentIndex-1
-  
+
+
+   sf:: Vector2f pos1(0.0f,906.0f);
+
+
+river.clear();
+
+for (int i = currentIndex; i < blocks.size(); i++) 
+{
+   blocks[i]->setpos(pos1);
+  if(blocks[i]->getTerrainName()=="river")
+  {
+        river.push_back(pos1);
+  }
+    pos1.y -= 174.0;
+    
+}  
      sf::Vector2f screenSize(1920, 1080); // Adjust this based on your screen size
      
+      for (const auto& riverBlockPos : river) {
+        float riverBlockHeight = /* height of your river blocks */174;
+        
+        // Check if player is within the vertical span of the river block
+        if ( (player->getPosition().y +143 ) > riverBlockPos.y &&
+             (player->getPosition().y +143 ) < (riverBlockPos.y + riverBlockHeight)) {
+            // Collision detected, player is in the river
+            player->setPosition(0,prePos);
+            return;  // Exit the update function
+        }
+    }
 }
 
 
@@ -77,28 +105,21 @@ void map::draw()
     _data->_window->clear();
    
     _data->_window->draw(background);
-    sf:: Vector2f pos(0,1080-174);
-    //increase the y coordinate of the block so that it would nt be overlapped
-    //posy sould += the the height of the block
-    // we should find the height first
-
-
-    //find the height of block texture by get the texture of road png
-    sf::Vector2u sizeBlock =  _data->_assets->getTexture(ROAD).getSize();
-  
-// generate the block to fill the screen with the road is at bottom  and then all random
-
+\
 
 for (int i = currentIndex; i < blocks.size(); i++) {
-    blocks[i]->setpos(pos);
+    //blocks[i]->setpos(pos);
     blocks[i]->draw();
-    pos.y -= sizeBlock.y;
-    
+  
 }  
+
 //set player position to the bottom of the screen
     std::cout<<blocks.size()<<std::endl;
     player->draw();
     _data->_window->display();
+    //detect player in river
+  
+
 
 }
 void map::createmap()
@@ -129,8 +150,8 @@ void map::createmap()
 }
 void map::addblock( std:: string terrainName )
 {   block * newblock = new block(_data);
-    sf::Vector2f pos(0,0);
-    newblock->init(terrainName , pos, true , false);
+    sf::Vector2f poss(0,0);
+    newblock->init(terrainName , poss, true , false);
     blocks.push_back(newblock);
 
 }

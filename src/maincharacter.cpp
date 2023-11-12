@@ -13,8 +13,8 @@ void maincharacter::init()
     velocity.x = 0;
     velocity.y = 0;
 
-    size.x = size.x / col;
-    size.y = size.y / row;
+    this->size.x /= col;
+    this->size.y /= row;
 
     p.setTextureRect(sf::IntRect(0, size.y * 3, size.x, size.y));
 

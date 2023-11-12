@@ -40,9 +40,9 @@ void block::update()
 {
     
 }
-void block::setpos( sf::Vector2f pos)
+void block::setpos( sf::Vector2f posblock)
 {
-    sprite.setPosition(pos);
+    sprite.setPosition(posblock);
 }
 void block::processInput()
 {
