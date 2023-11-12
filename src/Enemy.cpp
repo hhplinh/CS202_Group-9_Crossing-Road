@@ -26,10 +26,9 @@ void Car::init()
         size.push_back(size4);
         size.push_back(size5);
         carNumber = rand() % 5;
-        row = 4;
-        col = 4;
-        car[carNumber].setPosition(ran % 1920 + size[carNumber].x / col, 1080 - size[carNumber].y / row)
+        car[carNumber].setPosition(ran % 1920 + size[carNumber].x, row.y)
         velocity.x = 100
+        velocity.y = 0;
 
         //velocity.x = 0;
         //velocity.y = 0;
@@ -37,8 +36,8 @@ void Car::init()
         //size.x = size.x / col;
         //size.y = size.y / row;
 
-        //p.setTextureRect(sf::IntRect(0, size.y * 3, size.x, size.y));
-        //mApressed = false;
+        p.setTextureRect(sf::IntRect(0, size.y * 3, size.x, size.y));
+        mApressed = false;
 
 }
 
