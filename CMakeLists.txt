@@ -19,7 +19,7 @@ add_executable(main ${ASTERI_SRC_FILES})
 
 # Link your executable to SFML
 target_link_libraries(main PRIVATE sfml-system sfml-window sfml-graphics sfml-network sfml-audio opengl32)
-target_link_libraries(main public sqlite3)
+target_link_libraries(main PUBLIC sqlite3)
 
 target_include_directories(main PRIVATE ./headers)
 
