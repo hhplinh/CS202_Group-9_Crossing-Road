@@ -7,7 +7,7 @@
 
 mainMenu::mainMenu(data *data) : menu(data)
 {
-    std::cerr << "construct main menu" << std::endl;
+    // std::cerr << "construct main menu" << std::endl;
 
     m_buttonsSelected.resize(NUM_BUTTONS, false);
     m_buttonsPressed.resize(NUM_BUTTONS, false);
