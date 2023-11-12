@@ -3,10 +3,12 @@
 #include"system.h"
 #include"mapfeature.hpp"
 #include"maincharacter.hpp"
+#include"Enemy.h"
 class map: public state
 {   private:
     std :: vector < block * > blocks;
     data* _data;
+    
     maincharacter * player;
     sf::Vector2i exitPos;
     sf::Vector2i playerPos;
