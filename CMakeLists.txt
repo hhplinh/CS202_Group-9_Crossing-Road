@@ -26,3 +26,6 @@ target_include_directories(main PRIVATE ./headers)
 # cmake --build build
 # cmake --build build --verbose
 # build/main 
+
+
+# https://github.com/siara-cc/esp32-idf-sqlite3/blob/master/include/sqlite3.h?fbclid=IwAR3s6de5xFVOqdDNxkOIvHQasNoOgOsx01AjpqOFvHUdYvHMQaMOwE2uuXI
