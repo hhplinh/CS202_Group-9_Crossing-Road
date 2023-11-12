@@ -3,25 +3,59 @@
 #include <iostream>
 #include <vector>
 
+void Car::init()
+{
+        size1 = _data->_assets->getTexture(CAR1).getSize();
+        size2 = _data->_assets->getTexture(CAR2).getSize();
+        size3 = _data->_assets->getTexture(CAR3).getSize();
+        size4 = _data->_assets->getTexture(CAR4).getSize();
+        size5 = _data->_assets->getTexture(CAR5).getSize();
+        car1.setTexture(_data->_assets->getTexture(CAR1));
+        car2.setTexture(_data->_assets->getTexture(CAR2));
+        car3.setTexture(_data->_assets->getTexture(CAR3));
+        car4.setTexture(_data->_assets->getTexture(CAR4));
+        car5.setTexture(_data->_assets->getTexture(CAR5));
+        car.push_back(car1);
+        car.push_back(car2);
+        car.push_back(car3);
+        car.push_back(car4);
+        car.push_back(car5);
+        size.push_back(size1);
+        size.push_back(size2);
+        size.push_back(size3);
+        size.push_back(size4);
+        size.push_back(size5);
+        carNumber = rand() % 5;
+        row = 4;
+        col = 4;
+        car[carNumber].setPosition(ran % 1920 + size[carNumber].x / col, 1080 - size[carNumber].y / row)
+        velocity.x = 100
+
+        //velocity.x = 0;
+        //velocity.y = 0;
+
+        //size.x = size.x / col;
+        //size.y = size.y / row;
+
+        //p.setTextureRect(sf::IntRect(0, size.y * 3, size.x, size.y));
+        //mApressed = false;
+
+}
+
 // Car implementation
 Car::Car(float startX, float startY, float speed) : Enemy() {
-    x = startX;
-    y = startY;
-    this->speed = speed;
+
 }
 
 void Car::move() {
-    x += speed;
-    if (x > 800) {
-        x = 0;
+    x += velocity;
+    if (x < 0) {
+        x = -= velocity;
     }
 }
 
-void Car::draw(sf::RenderWindow& window) {
-    sf::RectangleShape car(sf::Vector2f(50, 50));
-    car.setPosition(x, y);
-    car.setFillColor(sf::Color::Red);
-    window.draw(car);
+void Car::draw(int carNumber) {
+    _data->_window->draw(car[carNumber]);
 }
 
 void Car::die(float playerX, float playerY) {
@@ -39,6 +73,10 @@ Animal::Animal(float startX, float startY, float speed) : Enemy() {
     x = startX;
     y = startY;
     this->speed = speed;
+}
+
+void Animal::init()
+{
 }
 
 void Animal::move() {
@@ -70,6 +108,10 @@ Wood::Wood(float startX, float startY, float speed) : Enemy() {
     x = startX;
     y = startY;
     this->speed = speed;
+}
+
+void Wood::init()
+{
 }
 
 void Wood::move() {
@@ -123,3 +165,4 @@ void Spawn::update(float playerX, float playerY) {
         enemy->die(playerX, playerY);
     }
 }
+
