@@ -22,17 +22,17 @@ public:
 
 class Car : public Enemy {
 private:
-    std::vector <sf::Sprite* > car;
+    std::vector <sf::Sprite> car;
     std::vector <sf::Vector2u> size;
     sf::Texture texture;
     sf::Vector2f velocity;
     int carNumber;
     bool mApressed;
 public:
-    Car(float startX, float startY, float speed);
-    void init() override;
-    void move() override;
-    void draw(int carNumber) override;
+    Car(float x, float y);
+    void init();
+    void move();
+    void draw();
     void die(float playerX, float playerY) override;
     sf::FloatRect getBounds() const override;
 };

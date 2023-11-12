@@ -5,11 +5,12 @@
 
 void Car::init()
 {
-        size1 = _data->_assets->getTexture(CAR1).getSize();
-        size2 = _data->_assets->getTexture(CAR2).getSize();
-        size3 = _data->_assets->getTexture(CAR3).getSize();
-        size4 = _data->_assets->getTexture(CAR4).getSize();
-        size5 = _data->_assets->getTexture(CAR5).getSize();
+        sf::Sprite car1, car2, car3, car4, car5;
+        sf::Vector2u size1 = _data->_assets->getTexture(CAR1).getSize();
+        sf::Vector2u size2 = _data->_assets->getTexture(CAR2).getSize();
+        sf::Vector2u size3 = _data->_assets->getTexture(CAR3).getSize();
+        sf::Vector2u size4 = _data->_assets->getTexture(CAR4).getSize();
+        sf::Vector2u size5 = _data->_assets->getTexture(CAR5).getSize();
         car1.setTexture(_data->_assets->getTexture(CAR1));
         car2.setTexture(_data->_assets->getTexture(CAR2));
         car3.setTexture(_data->_assets->getTexture(CAR3));
@@ -26,8 +27,8 @@ void Car::init()
         size.push_back(size4);
         size.push_back(size5);
         carNumber = rand() % 5;
-        car[carNumber].setPosition(ran % 1920 + size[carNumber].x, row.y)
-        velocity.x = 100
+        car[carNumber].setPosition(rand() % 1920 + size[carNumber].x, 50);
+        velocity.x = 100;
         velocity.y = 0;
 
         //velocity.x = 0;
@@ -36,24 +37,24 @@ void Car::init()
         //size.x = size.x / col;
         //size.y = size.y / row;
 
-        p.setTextureRect(sf::IntRect(0, size.y * 3, size.x, size.y));
+        //p.setTextureRect(sf::IntRect(0, size.y * 3, size.x, size.y));
         mApressed = false;
 
 }
 
 // Car implementation
-Car::Car(float startX, float startY, float speed) : Enemy() {
+Car::Car(float startX, float startY) : Enemy() {
 
 }
 
 void Car::move() {
-    x += velocity;
+    x += velocity.x;
     if (x < 0) {
-        x = -= velocity;
+        x -= velocity.x;
     }
 }
 
-void Car::draw(int carNumber) {
+void Car::draw() {
     _data->_window->draw(car[carNumber]);
 }
 
@@ -85,11 +86,11 @@ void Animal::move() {
     }
 }
 
-void Animal::draw(sf::RenderWindow& window) {
-    sf::CircleShape animal(25);
-    animal.setPosition(x, y);
-    animal.setFillColor(sf::Color::Green);
-    window.draw(animal);
+void Animal::draw() {
+    //sf::CircleShape animal(25);
+    //animal.setPosition(x, y);
+    //animal.setFillColor(sf::Color::Green);
+    //window.draw(animal);
 }
 
 void Animal::die(float playerX, float playerY) {
@@ -120,11 +121,11 @@ void Wood::move() {
     }
 }
 
-void Wood::draw(sf::RenderWindow& window) {
-    sf::RectangleShape wood(sf::Vector2f(100, 25));
-    wood.setPosition(x, y);
-    wood.setFillColor(sf::Color::Yellow);
-    window.draw(wood);
+void Wood::draw() {
+    //sf::RectangleShape wood(sf::Vector2f(100, 25));
+    //wood.setPosition(x, y);
+    //wood.setFillColor(sf::Color::Yellow);
+    //window.draw(wood);
 }
 
 void Wood::die(float playerX, float playerY) {
@@ -146,16 +147,16 @@ Spawn::~Spawn() {
     }
 }
 
-void Spawn::spawnCar(float startY, float speed) {
-    enemies.push_back(new Car(0, startY, speed));
+void Spawn::spawnCar(float y, float speed) {
+    enemies.push_back(new Car(960.0, 540.0));
 }
 
 void Spawn::spawnAnimal(float startY, float speed) {
-    enemies.push_back(new Animal(0, startY, speed));
+    //enemies.push_back(new Animal(0, startY, speed));
 }
 
 void Spawn::spawnWood(float startY, float speed) {
-    enemies.push_back(new Wood(0, startY, speed));
+    //enemies.push_back(new Wood(0, startY, speed));
 }
 
 void Spawn::update(float playerX, float playerY) {
