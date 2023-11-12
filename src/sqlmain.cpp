@@ -5,13 +5,13 @@ void a()
    std::cerr << "a() called" << std::endl;
 }
 
-void loadLibSQL()
-{
-   HMODULE sqlite3DLL = LoadLibrary("sqlite3.dll");
-    if (!sqlite3DLL) {
-        std::cerr << "Error loading sqlite3.dll" << std::endl;
-    }
-}
+// void loadLibSQL()
+// {
+//    HMODULE sqlite3DLL = LoadLibrary("sqlite3.dll");
+//     if (!sqlite3DLL) {
+//         std::cerr << "Error loading sqlite3.dll" << std::endl;
+//     }
+// }
 
 static int callback(void *data, int argc, char **argv, char **azColName){
    int i;
