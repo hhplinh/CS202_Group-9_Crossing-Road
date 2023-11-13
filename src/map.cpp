@@ -2,6 +2,8 @@
 #include<iostream>
 #include<random>
 #include"endgameMenu.hpp"
+#include"car.hpp"
+#include"enemy.hpp"
 void map::init()
 {   player = new maincharacter(_data);
     player->init();
@@ -12,6 +14,7 @@ void map::init()
     this->river.clear();
     this->length = 10;
     createmap();
+
     background.setSize(sf::Vector2f(1920,1080));
     background.setFillColor(sf::Color::White);
 }
@@ -33,25 +36,29 @@ void map::update()
     player->update();
     float pos= player->getPosition().y;
     
-    std:: cout<< blocks.size()<<std::endl;
-    float i = ( pos/1080.0 +1)*6;
+  
+    float i = ( pos/1080.0 +1);
+  
     float j=-i;
     int k= int (i);
     int f= int (j);
     if(k>this->currentIndex)
     {
         this->currentIndex=k;
-      
+    
     }
+  
     if( ((i-k)<0.2&& pos>0)||(j-f>0.7&&(j-f)<0.8&&pos<0))
-    {
+    {   
         int z;
         for( int i=0;i<1;i++){
          z=rand()%3;
-
+         
         if(z==0)
         {
+            addedroad=true;
             addblock("road");
+            
         }
         else if(z==1)
         {
@@ -65,7 +72,6 @@ void map::update()
         }
     }
 
-
    sf:: Vector2f pos1(0.0f,906.0f);
 
 
@@ -73,14 +79,26 @@ river.clear();
 
 for (int i = currentIndex; i < blocks.size(); i++) 
 {
-   blocks[i]->setpos(pos1);
+    blocks[i]->setpos(pos1);
+
   if(blocks[i]->getTerrainName()=="river")
   {
         river.push_back(pos1);
   }
-    pos1.y -= 174.0;
+  else if( blocks[i]->getTerrainName()=="road")
+  { 
+    if( addedroad==true && newRoadIdx == i)
+    {
+        roadpos.push_back(blocks[i]->getpos());
+        addedroad=false;
+        car * newcar = new car(_data);
+        enemies.push_back(newcar);
+        enemies[enemies.size()-1]->setposcar(sf::Vector2f(roadpos.back().x, roadpos.back().y + 50));
+    }
     
-}  
+} 
+pos1.y -= 174.0-15-5;
+} 
      sf::Vector2f screenSize(1920, 1080); // Adjust this based on your screen size
      
       for (const auto& riverBlockPos : river) {
@@ -90,10 +108,20 @@ for (int i = currentIndex; i < blocks.size(); i++)
         if ( (player->getPosition().y +143 ) > riverBlockPos.y &&
              (player->getPosition().y +143 ) < (riverBlockPos.y + riverBlockHeight)) {
             // Collision detected, player is in the river
-            player->setPosition(0,prePos);
-            return;  // Exit the update function
+           // player->setPosition(0,prePos);
+            //return;  // Exit the update function
         }
     }
+    // run the car
+      for ( int i=0;i<enemies.size();i++)
+      {
+            enemies[i]->run();
+             if(enemies[i]->getposcar().x > 1920 || enemies[i]->getposcar().x < 0)
+        {
+            enemies[i]->turnaround();
+        }
+      }
+      
 }
 
 
@@ -105,16 +133,19 @@ void map::draw()
     _data->_window->clear();
    
     _data->_window->draw(background);
-\
+
 
 for (int i = currentIndex; i < blocks.size(); i++) {
     //blocks[i]->setpos(pos);
     blocks[i]->draw();
   
 }  
-
+ //draw the car
+  for ( int i=0;i<enemies.size();i++)
+  {
+      _data->_window->draw(*enemies[i]);
+  }
 //set player position to the bottom of the screen
-    std::cout<<blocks.size()<<std::endl;
     player->draw();
     _data->_window->display();
     //detect player in river
@@ -127,19 +158,12 @@ void map::createmap()
   
     int z;
     for(int i=0;i<length;i++)
-    {    z=rand()%3;
-        if(z==0)
-        {
-            addblock("road");
-        }
-        else if(z==1)
-        {
+    {    
+       
+        
             addblock("grass");
-        }
-        else if(z==2)
-        {
-            addblock("river");
-        }
+        
+        
     }
    
     
@@ -148,13 +172,18 @@ void map::createmap()
         
     
 }
+
 void map::addblock( std:: string terrainName )
 {   block * newblock = new block(_data);
     sf::Vector2f poss(0,0);
     newblock->init(terrainName , poss, true , false);
     blocks.push_back(newblock);
-
+    if(addedroad==true)
+    {
+        newRoadIdx = blocks.size() - 1;
+    }
 }
+
 map :: map( data* data)
 {
     _data = data;

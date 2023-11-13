@@ -3,23 +3,28 @@
 #include"system.h"
 #include"mapfeature.hpp"
 #include"maincharacter.hpp"
-#include"Enemy.h"
+#include"enemy.hpp"
+#include <vector>
+#include "car.hpp"
 class map: public state
 {   private:
     std :: vector < block * > blocks;
     data* _data;
-    
+    std ::  vector < car * > enemies;
     maincharacter * player;
     sf::Vector2i exitPos;
     sf::Vector2i playerPos;
     std:: vector <sf::Vector2i> enemyPos;
     int currentIndex;
     public:
-   
+    std:: vector < sf:: Vector2f > roadpos;
     int length;
     std:: vector < sf::Vector2f> river;
     map(data* data);
     map();
+    void addcar();
+    bool addedroad=false;
+    int newRoadIdx = -1;
     ~map()
     { //delete dynamically alocated memory
       
