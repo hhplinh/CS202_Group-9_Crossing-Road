@@ -18,7 +18,6 @@ file(GLOB ASTERI_SRC_FILES CONFIGURE_DEPENDS
 add_executable(main ${ASTERI_SRC_FILES})
 
 # Link your executable to SFML
-# target_link_libraries(main PUBLIC sfml-system sfml-window sfml-graphics sfml-network sfml-audio opengl32 ${CMAKE_CURRENT_SOURCE_DIR}/sqlite3.dll)
 target_link_libraries(main PUBLIC sfml-system sfml-window sfml-graphics sfml-network sfml-audio opengl32 sqlite3)
 
 
