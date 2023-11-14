@@ -22,7 +22,6 @@ menu::menu(data *data) : _data(data)
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
 
-    std::cerr << "construct menu" << std::endl;
 }
 
 menu::~menu() {}
@@ -94,7 +93,6 @@ void menu::turnOnButtonKeyEnter(std::vector<bool> &buttonsSelected, std::vector<
 
 void menu::setColorSelect(std::vector<sf::Text> &m_buttons, std::vector<bool> &m_buttonsSelected, sf::Color COLOR_SELECT)
 {
-    std::cerr << "set color select " << m_buttons.size() << std::endl;
     for (int i = 0; i < m_buttons.size(); i++)
     {
         if (m_buttonsSelected[i])
