@@ -89,7 +89,7 @@ void mainMenu::update()
     if (m_buttonsPressed[PLAY])
     {
         m_buttonsPressed[PLAY] = false;
-        //_data->_states->addState(new maincharacter(_data));
+        // _data->_states->addState(new maincharacter(_data));
     }
     else if (m_buttonsPressed[EXIT])
     {
