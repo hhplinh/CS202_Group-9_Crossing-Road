@@ -18,6 +18,8 @@ menu::menu(data *data) : _data(data)
     _data->_assets->addTexture(CAR3, "resources//Texture//Car 3.png");
     _data->_assets->addTexture(CAR4, "resources//Texture//Car 4.png");
     _data->_assets->addTexture(CAR5, "resources//Texture//Car 5.png");
+    _data->_assets->addTexture(CANO, "resources//Texture//Cano.png");
+    _data->_assets->addTexture(CANO2, "resources//Texture//Cano 2.png");
     background.setTexture(&_data->_assets->getTexture(BACKGROUND));
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);

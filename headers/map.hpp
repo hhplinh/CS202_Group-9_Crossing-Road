@@ -6,11 +6,13 @@
 #include"enemy.hpp"
 #include <vector>
 #include "car.hpp"
+#include "cano.hpp"
 class map: public state
 {   private:
     std :: vector < block * > blocks;
     data* _data;
     std ::  vector < car * > enemies;
+    std::vector <Cano*> enemies2;
     maincharacter * player;
     sf::Vector2i exitPos;
     sf::Vector2i playerPos;
@@ -22,9 +24,12 @@ class map: public state
     std:: vector < sf::Vector2f> river;
     map(data* data);
     map();
+    void 
     void addcar();
     bool addedroad=false;
+    bool addedRiver = false;
     int newRoadIdx = -1;
+    int newRiverIdx = -1;
     ~map()
     { //delete dynamically alocated memory
       

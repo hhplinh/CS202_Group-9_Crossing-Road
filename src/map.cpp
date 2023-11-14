@@ -66,6 +66,7 @@ void map::update()
         }
         else if(z==2)
         {
+            addedRiver = true;
             addblock("river");
         }
   
@@ -83,7 +84,14 @@ for (int i = currentIndex; i < blocks.size(); i++)
 
   if(blocks[i]->getTerrainName()=="river")
   {
-        river.push_back(pos1);
+      if (addedRiver == true && newRiverIdx == i)
+      {
+          river.push_back(blocks[i]->getpos());
+          addedRiver = false;
+          Cano* newCano = new Cano(_data);
+          enemies2.push_back(newCano);
+          enemies2[enemies2.size() - 1]->setPosCano(sf::Vector2f(river.back().x, river.back().y + 50));
+      }
   }
   else if( blocks[i]->getTerrainName()=="road")
   { 
@@ -120,6 +128,14 @@ pos1.y -= 174.0-15-5;
         {
             enemies[i]->turnaround();
         }
+      }
+      for (int i = 0; i < enemie2.size(); i++)
+      {
+          enemies2[i]->floatOnRiver();
+          if (enemies2[i]->getPosCano().x > 1920 || enemies2[i]->getPosCano().x < 0)
+          {
+              enemies2[i]->turnAround();
+          }
       }
       
 }
@@ -181,6 +197,10 @@ void map::addblock( std:: string terrainName )
     if(addedroad==true)
     {
         newRoadIdx = blocks.size() - 1;
+    }
+    if (addedRiver == true)
+    {
+        newRiverIdx = blocks.size() - 1;
     }
 }
 
