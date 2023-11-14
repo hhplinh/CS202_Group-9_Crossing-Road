@@ -129,7 +129,7 @@ pos1.y -= 174.0-15-5;
             enemies[i]->turnaround();
         }
       }
-      for (int i = 0; i < enemie2.size(); i++)
+      for (int i = 0; i < enemies2.size(); i++)
       {
           enemies2[i]->floatOnRiver();
           if (enemies2[i]->getPosCano().x > 1920 || enemies2[i]->getPosCano().x < 0)

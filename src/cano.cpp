@@ -1,8 +1,10 @@
-#include "Boat.hpp"
+#include "cano.hpp"
 #include <random>
+#include "system.h"
+#include <SFML/Graphics.hpp>
 
-Boat::Boat(data* _data) : _data(_data) {
-    sprite.setTexture(_data->_assets->getTexture(BOAT));
+Cano::Cano(data* _data) : _data(_data) {
+    sprite.setTexture(_data->_assets->getTexture(CANO));
 
     int z = rand() % 2;
     this->speed = 2.5f;
@@ -17,31 +19,31 @@ Boat::Boat(data* _data) : _data(_data) {
     }
 }
 
-sf::FloatRect Boat::getGlobalBounds() {
+sf::FloatRect Cano::getGlobalBounds() {
     return sprite.getGlobalBounds();
 }
 
-void Boat::setPosCano(sf::Vector2f posRiver) {
+void Cano::setPosCano(sf::Vector2f posRiver) {
     sprite.setPosition(sprite.getPosition().x, posRiver.y);
 }
 
-void Boat::turnAround() {
+void Cano::turnAround() {
     isMovingRight = !isMovingRight;
 }
 
-void Boat::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+void Cano::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(sprite);
 }
 
-void Boat::setSpeed(float speed) {
+void Cano::setSpeed(float speed) {
     this->speed = speed;
 }
 
-float Boat::getSpeed() {
+float Cano::getSpeed() {
     return this->speed;
 }
 
-void Boat::floatOnRiver() {
+void Cano::floatOnRiver() {
     if (isMovingRight) {
         sprite.move(speed, 0);
     }
@@ -50,6 +52,6 @@ void Boat::floatOnRiver() {
     }
 }
 
-sf::Vector2f Boat::getPosCano() {
+sf::Vector2f Cano::getPosCano() {
     return sprite.getPosition();
 }

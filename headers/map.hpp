@@ -24,7 +24,6 @@ class map: public state
     std:: vector < sf::Vector2f> river;
     map(data* data);
     map();
-    void 
     void addcar();
     bool addedroad=false;
     bool addedRiver = false;
