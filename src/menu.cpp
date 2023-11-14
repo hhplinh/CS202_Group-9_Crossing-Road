@@ -8,12 +8,12 @@
 menu::menu(data *data) : _data(data)
 {
     _data->_assets->addTexture(BACKGROUND, "resources//Texture//bgMenu.png");
-    _data->_assets->addTexture(ROAD, "resources//Texture//River.png");
-    _data->_assets->addTexture(RIVER, "resources//Texture//road.png");
+    _data->_assets->addTexture(ROAD, "resources//Texture//road.png");
+    _data->_assets->addTexture(RIVER, "resources//Texture//River.png");
     _data->_assets->addFont(MAIN_FONT, "resources//Font//LilitaOne-Regular.ttf");
     _data->_assets->addFont(FONT2, "resources//Font//BlackOpsOne-Regular.ttf");
     _data->_assets->addTexture(GRASS, "resources//Texture//grass.png");
-    _data->_assets->addTexture(CAR1, "resources//Texture//Car 1.png");
+    _data->_assets->addTexture(CAR, "resources//Texture//Car 1.png");
     _data->_assets->addTexture(CAR2, "resources//Texture//Car 2.png");
     _data->_assets->addTexture(CAR3, "resources//Texture//Car 3.png");
     _data->_assets->addTexture(CAR4, "resources//Texture//Car 4.png");
@@ -22,7 +22,6 @@ menu::menu(data *data) : _data(data)
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
 
-    std::cerr << "construct menu" << std::endl;
 }
 
 menu::~menu() {}
@@ -94,7 +93,6 @@ void menu::turnOnButtonKeyEnter(std::vector<bool> &buttonsSelected, std::vector<
 
 void menu::setColorSelect(std::vector<sf::Text> &m_buttons, std::vector<bool> &m_buttonsSelected, sf::Color COLOR_SELECT)
 {
-    std::cerr << "set color select " << m_buttons.size() << std::endl;
     for (int i = 0; i < m_buttons.size(); i++)
     {
         if (m_buttonsSelected[i])
