@@ -1,19 +1,13 @@
 #pragma once
-#include "state.h"
-#include "system.h"
-#include "map.hpp"
-#include "maincharacter.hpp"
-#include "menu.hpp"
 
-// #include "endgamemainMenu.hpp"
-// #include "mainMenuPause.hpp"
+#include "menu.hpp"
 
 #include <memory>
 #include <string>
 #include <vector>
 #include <SFML/Graphics/Text.hpp>
 #include <map>
-#include"maincharacter.hpp"
+
 class mainMenu : public menu
 {
 private:

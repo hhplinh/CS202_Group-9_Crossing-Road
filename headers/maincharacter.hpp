@@ -12,7 +12,7 @@ enum State
     JUMPING,
     FALLING
 };
-class maincharacter //public state
+class maincharacter : public state
 {
     private : int row , col;
     data * _data;
@@ -22,6 +22,7 @@ class maincharacter //public state
     sf::Vector2f velocity;
     bool mApressed=0;
     void setView();
+    
     public:
     maincharacter(data* _data);
     sf::View camera;

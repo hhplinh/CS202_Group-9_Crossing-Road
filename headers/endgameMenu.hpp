@@ -1,6 +1,4 @@
 #pragma once
-#include "state.h"
-#include "system.h"
 #include "menu.hpp"
 
 #include <memory>
