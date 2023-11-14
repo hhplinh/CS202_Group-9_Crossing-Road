@@ -4,6 +4,8 @@
 #include"endgameMenu.hpp"
 #include"car.hpp"
 #include"enemy.hpp"
+#include"cano.hpp"
+
 void map::init()
 {   player = new maincharacter(_data);
     player->init();
@@ -86,11 +88,11 @@ for (int i = currentIndex; i < blocks.size(); i++)
   {
       if (addedRiver == true && newRiverIdx == i)
       {
-          river.push_back(blocks[i]->getpos());
+          riverPos.push_back(blocks[i]->getpos());
           addedRiver = false;
           Cano* newCano = new Cano(_data);
           enemies2.push_back(newCano);
-          enemies2[enemies2.size() - 1]->setPosCano(sf::Vector2f(river.back().x, river.back().y + 50));
+          enemies2[enemies2.size() - 1]->setPosCano(sf::Vector2f(riverPos.back().x, riverPos.back().y -30));
       }
   }
   else if( blocks[i]->getTerrainName()=="road")
@@ -129,6 +131,7 @@ pos1.y -= 174.0-15-5;
             enemies[i]->turnaround();
         }
       }
+      // run the cano
       for (int i = 0; i < enemies2.size(); i++)
       {
           enemies2[i]->floatOnRiver();
@@ -160,6 +163,11 @@ for (int i = currentIndex; i < blocks.size(); i++) {
   for ( int i=0;i<enemies.size();i++)
   {
       _data->_window->draw(*enemies[i]);
+  }
+  //draw the cano
+  for (int i = 0; i < enemies2.size(); i++)
+  {
+      _data->_window->draw(*enemies2[i]);
   }
 //set player position to the bottom of the screen
     player->draw();

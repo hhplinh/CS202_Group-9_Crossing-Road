@@ -1,21 +1,23 @@
-#include "cano.hpp"
-#include <random>
+#include "enemy.hpp"
 #include "system.h"
 #include <SFML/Graphics.hpp>
+#include <random>
+#include <iostream>
+#include "cano.hpp"
 
 Cano::Cano(data* _data) : _data(_data) {
     sprite.setTexture(_data->_assets->getTexture(CANO));
 
     int z = rand() % 2;
-    this->speed = 2.5f;
+    this->speed = 3;
 
     if (z == 1) {
         this->isMovingRight = true;
-        this->sprite.setPosition(1000, 300); // Set the initial position
+        this->sprite.setPosition(1000, 0); // Set the initial position
     }
     else {
         this->isMovingRight = false;
-        this->sprite.setPosition(100, 300); // Set the initial position
+        this->sprite.setPosition(1000, 0); // Set the initial position
     }
 }
 

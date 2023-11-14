@@ -22,6 +22,7 @@ class map: public state
     std:: vector < sf:: Vector2f > roadpos;
     int length;
     std:: vector < sf::Vector2f> river;
+    std::vector <sf::Vector2f> riverPos;
     map(data* data);
     map();
     void addcar();
