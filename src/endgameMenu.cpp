@@ -1,8 +1,7 @@
+
 #include "endgameMenu.hpp"
 
-#include "maincharacter.hpp"
-#include "map.hpp"
-#include "menu.hpp"
+
 
 endgameMenu::endgameMenu(data *data) : menu(data)
 {

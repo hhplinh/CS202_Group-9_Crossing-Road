@@ -1,9 +1,13 @@
+#pragma once
 #include <iostream>
 #include <string>
 #include <SFML/Graphics.hpp>
 #include"state.h"
 #include"system.h"
-#pragma once
+//#include"menu.hpp"
+
+
+
 enum State 
 {
     IDLE,
@@ -27,7 +31,7 @@ class maincharacter : public state
     maincharacter(data* _data);
     sf::View camera;
     void init();
-	void processInput();
+	void processInput(sf :: Event event);
 	void update();
 	void draw();
     void move();

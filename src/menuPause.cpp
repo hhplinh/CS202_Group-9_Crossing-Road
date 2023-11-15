@@ -2,9 +2,7 @@
 #include "resumeScreen.hpp"
 #include <SFML/System.hpp>
 
-#include "map.hpp"
-#include "maincharacter.hpp"
-#include "menu.hpp"
+
 
 menuPause::menuPause(data *data) : menu(data)
 {

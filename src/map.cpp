@@ -1,11 +1,14 @@
 #include"map.hpp"
-#include<iostream>
-#include<random>
+
+#include"menuPause.hpp"
 #include"endgameMenu.hpp"
-#include"car.hpp"
-#include"enemy.hpp"
 void map::init()
-{   player = new maincharacter(_data);
+{   //do not init if resume from pause menu
+      //check the state size
+    //using state machine size
+
+    
+    player = new maincharacter(_data);
     player->init();
     this->blocks.clear();
 
@@ -19,7 +22,7 @@ void map::init()
     background.setFillColor(sf::Color::White);
 }
 void map::processInput()
-{  // sf::Event event;
+{   sf::Event event;
 	//while (_data->_window->pollEvent(event))
 	//{
 		//switch (event.type)
@@ -29,7 +32,22 @@ void map::processInput()
 		//	break;
        // }
     //}
-    player->processInput();
+   // player->processInput();
+   while (_data->_window->pollEvent(event))
+   {
+         if (event.type == sf::Event::Closed)
+         {
+              _data->_window->close();
+         }
+         if (event.type == sf::Event::KeyPressed)
+         {
+              if (event.key.code == sf::Keyboard::Escape)
+              {
+                mescpressed = true;
+              }
+         }
+   }
+   
 }
 void map::update()
 {   float prePos= player->getPosition().y;
@@ -66,6 +84,7 @@ void map::update()
         }
         else if(z==2)
         {
+            addedRiver = true;
             addblock("river");
         }
   
@@ -83,7 +102,14 @@ for (int i = currentIndex; i < blocks.size(); i++)
 
   if(blocks[i]->getTerrainName()=="river")
   {
-        river.push_back(pos1);
+      if (addedRiver == true && newRiverIdx == i)
+      {
+          riverPos.push_back(blocks[i]->getpos());
+          addedRiver = false;
+          Cano* newCano = new Cano(_data);
+          enemies2.push_back(newCano);
+          enemies2[enemies2.size() - 1]->setPosCano(sf::Vector2f(riverPos.back().x, riverPos.back().y -30));
+      }
   }
   else if( blocks[i]->getTerrainName()=="road")
   { 
@@ -121,7 +147,20 @@ pos1.y -= 174.0-15-5;
             enemies[i]->turnaround();
         }
       }
-      
+      // run the cano
+      for (int i = 0; i < enemies2.size(); i++)
+      {
+          enemies2[i]->floatOnRiver();
+          if (enemies2[i]->getPosCano().x > 1920 || enemies2[i]->getPosCano().x < 0)
+          {
+              enemies2[i]->turnAround();
+          }
+      }
+      if (mescpressed == true)
+      {  mescpressed = false;
+          _data->_states->addState((new menuPause(_data)), false);
+            _data->_window->setView(_data->_window->getDefaultView());
+      }
 }
 
 
@@ -144,6 +183,11 @@ for (int i = currentIndex; i < blocks.size(); i++) {
   for ( int i=0;i<enemies.size();i++)
   {
       _data->_window->draw(*enemies[i]);
+  }
+  //draw the cano
+  for (int i = 0; i < enemies2.size(); i++)
+  {
+      _data->_window->draw(*enemies2[i]);
   }
 //set player position to the bottom of the screen
     player->draw();
@@ -181,6 +225,10 @@ void map::addblock( std:: string terrainName )
     if(addedroad==true)
     {
         newRoadIdx = blocks.size() - 1;
+    }
+    else if (addedRiver == true)
+    {
+        newRiverIdx = blocks.size() - 1;
     }
 }
 

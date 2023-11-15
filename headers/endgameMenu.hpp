@@ -1,6 +1,5 @@
 #pragma once
 #include "menu.hpp"
-
 #include <memory>
 #include <string>
 #include <vector>

@@ -1,5 +1,5 @@
 #include"maincharacter.hpp"
-#include"menu.hpp"
+
 void maincharacter::init()
 {
     _data->_assets->addTexture(PLAYER, "resources//orge.png");
@@ -82,23 +82,23 @@ void maincharacter::setPosition(int x,int y)
 {
     p.setPosition(x,y);
 }
-void maincharacter::processInput()
+void maincharacter::processInput( sf :: Event event )
 {
-    sf::Event event;
-    while(_data->_window->pollEvent(event))
-    {
+    //sf::Event event;
+   // while(_data->_window->pollEvent(event))
+   // {
         if(sf::Event::Closed == event.type)
         {
             _data->_window->close();
         }
         //popstate //change to is key release
 
-      else if( sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-        {
-         mApressed = true;
-        }
+     // else if( sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+       // {
+       //  mApressed = true;
+       // }
        
-    }
+   // }
 }
 void maincharacter::update()
 {

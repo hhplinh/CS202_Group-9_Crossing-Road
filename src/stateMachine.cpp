@@ -11,9 +11,10 @@ void stateMachine::addState(state *state, bool replace)
 	_replace = replace;
 	newState = state;
 }
-void stateMachine::removeState()
+void stateMachine::removeState(bool reinittheprevstate)
 {
 	_remove = 1;
+	_reinit = reinittheprevstate;
 }
 
 void stateMachine::removeStateUntilOne()
@@ -39,7 +40,9 @@ void stateMachine::processStateChange()
 		state *top = stackState.top();
 		delete top;
 		stackState.pop();
-		stackState.top()->init();
+		//stackState.top()->init();
+		if(_reinit) stackState.top()->init();
+		
 		_remove = 0;
 	}
 	if (_add)
