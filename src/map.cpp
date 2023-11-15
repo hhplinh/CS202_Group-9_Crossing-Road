@@ -80,6 +80,7 @@ void map::update()
         }
         else if(z==1)
         {
+            addedgrass=true;
             addblock("grass");
         }
         else if(z==2)
@@ -120,9 +121,18 @@ for (int i = currentIndex; i < blocks.size(); i++)
         car * newcar = new car(_data);
         enemies.push_back(newcar);
         enemies[enemies.size()-1]->setposcar(sf::Vector2f(roadpos.back().x, roadpos.back().y + 50));
-    }
-    
+    }     
 } 
+else if (blocks[i]->getTerrainName() == "grass")
+{
+    if (addedgrass == true && newGrassIdx == i)
+    {
+        grasspos.push_back(blocks[i]->getpos());
+        addedgrass = false;
+        Animal* newAnimal = new Animal(_data);
+        enemies3.push_back(newAnimal);
+        enemies3[enemies3.size() - 1]->setposanimal(sf::Vector2f(grasspos.back().x, grasspos.back().y + 50));
+    }
 pos1.y -= 174.0-15-5;
 } 
      sf::Vector2f screenSize(1920, 1080); // Adjust this based on your screen size
@@ -161,6 +171,17 @@ pos1.y -= 174.0-15-5;
           _data->_states->addState((new menuPause(_data)), false);
             _data->_window->setView(_data->_window->getDefaultView());
       }
+        // animal run
+      for ( int i=0;i<enemies3.size();i++)
+      {
+            enemies3[i]->run();
+             if(enemies3[i]->getposanimal().x > 1920 || enemies3[i]->getposanimal().x < 0)
+        {
+            enemies3[i]->turnaround();
+        }
+      }
+        
+}
 }
 
 
@@ -189,6 +210,11 @@ for (int i = currentIndex; i < blocks.size(); i++) {
   {
       _data->_window->draw(*enemies2[i]);
   }
+    //draw the animal
+    for (int i = 0; i < enemies3.size(); i++)
+    {
+        _data->_window->draw(*enemies3[i]);
+    }
 //set player position to the bottom of the screen
     player->draw();
     _data->_window->display();
@@ -230,6 +256,11 @@ void map::addblock( std:: string terrainName )
     {
         newRiverIdx = blocks.size() - 1;
     }
+    else if (addedgrass == true)
+    {
+        newGrassIdx = blocks.size() - 1;
+    }
+    
 }
 
 map :: map( data* data)

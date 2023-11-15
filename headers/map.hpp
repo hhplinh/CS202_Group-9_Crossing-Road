@@ -9,6 +9,7 @@
 #include "car.hpp"
 #include "cano.hpp"
 #include"menu.hpp"
+#include"Animal.hpp"
 
 #include"mapfeature.hpp"
 
@@ -21,6 +22,7 @@ class map: public state{
     data* _data;
     std ::  vector < car * > enemies;
     std::vector <Cano*> enemies2;
+    std ::  vector < Animal * > enemies3;
     maincharacter * player;
     sf::Vector2i exitPos;
     sf::Vector2i playerPos;
@@ -32,7 +34,9 @@ class map: public state{
         return _data->_window;
     }
     std:: vector < sf:: Vector2f > roadpos;
+    std:: vector < sf:: Vector2f > grasspos;
     int length;
+    std:: vector < sf::Vector2f> grass;
     std:: vector < sf::Vector2f> river;
     std::vector <sf::Vector2f> riverPos;
     map(data* data);
@@ -40,6 +44,8 @@ class map: public state{
     void addcar();
     bool addedroad=false;
     bool addedRiver = false;
+    bool addedgrass = false;
+    int newGrassIdx = -1;
     int newRoadIdx = -1;
     int newRiverIdx = -1;
     ~map()
