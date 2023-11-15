@@ -1,13 +1,14 @@
 #include"map.hpp"
-#include<iostream>
-#include<random>
-#include"endgameMenu.hpp"
-#include"car.hpp"
-#include"enemy.hpp"
-#include"cano.hpp"
 
+#include"menuPause.hpp"
+#include"endgameMenu.hpp"
 void map::init()
-{   player = new maincharacter(_data);
+{   //do not init if resume from pause menu
+      //check the state size
+    //using state machine size
+
+    
+    player = new maincharacter(_data);
     player->init();
     this->blocks.clear();
 
@@ -21,7 +22,7 @@ void map::init()
     background.setFillColor(sf::Color::White);
 }
 void map::processInput()
-{  // sf::Event event;
+{   sf::Event event;
 	//while (_data->_window->pollEvent(event))
 	//{
 		//switch (event.type)
@@ -31,7 +32,22 @@ void map::processInput()
 		//	break;
        // }
     //}
-    player->processInput();
+   // player->processInput();
+   while (_data->_window->pollEvent(event))
+   {
+         if (event.type == sf::Event::Closed)
+         {
+              _data->_window->close();
+         }
+         if (event.type == sf::Event::KeyPressed)
+         {
+              if (event.key.code == sf::Keyboard::Escape)
+              {
+                mescpressed = true;
+              }
+         }
+   }
+   
 }
 void map::update()
 {   float prePos= player->getPosition().y;
@@ -140,7 +156,11 @@ pos1.y -= 174.0-15-5;
               enemies2[i]->turnAround();
           }
       }
-      
+      if (mescpressed == true)
+      {  mescpressed = false;
+          _data->_states->addState((new menuPause(_data)), false);
+            _data->_window->setView(_data->_window->getDefaultView());
+      }
 }
 
 
@@ -206,7 +226,7 @@ void map::addblock( std:: string terrainName )
     {
         newRoadIdx = blocks.size() - 1;
     }
-    if (addedRiver == true)
+    else if (addedRiver == true)
     {
         newRiverIdx = blocks.size() - 1;
     }

@@ -2,7 +2,6 @@
 #include "state.h"
 #include "system.h"
 #include "menu.hpp"
-
 #include <memory>
 #include <string>
 #include <vector>

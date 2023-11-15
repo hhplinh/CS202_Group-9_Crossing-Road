@@ -1,8 +1,6 @@
 #include "menuPause.hpp"
 
-#include "map.hpp"
-#include "maincharacter.hpp"
-#include "menu.hpp"
+
 
 menuPause::menuPause(data *data) : menu(data)
 {
@@ -91,7 +89,7 @@ void menuPause::update()
     if (m_buttonsPressed[RESUME])
     {
         m_buttonsPressed[RESUME] = false;
-        _data->_states->removeState();
+        _data->_states->removeState(0);
     }
     else if (m_buttonsPressed[MAIN_MENU])
     {

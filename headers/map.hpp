@@ -1,14 +1,22 @@
 #pragma once
 #include"state.h"
 #include"system.h"
-#include"mapfeature.hpp"
 #include"maincharacter.hpp"
+
 #include"enemy.hpp"
 #include <vector>
+
 #include "car.hpp"
 #include "cano.hpp"
-class map: public state
-{   private:
+#include"menu.hpp"
+
+#include"mapfeature.hpp"
+
+class menuPause;
+class endgameMenu;
+class map: public state{   
+    private:
+    bool mescpressed=false;
     std :: vector < block * > blocks;
     data* _data;
     std ::  vector < car * > enemies;
@@ -19,6 +27,10 @@ class map: public state
     std:: vector <sf::Vector2i> enemyPos;
     int currentIndex;
     public:
+    //get the current window screen
+    sf::RenderWindow* getWindow(){
+        return _data->_window;
+    }
     std:: vector < sf:: Vector2f > roadpos;
     int length;
     std:: vector < sf::Vector2f> river;
@@ -32,12 +44,13 @@ class map: public state
     int newRiverIdx = -1;
     ~map()
     { //delete dynamically alocated memory
-      
+      //reset view
+        _data->_window->setView(_data->_window->getDefaultView());
         for(int i=0;i<blocks.size();i++)
         {
             delete blocks[i];
         }
-        delete player;
+        delete this->player;
 
 
 

@@ -1,15 +1,15 @@
 #pragma once
+
 #include "state.h"
 #include "system.h"
 #include "menu.hpp"
-
+#include <SFML/Graphics/Text.hpp>
 #include <memory>
 #include <string>
 #include <vector>
-#include <SFML/Graphics/Text.hpp>
-#include <map>
 
-class menuPause : public menu
+#include <map>
+ class menuPause : public menu
 {
 private:
     enum Button
@@ -19,9 +19,11 @@ private:
         NUM_BUTTONS
     };
 
-    std::map<Button, std::string> buttonToString = {
+    std::map<Button, std::string> buttonToString = 
+    {
         {RESUME, "Resume"},
-        {MAIN_MENU, "Main Menu"}};
+        {MAIN_MENU, "Main Menu"}
+    };
 
 public:
     menuPause(data *data);
