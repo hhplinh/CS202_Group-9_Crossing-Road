@@ -16,16 +16,7 @@ void ResumeScreen::init()
     countdownText.setFillColor(sf::Color::White);
     countdownText.setPosition(_data->_window->getSize().x / 2.f, _data->_window->getSize().y / 2.f);
     
-    //alternative: get backgroundSprite from map
-
-    // Capture the current frame as a texture
-    // backgroundTexture.create(_data->_window->getSize().x, _data->_window->getSize().y);
-
-    // // NEED FIXING
-    // // GET WINDOW BEFORE PAUSE OF MAP
-    // //  backgroundTexture.update(window);
-    // backgroundSprite.setTexture(backgroundTexture);
-
+    backgroundSprite.setTexture(_data->_assets->getBackgroundTexture());
 }
 
 void ResumeScreen::processInput()
