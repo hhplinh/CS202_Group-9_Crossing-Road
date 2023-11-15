@@ -1,27 +1,29 @@
 #include "ResumeScreen.hpp"
 #include "map.hpp"
 
-ResumeScreen::ResumeScreen(data *data) : window(sf::VideoMode(800, 600), "Resume Menu"), isPaused(true), countdown(3), _data(data)
+ResumeScreen::ResumeScreen(data *data) : isPaused(true), countdown(3), _data(data)
 {
-
-    countdownText.setFont(data->_assets->getFont(MAIN_FONT));
-    countdownText.setCharacterSize(24);
-    countdownText.setFillColor(sf::Color::Red);
-    countdownText.setPosition(window.getSize().x / 2.f, window.getSize().y / 2.f);
 }
 
 ResumeScreen::~ResumeScreen()
 {
+}
 
+void ResumeScreen::init()
+{
+    countdownText.setFont(_data->_assets->getFont(MAIN_FONT));
+    countdownText.setCharacterSize(24);
+    countdownText.setFillColor(sf::Color::White);
+    countdownText.setPosition(_data->_window->getSize().x / 2.f, _data->_window->getSize().y / 2.f);
 }
 
 void ResumeScreen::processInput()
 {
     sf::Event event;
-    while (window.pollEvent(event))
+    while (_data->_window->pollEvent(event))
     {
         if (event.type == sf::Event::Closed)
-            window.close();
+            _data->_window->close();
     }
 }
 
@@ -29,6 +31,14 @@ void ResumeScreen::update()
 {
     if (isPaused)
     {
+        // Capture the current frame as a texture
+        backgroundTexture.create(_data->_window->getSize().x, _data->_window->getSize().y);
+        
+        //NEED FIXING
+        //GET WINDOW BEFORE PAUSE OF MAP
+        // backgroundTexture.update(window);
+        backgroundSprite.setTexture(backgroundTexture);
+
         if (clock.getElapsedTime().asSeconds() >= 1.f)
         {
             countdown--;
@@ -41,22 +51,23 @@ void ResumeScreen::update()
             countdown = 3;
         }
 
-        countdownText.setString("Resuming in: " + std::to_string(countdown));
+        countdownText.setString(std::to_string(countdown));
     }
     else
     {
-        _data->_states->addState(new map(_data));
+        // game -> pause -> remove pause -> resume -> remove resume -> game
+        _data->_states->removeState();
     }
 }
 
 void ResumeScreen::draw()
 {
-    window.clear();
+    _data->_window->clear();
     if (isPaused)
     {
-        window.draw(backgroundSprite);
-        window.draw(countdownText);
+        _data->_window->draw(backgroundSprite);
+        _data->_window->draw(countdownText);
     }
 
-    window.display();
+    _data->_window->display();
 }

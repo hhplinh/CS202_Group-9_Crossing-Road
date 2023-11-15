@@ -18,7 +18,6 @@ public:
 	void addFont(int id, std::string filePath);
 	sf::Texture& getTexture(int id);
 	sf::Font& getFont(int id);
-
 };
 
 

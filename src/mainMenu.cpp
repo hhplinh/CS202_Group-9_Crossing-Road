@@ -17,11 +17,12 @@ mainMenu::~mainMenu() {}
 
 void mainMenu::init()
 { 
-   
     if (!m_buttons.empty())
     {
         return;
     }
+
+    // m_buttons.clear();
 
     std::string buttonNames[NUM_BUTTONS];
     for (int i = 0; i < NUM_BUTTONS; i++)

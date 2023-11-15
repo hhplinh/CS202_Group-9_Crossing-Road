@@ -1,4 +1,6 @@
 #include "menuPause.hpp"
+#include "resumeScreen.hpp"
+#include <SFML/System.hpp>
 
 #include "map.hpp"
 #include "maincharacter.hpp"
@@ -6,7 +8,7 @@
 
 menuPause::menuPause(data *data) : menu(data)
 {
-     m_buttonsSelected.resize(NUM_BUTTONS, false);
+    m_buttonsSelected.resize(NUM_BUTTONS, false);
     m_buttonsPressed.resize(NUM_BUTTONS, false);
     m_buttonsSelected[0] = true;
 }
@@ -19,7 +21,7 @@ void menuPause::init()
     {
         return;
     }
-    
+
     background.setTexture(&_data->_assets->getTexture(BACKGROUND));
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
@@ -91,7 +93,9 @@ void menuPause::update()
     if (m_buttonsPressed[RESUME])
     {
         m_buttonsPressed[RESUME] = false;
+        
         _data->_states->removeState();
+        _data->_states->addState(new ResumeScreen(_data));
     }
     else if (m_buttonsPressed[MAIN_MENU])
     {

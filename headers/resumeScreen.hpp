@@ -11,12 +11,10 @@ class ResumeScreen : public state
 private:
     data *_data;
     
-    sf::RenderWindow window;
     sf::Clock clock;
     bool isPaused;
     int countdown;
 
-    sf::Font font;
     sf::Text countdownText;
 
     sf::Texture backgroundTexture;
@@ -27,6 +25,7 @@ public:
     ResumeScreen(data *data);
     ~ResumeScreen();
 
+    void init();
     void processInput();
     void update();
     void draw();
