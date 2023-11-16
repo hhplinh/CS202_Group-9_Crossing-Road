@@ -155,13 +155,14 @@ void map::update()
     }
     if (mescpressed == true)
     {
+        backgroundTexture.create(_data->_window->getSize().x, _data->_window->getSize().y);
+        backgroundTexture.update(*(_data->_window));
+        _data->_assets->setBackgroundTexture(backgroundTexture);
+        
         mescpressed = false;
         _data->_window->setView(_data->_window->getDefaultView());
         _data->_states->addState((new menuPause(_data)), false);
 
-        backgroundTexture.create(_data->_window->getSize().x, _data->_window->getSize().y);
-        backgroundTexture.update(*(_data->_window));
-        _data->_assets->setBackgroundTexture(backgroundTexture);
 
     }
 }
