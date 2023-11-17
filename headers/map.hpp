@@ -17,6 +17,7 @@ class menuPause;
 class endgameMenu;
 class map: public state{   
     private:
+    sf :: Vector2f pos1;
     bool mescpressed=false;
     std :: vector < block * > blocks;
     data* _data;

@@ -7,7 +7,8 @@ void map::init()
       //check the state size
     //using state machine size
 
-    
+    pos1.x=0;
+    pos1.y=906;
     player = new maincharacter(_data);
     player->init();
     this->blocks.clear();
@@ -17,7 +18,7 @@ void map::init()
     this->river.clear();
     this->length = 10;
     createmap();
-
+    
     background.setSize(sf::Vector2f(1920,1080));
     background.setFillColor(sf::Color::White);
 }
@@ -55,18 +56,24 @@ void map::update()
     float pos= player->getPosition().y;
     
   
-    float i = ( pos/1080.0 +1);
-  
+ float i = ( pos/1080.0 +1);
+   
     float j=-i;
     int k= int (i);
     int f= int (j);
-    if(k>this->currentIndex)
+    if( pos>0)
     {
-        this->currentIndex=k;
-    
+        currentIndex = 0;
+    }
+    else
+    {
+        currentIndex =( pos/-1080 )*6;
     }
   
     if( ((i-k)<0.2&& pos>0)||(j-f>0.7&&(j-f)<0.8&&pos<0))
+    
+    
+
     {   
         int z;
         for( int i=0;i<1;i++){
@@ -92,14 +99,14 @@ void map::update()
         }
     }
 
-   sf:: Vector2f pos1(0.0f,906.0f);
+  // sf:: Vector2f pos1(0.0f,906.0f);
 
 
 river.clear();
 
 for (int i = currentIndex; i < blocks.size(); i++) 
 {
-    blocks[i]->setpos(pos1);
+   // blocks[i]->setpos(pos1);
 
   if(blocks[i]->getTerrainName()=="river")
   {
@@ -123,17 +130,8 @@ for (int i = currentIndex; i < blocks.size(); i++)
         enemies[enemies.size()-1]->setposcar(sf::Vector2f(roadpos.back().x, roadpos.back().y + 50));
     }     
 } 
-else if (blocks[i]->getTerrainName() == "grass")
-{
-    if (addedgrass == true && newGrassIdx == i)
-    {
-        grasspos.push_back(blocks[i]->getpos());
-        addedgrass = false;
-        Animal* newAnimal = new Animal(_data);
-        enemies3.push_back(newAnimal);
-        enemies3[enemies3.size() - 1]->setposanimal(sf::Vector2f(grasspos.back().x, grasspos.back().y + 50));
-    }
-pos1.y -= 174.0-15-5;
+
+//pos1.y -= 174.0-15-5;
 } 
      sf::Vector2f screenSize(1920, 1080); // Adjust this based on your screen size
      
@@ -172,17 +170,12 @@ pos1.y -= 174.0-15-5;
             _data->_window->setView(_data->_window->getDefaultView());
       }
         // animal run
-      for ( int i=0;i<enemies3.size();i++)
-      {
-            enemies3[i]->run();
-             if(enemies3[i]->getposanimal().x > 1920 || enemies3[i]->getposanimal().x < 0)
-        {
-            enemies3[i]->turnaround();
-        }
-      }
-        
+   
+      std:: cout<< this-> currentIndex<<std::endl; 
+       std:: cout<<blocks.size()<<std::endl; 
+       std :: cout<<this->pos1.y<<std::endl;
 }
-}
+
 
 
 
@@ -210,11 +203,7 @@ for (int i = currentIndex; i < blocks.size(); i++) {
   {
       _data->_window->draw(*enemies2[i]);
   }
-    //draw the animal
-    for (int i = 0; i < enemies3.size(); i++)
-    {
-        _data->_window->draw(*enemies3[i]);
-    }
+   
 //set player position to the bottom of the screen
     player->draw();
     _data->_window->display();
@@ -240,13 +229,13 @@ void map::createmap()
 
      //   blocks[0]->draw();
         
-    
+   
 }
 
 void map::addblock( std:: string terrainName )
 {   block * newblock = new block(_data);
-    sf::Vector2f poss(0,0);
-    newblock->init(terrainName , poss, true , false);
+  //  sf::Vector2f poss(0,0);
+    newblock->init(terrainName , pos1, true , false);
     blocks.push_back(newblock);
     if(addedroad==true)
     {
@@ -260,6 +249,7 @@ void map::addblock( std:: string terrainName )
     {
         newGrassIdx = blocks.size() - 1;
     }
+    pos1.y -= 174.0-15-5;
     
 }
 
