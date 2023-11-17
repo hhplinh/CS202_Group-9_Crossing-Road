@@ -2,12 +2,12 @@
 
 void maincharacter::init()
 {
-    _data->_assets->addTexture(PLAYER, "resources//orge.png");
+    _data->_assets->addTexture(PENGUIN, "resources//Penguin.png");
 
     row = 4;
-    col = 4;
-    size = _data->_assets->getTexture(PLAYER).getSize();
-    p.setTexture(_data->_assets->getTexture(PLAYER));
+    col = 8;
+    size = _data->_assets->getTexture(PENGUIN).getSize();
+    p.setTexture(_data->_assets->getTexture(PENGUIN));
     p.setPosition(1920 / 2 + size.x / col, 1080 - size.y / row);
 
     velocity.x = 0;
@@ -16,7 +16,7 @@ void maincharacter::init()
     this->size.x /= col;
     this->size.y /= row;
 
-    p.setTextureRect(sf::IntRect(0, size.y * 3, size.x, size.y));
+    p.setTextureRect(sf::IntRect(0, 1, size.x, size.y));
 
     // Set the initial view size to the size of the window
     camera.setSize(1920, 1080);
@@ -55,14 +55,14 @@ void maincharacter::move()
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
-        int xtexture = (p.getTextureRect().left + size.x) % (size.x * col);
-        p.setTextureRect(sf::IntRect(xtexture, size.y * 3, size.x, size.y));
+        int xtexture = (p.getTextureRect().left + size.x) % (size.x * 4);
+        p.setTextureRect(sf::IntRect(xtexture, size.y , size.x, size.y));
         p.move(0, -10);
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
         int xtexture = (p.getTextureRect().left + size.x) % (size.x * col);
-        p.setTextureRect(sf::IntRect(xtexture, size.y, size.x, size.y));
+        p.setTextureRect(sf::IntRect(xtexture, size.y*3, size.x, size.y));
         p.move(-10, 0);
     }
    /*else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
