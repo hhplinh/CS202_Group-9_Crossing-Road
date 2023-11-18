@@ -97,16 +97,3 @@ void diffiMenu::update()
     }
     
 }
-
-void diffiMenu::draw()
-{
-    _data->_window->clear();
-    _data->_window->draw(background);
-
-    for (int i = 0; i < m_buttons.size(); i++)
-    {
-        _data->_window->draw(m_buttons[i]);
-    }
-   
-    _data->_window->display();
-}

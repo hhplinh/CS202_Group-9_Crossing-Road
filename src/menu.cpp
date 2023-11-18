@@ -33,6 +33,24 @@ menu::menu(data *data) : _data(data)
 
 menu::~menu() {}
 
+void menu::draw()
+{
+    if (isEventChanged)
+    {
+        isEventChanged = 0;
+
+        _data->_window->clear();
+
+        _data->_window->draw(background);
+
+        for (int i = 0; i < m_buttons.size(); i++)
+        {
+            _data->_window->draw(m_buttons[i]);
+        }
+        _data->_window->display();
+    }
+}
+
 bool menu::isOnlyOneButtonOn(const std::vector<bool> &buttons)
 {
     int count = 0;

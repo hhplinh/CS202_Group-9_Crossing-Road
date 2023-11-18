@@ -21,10 +21,14 @@ protected:
     std::vector<bool> m_buttonsSelected{};
     std::vector<bool> m_buttonsPressed{};
 
+    bool isEventChanged = true;
+
 public:
    
     menu(data *data);
     ~menu();
+
+    void draw();
 
     bool isOnlyOneButtonOn(const std::vector<bool> &buttons);
     void turnOnButtonKeyDown(std::vector<bool> &buttonsSelected);

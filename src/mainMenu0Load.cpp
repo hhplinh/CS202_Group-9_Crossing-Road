@@ -39,6 +39,7 @@ void mainMenu0Load::processInput()
     sf::Event event;
     while (_data->_window->pollEvent(event))
     {
+        isEventChanged = 1;
         if (event.type == sf::Event::Closed)
         {
             _data->_window->close();
@@ -109,19 +110,4 @@ void mainMenu0Load::update()
     //     m_buttonsPressed[END] = false;
     //     _data->_states->addState(new endgameMenu(_data));
     // }
-}
-
-void mainMenu0Load::draw()
-{
-    _data->_window->clear();
-    _data->_window->draw(background);
-
-    // condition for loading game, if there is no save file, the load game button will be disabled
-
-    for (int i = 0; i < m_buttons.size(); i++)
-    {
-        _data->_window->draw(m_buttons[i]);
-    }
-   
-    _data->_window->display();
 }
