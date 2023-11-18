@@ -13,9 +13,10 @@ ResumeScreen::~ResumeScreen()
 void ResumeScreen::init()
 {
     countdownText.setFont(_data->_assets->getFont(MAIN_FONT));
-    countdownText.setCharacterSize(100);
-    countdownText.setFillColor(_data->_assets->getThemeColor());
+    countdownText.setCharacterSize(200);
+    countdownText.setFillColor(sf::Color::White);
     countdownText.setPosition(_data->_window->getSize().x / 2.f, _data->_window->getSize().y / 2.f);
+
 
     backgroundTexture = _data->_assets->getBackgroundTexture();
     backgroundSprite.setTexture(backgroundTexture);
