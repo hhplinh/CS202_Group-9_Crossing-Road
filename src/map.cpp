@@ -157,7 +157,8 @@ void map::update()
     if (mescpressed == true)
     {
         backgroundTexture.create(_data->_window->getSize().x, _data->_window->getSize().y);
-        backgroundTexture.update(*(_data->_window));
+        auto& window = static_cast<sf::RenderWindow&>(*(_data->_window));
+        backgroundTexture.update(window);
         _data->_assets->setBackgroundTexture(backgroundTexture);
         
         mescpressed = false;
@@ -167,7 +168,6 @@ void map::update()
 
     }
 }
-
 
 void map::draw()
 {
@@ -195,6 +195,36 @@ void map::draw()
     _data->_window->display();
     // detect player in river
 }
+
+// void map::draw()
+// {
+//     _data->_window->clear();
+
+//     // _data->_window->draw(background);
+
+//     // for (int i = currentIndex; i < blocks.size(); i++)
+//     // {
+//     //     // blocks[i]->setpos(pos);
+//     //     blocks[i]->draw();
+//     // }
+//     // // draw the car
+//     // for (int i = 0; i < enemies.size(); i++)
+//     // {
+//     //     _data->_window->draw(*enemies[i]);
+//     // }
+//     // // draw the cano
+//     // for (int i = 0; i < enemies2.size(); i++)
+//     // {
+//     //     _data->_window->draw(*enemies2[i]);
+//     // }
+//     // // set player position to the bottom of the screen
+//     // player->draw();
+
+//     _data->_window->draw(backgroundSprite);
+//     _data->_window->display();
+//     // detect player in river
+// }
+
 void map::createmap()
 {
     int z;

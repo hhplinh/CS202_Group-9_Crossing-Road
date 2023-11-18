@@ -42,3 +42,13 @@ sf::Texture assetManager::getBackgroundTexture()
 {
 	return _backgroundTexture;
 }
+
+void assetManager::setBackgroundSprite(const sf::Sprite& sprite)
+{
+	_bgSprite = sprite;
+}
+
+sf::Sprite assetManager::getBackgroundSprite()
+{
+	return _bgSprite;
+}

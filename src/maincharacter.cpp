@@ -2,7 +2,7 @@
 
 void maincharacter::init()
 {
-    _data->_assets->addTexture(PENGUIN, "resources//Penguin.png");
+    // _data->_assets->addTexture(PENGUIN, "resources//Penguin.png");
 
     row = 4;
     col = 8;

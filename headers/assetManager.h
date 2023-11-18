@@ -14,6 +14,8 @@ private:
 	
 protected:
 	sf::Texture _backgroundTexture;
+	sf::Sprite _bgSprite;
+	const sf::Color THEME_COLOR = sf::Color(248, 153, 56, 255);
 
 public:
 	assetManager();
@@ -25,6 +27,11 @@ public:
 
 	void setBackgroundTexture(const sf::Texture& texture);
 	sf::Texture getBackgroundTexture();
+
+	void setBackgroundSprite(const sf::Sprite& sprite);
+	sf::Sprite getBackgroundSprite();
+
+	sf::Color getThemeColor() { return THEME_COLOR; }
 };
 
 
