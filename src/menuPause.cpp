@@ -34,7 +34,7 @@ void menuPause::init()
         button.setString(buttonNames[i]);
         button.setCharacterSize(110);
         button.setOrigin(button.getLocalBounds().width / 2, button.getLocalBounds().height / 2);
-        button.setPosition(1475, 254 + 150 * i);
+        button.setPosition(1475, 430 + 150 * i);
         m_buttons.push_back(button);
     }
 }
