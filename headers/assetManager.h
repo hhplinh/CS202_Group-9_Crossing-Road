@@ -9,7 +9,7 @@ enum
 class assetManager
 {
 private:
-	std::vector <sf::Texture> _textures;
+	sf::Texture* _textures = new sf::Texture[100];
 	sf::Font* _fonts = new sf::Font[100];
 	
 protected:
