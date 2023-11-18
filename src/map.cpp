@@ -164,8 +164,6 @@ void map::update()
         mescpressed = false;
         _data->_window->setView(_data->_window->getDefaultView());
         _data->_states->addState((new menuPause(_data)), false);
-
-
     }
 }
 
