@@ -27,20 +27,18 @@ void endgameMenu::init()
         button.setFont(_data->_assets->getFont(MAIN_FONT));
         buttonNames[i] = buttonToString[static_cast<Button>(i)];
         button.setString(buttonNames[i]);
-        button.setOrigin(button.getLocalBounds().width / 2, button.getLocalBounds().height / 2);
         button.setCharacterSize(110);
-        button.setPosition(1353, 400 + 150 * i);
+        button.setOrigin(button.getLocalBounds().width / 2.f, button.getLocalBounds().height / 2.f);
+        button.setPosition(1475, 240 + 150 * i);
         m_buttons.push_back(button);
     }
-
-    m_buttons[MAIN_MENU].setPosition(1280, 400 + 150 * MAIN_MENU);
 
     score.setFont(_data->_assets->getFont(FONT2));
     // score.setString("Score: " + std::to_string(_data->_score));
     score.setString("Score: ");
-    score.setOrigin(score.getLocalBounds().width / 2, score.getLocalBounds().height / 2);
     score.setCharacterSize(90);
-    score.setPosition(1253, 254);
+    score.setOrigin(score.getLocalBounds().width / 2, score.getLocalBounds().height / 2);
+    score.setPosition(1475, 240 - 150);
 }
 
 void endgameMenu::processInput()

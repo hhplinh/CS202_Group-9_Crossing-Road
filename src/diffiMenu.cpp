@@ -1,12 +1,8 @@
-#include "mainMenu.hpp"
-#include "maincharacter.hpp"
 #include "diffiMenu.hpp"
+#include "maincharacter.hpp"
 #include "map.hpp"
 
-#include "menuPause.hpp"
-#include "endgameMenu.hpp"
-
-mainMenu::mainMenu(data *data) : menu(data)
+diffiMenu::diffiMenu(data *data) : menu(data)
 {
 
     m_buttonsSelected.resize(NUM_BUTTONS, false);
@@ -14,16 +10,15 @@ mainMenu::mainMenu(data *data) : menu(data)
     m_buttonsSelected[0] = true;
 }
 
-mainMenu::~mainMenu() {}
+diffiMenu::~diffiMenu() {}
 
-void mainMenu::init()
+void diffiMenu::init()
 { 
     if (!m_buttons.empty())
     {
         return;
     }
 
-    // m_buttons.clear();
 
     std::string buttonNames[NUM_BUTTONS];
     for (int i = 0; i < NUM_BUTTONS; i++)
@@ -34,12 +29,12 @@ void mainMenu::init()
         button.setString(buttonNames[i]);
         button.setCharacterSize(110);
         button.setOrigin(button.getLocalBounds().width / 2.f, button.getLocalBounds().height / 2.f);
-        button.setPosition(1475, 240 + 150 * i);
+        button.setPosition(1475, 350 + 150 * i);
         m_buttons.push_back(button);
     }
 
 }
-void mainMenu::processInput()
+void diffiMenu::processInput()
 {  
     sf::Event event;
     while (_data->_window->pollEvent(event))
@@ -84,55 +79,30 @@ void mainMenu::processInput()
     setColorSelect(m_buttons, m_buttonsSelected);
 }
 
-void mainMenu::update()
+void diffiMenu::update()
 {   // player->update();
-    if (m_buttonsPressed[PLAY])
+    if (m_buttonsPressed[EASY])
     {
-        m_buttonsPressed[PLAY] = false;
+        m_buttonsPressed[EASY] = false;
         // _data->_states->addState(new maincharacter(_data));
     }
-    else if (m_buttonsPressed[LOAD])
+    else if (m_buttonsPressed[DIFFICULT])
     {
-        m_buttonsPressed[LOAD] = false;
-        // Implement your "Load Game" logic here
-        _data->_states->addState(new map(_data));
-    }
-    else if (m_buttonsPressed[SETTINGS])
-    {
-        m_buttonsPressed[SETTINGS] = false;
-        // Implement your "Settings" logic here
-    }
-    else if (m_buttonsPressed[DIFFICULTY])
-    {
-        m_buttonsPressed[DIFFICULTY] = false;
-        _data->_states->addState(new diffiMenu(_data));
-    }
-    else if (m_buttonsPressed[EXIT])
-    {
-        m_buttonsPressed[EXIT] = false;
+        m_buttonsPressed[DIFFICULT] = false;
         _data->_window->close();
     }
-
-    // test section
-
-    // else if (m_buttonsPressed[PAUSE])
-    // {
-    //     m_buttonsPressed[PAUSE] = false;
-    //     _data->_states->addState(new menuPause(_data));
-    // }
-    // else if (m_buttonsPressed[END])
-    // {
-    //     m_buttonsPressed[END] = false;
-    //     _data->_states->addState(new endgameMenu(_data));
-    // }
+    else if (m_buttonsPressed[BACK])
+    {
+        m_buttonsPressed[BACK] = false;
+        _data->_states->removeState();
+    }
+    
 }
 
-void mainMenu::draw()
+void diffiMenu::draw()
 {
     _data->_window->clear();
     _data->_window->draw(background);
-
-    // condition for loading game, if there is no save file, the load game button will be disabled
 
     for (int i = 0; i < m_buttons.size(); i++)
     {
