@@ -35,11 +35,12 @@ void map::processInput()
     //}
    // player->processInput();
    while (_data->_window->pollEvent(event))
-   {
+   {    player->processInput(event);
          if (event.type == sf::Event::Closed)
          {
               _data->_window->close();
          }
+
          if (event.type == sf::Event::KeyPressed)
          {
               if (event.key.code == sf::Keyboard::Escape)
@@ -171,9 +172,8 @@ for (int i = currentIndex; i < blocks.size(); i++)
       }
         // animal run
    
-      std:: cout<< this-> currentIndex<<std::endl; 
-       std:: cout<<blocks.size()<<std::endl; 
-       std :: cout<<this->pos1.y<<std::endl;
+ 
+       std:: cout<< player->getStamina()<<std::endl;
 }
 
 
