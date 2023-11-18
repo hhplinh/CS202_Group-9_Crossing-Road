@@ -31,14 +31,16 @@ void mainMenu::init()
         button.setFont(_data->_assets->getFont(MAIN_FONT));
         buttonNames[i] = buttonToString[static_cast<Button>(i)];
         button.setString(buttonNames[i]);
-        button.setOrigin(button.getLocalBounds().width / 2, button.getLocalBounds().height / 2);
+        button.setOrigin(button.getLocalBounds().width / 2.f, button.getLocalBounds().height / 2.f);
         button.setCharacterSize(110);
-        button.setPosition(1393, 254 + 150 * i);
+        button.setPosition(1393, 240 + 150 * i);
         m_buttons.push_back(button);
     }
 
-    // set pos for setting button
-    m_buttons[SETTINGS].setPosition(1333, 254 + 150 * SETTINGS);
+    // set pos for skewed buttons
+    m_buttons[SETTINGS].setPosition(1333, 240 + 150 * SETTINGS);
+    m_buttons[DIFFICULTY].setPosition(1325, 240 + 150 * DIFFICULTY);
+
 }
 void mainMenu::processInput()
 {  
