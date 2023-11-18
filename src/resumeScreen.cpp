@@ -16,7 +16,8 @@ void ResumeScreen::init()
     countdownText.setCharacterSize(200);
     countdownText.setFillColor(sf::Color::White);
     countdownText.setPosition(_data->_window->getSize().x / 2.f, _data->_window->getSize().y / 2.f);
-
+    countdownText.setOutlineColor(_data->_assets->getThemeColor());
+    countdownText.setOutlineThickness(7.f);
 
     backgroundTexture = _data->_assets->getBackgroundTexture();
     backgroundSprite.setTexture(backgroundTexture);
