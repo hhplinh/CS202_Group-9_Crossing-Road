@@ -89,7 +89,7 @@ void mainMenu::update()
     if (m_buttonsPressed[PLAY])
     {
         m_buttonsPressed[PLAY] = false;
-        // _data->_states->addState(new maincharacter(_data));
+        _data->_states->addState(new diffiMenu(_data));
     }
     else if (m_buttonsPressed[LOAD])
     {
@@ -101,11 +101,6 @@ void mainMenu::update()
     {
         m_buttonsPressed[SETTINGS] = false;
         // Implement your "Settings" logic here
-    }
-    else if (m_buttonsPressed[DIFFICULTY])
-    {
-        m_buttonsPressed[DIFFICULTY] = false;
-        _data->_states->addState(new diffiMenu(_data));
     }
     else if (m_buttonsPressed[EXIT])
     {
