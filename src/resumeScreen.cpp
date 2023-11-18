@@ -3,6 +3,7 @@
 
 ResumeScreen::ResumeScreen(data *data) : isPaused(true), countdown(3), _data(data)
 {
+    std::cerr << "ResumeScreen constructor\n";
 }
 
 ResumeScreen::~ResumeScreen()
@@ -12,7 +13,7 @@ ResumeScreen::~ResumeScreen()
 void ResumeScreen::init()
 {
     countdownText.setFont(_data->_assets->getFont(MAIN_FONT));
-    countdownText.setCharacterSize(24);
+    countdownText.setCharacterSize(100);
     countdownText.setFillColor(sf::Color::White);
     countdownText.setPosition(_data->_window->getSize().x / 2.f, _data->_window->getSize().y / 2.f);
     
@@ -64,5 +65,6 @@ void ResumeScreen::draw()
         _data->_window->draw(countdownText);
     }
 
+    std::cerr << "ResumeScreen draw\n";
     _data->_window->display();
 }

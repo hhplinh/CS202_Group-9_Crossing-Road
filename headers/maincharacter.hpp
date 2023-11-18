@@ -32,6 +32,7 @@ class maincharacter : public state
     sf::View camera;
     void init();
 	void processInput(sf :: Event event);
+    void processInput();
 	void update();
 	void draw();
     void move();

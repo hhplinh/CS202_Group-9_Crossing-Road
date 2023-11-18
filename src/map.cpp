@@ -2,6 +2,7 @@
 
 #include "menuPause.hpp"
 #include "endgameMenu.hpp"
+#include "maincharacter.hpp"
 void map::init()
 { // do not init if resume from pause menu
   // check the state size
@@ -224,7 +225,7 @@ void map::addblock(std::string terrainName)
     {
         newGrassIdx = blocks.size() - 1;
     }
-    pos1.y -= 174.0-15-5;
+    // pos1.y -= 174.0-15-5;
     
 }
 

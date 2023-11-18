@@ -1,4 +1,4 @@
-#include"maincharacter.hpp"
+#include "maincharacter.hpp"
 
 void maincharacter::init()
 {
@@ -30,19 +30,15 @@ void maincharacter::init()
     mApressed = false;
 }
 
-
-
-maincharacter::maincharacter(data* data): _data(data){}
+maincharacter::maincharacter(data *data) : _data(data) {}
 
 void maincharacter::draw()
 {
- 
- 
- //_data->_window->clear();
 
-   
+    //_data->_window->clear();
+
     _data->_window->draw(p);
-  // _data->_window->display();
+    // _data->_window->display();
 }
 
 void maincharacter::move()
@@ -56,21 +52,21 @@ void maincharacter::move()
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
         int xtexture = (p.getTextureRect().left + size.x) % (size.x * 4);
-        p.setTextureRect(sf::IntRect(xtexture, size.y , size.x, size.y));
+        p.setTextureRect(sf::IntRect(xtexture, size.y, size.x, size.y));
         p.move(0, -10);
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
         int xtexture = (p.getTextureRect().left + size.x) % (size.x * col);
-        p.setTextureRect(sf::IntRect(xtexture, size.y*3, size.x, size.y));
+        p.setTextureRect(sf::IntRect(xtexture, size.y * 3, size.x, size.y));
         p.move(-10, 0);
     }
-   /*else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-    {
-        int ytexture = (p.getTextureRect().top + size.y) % (size.y * row);
-        p.setTextureRect(sf::IntRect(0, ytexture, size.x, size.y));
-        p.move(0, 2);
-    }*/
+    /*else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+     {
+         int ytexture = (p.getTextureRect().top + size.y) % (size.y * row);
+         p.setTextureRect(sf::IntRect(0, ytexture, size.x, size.y));
+         p.move(0, 2);
+     }*/
 }
 
 sf::Vector2f maincharacter::getPosition()
@@ -78,27 +74,32 @@ sf::Vector2f maincharacter::getPosition()
     p.getPosition();
     return p.getPosition();
 }
-void maincharacter::setPosition(int x,int y)
+void maincharacter::setPosition(int x, int y)
 {
-    p.setPosition(x,y);
+    p.setPosition(x, y);
 }
-void maincharacter::processInput( sf :: Event event )
+void maincharacter::processInput(sf ::Event event)
 {
-    //sf::Event event;
-   // while(_data->_window->pollEvent(event))
-   // {
-        if(sf::Event::Closed == event.type)
-        {
-            _data->_window->close();
-        }
-        //popstate //change to is key release
+    // sf::Event event;
+    // while(_data->_window->pollEvent(event))
+    // {
+    if (sf::Event::Closed == event.type)
+    {
+        _data->_window->close();
+    }
+    // popstate //change to is key release
 
-     // else if( sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-       // {
-       //  mApressed = true;
-       // }
-       
-   // }
+    // else if( sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+    // {
+    //  mApressed = true;
+    // }
+
+    // }
+}
+
+void maincharacter::processInput()
+{
+    
 }
 void maincharacter::update()
 {
