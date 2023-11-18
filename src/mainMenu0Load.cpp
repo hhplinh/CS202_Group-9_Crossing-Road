@@ -97,17 +97,4 @@ void mainMenu0Load::update()
         m_buttonsPressed[EXIT] = false;
         _data->_window->close();
     }
-
-    // test section
-
-    // else if (m_buttonsPressed[PAUSE])
-    // {
-    //     m_buttonsPressed[PAUSE] = false;
-    //     _data->_states->addState(new menuPause(_data));
-    // }
-    // else if (m_buttonsPressed[END])
-    // {
-    //     m_buttonsPressed[END] = false;
-    //     _data->_states->addState(new endgameMenu(_data));
-    // }
 }
