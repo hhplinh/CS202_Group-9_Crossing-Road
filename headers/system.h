@@ -16,9 +16,9 @@ class data
 	}
 	~data()
 	{
-		delete _assets;
-		delete _states;
-		delete _window;
+		// delete _assets;
+		// delete _states;
+		// delete _window;
 	}
 };
 class System

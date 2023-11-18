@@ -16,11 +16,8 @@ private:
     int countdown;
 
     sf::Text countdownText;
-
-    sf::Texture backgroundTexture;
     sf::Sprite backgroundSprite;
-
-
+    
 public:
     ResumeScreen(data *data);
     ~ResumeScreen();
