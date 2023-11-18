@@ -18,6 +18,8 @@ Load: class loadMap:  kế thừa map
 player-> init đổi thành player->setPosition
 createMap-> loadMap
 
+ktra file có tồn tại ko, nv chết thì xóa file
+chỉnh isGameSaved
 */
 
 
