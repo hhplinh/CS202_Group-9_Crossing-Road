@@ -1,5 +1,6 @@
 #include"system.h"
 #include "mainMenu.hpp"
+
 #include<iostream>
 System::System() : _data(new data)
 {

@@ -29,7 +29,7 @@ void endgameMenu::init()
         button.setString(buttonNames[i]);
         button.setCharacterSize(110);
         button.setOrigin(button.getLocalBounds().width / 2.f, button.getLocalBounds().height / 2.f);
-        button.setPosition(1475, 240 + 150 * i);
+        button.setPosition(1475, 410 + 150 * i);
         m_buttons.push_back(button);
     }
 
@@ -38,7 +38,7 @@ void endgameMenu::init()
     score.setString("Score: ");
     score.setCharacterSize(90);
     score.setOrigin(score.getLocalBounds().width / 2, score.getLocalBounds().height / 2);
-    score.setPosition(1475, 240 - 150);
+    score.setPosition(1475, 260);
 }
 
 void endgameMenu::processInput()
