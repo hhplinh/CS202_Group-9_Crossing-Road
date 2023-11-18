@@ -242,7 +242,7 @@ void map::addblock(std::string terrainName)
     block *newblock = new block(_data);
     sf::Vector2f poss(0, 0);
     newblock->init(terrainName, poss, true, false);
-    blocks.push_back(newblock);
+    blocks.push_back(newblock); 
     if (addedroad == true)
     {
         newRoadIdx = blocks.size() - 1;

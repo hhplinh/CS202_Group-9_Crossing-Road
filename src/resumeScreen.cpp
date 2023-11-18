@@ -55,7 +55,7 @@ void ResumeScreen::update()
     else
     {
         // game -> pause -> remove pause -> resume -> remove resume -> game
-        _data->_states->removeState();
+        _data->_states->removeState(false);
     }
 }
 
