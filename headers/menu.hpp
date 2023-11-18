@@ -6,7 +6,6 @@
 #include <string>
 #include <vector>
 #include <SFML/Graphics/Text.hpp>
-#include <map>
 
 class menu : public state
 {

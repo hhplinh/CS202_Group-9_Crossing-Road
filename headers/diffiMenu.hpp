@@ -2,10 +2,6 @@
 
 #include "menu.hpp"
 
-#include <memory>
-#include <string>
-#include <vector>
-#include <SFML/Graphics/Text.hpp>
 #include <map>
 
 class diffiMenu : public menu

@@ -1,11 +1,6 @@
 #pragma once
 
 #include "menu.hpp"
-
-#include <memory>
-#include <string>
-#include <vector>
-#include <SFML/Graphics/Text.hpp>
 #include <map>
 
 class mainMenu : public menu

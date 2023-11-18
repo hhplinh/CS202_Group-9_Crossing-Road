@@ -1,9 +1,5 @@
 #pragma once
 #include "menu.hpp"
-#include <memory>
-#include <string>
-#include <vector>
-#include <SFML/Graphics/Text.hpp>
 #include <map>
 
 class endgameMenu : public menu
@@ -19,7 +15,6 @@ private:
     std::map<Button, std::string> buttonToString = {
         {RESTART, "Restart"},
         {MAIN_MENU, "Main Menu"}};
-
 
     sf::Text score;
 
