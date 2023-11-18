@@ -45,6 +45,8 @@ public:
     void addcar();
     bool addedroad = false;
     bool addedRiver = false;
+    bool addedgrass = false;
+    int newGrassIdx = -1;
     int newRoadIdx = -1;
     int newRiverIdx = -1;
     ~map()

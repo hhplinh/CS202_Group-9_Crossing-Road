@@ -220,6 +220,12 @@ void map::addblock(std::string terrainName)
     {
         newRiverIdx = blocks.size() - 1;
     }
+    else if (addedgrass == true)
+    {
+        newGrassIdx = blocks.size() - 1;
+    }
+    pos1.y -= 174.0-15-5;
+    
 }
 
 map ::map(data *data)
