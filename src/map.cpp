@@ -156,7 +156,13 @@ void map::update()
           }
       }
       if (mescpressed == true)
-      {  mescpressed = false;
+      { 
+        backgroundTexture.create(_data->_window->getSize().x, _data->_window->getSize().y);
+        auto& window = static_cast<sf::RenderWindow&>(*(_data->_window));
+        backgroundTexture.update(window);
+        _data->_assets->setBackgroundTexture(backgroundTexture); 
+        
+        mescpressed = false;
           _data->_states->addState((new menuPause(_data)), false);
             _data->_window->setView(_data->_window->getDefaultView());
       }
