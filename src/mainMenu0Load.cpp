@@ -1,8 +1,9 @@
-#include "mainMenu.hpp"
+#include "mainMenu0Load.hpp"
 #include "diffiMenu.hpp"
 #include "map.hpp"
 
-mainMenu::mainMenu(data *data) : menu(data)
+
+mainMenu0Load::mainMenu0Load(data *data) : menu(data)
 {
 
     m_buttonsSelected.resize(NUM_BUTTONS, false);
@@ -10,10 +11,10 @@ mainMenu::mainMenu(data *data) : menu(data)
     m_buttonsSelected[0] = true;
 }
 
-mainMenu::~mainMenu() {}
+mainMenu0Load::~mainMenu0Load() {}
 
-void mainMenu::init()
-{
+void mainMenu0Load::init()
+{ 
     if (!m_buttons.empty())
     {
         return;
@@ -28,17 +29,17 @@ void mainMenu::init()
         button.setString(buttonNames[i]);
         button.setCharacterSize(110);
         button.setOrigin(button.getLocalBounds().width / 2.f, button.getLocalBounds().height / 2.f);
-        button.setPosition(1475, 310 + 150 * i);
+        button.setPosition(1475, 390 + 150 * i);
         m_buttons.push_back(button);
     }
+
 }
-void mainMenu::processInput()
-{
+void mainMenu0Load::processInput()
+{  
     sf::Event event;
     while (_data->_window->pollEvent(event))
     {
         isEventChanged = 1;
-
         if (event.type == sf::Event::Closed)
         {
             _data->_window->close();
@@ -79,18 +80,12 @@ void mainMenu::processInput()
     setColorSelect(m_buttons, m_buttonsSelected);
 }
 
-void mainMenu::update()
-{ 
+void mainMenu0Load::update()
+{   // player->update();
     if (m_buttonsPressed[PLAY])
     {
         m_buttonsPressed[PLAY] = false;
         _data->_states->addState(new diffiMenu(_data));
-    }
-    else if (m_buttonsPressed[LOAD])
-    {
-        m_buttonsPressed[LOAD] = false;
-        // Implement your "Load Game" logic here
-        _data->_states->addState(new map(_data));
     }
     else if (m_buttonsPressed[SETTINGS])
     {
@@ -102,4 +97,17 @@ void mainMenu::update()
         m_buttonsPressed[EXIT] = false;
         _data->_window->close();
     }
+
+    // test section
+
+    // else if (m_buttonsPressed[PAUSE])
+    // {
+    //     m_buttonsPressed[PAUSE] = false;
+    //     _data->_states->addState(new menuPause(_data));
+    // }
+    // else if (m_buttonsPressed[END])
+    // {
+    //     m_buttonsPressed[END] = false;
+    //     _data->_states->addState(new endgameMenu(_data));
+    // }
 }

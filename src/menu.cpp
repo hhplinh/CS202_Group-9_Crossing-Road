@@ -25,14 +25,31 @@ menu::menu(data *data) : _data(data)
     _data->_assets->addTexture(GAU, "resources//Texture//Gau.png");
     _data->_assets->addTexture(TEGIAC, "resources//Texture//Tegiac.png");
     _data->_assets->addTexture(LACDA, "resources//Texture//Lacda.png");
-     _data->_assets->addTexture(PENGUIN, "resources//Texture//Penguin.png");
+    _data->_assets->addTexture(PENGUIN, "resources//Texture//Penguin.png");
     background.setTexture(&_data->_assets->getTexture(BACKGROUND));
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
-
 }
 
 menu::~menu() {}
+
+void menu::draw()
+{
+    if (isEventChanged)
+    {
+        isEventChanged = 0;
+
+        _data->_window->clear();
+
+        _data->_window->draw(background);
+
+        for (int i = 0; i < m_buttons.size(); i++)
+        {
+            _data->_window->draw(m_buttons[i]);
+        }
+        _data->_window->display();
+    }
+}
 
 bool menu::isOnlyOneButtonOn(const std::vector<bool> &buttons)
 {

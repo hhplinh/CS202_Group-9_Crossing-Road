@@ -34,7 +34,7 @@ void menuPause::init()
         button.setString(buttonNames[i]);
         button.setCharacterSize(110);
         button.setOrigin(button.getLocalBounds().width / 2, button.getLocalBounds().height / 2);
-        button.setPosition(1475, 254 + 150 * i);
+        button.setPosition(1475, 430 + 150 * i);
         m_buttons.push_back(button);
     }
 }
@@ -43,6 +43,7 @@ void menuPause::processInput()
     sf::Event event;
     while (_data->_window->pollEvent(event))
     {
+        isEventChanged = 1;
         if (event.type == sf::Event::Closed)
         {
             _data->_window->close();
@@ -98,18 +99,4 @@ void menuPause::update()
         m_buttonsPressed[MAIN_MENU] = false;
         _data->_states->removeStateUntilOne();
     }
-}
-
-void menuPause::draw()
-{
-    _data->_window->clear();
-    _data->_window->draw(background);
-
-    // condition for loading game, if there is no save file, the load game button will be disabled
-
-    for (int i = 0; i < m_buttons.size(); i++)
-    {
-        _data->_window->draw(m_buttons[i]);
-    }
-    _data->_window->display();
 }

@@ -19,7 +19,6 @@ void diffiMenu::init()
         return;
     }
 
-
     std::string buttonNames[NUM_BUTTONS];
     for (int i = 0; i < NUM_BUTTONS; i++)
     {
@@ -80,7 +79,7 @@ void diffiMenu::processInput()
 }
 
 void diffiMenu::update()
-{   // player->update();
+{ 
     if (m_buttonsPressed[EASY])
     {
         m_buttonsPressed[EASY] = false;
@@ -89,7 +88,7 @@ void diffiMenu::update()
     else if (m_buttonsPressed[DIFFICULT])
     {
         m_buttonsPressed[DIFFICULT] = false;
-        _data->_window->close();
+        // _data->_states->addState(new maincharacter(_data));
     }
     else if (m_buttonsPressed[BACK])
     {
@@ -97,17 +96,4 @@ void diffiMenu::update()
         _data->_states->removeState();
     }
     
-}
-
-void diffiMenu::draw()
-{
-    _data->_window->clear();
-    _data->_window->draw(background);
-
-    for (int i = 0; i < m_buttons.size(); i++)
-    {
-        _data->_window->draw(m_buttons[i]);
-    }
-   
-    _data->_window->display();
 }

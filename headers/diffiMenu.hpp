@@ -35,5 +35,4 @@ public:
     void init();
     void processInput();
     void update();
-    void draw();
 };
