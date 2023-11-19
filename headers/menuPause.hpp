@@ -1,7 +1,5 @@
 #pragma once
 
-#include "state.h"
-#include "system.h"
 #include "menu.hpp"
 #include <SFML/Graphics/Text.hpp>
 #include <memory>
@@ -31,5 +29,4 @@ public:
     void init();
     void processInput();
     void update();
-    void draw();
 };

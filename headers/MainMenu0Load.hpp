@@ -8,14 +8,13 @@
 #include <SFML/Graphics/Text.hpp>
 #include <map>
 
-class mainMenu : public menu
+class mainMenu0Load : public menu
 {
 private:
 
     enum Button
     {
         PLAY,
-        LOAD,
         SETTINGS,
         EXIT,
         NUM_BUTTONS
@@ -25,15 +24,14 @@ private:
 
     std::map<Button, std::string> buttonToString = {
         {PLAY, "Play"},
-        {LOAD, "Load"},
         {SETTINGS, "Settings"},
         {EXIT, "Exit"},
     };
 
 public:
 
-    mainMenu(data *data);
-    ~mainMenu();
+    mainMenu0Load(data *data);
+    ~mainMenu0Load();
     void init();
     void processInput();
     void update();

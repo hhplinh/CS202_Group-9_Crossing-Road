@@ -2,8 +2,9 @@
 #include"assetManager.h"
 #include"stateMachine.h"
 #include<vector>
-struct data
+class data
 {
+	public:
 	assetManager* _assets;
 	stateMachine* _states;
 	sf::RenderWindow* _window;
@@ -12,6 +13,12 @@ struct data
 		_assets = new assetManager;
 		_states = new stateMachine;
 		_window = new sf::RenderWindow;
+	}
+	~data()
+	{
+		delete _assets;
+		delete _states;
+		delete _window;
 	}
 };
 class System

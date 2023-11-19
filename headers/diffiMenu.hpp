@@ -8,32 +8,30 @@
 #include <SFML/Graphics/Text.hpp>
 #include <map>
 
-class mainMenu : public menu
+class diffiMenu : public menu
 {
 private:
 
     enum Button
     {
-        PLAY,
-        LOAD,
-        SETTINGS,
-        EXIT,
+        EASY,
+        DIFFICULT,
+        BACK,
         NUM_BUTTONS
     };
         // PAUSE,
         // END,
 
     std::map<Button, std::string> buttonToString = {
-        {PLAY, "Play"},
-        {LOAD, "Load"},
-        {SETTINGS, "Settings"},
-        {EXIT, "Exit"},
+        {EASY, "Easy"},
+        {DIFFICULT, "Difficult"},
+        {BACK, "Back"},
     };
 
 public:
 
-    mainMenu(data *data);
-    ~mainMenu();
+    diffiMenu(data *data);
+    ~diffiMenu();
     void init();
     void processInput();
     void update();

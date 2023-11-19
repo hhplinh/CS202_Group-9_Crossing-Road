@@ -25,6 +25,7 @@ void stateMachine::removeStateUntilOne()
 		delete top;
 		stackState.pop();
 	}
+	stackState.top()->init();
 }
 
 int stateMachine::sizeState()
@@ -44,7 +45,7 @@ void stateMachine::processStateChange()
 		
 		_remove = 0;
 	}
-	 if (_add)
+	if (_add)
 	{
 		if (!stackState.empty())
 		{

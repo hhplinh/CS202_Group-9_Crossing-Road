@@ -32,3 +32,23 @@ sf::Font& assetManager::getFont(int id)
 {
 	return _fonts[id];
 }
+
+void assetManager::setBackgroundTexture(const sf::Texture& texture)
+{
+	_backgroundTexture = texture;
+}
+
+sf::Texture assetManager::getBackgroundTexture()
+{
+	return _backgroundTexture;
+}
+
+void assetManager::setBackgroundSprite(const sf::Sprite& sprite)
+{
+	_bgSprite = sprite;
+}
+
+sf::Sprite assetManager::getBackgroundSprite()
+{
+	return _bgSprite;
+}

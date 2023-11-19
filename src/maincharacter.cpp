@@ -1,8 +1,8 @@
-#include"maincharacter.hpp"
+#include "maincharacter.hpp"
 
 void maincharacter::init()
 {
-    _data->_assets->addTexture(PENGUIN, "resources//Penguin.png");
+    // _data->_assets->addTexture(PENGUIN, "resources//Penguin.png");
 
     row = 5;
     col = 8;
@@ -43,17 +43,13 @@ void maincharacter::init()
     movingUp = false;
 }
 
-
-
-maincharacter::maincharacter(data* data): _data(data){}
+maincharacter::maincharacter(data *data) : _data(data) {}
 
 void maincharacter::draw()
 {
- 
- 
- //_data->_window->clear();
 
-   
+    //_data->_window->clear();
+
     _data->_window->draw(p);
     drawStaminaBar(*_data->_window);
   // _data->_window->display();
@@ -73,7 +69,7 @@ void maincharacter::move()
     else if ( movingUp)
     {
         int xtexture = (p.getTextureRect().left + size.x) % (size.x * 4);
-        p.setTextureRect(sf::IntRect(xtexture, size.y , size.x, size.y));
+        p.setTextureRect(sf::IntRect(xtexture, size.y, size.x, size.y));
         p.move(0, -10);
             moved = true;
 
@@ -82,7 +78,7 @@ void maincharacter::move()
     else if ( movingLeft)
     {
         int xtexture = (p.getTextureRect().left + size.x) % (size.x * col);
-        p.setTextureRect(sf::IntRect(xtexture, size.y*3, size.x, size.y));
+        p.setTextureRect(sf::IntRect(xtexture, size.y * 3, size.x, size.y));
         p.move(-10, 0);
           moved = true;
 
@@ -102,11 +98,11 @@ sf::Vector2f maincharacter::getPosition()
     p.getPosition();
     return p.getPosition();
 }
-void maincharacter::setPosition(int x,int y)
+void maincharacter::setPosition(int x, int y)
 {
-    p.setPosition(x,y);
+    p.setPosition(x, y);
 }
-void maincharacter::processInput( sf :: Event event )
+void maincharacter::processInput(sf ::Event event)
 {
     //sf::Event event;
    // while(_data->_window->pollEvent(event))

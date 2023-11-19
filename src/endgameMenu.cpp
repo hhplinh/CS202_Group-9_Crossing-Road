@@ -27,20 +27,18 @@ void endgameMenu::init()
         button.setFont(_data->_assets->getFont(MAIN_FONT));
         buttonNames[i] = buttonToString[static_cast<Button>(i)];
         button.setString(buttonNames[i]);
-        button.setOrigin(button.getLocalBounds().width / 2, button.getLocalBounds().height / 2);
         button.setCharacterSize(110);
-        button.setPosition(1353, 400 + 150 * i);
+        button.setOrigin(button.getLocalBounds().width / 2.f, button.getLocalBounds().height / 2.f);
+        button.setPosition(1475, 410 + 150 * i);
         m_buttons.push_back(button);
     }
-
-    m_buttons[MAIN_MENU].setPosition(1280, 400 + 150 * MAIN_MENU);
 
     score.setFont(_data->_assets->getFont(FONT2));
     // score.setString("Score: " + std::to_string(_data->_score));
     score.setString("Score: ");
-    score.setOrigin(score.getLocalBounds().width / 2, score.getLocalBounds().height / 2);
     score.setCharacterSize(90);
-    score.setPosition(1253, 254);
+    score.setOrigin(score.getLocalBounds().width / 2, score.getLocalBounds().height / 2);
+    score.setPosition(1475, 260);
 }
 
 void endgameMenu::processInput()
@@ -48,6 +46,7 @@ void endgameMenu::processInput()
     sf::Event event;
     while (_data->_window->pollEvent(event))
     {
+        isEventChanged = 1;
         if (event.type == sf::Event::Closed)
         {
             _data->_window->close();
@@ -109,8 +108,6 @@ void endgameMenu::draw()
     _data->_window->clear();
     _data->_window->draw(background);
     _data->_window->draw(score);
-
-    // condition for loading game, if there is no save file, the load game button will be disabled
 
     for (int i = 0; i < m_buttons.size(); i++)
     {

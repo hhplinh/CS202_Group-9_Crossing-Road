@@ -1,10 +1,12 @@
 #include "menuPause.hpp"
+#include "resumeScreen.hpp"
+#include <SFML/System.hpp>
 
 
 
 menuPause::menuPause(data *data) : menu(data)
 {
-     m_buttonsSelected.resize(NUM_BUTTONS, false);
+    m_buttonsSelected.resize(NUM_BUTTONS, false);
     m_buttonsPressed.resize(NUM_BUTTONS, false);
     m_buttonsSelected[0] = true;
 }
@@ -17,7 +19,7 @@ void menuPause::init()
     {
         return;
     }
-    
+
     background.setTexture(&_data->_assets->getTexture(BACKGROUND));
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
@@ -30,19 +32,18 @@ void menuPause::init()
         button.setFont(_data->_assets->getFont(MAIN_FONT));
         buttonNames[i] = buttonToString[static_cast<Button>(i)];
         button.setString(buttonNames[i]);
-        button.setOrigin(button.getLocalBounds().width / 2, button.getLocalBounds().height / 2);
         button.setCharacterSize(110);
-        button.setPosition(1353, 254 + 150 * i);
+        button.setOrigin(button.getLocalBounds().width / 2, button.getLocalBounds().height / 2);
+        button.setPosition(1475, 430 + 150 * i);
         m_buttons.push_back(button);
     }
-
-    m_buttons[MAIN_MENU].setPosition(1280, 254 + 150 * MAIN_MENU);
 }
 void menuPause::processInput()
 {
     sf::Event event;
     while (_data->_window->pollEvent(event))
     {
+        isEventChanged = 1;
         if (event.type == sf::Event::Closed)
         {
             _data->_window->close();
@@ -89,25 +90,13 @@ void menuPause::update()
     if (m_buttonsPressed[RESUME])
     {
         m_buttonsPressed[RESUME] = false;
-        _data->_states->removeState(0);
+        
+        _data->_states->removeState(false);
+        _data->_states->addState(new ResumeScreen(_data));
     }
     else if (m_buttonsPressed[MAIN_MENU])
     {
         m_buttonsPressed[MAIN_MENU] = false;
         _data->_states->removeStateUntilOne();
     }
-}
-
-void menuPause::draw()
-{
-    _data->_window->clear();
-    _data->_window->draw(background);
-
-    // condition for loading game, if there is no save file, the load game button will be disabled
-
-    for (int i = 0; i < m_buttons.size(); i++)
-    {
-        _data->_window->draw(m_buttons[i]);
-    }
-    _data->_window->display();
 }
