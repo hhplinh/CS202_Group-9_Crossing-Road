@@ -33,17 +33,18 @@ void map::processInput()
     //	break;
     // }
     //}
-    // player->processInput();
-    while (_data->_window->pollEvent(event))
-    {
-        if (event.type == sf::Event::Closed)
-        {
-            _data->_window->close();
-        }
-        if (event.type == sf::Event::KeyPressed)
-        {
-            if (event.key.code == sf::Keyboard::Escape)
-            {
+   // player->processInput();
+   while (_data->_window->pollEvent(event))
+   {    player->processInput(event);
+         if (event.type == sf::Event::Closed)
+         {
+              _data->_window->close();
+         }
+
+         if (event.type == sf::Event::KeyPressed)
+         {
+              if (event.key.code == sf::Keyboard::Escape)
+              {
                 mescpressed = true;
             }
         }
@@ -144,27 +145,25 @@ void map::update()
         {
             enemies[i]->turnaround();
         }
-    }
-    // run the cano
-    for (int i = 0; i < enemies2.size(); i++)
-    {
-        enemies2[i]->floatOnRiver();
-        if (enemies2[i]->getPosCano().x > 1920 || enemies2[i]->getPosCano().x < 0)
-        {
-            enemies2[i]->turnAround();
-        }
-    }
-    if (mescpressed == true)
-    {
-        backgroundTexture.create(_data->_window->getSize().x, _data->_window->getSize().y);
-        auto& window = static_cast<sf::RenderWindow&>(*(_data->_window));
-        backgroundTexture.update(window);
-        _data->_assets->setBackgroundTexture(backgroundTexture);
-        
-        mescpressed = false;
-        _data->_window->setView(_data->_window->getDefaultView());
-        _data->_states->addState((new menuPause(_data)), false);
-    }
+      }
+      // run the cano
+      for (int i = 0; i < enemies2.size(); i++)
+      {
+          enemies2[i]->floatOnRiver();
+          if (enemies2[i]->getPosCano().x > 1920 || enemies2[i]->getPosCano().x < 0)
+          {
+              enemies2[i]->turnAround();
+          }
+      }
+      if (mescpressed == true)
+      {  mescpressed = false;
+          _data->_states->addState((new menuPause(_data)), false);
+            _data->_window->setView(_data->_window->getDefaultView());
+      }
+        // animal run
+   
+ 
+       std:: cout<< player->getStamina()<<std::endl;
 }
 
 void map::draw()

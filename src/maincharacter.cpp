@@ -4,7 +4,7 @@ void maincharacter::init()
 {
     // _data->_assets->addTexture(PENGUIN, "resources//Penguin.png");
 
-    row = 4;
+    row = 5;
     col = 8;
     size = _data->_assets->getTexture(PENGUIN).getSize();
     p.setTexture(_data->_assets->getTexture(PENGUIN));
@@ -12,7 +12,7 @@ void maincharacter::init()
 
     velocity.x = 0;
     velocity.y = 0;
-
+    this->isFallen = false;
     this->size.x /= col;
     this->size.y /= row;
 
@@ -26,8 +26,21 @@ void maincharacter::init()
 
     // Set the initial view to the camera
     _data->_window->setView(camera);
-
+    MAX_STAMINA = 100;
     mApressed = false;
+    stamina = MAX_STAMINA;
+    staminaRecoveryRate = 1;
+    staminaDrainRate = 4;
+    isMoving = false;
+     staminaBarBackground.setSize(sf::Vector2f(102, 22)); // Plus border
+    staminaBarBackground.setFillColor(sf::Color(50, 50, 50));
+    staminaBarBackground.setPosition(10, 10);
+      staminaBar.setSize(sf::Vector2f(100, 20)); // Full width for full stamina
+    staminaBar.setFillColor(sf::Color(100, 250, 50));
+    staminaBar.setPosition(11, 11); // 
+     movingLeft = false;
+    movingRight = false;
+    movingUp = false;
 }
 
 maincharacter::maincharacter(data *data) : _data(data) {}
@@ -38,35 +51,46 @@ void maincharacter::draw()
     //_data->_window->clear();
 
     _data->_window->draw(p);
-    // _data->_window->display();
+    drawStaminaBar(*_data->_window);
+  // _data->_window->display();
 }
 
 void maincharacter::move()
-{
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+{   bool moved = false;
+    if (  movingRight)
     {
         int xtexture = (p.getTextureRect().left + size.x) % (size.x * col);
         p.setTextureRect(sf::IntRect(xtexture, size.y * 2, size.x, size.y));
         p.move(10, 0);
+        moved = true;
+
+       
     }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    else if ( movingUp)
     {
         int xtexture = (p.getTextureRect().left + size.x) % (size.x * 4);
         p.setTextureRect(sf::IntRect(xtexture, size.y, size.x, size.y));
         p.move(0, -10);
+            moved = true;
+
+        
     }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    else if ( movingLeft)
     {
         int xtexture = (p.getTextureRect().left + size.x) % (size.x * col);
         p.setTextureRect(sf::IntRect(xtexture, size.y * 3, size.x, size.y));
         p.move(-10, 0);
+          moved = true;
+
+    
     }
-    /*else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-     {
-         int ytexture = (p.getTextureRect().top + size.y) % (size.y * row);
-         p.setTextureRect(sf::IntRect(0, ytexture, size.x, size.y));
-         p.move(0, 2);
-     }*/
+   /*else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        int ytexture = (p.getTextureRect().top + size.y) % (size.y * row);
+        p.setTextureRect(sf::IntRect(0, ytexture, size.x, size.y));
+        p.move(0, 2);
+    }*/
+     isMoving = moved;
 }
 
 sf::Vector2f maincharacter::getPosition()
@@ -80,40 +104,112 @@ void maincharacter::setPosition(int x, int y)
 }
 void maincharacter::processInput(sf ::Event event)
 {
-    // sf::Event event;
-    // while(_data->_window->pollEvent(event))
-    // {
-    if (sf::Event::Closed == event.type)
-    {
-        _data->_window->close();
+    //sf::Event event;
+   // while(_data->_window->pollEvent(event))
+   // {
+        if(sf::Event::Closed == event.type)
+        {
+            _data->_window->close();
+        }
+        
+        //popstate //change to is key release
+
+     // else if( sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+       // {
+       //  mApressed = true;
+       // }
+       
+   // }
+
+    // Handle the start of the movement
+    if (event.type == sf::Event::KeyPressed) {
+        switch (event.key.code) {
+            case sf::Keyboard::Right:
+                movingRight = true;
+                break;
+            case sf::Keyboard::Up:
+                movingUp = true;
+                break;
+            case sf::Keyboard::Left:
+                movingLeft = true;
+                break;
+            // Add cases for other keys if needed
+        }
     }
-    // popstate //change to is key release
 
-    // else if( sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-    // {
-    //  mApressed = true;
-    // }
+    // Handle the end of the movement
+   else if (event.type == sf::Event::KeyReleased) {
+        switch (event.key.code) {
+            case sf::Keyboard::Right:
+                movingRight = false;
+                break;
+            case sf::Keyboard::Up:
+                movingUp = false;
+                break;
+            case sf::Keyboard::Left:
+                movingLeft = false;
+                break;
+            // Add cases for other keys if needed
+        }
+    }
 
-    // }
+}
+void maincharacter::update() {
+    // Update the stamina first
+    updateStamina();
+
+    // Handle the fallen state
+    if (stamina == 0 && !isFallen) {
+        // Enter fallen state
+        isFallen = true;
+        moveCooldownTimer.restart();
+        // Set the fallen texture
+        p.setTextureRect(sf::IntRect(0, size.y*4, size.x, size.y));
+    }
+    else if (isFallen && moveCooldownTimer.getElapsedTime().asSeconds() >= 2.0f) {
+        // Recover from fallen state
+        isFallen = false;
+        // Set the stand up texture or reset to initial sprite state
+        p.setTextureRect(sf::IntRect(0, 0, size.x, size.y)); // Replace with appropriate texture rect for standing up
+    }
+
+    // If the character has recovered from fallen, handle normal movement
+    if (!isFallen) {
+        move();
+    }
+    // Otherwise, ensure the character does not move
+    else {
+        // Additional logic for character in fallen state (if necessary)
+    }
+
+    // Update the camera to follow the character
+    camera.setCenter(1920 / 2, p.getPosition().y);
+    _data->_window->setView(camera);
 }
 
-void maincharacter::processInput()
-{
+  void maincharacter::updateStamina() {
+    std::cout << "Stamina: " << stamina << ", Up: " << movingUp << ", Left: " << movingLeft << ", Right: " << movingRight << ", Recovery: " << staminaRecoveryRate << ", Drain: " << staminaDrainRate << std::endl;
+
+    
+        if (!movingUp && !movingLeft && !movingRight) {
+            if (stamina + staminaRecoveryRate < MAX_STAMINA) {
+                stamina += staminaRecoveryRate;
+            } else {
+                stamina = MAX_STAMINA;
+            }
+        } else {
+            stamina = std::max(stamina - staminaDrainRate, 0.0f);
+        }
+        displayStamina();
     
 }
-void maincharacter::update()
-{
-    if (mApressed)
-    {
-        mApressed = false;
-        _data->_states->removeState();
-    }
 
-    this->move();
+void maincharacter::displayStamina() {
+    float currentWidth = (static_cast<float>(stamina) / MAX_STAMINA) * 100;
+    staminaBar.setSize(sf::Vector2f(currentWidth, staminaBar.getSize().y));
+}
 
-    // Update the camera to follow the character vertically
-    camera.setCenter(1920 / 2, p.getPosition().y);
-
-    // Set the view to the camera
-    _data->_window->setView(camera);
+void maincharacter::drawStaminaBar(sf::RenderTarget& target) const {
+    target.draw(staminaBarBackground);
+    target.draw(staminaBar);
 }
