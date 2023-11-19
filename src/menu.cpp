@@ -6,7 +6,7 @@
 #include "endgameMenu.hpp"
 
 menu::menu(data *data) : _data(data)
-{
+{   _data->_assets-> addTexture(TRAFFICLIGHT , "resources//Texture//Traffic Light.png");
     _data->_assets->addTexture(BACKGROUND, "resources//Texture//bgMenu.png");
     _data->_assets->addTexture(ROAD, "resources//Texture//road.png");
     _data->_assets->addTexture(RIVER, "resources//Texture//River.png");
