@@ -158,8 +158,7 @@ void map::update()
       if (mescpressed == true)
       { 
         backgroundTexture.create(_data->_window->getSize().x, _data->_window->getSize().y);
-        auto& window = static_cast<sf::RenderWindow&>(*(_data->_window));
-        backgroundTexture.update(window);
+        backgroundTexture.update((const sf::RenderWindow&)(*(_data->_window)));
         _data->_assets->setBackgroundTexture(backgroundTexture); 
         
         mescpressed = false;
