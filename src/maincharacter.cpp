@@ -191,15 +191,16 @@ void maincharacter::update() {
     std::cout << "Stamina: " << stamina << ", Up: " << movingUp << ", Left: " << movingLeft << ", Right: " << movingRight << ", Recovery: " << staminaRecoveryRate << ", Drain: " << staminaDrainRate << std::endl;
 
     
-        if (!movingUp && !movingLeft && !movingRight) {
+        if (!movingUp && !movingLeft && !movingRight||((movingUp || movingLeft || movingRight)&&isFallen)) {
             if (stamina + staminaRecoveryRate < MAX_STAMINA) {
                 stamina += staminaRecoveryRate;
             } else {
                 stamina = MAX_STAMINA;
             }
-        } else {
+        } else  {
             stamina = std::max(stamina - staminaDrainRate, 0.0f);
         }
+  
         displayStamina();
     
 }
