@@ -131,9 +131,9 @@ if( currentIndex<blocks.size())
             {
                 grasspos.push_back(blocks[i]->getpos());
                 addedgrass = false;
-                Animal a= cop(_data);
+                Animal *a=new  cop(_data);
                 animals.push_back(a);
-              animals.back(). setposAnimal(sf::Vector2f(grasspos.back().x, grasspos.back().y ));
+              animals.back()->setposAnimal(sf::Vector2f(grasspos.back().x, grasspos.back().y ));
                 
             }
         }
@@ -169,10 +169,10 @@ if( currentIndex<blocks.size())
     }
     for ( int i=0;i<animals.size();i++)
     {// std:: cout<< animals.size();
-        animals[i].AnimalRun();
-      if (animals[i].getposAnimal().x > 1920 || animals[i].getposAnimal().x < 0)
+        animals[i]->AnimalRun();
+      if (animals[i]->getposAnimal().x > 1920 || animals[i]->getposAnimal().x < 0)
         {
-            animals[i].AnimalTurn();
+            animals[i]->AnimalTurn();
         }
     }
 
@@ -222,7 +222,7 @@ void map::draw()
     }
     for (int i = 0; i < animals.size(); i++)
     {
-        animals[i].draw();
+        animals[i]->draw();
     }
     
    

@@ -29,7 +29,7 @@ private:
      
  
     int currentIndex;
-    std :: vector < Animal > animals;
+    std :: vector < Animal * > animals;
     sf::Texture backgroundTexture;
 
 public:
@@ -63,6 +63,23 @@ public:
         {
             delete blocks[i];
         }
+        for (int i = 0; i < enemies.size(); i++)
+        {
+            delete enemies[i];
+        }
+        for (int i = 0; i < enemies2.size(); i++)
+        {
+            delete enemies2[i];
+        }
+        for (int i = 0; i < trafficlights.size(); i++)
+        {
+            delete trafficlights[i];
+        }
+        for (int i = 0; i < animals.size(); i++)
+        {
+            delete animals[i];
+        }
+
         delete this->player;
     }
     void init();
