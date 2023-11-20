@@ -3,11 +3,13 @@
 #include "menuPause.hpp"
 #include "endgameMenu.hpp"
 #include "maincharacter.hpp"
+
 void map::init()
 { // do not init if resume from pause menu
   // check the state size
     // using state machine size
-
+ pos1.x = 0;
+    pos1.y = 906;
     player = new maincharacter(_data);
     player->init();
     this->blocks.clear();
@@ -17,7 +19,7 @@ void map::init()
     this->river.clear();
     this->length = 10;
     createmap();
-
+   
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
 }
@@ -56,22 +58,27 @@ void map::update()
     player->update();
     float pos = player->getPosition().y;
 
-    float i = (pos / 1080.0 + 1);
-
-    float j = -i;
-    int k = int(i);
-    int f = int(j);
-    if (k > this->currentIndex)
-    {
-        this->currentIndex = k;
+    float i = ( pos/1080.0 +1);
+   
+    float j=-i;
+    int k= int (i);
+    int f= int (j);
+    if( pos>0)
+    {      currentIndex = 0;
     }
-
-    if (((i - k) < 0.2 && pos > 0) || (j - f > 0.7 && (j - f) < 0.8 && pos < 0))
+      else
     {
+        currentIndex =( int((pos)/-1080.0) )*6;
+    }
+     float o= pos/-1080.0-int((pos)/-1080);
+     std::cout<<o<<std::endl;
+    if( (((pos/1080.0)<0.1&& pos>0&&(blocks.size() - currentIndex < 15))||(o<0.9&&pos<0&& (blocks.size() - currentIndex < 50))))
+    
+    
+    {   
         int z;
-        for (int i = 0; i < 1; i++)
-        {
-            z = rand() % 3;
+        for( int i=0;i<1;i++)
+        {  z = rand() % 3;
 
             if (z == 0)
             {
@@ -89,14 +96,15 @@ void map::update()
             }
         }
     }
+   
 
-    sf::Vector2f pos1(0.0f, 906.0f);
+   // sf::Vector2f pos1(0.0f, 906.0f);
 
     river.clear();
 
     for (int i = currentIndex; i < blocks.size(); i++)
     {
-        blocks[i]->setpos(pos1);
+       
 
         if (blocks[i]->getTerrainName() == "river")
         {
@@ -116,35 +124,37 @@ void map::update()
                 roadpos.push_back(blocks[i]->getpos());
                 addedroad = false;
                 car *newcar = new car(_data);
+                trafficlight *newtrafficlight = new trafficlight(_data);
                 enemies.push_back(newcar);
                 enemies[enemies.size() - 1]->setposcar(sf::Vector2f(roadpos.back().x, roadpos.back().y + 50));
+                trafficlights.push_back(newtrafficlight);
+                trafficlights[trafficlights.size() - 1]->setpos(roadpos.back().y );
             }
         }
-        pos1.y -= 174.0 - 15 - 5;
+       
     }
     sf::Vector2f screenSize(1920, 1080); // Adjust this based on your screen size
 
-    for (const auto &riverBlockPos : river)
-    {
-        float riverBlockHeight = /* height of your river blocks */ 174;
-
-        // Check if player is within the vertical span of the river block
-        if ((player->getPosition().y + 143) > riverBlockPos.y &&
-            (player->getPosition().y + 143) < (riverBlockPos.y + riverBlockHeight))
-        {
-            // Collision detected, player is in the river
-            // player->setPosition(0,prePos);
-            // return;  // Exit the update function
-        }
-    }
+  
     // run the car
+    /*for ( int i=0;i<trafficlights.size();i++)
+    {
+        trafficlights[i]->run();
+    }*/
     for (int i = 0; i < enemies.size(); i++)
     {
+       if( trafficlights[i]->carCanGo()) 
+       {
         enemies[i]->run();
+        //turn red after 5 second
+
+ 
+       }
         if (enemies[i]->getposcar().x > 1920 || enemies[i]->getposcar().x < 0)
         {
             enemies[i]->turnaround();
         }
+       
     }
     // run the cano
     for (int i = 0; i < enemies2.size(); i++)
@@ -166,6 +176,11 @@ void map::update()
         _data->_window->setView(_data->_window->getDefaultView());
         _data->_states->addState((new menuPause(_data)), false);
     }
+    for( int i=0;i<trafficlights.size();i++)
+    {
+        trafficlights[i]->turn();
+    }
+   std:: cout<<"current block : "<<this-> currentIndex<< " : "<<this-> blocks.size()<<std::endl;
 }
 
 void map::draw()
@@ -183,6 +198,10 @@ void map::draw()
     for (int i = 0; i < enemies.size(); i++)
     {
         _data->_window->draw(*enemies[i]);
+    }
+    for( int i=0;i<trafficlights.size();i++)
+    {
+        _data->_window->draw(*trafficlights[i]);
     }
     // draw the cano
     for (int i = 0; i < enemies2.size(); i++)
@@ -239,12 +258,13 @@ void map::createmap()
 void map::addblock(std::string terrainName)
 {
     block *newblock = new block(_data);
-    sf::Vector2f poss(0, 0);
-    newblock->init(terrainName, poss, true, false);
+
+    newblock->init(terrainName, this->pos1, true, false);
     blocks.push_back(newblock); 
     if (addedroad == true)
     {
         newRoadIdx = blocks.size() - 1;
+        newTrafficLightIdx = blocks.size() - 1;
     }
     else if (addedRiver == true)
     {
@@ -254,7 +274,8 @@ void map::addblock(std::string terrainName)
     {
         newGrassIdx = blocks.size() - 1;
     }
-    // pos1.y -= 174.0-15-5;
+
+    this-> pos1.y -= 174.0-15-5;
     
 }
 

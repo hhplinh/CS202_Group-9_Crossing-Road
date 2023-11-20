@@ -11,23 +11,26 @@
 #include "menu.hpp"
 
 #include "mapfeature.hpp"
+#include "trafficlight.hpp"
 
 class menuPause;
 class endgameMenu;
 class map : public state
 {
 private:
+     sf::Vector2f pos1;
     bool mescpressed = false;
     std ::vector<block *> blocks;
     data *_data;
     std ::vector<car *> enemies;
     std::vector<Cano *> enemies2;
+    std:: vector<trafficlight *> trafficlights;
     maincharacter *player;
     sf::Vector2i exitPos;
     sf::Vector2i playerPos;
     std::vector<sf::Vector2i> enemyPos;
     int currentIndex;
-
+    
     sf::Texture backgroundTexture;
 
 public:
@@ -49,6 +52,7 @@ public:
     int newGrassIdx = -1;
     int newRoadIdx = -1;
     int newRiverIdx = -1;
+    int newTrafficLightIdx = -1;
     ~map()
     { // delete dynamically alocated memory
       // reset view
