@@ -1,5 +1,5 @@
 #include "map.hpp"
-
+#include<memory>
 #include "menuPause.hpp"
 #include "endgameMenu.hpp"
 #include "maincharacter.hpp"
@@ -45,25 +45,27 @@ void map::processInput()
 }
 void map::update()
 {
-    float prePos = player->getPosition().y;
+   
     player->update();
     float pos = player->getPosition().y;
 
-    float i = ( pos/1080.0 +1);
+    float l = ( pos/1080.0 +1);
    
-    float j=-i;
-    int k= int (i);
-    int f= int (j);
+    float j=-l;
+    float k= int (l);
+    float f= int (j);
     if( pos>0)
     {      currentIndex = 0;
     }
       else
     {
-        currentIndex =( int((pos)/-1080.0) )*6;
+       currentIndex =int(1+ (pos)/-1080.0f)*6;
+       
     }
-     float o= pos/-1080.0-int((pos)/-1080);
+     float o= pos/-1080.0f-int((pos)/-1080.0f); 
+   
      std::cout<<o<<std::endl;
-    if( (((pos/1080.0)<0.1&& pos>0&&(blocks.size() - currentIndex < 15))||(o<0.9&&pos<0&& (blocks.size() - currentIndex < 50))))
+    if( ((pos/1080.0f)<0.200000f&& pos>0&&blocks.size()<20)||(o>0.7f&&o<0.8f&&pos<0.0f&& blocks.size()-currentIndex<50))
     
     
     {   
@@ -96,7 +98,8 @@ void map::update()
     for (int i = currentIndex; i < blocks.size(); i++)
     {
        
-
+if( currentIndex<blocks.size())
+{
         if (blocks[i]->getTerrainName() == "river")
         {
             if (addedRiver == true && newRiverIdx == i)
@@ -124,21 +127,19 @@ void map::update()
         }
         else if( blocks[i]->getTerrainName() == "grass")
         {
-           if (addedgrass == true && newGrassIdx == i)
+           if (addedgrass == true && newGrassIdx==i )
             {
                 grasspos.push_back(blocks[i]->getpos());
                 addedgrass = false;
-               Animal *a = new cop (_data);
-                
-
-              animals.push_back(a);
-              animals[animals.size() - 1]-> setposAnimal(sf::Vector2f(grasspos.back().x, grasspos.back().y + 50));
+                Animal a= cop(_data);
+                animals.push_back(a);
+              animals.back(). setposAnimal(sf::Vector2f(grasspos.back().x, grasspos.back().y ));
                 
             }
         }
        
     }
-    
+    }
 
   
    
@@ -167,11 +168,11 @@ void map::update()
         }
     }
     for ( int i=0;i<animals.size();i++)
-    { std:: cout<< animals.size();
-        animals[i]->AnimalRun();
-        if (animals[i]->getposAnimal().x > 1920 || animals[i]->getposAnimal().x < 0)
+    {// std:: cout<< animals.size();
+        animals[i].AnimalRun();
+      if (animals[i].getposAnimal().x > 1920 || animals[i].getposAnimal().x < 0)
         {
-            animals[i]->AnimalTurn();
+            animals[i].AnimalTurn();
         }
     }
 
@@ -200,7 +201,8 @@ void map::draw()
     _data->_window->draw(background);
 
     for (int i = currentIndex; i < blocks.size(); i++)
-    {
+    {std:: cout<<"current block : "<<this-> currentIndex<< " : "<<this-> blocks.size()<<std::endl;
+         if( currentIndex<blocks.size())
         // blocks[i]->setpos(pos);
         blocks[i]->draw();
     }
@@ -220,7 +222,7 @@ void map::draw()
     }
     for (int i = 0; i < animals.size(); i++)
     {
-        _data->_window->draw(*animals[i]);
+        animals[i].draw();
     }
     
    
@@ -236,7 +238,7 @@ void map::createmap()
     for (int i = 0; i < length; i++)
     {
 
-        addblock("grass");
+        addblock("dirt");
     }
 
 

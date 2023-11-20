@@ -29,7 +29,7 @@ private:
      
  
     int currentIndex;
-    std :: vector < Animal* > animals;
+    std :: vector < Animal > animals;
     sf::Texture backgroundTexture;
 
 public:

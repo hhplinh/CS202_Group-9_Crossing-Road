@@ -3,8 +3,9 @@
 #include "system.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include"state.h"
 #pragma once
-class Animal : public sf::Drawable
+class Animal 
 {
   protected :
   data * _data;
@@ -12,58 +13,31 @@ class Animal : public sf::Drawable
   int row , col;
   bool goR;
   
-  sf:: Sprite sprite;
-  sf:: Texture texture;
-
+ sf :: Sprite sprite;
   public:
    virtual ~Animal() {}
   sf::Vector2f getposAnimal(){return this->sprite.getPosition();}
-  Animal(data* _data) : _data(_data)
-  {
-  this->init();
-  }
+  Animal(data* _data);
   void setposAnimal( sf::Vector2f posblock);
   void init();
-  void draw( sf::RenderTarget& target, sf::RenderStates states) const;
+  //normal draw without sf drawable using window
+
+  void draw ()
+  {
+    _data->_window->draw(sprite);
+  }
   void AnimalTurn();
   sf::Vector2u size;
-  void AnimalRun()
-  {
-    if(goR==true)
-    { // int xtexture = (sprite.getTextureRect().left + size.x) % (size.x * col);
-     // sprite.setTextureRect(sf::IntRect(xtexture, size.y * 2, size.x, size.y));
-     
-       
-      sprite.move(speed,0);
-    }
-    else
-    { 
-      //int xtexture = (sprite.getTextureRect().left + size.x) % (size.x * col);
-    //sprite.setTextureRect(sf::IntRect(xtexture, size.y * 3, size.x, size.y));
-     sprite.move(-speed,0);
-    }
-  }
-  
+  void AnimalRun();
   
 };
 class cop : public Animal
-{
+{ protected: 
+
   public:
   ~cop() {}
-  cop(data* _data) : Animal(_data)
-  {
-  
-  
-  this-> row =4;
-  this->col=4;
-  this->speed=0.5;
-  this->size = _data->_assets->getTexture(ORGE).getSize();
-   
-  this->sprite.setTexture( _data->_assets->getTexture(ORGE));
-  this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
-
-  }
  
+  cop(data* _data) ;
 
 
 };
