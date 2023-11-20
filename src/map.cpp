@@ -26,16 +26,7 @@ void map::init()
 void map::processInput()
 {
     sf::Event event;
-    // while (_data->_window->pollEvent(event))
-    //{
-    // switch (event.type)
-    //{
-    // case sf::Event::Closed:
-    //	_data->_window->close();
-    //	break;
-    // }
-    //}
-   // player->processInput();
+
    while (_data->_window->pollEvent(event))
    {    player->processInput(event);
          if (event.type == sf::Event::Closed)
@@ -86,7 +77,7 @@ void map::update()
                 addblock("road");
             }
             else if (z == 1)
-            {
+            { addedgrass = true;
                 addblock("grass");
             }
             else if (z == 2)
@@ -98,7 +89,7 @@ void map::update()
     }
    
 
-   // sf::Vector2f pos1(0.0f, 906.0f);
+  
 
     river.clear();
 
@@ -131,22 +122,32 @@ void map::update()
                 trafficlights[trafficlights.size() - 1]->setpos(roadpos.back().y );
             }
         }
+        else if( blocks[i]->getTerrainName() == "grass")
+        {
+           if (addedgrass == true && newGrassIdx == i)
+            {
+                grasspos.push_back(blocks[i]->getpos());
+                addedgrass = false;
+               Animal *a = new cop (_data);
+                
+
+              animals.push_back(a);
+              animals[animals.size() - 1]-> setposAnimal(sf::Vector2f(grasspos.back().x, grasspos.back().y + 50));
+                
+            }
+        }
        
     }
-    sf::Vector2f screenSize(1920, 1080); // Adjust this based on your screen size
+    
 
   
-    // run the car
-    /*for ( int i=0;i<trafficlights.size();i++)
-    {
-        trafficlights[i]->run();
-    }*/
+   
     for (int i = 0; i < enemies.size(); i++)
     {
        if( trafficlights[i]->carCanGo()) 
        {
         enemies[i]->run();
-        //turn red after 5 second
+      
 
  
        }
@@ -165,6 +166,15 @@ void map::update()
             enemies2[i]->turnAround();
         }
     }
+    for ( int i=0;i<animals.size();i++)
+    { std:: cout<< animals.size();
+        animals[i]->AnimalRun();
+        if (animals[i]->getposAnimal().x > 1920 || animals[i]->getposAnimal().x < 0)
+        {
+            animals[i]->AnimalTurn();
+        }
+    }
+
     if (mescpressed == true)
     {
         backgroundTexture.create(_data->_window->getSize().x, _data->_window->getSize().y);
@@ -208,51 +218,28 @@ void map::draw()
     {
         _data->_window->draw(*enemies2[i]);
     }
-    // set player position to the bottom of the screen
+    for (int i = 0; i < animals.size(); i++)
+    {
+        _data->_window->draw(*animals[i]);
+    }
+    
+   
     player->draw();
     _data->_window->display();
-    // detect player in river
+  
 }
 
-// void map::draw()
-// {
-//     _data->_window->clear();
-
-//     // _data->_window->draw(background);
-
-//     // for (int i = currentIndex; i < blocks.size(); i++)
-//     // {
-//     //     // blocks[i]->setpos(pos);
-//     //     blocks[i]->draw();
-//     // }
-//     // // draw the car
-//     // for (int i = 0; i < enemies.size(); i++)
-//     // {
-//     //     _data->_window->draw(*enemies[i]);
-//     // }
-//     // // draw the cano
-//     // for (int i = 0; i < enemies2.size(); i++)
-//     // {
-//     //     _data->_window->draw(*enemies2[i]);
-//     // }
-//     // // set player position to the bottom of the screen
-//     // player->draw();
-
-//     _data->_window->draw(backgroundSprite);
-//     _data->_window->display();
-//     // detect player in river
-// }
 
 void map::createmap()
 {
-    int z;
+  
     for (int i = 0; i < length; i++)
     {
 
         addblock("grass");
     }
 
-    //   blocks[0]->draw();
+
 }
 
 void map::addblock(std::string terrainName)

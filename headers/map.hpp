@@ -12,7 +12,7 @@
 
 #include "mapfeature.hpp"
 #include "trafficlight.hpp"
-
+#include "Animal.hpp"
 class menuPause;
 class endgameMenu;
 class map : public state
@@ -26,11 +26,10 @@ private:
     std::vector<Cano *> enemies2;
     std:: vector<trafficlight *> trafficlights;
     maincharacter *player;
-    sf::Vector2i exitPos;
-    sf::Vector2i playerPos;
-    std::vector<sf::Vector2i> enemyPos;
+     
+ 
     int currentIndex;
-    
+    std :: vector < Animal* > animals;
     sf::Texture backgroundTexture;
 
 public:
@@ -43,6 +42,7 @@ public:
     int length;
     std::vector<sf::Vector2f> river;
     std::vector<sf::Vector2f> riverPos;
+    std::vector < sf ::Vector2f > grasspos;
     map(data *data);
     map();
     void addcar();
@@ -57,6 +57,8 @@ public:
     { // delete dynamically alocated memory
       // reset view
         _data->_window->setView(_data->_window->getDefaultView());
+        // delete all the block and enemies
+    
         for (int i = 0; i < blocks.size(); i++)
         {
             delete blocks[i];
