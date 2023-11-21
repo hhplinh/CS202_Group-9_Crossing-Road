@@ -91,7 +91,7 @@ void map::update()
     }
    
 
-  
+  int u;
 
     river.clear();
 
@@ -125,13 +125,20 @@ if( currentIndex<blocks.size())
                 trafficlights[trafficlights.size() - 1]->setpos(roadpos.back().y );
             }
         }
+        
         else if( blocks[i]->getTerrainName() == "grass")
         {
            if (addedgrass == true && newGrassIdx==i )
             {
                 grasspos.push_back(blocks[i]->getpos());
                 addedgrass = false;
-                Animal *a=new  cop(_data);
+                u = rand() % 2;
+                Animal *a;
+                if(u==1)
+             {
+                   a=new  cop(_data);
+             }
+             else  a= new gau(_data);
                 animals.push_back(a);
               animals.back()->setposAnimal(sf::Vector2f(grasspos.back().x, grasspos.back().y ));
                 
@@ -158,10 +165,33 @@ if( currentIndex<blocks.size())
         }
        
     }
-    // run the cano
+   
+
     for (int i = 0; i < enemies2.size(); i++)
     {
         enemies2[i]->floatOnRiver();
+
+        // If the player intersects with the boat's global bounds
+        if (player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds()))
+        {
+            // If the player is moving up, attempt to get off the boat
+            if (player->movingUp)
+            {
+                // Logic to get off the boat
+                // For example, you may want to adjust the player's Y position here
+                player->setPosition(
+                    player->getSprite().getPosition().x,
+                    player->getSprite().getPosition().y - player->getSprite().getGlobalBounds().height // Adjust as necessary
+                );
+            }
+            else
+            {
+                // If the player is not moving up, keep them on the boat
+                floatwithboat(player, enemies2[i]);
+            }
+        }
+
+        // Turn the boat around if it goes off-screen
         if (enemies2[i]->getPosCano().x > 1920 || enemies2[i]->getPosCano().x < 0)
         {
             enemies2[i]->turnAround();
@@ -238,7 +268,7 @@ void map::createmap()
     for (int i = 0; i < length; i++)
     {
 
-        addblock("dirt");
+        addblock("grass");
     }
 
 

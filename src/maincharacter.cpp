@@ -98,7 +98,7 @@ sf::Vector2f maincharacter::getPosition()
     p.getPosition();
     return p.getPosition();
 }
-void maincharacter::setPosition(int x, int y)
+void maincharacter::setPosition(float x, float y)
 {
     p.setPosition(x, y);
 }

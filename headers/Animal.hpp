@@ -15,6 +15,8 @@ class Animal
   
  sf :: Sprite sprite;
   public:
+   sf::Clock frameTimer; // Timer to control the frame rate
+  const sf::Time frameDuration = sf::seconds(1.f / 10);
    virtual ~Animal() {}
   sf::Vector2f getposAnimal(){return this->sprite.getPosition();}
   Animal(data* _data);
@@ -55,5 +57,8 @@ class voi : public Animal
 };
 class gau : public Animal
 {
-  
+    public:
+  ~gau() {}
+ 
+  gau(data* _data) ;
 };
