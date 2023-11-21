@@ -4,11 +4,11 @@
 #include "endgameMenu.hpp"
 #include "maincharacter.hpp"
 
-void map::init()
+ void map::init()
 { // do not init if resume from pause menu
   // check the state size
     // using state machine size
- pos1.x = 0;
+    pos1.x = 0;
     pos1.y = 906;
     player = new maincharacter(_data);
     player->init();

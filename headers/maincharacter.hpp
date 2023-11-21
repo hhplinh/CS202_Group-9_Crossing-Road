@@ -11,7 +11,8 @@
 
 class maincharacter //public state
 {
-    private : int row , col;
+    protected :
+     int row , col;
     bool isFallen;
     data * _data;
     sf :: RectangleShape shape;
@@ -38,7 +39,7 @@ class maincharacter //public state
     void init();
 	void processInput(sf :: Event event);
     void processInput();
-	void update();
+	virtual void update();
 	void draw();
     void move();
     void setPosition(float x,float y);

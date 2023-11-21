@@ -26,7 +26,7 @@ menu::menu(data *data) : _data(data)
     _data->_assets->addTexture(TEGIAC, "resources//Texture//Tegiac.png");
     _data->_assets->addTexture(LACDA, "resources//Texture//Lacda.png");
     _data->_assets->addTexture(PENGUIN, "resources//Texture//Penguin.png");
-        _data->_assets->addTexture(ORGE, "resources//Texture//orge.png");
+       
     _data->_assets->addTexture(DIRT, "resources//Texture//dirt.png");
     background.setTexture(&_data->_assets->getTexture(BACKGROUND));
     background.setSize(sf::Vector2f(1920, 1080));

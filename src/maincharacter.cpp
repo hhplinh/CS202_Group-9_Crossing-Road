@@ -2,7 +2,7 @@
 
 void maincharacter::init()
 {
-    // _data->_assets->addTexture(PENGUIN, "resources//Penguin.png");
+   
 
     row = 5;
     col = 8;
@@ -159,7 +159,7 @@ void maincharacter::update() {
     updateStamina();
 
     // Handle the fallen state
-   /* if (stamina == 0 && !isFallen) {
+    if (stamina == 0 && !isFallen) {
         // Enter fallen state
         isFallen = true;
         moveCooldownTimer.restart();
@@ -172,7 +172,7 @@ void maincharacter::update() {
         // Set the stand up texture or reset to initial sprite state
         p.setTextureRect(sf::IntRect(0, 0, size.x, size.y)); // Replace with appropriate texture rect for standing up
     }
-*/
+
     // If the character has recovered from fallen, handle normal movement
     if (!isFallen) {
         move();

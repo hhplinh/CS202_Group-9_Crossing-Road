@@ -17,7 +17,7 @@
     class endgameMenu;
     class map : public state
     {
-    private:
+    protected:
         sf::Vector2f pos1;
         bool mescpressed = false;
         std ::vector<block *> blocks;
@@ -101,8 +101,8 @@ return 1;
 
             delete this->player;
         }
-        void init();
-        void processInput();
+     virtual void init();
+       void processInput();
         void update();
         void draw();
         void createmap();

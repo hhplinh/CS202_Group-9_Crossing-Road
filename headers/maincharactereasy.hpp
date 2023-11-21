@@ -1,38 +1,43 @@
-#include <iostream>
-#include <string>
-#include <SFML/Graphics.hpp>
-#include"state.h"
-#include"system.h"
+#include"maincharacter.hpp"
 #pragma once
-enum State 
+
+class maincharactereasy : public maincharacter
 {
-    IDLE,
-    WALKING,
-    RUNNING,
-    JUMPING,
-    FALLING
-};
-class maincharactereasy //public state
-{
-    private : int row , col;
-    data * _data;
-    sf :: RectangleShape shape;
-    sf::Texture texture;
-    sf::Sprite p;
-    sf::Vector2f velocity;
-    bool mApressed=0;
-    void setView();
-    public:
-    maincharactereasy(data* _data);
-    sf::View camera;
-    void init();
-	void processInput();
-	void update();
-	void draw();
-    void move();
-    void resetView(){ camera.reset(sf::FloatRect(0,0,1920,1080));}
-    void setPosition(int x,int y);
-    sf::Vector2f getPosition();
-    sf::Vector2u size ;
+  private :
+  public:
+    maincharactereasy(data* _data): maincharacter(_data) {}
+   void update()
+   {
+       // Update the stamina first
+    updateStamina();
+
+    // Handle the fallen state
+   /* if (stamina == 0 && !isFallen) {
+        // Enter fallen state
+        isFallen = true;
+        moveCooldownTimer.restart();
+        // Set the fallen texture
+        p.setTextureRect(sf::IntRect(0, size.y*4, size.x, size.y));
+    }
+    else if (isFallen && moveCooldownTimer.getElapsedTime().asSeconds() >= 2.0f) {
+        // Recover from fallen state
+        isFallen = false;
+        // Set the stand up texture or reset to initial sprite state
+        p.setTextureRect(sf::IntRect(0, 0, size.x, size.y)); // Replace with appropriate texture rect for standing up
+    }
+*/
+    // If the character has recovered from fallen, handle normal movement
+    if (!isFallen) {
+        move();
+    }
+    // Otherwise, ensure the character does not move
+    else {
+        // Additional logic for character in fallen state (if necessary)
+    }
+
+    // Update the camera to follow the character
+    camera.setCenter(1920 / 2, p.getPosition().y);
+    _data->_window->setView(camera);
+   }
 
 };
