@@ -22,71 +22,67 @@
 // chỉnh isGameSaved
 // */
 
+#include <iostream>
 
-// #include "loadSave.hpp"
-// #include <iostream>
-// #include <vector>
-// #include <string>
+// Forward declaration of classes
+class ElementA;
+class ElementB;
 
-// loadSave::loadSave(std::string path)
-// {
-//     this->path = path;
-// }
+// Visitor interface
+class Visitor {
+public:
+    virtual void visit(ElementA& element) = 0;
+    virtual void visit(ElementB& element) = 0;
+};
 
-// loadSave::~loadSave()
-// {
-// }
+// Element interface
+class Element {
+public:
+    virtual void accept(Visitor& visitor) = 0;
+};
 
-// void loadSave::load()
-// {
-//     file.open(path, std::ios::in);
-//     if (file.is_open())
-//     {
-//         while (getline(file, line))
-//         {
-//             name = line.substr(0, line.find('='));
-//             value = line.substr(line.find('=') + 1, line.length());
-//             data[name] = value;
-//         }
-//         file.close();
-//     }
-//     else
-//     {
-//         std::cerr << "Unable to open file: " << path << std::endl;
-//     }
-// }
+// Concrete elements
+class ElementA : public Element {
+public:
+    void accept(Visitor& visitor) override {
+        visitor.visit(*this);
+    }
+    std::string operationA() {
+        return "ElementA";
+    }
+};
 
-// void loadSave::save()
-// {
-//     file.open(path, std::ios::out);
-//     if (file.is_open())
-//     {
-//         for (auto &i : data)
-//         {
-//             file << i.first << "=" << i.second << std::endl;
-//         }
-//         file.close();
-//     }
-//     else
-//     {
-//         std::cerr << "Unable to open file: " << path << std::endl;
-//     }
-// }
+class ElementB : public Element {
+public:
+    void accept(Visitor& visitor) override {
+        visitor.visit(*this);
+    }
+    std::string operationB() {
+        return "ElementB";
+    }
+};
 
-// void loadSave::set(std::string name, std::string value)
-// {
-//     data[name] = value;
-// }
+// Concrete visitor
+class LoadSaveVisitor : public Visitor {
+public:
+    void visit(ElementA& element) override {
+        std::cout << "Load and save operation on " << element.operationA() << std::endl;
+    }
+    void visit(ElementB& element) override {
+        std::cout << "Load and save operation on " << element.operationB() << std::endl;
+    }
+};
 
-// std::string loadSave::get(std::string name)
-// {
-//     return data[name];
-// }
-
-// void loadSave::print()
-// {
-//     for (auto &i : data)
-//     {
-//         std::cerr << i.first << "=" << i.second << std::endl;
-//     }
-// }
+// Client code
+int main() {
+    //dùng unique ptr
+    Element* elements[] = {new ElementA(), new ElementB()};
+    Visitor* visitor = new LoadSaveVisitor();
+    for (Element* element : elements) {
+        element->accept(*visitor);
+    }
+    delete visitor;
+    delete elements[0];
+    delete elements[1];
+    return 0;
+}
