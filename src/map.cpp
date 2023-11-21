@@ -108,7 +108,7 @@ if( currentIndex<blocks.size())
                 addedRiver = false;
                 Cano *newCano = new Cano(_data);
                 enemies2.push_back(newCano);
-                enemies2[enemies2.size() - 1]->setPosCano(sf::Vector2f(riverPos.back().x, riverPos.back().y - 30));
+                enemies2[enemies2.size() - 1]->setPosCano(sf::Vector2f(riverPos.back().x, riverPos.back().y ));
             }
         }
         else if (blocks[i]->getTerrainName() == "road")
@@ -177,18 +177,32 @@ if( currentIndex<blocks.size())
             // If the player is moving up, attempt to get off the boat
             if (player->movingUp)
             {
-                // Logic to get off the boat
-                // For example, you may want to adjust the player's Y position here
-                player->setPosition(
+               
+              /*  player->setPosition(
                     player->getSprite().getPosition().x,
-                    player->getSprite().getPosition().y - player->getSprite().getGlobalBounds().height // Adjust as necessary
-                );
+                    player->getSprite().getPosition().y - 100
+                 
+                );*/
+                if(i+1<enemies2.size())
+                {
+                    if(isnextto(enemies2[i],enemies2[i+1]))
+                    {
+                        floatwithboat(player, enemies2[i+1]);
+                    }
+                  
+                }
+                else{
+                    //get off the boat
+                    player->setPosition( player->getSprite().getPosition().x, player->getSprite().getPosition().y - 100);
+                }
+               
             }
             else
             {
                 // If the player is not moving up, keep them on the boat
                 floatwithboat(player, enemies2[i]);
-            }
+
+           }
         }
 
         // Turn the boat around if it goes off-screen
