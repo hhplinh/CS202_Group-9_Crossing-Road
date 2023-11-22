@@ -402,11 +402,17 @@ void map::saveGame()
         int blockSize = blocks.size();
         saveFile.write((char *)&blockSize, sizeof(int));
 
-        // save block position and terrain name
+        // save block terrain name
         for (int i = 0; i < blockSize; i++)
         {
             std::string terrainName = blocks[i]->getTerrainName();
-            saveFile.write((char *)&terrainName, sizeof(std::string));
+            int len = terrainName.size();
+            saveFile.write((char *)&len, sizeof(int));
+            saveFile.write(terrainName.c_str(), len);
+
+            std::cerr << "Saving block\n";
+            std::cerr << terrainName << std::endl;
+            std::cerr << len << std::endl;
 
             sf::Vector2f blockPos = blocks[i]->getpos();
             saveFile.write((char *)&blockPos, sizeof(sf::Vector2f));
@@ -441,6 +447,7 @@ void map::saveGame()
         saveFile.write((char *)&animalsSize, sizeof(int));
     }
     saveFile.close();
+    std::cerr << "Saved game\n";
 }
 
 void map::loadGame()
@@ -474,18 +481,26 @@ void map::loadGame()
         saveFile.read((char *)&blockSize, sizeof(int));
         std::cerr << "load block size\n";
 
-        // load block position and terrain name
+        // load block terrain name
         for (int i = 0; i < blockSize; i++)
         {
-            std::string terrainName;
-            saveFile.read((char *)&terrainName, sizeof(std::string));
+            int len;
+            saveFile.read((char *)&len, sizeof(int));
 
-            sf::Vector2f blockPos;
-            saveFile.read((char *)&blockPos, sizeof(sf::Vector2f));
+            char *buffer = new char[len];
+            saveFile.read(buffer, len);
+            std::string terrainName(buffer, len);
+            delete[] buffer;
+
+            // sf::Vector2f blockPos;
+            // saveFile.read((char *)&blockPos, sizeof(sf::Vector2f));
 
             block *newblock = new block(_data);
+            // newblock->init(terrainName, blockPos, true, false);
+            blocks.clear();
+            std::cerr << terrainName << std::endl;
             std::cerr << "Loading block\n";
-            newblock->init(terrainName, blockPos, true, false);
+            addblock(terrainName);
             blocks.push_back(newblock);
         }
 
