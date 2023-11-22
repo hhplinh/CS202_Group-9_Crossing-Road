@@ -10,9 +10,8 @@ public:
   {
   }
 
-  void init()
+  virtual void init()
   {
-
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
 

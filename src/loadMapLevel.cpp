@@ -27,6 +27,7 @@ void mapeasyLoad::init()
   this->createmap();
 }
 
+
 void mapLoad::init()
 { // do not init if resume from pause menu
   // check the state size
@@ -54,3 +55,4 @@ void mapLoad::init()
   this->currentIndex = 0;
   createmap();
 }
+

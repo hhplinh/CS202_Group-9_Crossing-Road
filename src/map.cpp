@@ -67,6 +67,7 @@ void map::update()
     if (pos > 0)
     {
         currentIndex = 0;
+        std::cerr << "in\n";
     }
     else
     {
@@ -104,6 +105,8 @@ void map::update()
     int u;
 
     river.clear();
+
+    std::cerr << "current block : " << this->currentIndex << " : " << this->blocks.size() << std::endl;
 
     for (int i = currentIndex; i < blocks.size(); i++)
     {
@@ -250,12 +253,25 @@ void map::draw()
 
     _data->_window->draw(background);
 
+    std::cerr << "block size: " << blocks.size() << std::endl;
+    //size ò enemies car....
+    std::cerr << "enemies size: " << enemies.size() << std::endl;
+    std::cerr << "enemies2 size: " << enemies2.size() << std::endl;
+    std::cerr << "animals size: " << animals.size() << std::endl;
+
+
     for (int i = currentIndex; i < blocks.size(); i++)
     {
         // std::cout << "current block : " << this->currentIndex << " : " << this->blocks.size() << std::endl;
         if (currentIndex < blocks.size())
-            // blocks[i]->setpos(pos);
+        // blocks[i]->setpos(pos);
+        {
             blocks[i]->draw();
+            // std::cerr << blocks[i]->getTerrainName() << std::endl;
+            // std::cerr<< blocks[i]->getpos().x << " " << blocks[i]->getpos().y << std::endl;
+            std::cerr << i << std::endl;
+            std::cerr << blocks[i]->getTerrainName() << std::endl;
+        }
     }
     // draw the car
     for (int i = 0; i < enemies.size(); i++)
@@ -296,6 +312,9 @@ void map::addblock(std::string terrainName)
 
     newblock->init(terrainName, this->pos1, true, false);
     blocks.push_back(newblock);
+
+    std::cerr << "pos1 in texture: " << pos1.x << " " << pos1.y << "\n";
+
     if (addedroad == true)
     {
         newRoadIdx = blocks.size() - 1;
@@ -475,6 +494,7 @@ void map::loadGame()
 
         // load currentIndex
         saveFile.read((char *)&currentIndex, sizeof(int));
+        std::cerr << "Current index: " << currentIndex << std::endl;
 
         // load pos1
         saveFile.read((char *)&pos1.x, sizeof(float));
@@ -520,7 +540,7 @@ void map::loadGame()
             // blocks.push_back(newblock);
         }
 
-        //return original value
+        // return original value
         pos1 = temp;
 
         // enemies = car

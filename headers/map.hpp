@@ -33,7 +33,7 @@ protected:
     std ::vector<Animal *> animals;
     sf::Texture backgroundTexture;
 
-    void loadGame();
+    virtual void loadGame();
     virtual void saveGame();
 
     virtual bool isEasy()
@@ -84,7 +84,7 @@ public:
     virtual void init();
     void processInput();
     void update();
-    void draw();
+    virtual void draw();
     void createmap();
     void addblock(std::string terrainName);
     sf::RectangleShape background;
