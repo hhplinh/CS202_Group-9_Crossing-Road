@@ -254,11 +254,10 @@ void map::draw()
     _data->_window->draw(background);
 
     std::cerr << "block size: " << blocks.size() << std::endl;
-    //size ò enemies car....
+    // size ò enemies car....
     std::cerr << "enemies size: " << enemies.size() << std::endl;
     std::cerr << "enemies2 size: " << enemies2.size() << std::endl;
     std::cerr << "animals size: " << animals.size() << std::endl;
-
 
     for (int i = currentIndex; i < blocks.size(); i++)
     {
@@ -516,6 +515,8 @@ void map::loadGame()
         // load block size
         int blockSize;
         saveFile.read((char *)&blockSize, sizeof(int));
+        
+        blocks.clear();
 
         // load block terrain name
         for (int i = 0; i < blockSize; i++)
@@ -532,7 +533,6 @@ void map::loadGame()
             saveFile.read((char *)&blockPos, sizeof(sf::Vector2f));
 
             // block *newblock = new block(_data);
-            blocks.clear();
             std::cerr << terrainName << std::endl;
             std::cerr << "Loading block\n";
             pos1 = blockPos;
