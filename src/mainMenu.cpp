@@ -1,4 +1,5 @@
 #include "mainMenu.hpp"
+#include "loadMapLevel.hpp"
 #include "diffiMenu.hpp"
 #include "map.hpp"
 
@@ -90,7 +91,14 @@ void mainMenu::update()
     {
         m_buttonsPressed[LOAD] = false;
         // Implement your "Load Game" logic here
-        _data->_states->addState(new map(_data));
+        if (_data->_assets->isEasyLevelSavedGame() == true)
+        {
+            _data->_states->addState(new mapeasyLoad(_data));
+        }
+        else
+        {
+            _data->_states->addState(new mapLoad(_data));
+        }
     }
     else if (m_buttonsPressed[SETTINGS])
     {

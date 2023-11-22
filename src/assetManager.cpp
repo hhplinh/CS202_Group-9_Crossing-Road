@@ -77,3 +77,14 @@ bool assetManager::removeSavedGameFile()
 		return 1;
 	}
 }
+
+bool assetManager::isEasyLevelSavedGame()
+{
+	std::ifstream file(PATH_SAVED_GAME, std::ios::binary);
+	if (file.good())
+	{
+		file.read((char *)&isEasyLevelSaved, sizeof(bool));
+		return isEasyLevelSaved;
+	}
+	return 1;
+}

@@ -19,12 +19,6 @@ void map::init()
     this->river.clear();
     this->length = 10;
 
-    if (_data->_assets->isGameSaved() == true)
-    {
-        loadGame();
-        return;
-    }
-
     // set player position to the bottom of the screen
     pos1.x = 0;
     pos1.y = 906;
@@ -32,6 +26,7 @@ void map::init()
     this->currentIndex = 0;
     createmap();
 }
+
 void map::processInput()
 {
     sf::Event event;
@@ -380,13 +375,19 @@ map::~map()
 // */
 
 // save game to a binary file, if that file exists, simply read info into it, if not create a new one
-void map::saveGame()
+ void map::saveGame()
 {
-    std::cerr << "Saving game\n";
+    bool isEasyLevel = isEasy();
+
+
+    _data->_assets->setEasyLevelSavedGame(isEasyLevel);
     std::ofstream saveFile(_data->_assets->getSavedGamePath(), std::ios::binary);
 
     if (saveFile.is_open())
     {
+        //save bool isEasyLevelSaved
+        saveFile.write((char *)&isEasyLevel, sizeof(bool));
+
         // save currentIndex
         saveFile.write((char *)&currentIndex, sizeof(int));
 
@@ -402,7 +403,7 @@ void map::saveGame()
         int blockSize = blocks.size();
         saveFile.write((char *)&blockSize, sizeof(int));
 
-        // save block terrain name
+        // save block terrain name and position
         for (int i = 0; i < blockSize; i++)
         {
             std::string terrainName = blocks[i]->getTerrainName();
@@ -410,12 +411,8 @@ void map::saveGame()
             saveFile.write((char *)&len, sizeof(int));
             saveFile.write(terrainName.c_str(), len);
 
-            std::cerr << "Saving block\n";
-            std::cerr << terrainName << std::endl;
-            std::cerr << len << std::endl;
-
-            sf::Vector2f blockPos = blocks[i]->getpos();
-            saveFile.write((char *)&blockPos, sizeof(sf::Vector2f));
+            // sf::Vector2f blockPos = blocks[i]->getpos();
+            // saveFile.write((char *)&blockPos, sizeof(sf::Vector2f));
         }
 
         // enemies = car
@@ -447,7 +444,6 @@ void map::saveGame()
         saveFile.write((char *)&animalsSize, sizeof(int));
     }
     saveFile.close();
-    std::cerr << "Saved game\n";
 }
 
 void map::loadGame()
@@ -462,6 +458,10 @@ void map::loadGame()
     saveFile.open(_data->_assets->getSavedGamePath(), std::ios::binary);
     if (saveFile.is_open())
     {
+        // load bool isEasyLevelSaved
+        bool isEasyLevelSaved;
+        saveFile.read((char *)&isEasyLevelSaved, sizeof(bool));
+
         // load currentIndex
         saveFile.read((char *)&currentIndex, sizeof(int));
 
@@ -474,12 +474,10 @@ void map::loadGame()
         saveFile.read((char *)&playerPos, sizeof(sf::Vector2f));
         player->setPosition(playerPos.x, playerPos.y);
 
-        std::cerr << "Player position: " << playerPos.x << " " << playerPos.y << std::endl;
 
         // load block size
         int blockSize;
         saveFile.read((char *)&blockSize, sizeof(int));
-        std::cerr << "load block size\n";
 
         // load block terrain name
         for (int i = 0; i < blockSize; i++)
@@ -495,13 +493,12 @@ void map::loadGame()
             // sf::Vector2f blockPos;
             // saveFile.read((char *)&blockPos, sizeof(sf::Vector2f));
 
-            block *newblock = new block(_data);
-            // newblock->init(terrainName, blockPos, true, false);
+            // block *newblock = new block(_data);
             blocks.clear();
             std::cerr << terrainName << std::endl;
             std::cerr << "Loading block\n";
             addblock(terrainName);
-            blocks.push_back(newblock);
+            // blocks.push_back(newblock);
         }
 
         // enemies = car
@@ -519,7 +516,6 @@ void map::loadGame()
         //     newcar->setposcar(enemyPos);
         //     enemies.push_back(newcar);
         // }
-        std::cerr << "Loading enemies\n";
 
         // enemies2 = cano
         // load enemies2 size
@@ -535,12 +531,10 @@ void map::loadGame()
         //     newCano->setPosCano(enemy2Pos);
         //     enemies2.push_back(newCano);
         // }
-        std::cerr << "Loading enemies2\n";
 
         // load animals size
         int animalsSize;
         saveFile.read((char *)&animalsSize, sizeof(int));
-        std::cerr << "Loading animals\n";
     }
     std::cerr << "Loading saved file\n";
     saveFile.close();

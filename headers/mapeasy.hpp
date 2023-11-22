@@ -1,20 +1,21 @@
-#include"map.hpp"
+#include "map.hpp"
 #include "maincharactereasy.hpp"
+#include <fstream>
 class mapeasy : public map
 {
-  private :
-  
-  public:
-  mapeasy( data * _data):map(_data)
-  {   
+private:
+
+public:
+  mapeasy(data *_data) : map(_data)
+  {
   }
 
   void init()
   {
-  
+
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
-    
+
     maincharactereasy *p1 = new maincharactereasy(_data);
     this->player = p1;
     this->player->init();
@@ -23,17 +24,16 @@ class mapeasy : public map
     this->river.clear();
     this->length = 10;
 
-    if (_data->_assets->isGameSaved() == true)
-    {
-        loadGame();
-        return;
-    }
-
     pos1.x = 0;
     pos1.y = 906;
     this->currentIndex = 0;
 
     this->createmap();
-   
-}
-  };
+  }
+
+  bool isEasy()
+  {
+    return 1;
+  }
+
+};

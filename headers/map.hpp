@@ -34,7 +34,12 @@ protected:
     sf::Texture backgroundTexture;
 
     void loadGame();
-    void saveGame();
+    virtual void saveGame();
+
+    virtual bool isEasy()
+    {
+        return 0;
+    }
 
 public:
     Cano *currentBoat = NULL;
