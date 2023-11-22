@@ -23,6 +23,17 @@ public:
     void setSpeed(float speed);
     float getSpeed();
     void floatOnRiver();
-
+    sf::Sprite  getSprite(){
+        
+        return this->sprite;
+    }
+    float getspeed( )
+    {
+        return this->speed;
+    }
     sf::Vector2f getPosCano();
+    bool getgoR()
+    {
+        return this->isMovingRight;
+    }
 };

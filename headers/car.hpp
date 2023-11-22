@@ -48,12 +48,12 @@ class car : public sf::Drawable
       sprite.setTexture( _data->_assets->getTexture(CAR));
      
     int z;
-    this->speed=3;
+    this->speed=30;
       z= rand()%2;
       if ( z==1)
       {
             this->istoright=true;
-          this->sprite.setPosition(1000,0);
+          this->sprite.setPosition(0,0);
         }
         else
         {

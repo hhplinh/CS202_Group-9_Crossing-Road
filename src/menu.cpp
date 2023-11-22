@@ -6,7 +6,7 @@
 #include "endgameMenu.hpp"
 
 menu::menu(data *data) : _data(data)
-{
+{   _data->_assets-> addTexture(TRAFFICLIGHT , "resources//Texture//Traffic light.png");
     _data->_assets->addTexture(BACKGROUND, "resources//Texture//bgMenu.png");
     _data->_assets->addTexture(ROAD, "resources//Texture//road.png");
     _data->_assets->addTexture(RIVER, "resources//Texture//River.png");
@@ -20,12 +20,14 @@ menu::menu(data *data) : _data(data)
     _data->_assets->addTexture(CAR5, "resources//Texture//Car 5.png");
     _data->_assets->addTexture(CANO, "resources//Texture//Cano.png");
     _data->_assets->addTexture(CANO2, "resources//Texture//Cano 2.png");
-    _data->_assets->addTexture(COP, "resources//Texture//Cop.png");
+    _data->_assets->addTexture(COP, "resources//Texture//cop.png");
     _data->_assets->addTexture(VOI, "resources//Texture//Voi.png");
     _data->_assets->addTexture(GAU, "resources//Texture//Gau.png");
     _data->_assets->addTexture(TEGIAC, "resources//Texture//Tegiac.png");
     _data->_assets->addTexture(LACDA, "resources//Texture//Lacda.png");
     _data->_assets->addTexture(PENGUIN, "resources//Texture//Penguin.png");
+       
+    _data->_assets->addTexture(DIRT, "resources//Texture//dirt.png");
     background.setTexture(&_data->_assets->getTexture(BACKGROUND));
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
