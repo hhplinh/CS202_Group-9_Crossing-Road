@@ -19,7 +19,11 @@ void map::init()
     this->river.clear();
     this->length = 10;
 
-    loadGame();
+    if (_data->_assets->isGameSaved() == true)
+    {
+        loadGame();
+        return;
+    }
 
     // set player position to the bottom of the screen
     pos1.x = 0;
@@ -480,7 +484,7 @@ void map::loadGame()
             saveFile.read((char *)&blockPos, sizeof(sf::Vector2f));
 
             block *newblock = new block(_data);
-        std::cerr << "Loading block\n";
+            std::cerr << "Loading block\n";
             newblock->init(terrainName, blockPos, true, false);
             blocks.push_back(newblock);
         }
@@ -523,6 +527,6 @@ void map::loadGame()
         saveFile.read((char *)&animalsSize, sizeof(int));
         std::cerr << "Loading animals\n";
     }
-        std::cerr << "Loading saved file\n";
+    std::cerr << "Loading saved file\n";
     saveFile.close();
 }
