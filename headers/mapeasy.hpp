@@ -23,7 +23,11 @@ class mapeasy : public map
     this->river.clear();
     this->length = 10;
 
-    loadGame();
+    if (_data->_assets->isGameSaved() == true)
+    {
+        loadGame();
+        return;
+    }
 
     pos1.x = 0;
     pos1.y = 906;
