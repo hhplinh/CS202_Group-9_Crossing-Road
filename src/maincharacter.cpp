@@ -178,7 +178,7 @@ void maincharacter::update() {
 }
 
   void maincharacter::updateStamina() {
-    std::cout << "Stamina: " << stamina << ", Up: " << movingUp << ", Left: " << movingLeft << ", Right: " << movingRight << ", Recovery: " << staminaRecoveryRate << ", Drain: " << staminaDrainRate << std::endl;
+    // std::cout << "Stamina: " << stamina << ", Up: " << movingUp << ", Left: " << movingLeft << ", Right: " << movingRight << ", Recovery: " << staminaRecoveryRate << ", Drain: " << staminaDrainRate << std::endl;
 
     
         if (!movingUp && !movingLeft && !movingRight||((movingUp || movingLeft || movingRight)&&isFallen)) {

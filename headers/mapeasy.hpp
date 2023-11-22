@@ -8,24 +8,28 @@ class mapeasy : public map
   mapeasy( data * _data):map(_data)
   {   
   }
+
   void init()
   {
   
-    pos1.x = 0;
-    pos1.y = 906;
+    background.setSize(sf::Vector2f(1920, 1080));
+    background.setFillColor(sf::Color::White);
+    
     maincharactereasy *p1 = new maincharactereasy(_data);
     this->player = p1;
-  
     this->player->init();
     this->blocks.clear();
 
-    this->currentIndex = 0;
-
     this->river.clear();
     this->length = 10;
+
+    loadGame();
+
+    pos1.x = 0;
+    pos1.y = 906;
+    this->currentIndex = 0;
+
     this->createmap();
    
-    background.setSize(sf::Vector2f(1920, 1080));
-    background.setFillColor(sf::Color::White);
 }
   };

@@ -18,7 +18,7 @@ protected:
 	sf::Sprite _bgSprite;
 	const sf::Color THEME_COLOR = sf::Color(248, 153, 56, 255);
 
-	const std::string PATH_SAVED_GAME = "save.txt";
+	const std::string PATH_SAVED_GAME = "save.bin";
 
 
 public:
@@ -37,6 +37,9 @@ public:
 
 	sf::Color getThemeColor() { return THEME_COLOR; }
 	bool isGameSaved();
+
+	std::string getSavedGamePath() { return PATH_SAVED_GAME; }
+	bool removeSavedGameFile();
 };
 
 

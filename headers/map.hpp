@@ -32,6 +32,9 @@ protected:
     std ::vector<Animal *> animals;
     sf::Texture backgroundTexture;
 
+    void loadGame();
+    void saveGame();
+
 public:
     Cano *currentBoat = NULL;
     Cano *nextBoat = NULL;
@@ -61,6 +64,9 @@ public:
     std::vector<sf ::Vector2f> grasspos;
     map(data *data);
     map();
+    // virtual ~map();
+    ~map();
+
     void addcar();
     bool addedroad = false;
     bool addedRiver = false;
@@ -69,35 +75,6 @@ public:
     int newRoadIdx = -1;
     int newRiverIdx = -1;
     int newTrafficLightIdx = -1;
-    ~map()
-    {   // delete dynamically alocated memory
-        // reset view
-        _data->_window->setView(_data->_window->getDefaultView());
-        // delete all the block and enemies
-
-        for (int i = 0; i < blocks.size(); i++)
-        {
-            delete blocks[i];
-        }
-        for (int i = 0; i < enemies.size(); i++)
-        {
-            delete enemies[i];
-        }
-        for (int i = 0; i < enemies2.size(); i++)
-        {
-            delete enemies2[i];
-        }
-        for (int i = 0; i < trafficlights.size(); i++)
-        {
-            delete trafficlights[i];
-        }
-        for (int i = 0; i < animals.size(); i++)
-        {
-            delete animals[i];
-        }
-
-        delete this->player;
-    }
     virtual void init();
     void processInput();
     void update();
@@ -105,5 +82,4 @@ public:
     void createmap();
     void addblock(std::string terrainName);
     sf::RectangleShape background;
-
 };

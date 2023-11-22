@@ -1,13 +1,12 @@
-#include"assetManager.h"
+#include "assetManager.h"
 #include <fstream>
+#include <cstdio>
 
 assetManager::assetManager()
 {
-
 }
 assetManager::~assetManager()
 {
-
 }
 void assetManager::addTexture(int id, std::string filePath)
 {
@@ -26,16 +25,16 @@ void assetManager::addFont(int id, std::string filePath)
 	}
 }
 
-sf::Texture& assetManager::getTexture(int id)
+sf::Texture &assetManager::getTexture(int id)
 {
 	return _textures[id];
 }
-sf::Font& assetManager::getFont(int id)
+sf::Font &assetManager::getFont(int id)
 {
 	return _fonts[id];
 }
 
-void assetManager::setBackgroundTexture(const sf::Texture& texture)
+void assetManager::setBackgroundTexture(const sf::Texture &texture)
 {
 	_backgroundTexture = texture;
 }
@@ -45,7 +44,7 @@ sf::Texture assetManager::getBackgroundTexture()
 	return _backgroundTexture;
 }
 
-void assetManager::setBackgroundSprite(const sf::Sprite& sprite)
+void assetManager::setBackgroundSprite(const sf::Sprite &sprite)
 {
 	_bgSprite = sprite;
 }
@@ -63,4 +62,18 @@ bool assetManager::isGameSaved()
 		return 1;
 	}
 	return 0;
+}
+
+bool assetManager::removeSavedGameFile()
+{
+	if (remove(PATH_SAVED_GAME.c_str()) != 0)
+	{
+		perror("Error deleting file");
+		return 0;
+	}
+	else
+	{
+		puts("File successfully deleted");
+		return 1;
+	}
 }
