@@ -47,6 +47,11 @@ void map::processInput()
                 mescpressed = true;
             }
         }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        {
+            savePressed = true;
+        }
     }
 }
 void map::update()
@@ -216,6 +221,12 @@ void map::update()
         }
     }
 
+    if (savePressed)
+    {
+        saveGame();
+        savePressed = false;
+    }
+
     if (mescpressed == true)
     {
         backgroundTexture.create(_data->_window->getSize().x, _data->_window->getSize().y);
@@ -226,6 +237,7 @@ void map::update()
         _data->_window->setView(_data->_window->getDefaultView());
         _data->_states->addState((new menuPause(_data)), false);
     }
+
     for (int i = 0; i < trafficlights.size(); i++)
     {
         trafficlights[i]->turn();
@@ -371,7 +383,6 @@ void map::saveGame()
 
     if (saveFile.is_open())
     {
-
         // save currentIndex
         saveFile.write((char *)&currentIndex, sizeof(int));
 
@@ -403,11 +414,11 @@ void map::saveGame()
         saveFile.write((char *)&enemiesSize, sizeof(int));
 
         // save enemies position
-        for (int i = 0; i < enemiesSize; i++)
-        {
-            sf::Vector2f enemyPos = enemies[i]->getposcar();
-            saveFile.write((char *)&enemyPos, sizeof(sf::Vector2f));
-        }
+        // for (int i = 0; i < enemiesSize; i++)
+        // {
+        //     sf::Vector2f enemyPos = enemies[i]->getposcar();
+        //     saveFile.write((char *)&enemyPos, sizeof(sf::Vector2f));
+        // }
 
         // enemies2 = cano
         //  save enemies2 size
@@ -415,11 +426,11 @@ void map::saveGame()
         saveFile.write((char *)&enemies2Size, sizeof(int));
 
         // save enemies2 position
-        for (int i = 0; i < enemies2.size(); i++)
-        {
-            sf::Vector2f enemy2Pos = enemies2[i]->getPosCano();
-            saveFile.write((char *)&enemy2Pos, sizeof(sf::Vector2f));
-        }
+        // for (int i = 0; i < enemies2.size(); i++)
+        // {
+        //     sf::Vector2f enemy2Pos = enemies2[i]->getPosCano();
+        //     saveFile.write((char *)&enemy2Pos, sizeof(sf::Vector2f));
+        // }
 
         // save animals size
         int animalsSize = animals.size();
@@ -440,8 +451,6 @@ void map::loadGame()
     saveFile.open(_data->_assets->getSavedGamePath(), std::ios::binary);
     if (saveFile.is_open())
     {
-        std::cerr << "Loading saved file\n";
-
         // load currentIndex
         saveFile.read((char *)&currentIndex, sizeof(int));
 
@@ -454,9 +463,12 @@ void map::loadGame()
         saveFile.read((char *)&playerPos, sizeof(sf::Vector2f));
         player->setPosition(playerPos.x, playerPos.y);
 
+        std::cerr << "Player position: " << playerPos.x << " " << playerPos.y << std::endl;
+
         // load block size
         int blockSize;
         saveFile.read((char *)&blockSize, sizeof(int));
+        std::cerr << "load block size\n";
 
         // load block position and terrain name
         for (int i = 0; i < blockSize; i++)
@@ -468,24 +480,27 @@ void map::loadGame()
             saveFile.read((char *)&blockPos, sizeof(sf::Vector2f));
 
             block *newblock = new block(_data);
+        std::cerr << "Loading block\n";
             newblock->init(terrainName, blockPos, true, false);
             blocks.push_back(newblock);
         }
+
         // enemies = car
         //  load enemies size
         int enemiesSize;
         saveFile.read((char *)&enemiesSize, sizeof(int));
 
-        // load enemies position
-        for (int i = 0; i < enemiesSize; i++)
-        {
-            sf::Vector2f enemyPos;
-            saveFile.read((char *)&enemyPos, sizeof(sf::Vector2f));
+        // // load enemies position
+        // for (int i = 0; i < enemiesSize; i++)
+        // {
+        //     sf::Vector2f enemyPos;
+        //     saveFile.read((char *)&enemyPos, sizeof(sf::Vector2f));
 
-            car *newcar = new car(_data);
-            newcar->setposcar(enemyPos);
-            enemies.push_back(newcar);
-        }
+        //     car *newcar = new car(_data);
+        //     newcar->setposcar(enemyPos);
+        //     enemies.push_back(newcar);
+        // }
+        std::cerr << "Loading enemies\n";
 
         // enemies2 = cano
         // load enemies2 size
@@ -493,18 +508,21 @@ void map::loadGame()
         saveFile.read((char *)&enemies2Size, sizeof(int));
 
         // load enemies2 position
-        for (int i = 0; i < enemies2Size; i++)
-        {
-            sf::Vector2f enemy2Pos;
-            saveFile.read((char *)&enemy2Pos, sizeof(sf::Vector2f));
-            Cano *newCano = new Cano(_data);
-            newCano->setPosCano(enemy2Pos);
-            enemies2.push_back(newCano);
-        }
+        // for (int i = 0; i < enemies2Size; i++)
+        // {
+        //     sf::Vector2f enemy2Pos;
+        //     saveFile.read((char *)&enemy2Pos, sizeof(sf::Vector2f));
+        //     Cano *newCano = new Cano(_data);
+        //     newCano->setPosCano(enemy2Pos);
+        //     enemies2.push_back(newCano);
+        // }
+        std::cerr << "Loading enemies2\n";
 
         // load animals size
         int animalsSize;
         saveFile.read((char *)&animalsSize, sizeof(int));
+        std::cerr << "Loading animals\n";
     }
+        std::cerr << "Loading saved file\n";
     saveFile.close();
 }

@@ -20,6 +20,7 @@ class map : public state
 protected:
     sf::Vector2f pos1;
     bool mescpressed = false;
+    bool savePressed = false;
     std ::vector<block *> blocks;
     data *_data;
     std ::vector<car *> enemies;
