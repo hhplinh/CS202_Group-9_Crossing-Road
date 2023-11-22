@@ -30,6 +30,15 @@ if(terrainName == "road")
       this->isPassable=true;
       
       }
+       if(terrainName == "dirt")
+      {
+          
+      sprite.setTexture( _data->_assets->getTexture(DIRT));
+      sprite.setPosition(pos);
+      this->isPassable=true;
+      
+      }
+
 }
 void block::draw()
 {

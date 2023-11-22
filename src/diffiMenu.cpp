@@ -1,7 +1,7 @@
 #include "diffiMenu.hpp"
 #include "maincharacter.hpp"
 #include "map.hpp"
-
+#include"mapeasy.hpp"
 diffiMenu::diffiMenu(data *data) : menu(data)
 {
 
@@ -79,16 +79,16 @@ void diffiMenu::processInput()
 }
 
 void diffiMenu::update()
-{ 
+{  
     if (m_buttonsPressed[EASY])
-    {
+    {   ;
         m_buttonsPressed[EASY] = false;
-        // _data->_states->addState(new maincharacter(_data));
+         _data->_states->addState(new mapeasy(_data));
     }
     else if (m_buttonsPressed[DIFFICULT])
     {
         m_buttonsPressed[DIFFICULT] = false;
-        // _data->_states->addState(new maincharacter(_data));
+         _data->_states->addState(new map(_data));
     }
     else if (m_buttonsPressed[BACK])
     {

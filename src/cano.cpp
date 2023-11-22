@@ -49,7 +49,8 @@ void Cano::floatOnRiver() {
     if (isMovingRight) {
         sprite.move(speed, 0);
     }
-    else {
+    else 
+    {   
         sprite.move(-speed, 0);
     }
 }

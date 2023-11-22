@@ -2,7 +2,7 @@
 
 void maincharacter::init()
 {
-    // _data->_assets->addTexture(PENGUIN, "resources//Penguin.png");
+   
 
     row = 5;
     col = 8;
@@ -22,7 +22,7 @@ void maincharacter::init()
     camera.setSize(1920, 1080);
 
     // Center the camera on the player
-    camera.setCenter(1920 / 2, 1080 / 2);
+    camera.setCenter(1920 , 1080 );
 
     // Set the initial view to the camera
     _data->_window->setView(camera);
@@ -71,7 +71,7 @@ void maincharacter::move()
         int xtexture = (p.getTextureRect().left + size.x) % (size.x * 4);
         p.setTextureRect(sf::IntRect(xtexture, size.y, size.x, size.y));
         p.move(0, -10);
-            moved = true;
+        moved = true;
 
         
     }
@@ -80,7 +80,7 @@ void maincharacter::move()
         int xtexture = (p.getTextureRect().left + size.x) % (size.x * col);
         p.setTextureRect(sf::IntRect(xtexture, size.y * 3, size.x, size.y));
         p.move(-10, 0);
-          moved = true;
+        moved = true;
 
     
     }
@@ -98,7 +98,7 @@ sf::Vector2f maincharacter::getPosition()
     p.getPosition();
     return p.getPosition();
 }
-void maincharacter::setPosition(int x, int y)
+void maincharacter::setPosition(float x, float y)
 {
     p.setPosition(x, y);
 }
@@ -112,16 +112,6 @@ void maincharacter::processInput(sf ::Event event)
             _data->_window->close();
         }
         
-        //popstate //change to is key release
-
-     // else if( sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-       // {
-       //  mApressed = true;
-       // }
-       
-   // }
-
-    // Handle the start of the movement
     if (event.type == sf::Event::KeyPressed) {
         switch (event.key.code) {
             case sf::Keyboard::Right:
@@ -191,15 +181,16 @@ void maincharacter::update() {
     std::cout << "Stamina: " << stamina << ", Up: " << movingUp << ", Left: " << movingLeft << ", Right: " << movingRight << ", Recovery: " << staminaRecoveryRate << ", Drain: " << staminaDrainRate << std::endl;
 
     
-        if (!movingUp && !movingLeft && !movingRight) {
+        if (!movingUp && !movingLeft && !movingRight||((movingUp || movingLeft || movingRight)&&isFallen)) {
             if (stamina + staminaRecoveryRate < MAX_STAMINA) {
                 stamina += staminaRecoveryRate;
             } else {
                 stamina = MAX_STAMINA;
             }
-        } else {
+        } else  {
             stamina = std::max(stamina - staminaDrainRate, 0.0f);
         }
+  
         displayStamina();
     
 }
