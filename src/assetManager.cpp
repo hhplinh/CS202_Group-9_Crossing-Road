@@ -1,4 +1,6 @@
 #include"assetManager.h"
+#include <fstream>
+
 assetManager::assetManager()
 {
 
@@ -51,4 +53,14 @@ void assetManager::setBackgroundSprite(const sf::Sprite& sprite)
 sf::Sprite assetManager::getBackgroundSprite()
 {
 	return _bgSprite;
+}
+
+bool assetManager::isGameSaved()
+{
+	std::ifstream file(PATH_SAVED_GAME);
+	if (file.good())
+	{
+		return 1;
+	}
+	return 0;
 }

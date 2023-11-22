@@ -1,6 +1,7 @@
 #pragma once
 #include"SFML/Graphics.hpp"
 #include <vector>
+#include <string>
 
 enum
 {
@@ -16,7 +17,9 @@ protected:
 	sf::Texture _backgroundTexture;
 	sf::Sprite _bgSprite;
 	const sf::Color THEME_COLOR = sf::Color(248, 153, 56, 255);
-	bool isGameSaved = 1;
+
+	const std::string PATH_SAVED_GAME = "save.txt";
+
 
 public:
 	assetManager();
@@ -33,8 +36,7 @@ public:
 	sf::Sprite getBackgroundSprite();
 
 	sf::Color getThemeColor() { return THEME_COLOR; }
-	bool getIsGameSaved() { return isGameSaved; }
-	void setIsGameSaved(bool isSaved) { isGameSaved = isSaved; }
+	bool isGameSaved();
 };
 
 
