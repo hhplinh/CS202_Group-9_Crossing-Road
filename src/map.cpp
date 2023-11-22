@@ -67,7 +67,6 @@ void map::update()
     if (pos > 0)
     {
         currentIndex = 0;
-        std::cerr << "in\n";
     }
     else
     {
@@ -105,8 +104,6 @@ void map::update()
     int u;
 
     river.clear();
-
-    std::cerr << "current block : " << this->currentIndex << " : " << this->blocks.size() << std::endl;
 
     for (int i = currentIndex; i < blocks.size(); i++)
     {
@@ -253,12 +250,6 @@ void map::draw()
 
     _data->_window->draw(background);
 
-    std::cerr << "block size: " << blocks.size() << std::endl;
-    // size ò enemies car....
-    std::cerr << "enemies size: " << enemies.size() << std::endl;
-    std::cerr << "enemies2 size: " << enemies2.size() << std::endl;
-    std::cerr << "animals size: " << animals.size() << std::endl;
-
     for (int i = currentIndex; i < blocks.size(); i++)
     {
         // std::cout << "current block : " << this->currentIndex << " : " << this->blocks.size() << std::endl;
@@ -266,10 +257,6 @@ void map::draw()
         // blocks[i]->setpos(pos);
         {
             blocks[i]->draw();
-            // std::cerr << blocks[i]->getTerrainName() << std::endl;
-            // std::cerr<< blocks[i]->getpos().x << " " << blocks[i]->getpos().y << std::endl;
-            std::cerr << i << std::endl;
-            std::cerr << blocks[i]->getTerrainName() << std::endl;
         }
     }
     // draw the car
@@ -311,9 +298,6 @@ void map::addblock(std::string terrainName)
 
     newblock->init(terrainName, this->pos1, true, false);
     blocks.push_back(newblock);
-    std::cerr << "block size add block: " << blocks.size() << std::endl;
-
-    std::cerr << "pos1 in texture: " << pos1.x << " " << pos1.y << "\n";
 
     if (addedroad == true)
     {
@@ -339,7 +323,6 @@ map ::map(data *data)
 
 map::~map()
 {
-    std::cerr << "Deleting map\n";
     saveGame();
     // delete dynamically alocated memory
     // reset view
@@ -413,13 +396,11 @@ void map::saveGame()
         saveFile.write((char *)&pos1.x, sizeof(float));
         saveFile.write((char *)&pos1.y, sizeof(float));
 
-        std::cerr << "Pos1: " << pos1.x << " " << pos1.y << "\n";
 
         // save player position
         sf::Vector2f playerPos = player->getPosition();
         saveFile.write((char *)&playerPos, sizeof(sf::Vector2f));
 
-        std::cerr << "Pos: " << playerPos.x << " " << playerPos.y << "\n";
 
         // save block size
         int blockSize = blocks.size();
@@ -436,9 +417,6 @@ void map::saveGame()
             sf::Vector2f blockPos = blocks[i]->getpos();
             saveFile.write((char *)&blockPos, sizeof(sf::Vector2f));
 
-            std::cerr << terrainName << std::endl;
-            std::cerr << "Saving block\n";
-            std::cerr << "Pos: " << blocks[i]->getpos().x << " " << blocks[i]->getpos().y << "\n";
         }
 
         // enemies = car
@@ -446,24 +424,11 @@ void map::saveGame()
         int enemiesSize = enemies.size();
         saveFile.write((char *)&enemiesSize, sizeof(int));
 
-        // save enemies position
-        // for (int i = 0; i < enemiesSize; i++)
-        // {
-        //     sf::Vector2f enemyPos = enemies[i]->getposcar();
-        //     saveFile.write((char *)&enemyPos, sizeof(sf::Vector2f));
-        // }
-
         // enemies2 = cano
         //  save enemies2 size
         int enemies2Size = enemies2.size();
         saveFile.write((char *)&enemies2Size, sizeof(int));
 
-        // save enemies2 position
-        // for (int i = 0; i < enemies2.size(); i++)
-        // {
-        //     sf::Vector2f enemy2Pos = enemies2[i]->getPosCano();
-        //     saveFile.write((char *)&enemy2Pos, sizeof(sf::Vector2f));
-        // }
 
         // save animals size
         int animalsSize = animals.size();
@@ -471,7 +436,6 @@ void map::saveGame()
     }
     saveFile.close();
 
-    std::cerr << "Saving game\n";
 }
 
 void map::loadGame()
@@ -486,15 +450,12 @@ void map::loadGame()
     saveFile.open(_data->_assets->getSavedGamePath(), std::ios::binary);
     if (saveFile.is_open())
     {
-        std::cerr << "Loading saved file\n";
-
         // load bool isEasyLevelSaved
         bool isEasyLevelSaved;
         saveFile.read((char *)&isEasyLevelSaved, sizeof(bool));
 
         // load currentIndex
         saveFile.read((char *)&currentIndex, sizeof(int));
-        std::cerr << "Current index: " << currentIndex << std::endl;
 
         // load pos1
         saveFile.read((char *)&pos1.x, sizeof(float));
@@ -503,19 +464,15 @@ void map::loadGame()
         // save to retrieve later
         sf::Vector2f temp = pos1;
 
-        std::cerr << "Pos1: " << pos1.x << " " << pos1.y << "\n";
-
         // load player position
         sf::Vector2f playerPos;
         saveFile.read((char *)&playerPos, sizeof(sf::Vector2f));
         player->setPosition(playerPos.x, playerPos.y);
 
-        std::cerr << "Pos: " << playerPos.x << " " << playerPos.y << "\n";
-
         // load block size
         int blockSize;
         saveFile.read((char *)&blockSize, sizeof(int));
-        
+
         blocks.clear();
 
         // load block terrain name
@@ -532,54 +489,20 @@ void map::loadGame()
             sf::Vector2f blockPos;
             saveFile.read((char *)&blockPos, sizeof(sf::Vector2f));
 
-            // block *newblock = new block(_data);
-            std::cerr << terrainName << std::endl;
-            std::cerr << "Loading block\n";
             pos1 = blockPos;
             addblock(terrainName);
-            std::cerr << "Pos: " << blocks.back()->getpos().x << " " << blocks.back()->getpos().y << "\n";
-            std::cerr << "\n\nblock size: " << blocks.size() << std::endl;
-            // blocks.push_back(newblock);
         }
 
-        // return original value
         pos1 = temp;
 
-        // enemies = car
-        //  load enemies size
         int enemiesSize;
         saveFile.read((char *)&enemiesSize, sizeof(int));
 
-        // // load enemies position
-        // for (int i = 0; i < enemiesSize; i++)
-        // {
-        //     sf::Vector2f enemyPos;
-        //     saveFile.read((char *)&enemyPos, sizeof(sf::Vector2f));
-
-        //     car *newcar = new car(_data);
-        //     newcar->setposcar(enemyPos);
-        //     enemies.push_back(newcar);
-        // }
-
-        // enemies2 = cano
-        // load enemies2 size
         int enemies2Size;
         saveFile.read((char *)&enemies2Size, sizeof(int));
 
-        // load enemies2 position
-        // for (int i = 0; i < enemies2Size; i++)
-        // {
-        //     sf::Vector2f enemy2Pos;
-        //     saveFile.read((char *)&enemy2Pos, sizeof(sf::Vector2f));
-        //     Cano *newCano = new Cano(_data);
-        //     newCano->setPosCano(enemy2Pos);
-        //     enemies2.push_back(newCano);
-        // }
-
-        // load animals size
         int animalsSize;
         saveFile.read((char *)&animalsSize, sizeof(int));
     }
-    std::cerr << "Loading saved file\n";
     saveFile.close();
 }
