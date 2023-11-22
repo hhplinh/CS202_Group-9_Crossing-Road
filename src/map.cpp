@@ -312,6 +312,7 @@ void map::addblock(std::string terrainName)
 
     newblock->init(terrainName, this->pos1, true, false);
     blocks.push_back(newblock);
+    std::cerr << "block size add block: " << blocks.size() << std::endl;
 
     std::cerr << "pos1 in texture: " << pos1.x << " " << pos1.y << "\n";
 
@@ -537,6 +538,7 @@ void map::loadGame()
             pos1 = blockPos;
             addblock(terrainName);
             std::cerr << "Pos: " << blocks.back()->getpos().x << " " << blocks.back()->getpos().y << "\n";
+            std::cerr << "\n\nblock size: " << blocks.size() << std::endl;
             // blocks.push_back(newblock);
         }
 

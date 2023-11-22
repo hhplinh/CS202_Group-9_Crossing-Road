@@ -17,6 +17,8 @@ void mapeasyLoad::init()
   if (_data->_assets->isGameSaved() == true)
   {
     loadGame();
+  std::cerr << "block init" <<blocks.size() << std::endl;
+
     return;
   }
 
@@ -25,6 +27,7 @@ void mapeasyLoad::init()
   this->currentIndex = 0;
 
   this->createmap();
+
 }
 
 
@@ -45,6 +48,7 @@ void mapLoad::init()
   if (_data->_assets->isGameSaved() == true)
   {
     loadGame();
+  std::cerr << "block init" <<blocks.size() << std::endl;
     return;
   }
 
@@ -54,5 +58,6 @@ void mapLoad::init()
 
   this->currentIndex = 0;
   createmap();
+
 }
 
