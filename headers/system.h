@@ -13,6 +13,8 @@ class data
 		_assets = new assetManager;
 		_states = new stateMachine;
 		_window = new sf::RenderWindow;
+
+		std::cerr << "in data constructor\n";
 	}
 	~data()
 	{
