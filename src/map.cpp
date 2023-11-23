@@ -4,6 +4,7 @@
 #include "menuPause.hpp"
 #include "endgameMenu.hpp"
 #include "maincharacter.hpp"
+#include "resumeScreen.hpp"
 
 void map::init()
 { // do not init if resume from pause menu
@@ -228,6 +229,22 @@ void map::update()
     if (savePressed)
     {
         saveGame();
+
+        gameSavedTextNeeded = true;
+        savedTextClock.restart();
+
+        gameSavedText.setFont(_data->_assets->getFont(MAIN_FONT));
+        gameSavedText.setString("Game saved!");
+        gameSavedText.setCharacterSize(110);
+        gameSavedText.setOrigin(gameSavedText.getLocalBounds().width / 2.f, gameSavedText.getLocalBounds().height / 2.f);
+
+        gameSavedText.setFillColor(sf::Color::White);
+        gameSavedText.setOutlineColor(_data->_assets->getThemeColor());
+        gameSavedText.setOutlineThickness(7.f);
+
+        // position below player
+        gameSavedText.setPosition(player->getPosition().x, player->getPosition().y + 400.f);
+
         savePressed = false;
     }
 
@@ -250,6 +267,13 @@ void map::update()
 }
 
 void map::draw()
+{
+    drawTemplate();
+    _data->_window->display();
+
+}
+
+void map::drawTemplate()
 {
     _data->_window->clear();
 
@@ -284,7 +308,17 @@ void map::draw()
     }
 
     player->draw();
-    _data->_window->display();
+
+    // show text for 3 seconds
+    if (gameSavedTextNeeded && savedTextClock.getElapsedTime().asSeconds() >= 3.f)
+    {
+        gameSavedTextNeeded = false;
+    }
+    else if (gameSavedTextNeeded)
+    {
+        _data->_window->draw(gameSavedText);
+    }
+
 }
 
 void map::createmap()
@@ -358,30 +392,7 @@ map::~map()
 
     delete this->player;
 }
-// /*
-// Biến toàn cục: current index //khối cuối màn hình
 
-// -player: x,y
-
-// -Block size
-// -> top -> end of stack
-// Mỗi stack block có position x, y -> vector 2f
-
-// -Enemies
-// Cụ thể: size + x,y mỗi phần tử
-// Car: size
-// Animal: size
-
-// Load # chơi bth: load cái gần nhất
-// Load: class loadMap:  kế thừa map
-// player-> init đổi thành player->setPosition
-// createMap-> loadMap
-
-// ktra file có tồn tại ko, nv chết thì xóa file
-// chỉnh isGameSaved
-// */
-
-// save game to a binary file, if that file exists, simply read info into it, if not create a new one
 void map::saveGame()
 {
     bool isEasyLevel = isEasy();
@@ -401,11 +412,9 @@ void map::saveGame()
         saveFile.write((char *)&pos1.x, sizeof(float));
         saveFile.write((char *)&pos1.y, sizeof(float));
 
-
         // save player position
         sf::Vector2f playerPos = player->getPosition();
         saveFile.write((char *)&playerPos, sizeof(sf::Vector2f));
-
 
         // save block size
         int blockSize = blocks.size();
@@ -421,7 +430,6 @@ void map::saveGame()
 
             sf::Vector2f blockPos = blocks[i]->getpos();
             saveFile.write((char *)&blockPos, sizeof(sf::Vector2f));
-
         }
 
         // enemies = car
@@ -434,13 +442,11 @@ void map::saveGame()
         int enemies2Size = enemies2.size();
         saveFile.write((char *)&enemies2Size, sizeof(int));
 
-
         // save animals size
         int animalsSize = animals.size();
         saveFile.write((char *)&animalsSize, sizeof(int));
     }
     saveFile.close();
-
 }
 
 void map::loadGame()
@@ -510,4 +516,14 @@ void map::loadGame()
         saveFile.read((char *)&animalsSize, sizeof(int));
     }
     saveFile.close();
+}
+
+void map::loadCountdownScreen()
+{
+        // Save window screen to texture
+        backgroundTexture.create(_data->_window->getSize().x, _data->_window->getSize().y);
+        backgroundTexture.update((const sf::RenderWindow &)(*(_data->_window)));
+        _data->_assets->setBackgroundTexture(backgroundTexture);
+
+        _data->_states->addState(new ResumeScreen(_data), false);
 }

@@ -26,8 +26,6 @@ void block::init(std::string terrainName, sf::Vector2f pos, bool isPassable, boo
       sprite.setTexture(_data->_assets->getTexture(GRASS));
       sprite.setPosition(pos);
       this->isPassable = true;
-
-      std::cerr << "loading texture" << std::endl;
    }
    if (terrainName == "dirt")
    {
