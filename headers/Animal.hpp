@@ -15,6 +15,7 @@ class Animal
   
  sf :: Sprite sprite;
   public:
+  sf::Sprite getSprite(){return this->sprite;}
    sf::Clock frameTimer; // Timer to control the frame rate
   const sf::Time frameDuration = sf::seconds(1.f / 10);
    virtual ~Animal() {}

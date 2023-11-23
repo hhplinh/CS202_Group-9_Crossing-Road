@@ -13,6 +13,7 @@
 #include "mapfeature.hpp"
 #include "trafficlight.hpp"
 #include "Animal.hpp"
+#include"endgameMenu.hpp"
 class menuPause;
 class endgameMenu;
 class map : public state
@@ -88,4 +89,26 @@ public:
     void createmap();
     void addblock(std::string terrainName);
     sf::RectangleShape background;
+    void moveToGameOverMenu()
+    {
+        _data->_states->addState(new endgameMenu(_data));
+    }
+    void collisonWithCar( maincharacter *player, car * car1)
+    {
+        if (player->getSprite().getGlobalBounds().intersects(car1->getSprite().getGlobalBounds()))
+        {
+            moveToGameOverMenu();
+        }
+
+    }
+  //collison with animal
+    void collisonWithAnimal( maincharacter *player, Animal * animal1)
+    {
+        if (player->getSprite().getGlobalBounds().intersects(animal1->getSprite().getGlobalBounds()))
+        {
+            moveToGameOverMenu();
+        }
+    
+    }
+
 };
