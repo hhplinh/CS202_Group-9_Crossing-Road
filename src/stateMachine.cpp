@@ -4,13 +4,7 @@ stateMachine::stateMachine() : _add(0), _replace(0), _remove(0)
 }
 stateMachine::~stateMachine()
 {
-	while (!stackState.empty())
-	{
-		state *top = stackState.top();
-		delete top;
-		top = nullptr;
-		stackState.pop();
-	}
+	removeAllState();
 }
 void stateMachine::addState(state *state, bool replace)
 {
@@ -22,6 +16,17 @@ void stateMachine::removeState(bool reinittheprevstate)
 {
 	_remove = 1;
 	_reinit = reinittheprevstate;
+}
+
+void stateMachine::removeAllState()
+{
+	while (!stackState.empty())
+	{
+		state *top = stackState.top();
+		delete top;
+		top = nullptr;
+		stackState.pop();
+	}
 }
 
 void stateMachine::removeStateUntilOne()

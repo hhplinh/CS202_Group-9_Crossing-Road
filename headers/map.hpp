@@ -99,7 +99,7 @@ public:
     sf::RectangleShape background;
     void moveToGameOverMenu()
     {
-        // _data->_states->addState(new endgameMenu(_data), true);
+       
         _data->_states->removeStateUntilOne();
         _data->_states->addState(new endgameMenu(_data));
     }
