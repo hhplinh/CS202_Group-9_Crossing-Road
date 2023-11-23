@@ -56,6 +56,7 @@ public:
     bool floatwithboat(maincharacter *player, Cano *cano1)
     { // set player pos to the middle of the boat
         player->setPosition(cano1->getSprite().getPosition().x + cano1->getSprite().getGlobalBounds().width / 2 - player->size.x / 2, cano1->getSprite().getPosition().y + cano1->getSprite().getGlobalBounds().height / 2 - player->size.y / 2);
+        this->playerIsOnBoat = true;
         return 1;
     }
 
@@ -110,5 +111,7 @@ public:
         }
     
     }
+   
+   
 
 };

@@ -200,6 +200,7 @@ void map::update()
                 {
                     // get off the boat
                     player->setPosition(player->getSprite().getPosition().x, player->getSprite().getPosition().y - 100);
+                    this->playerIsOnBoat = false;
                 }
             }
             else
@@ -208,7 +209,20 @@ void map::update()
                 floatwithboat(player, enemies2[i]);
             }
         }
-
+    //check if player is on river iterate the riverpos
+        for (int i = 0; i < riverPos.size(); i++)
+        {  //check if pos of player is on river (>riverpos[i].y) (<riverpos[i].y+174)
+            if ( player->getSprite().getPosition().y > riverPos[i].y && player->getSprite().getPosition().y < riverPos[i].y + 174-50)
+            {
+                //check if player is on boat
+                if (playerIsOnBoat == false)
+                {
+                    //if not on boat, game over
+                    this->moveToGameOverMenu();
+                }
+            }
+          
+        }
         // Turn the boat around if it goes off-screen
         if (enemies2[i]->getPosCano().x > 1920 || enemies2[i]->getPosCano().x < 0)
         {
