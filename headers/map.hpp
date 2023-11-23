@@ -13,7 +13,7 @@
 #include "mapfeature.hpp"
 #include "trafficlight.hpp"
 #include "Animal.hpp"
-#include"endgameMenu.hpp"
+#include "endgameMenu.hpp"
 class menuPause;
 class endgameMenu;
 class map : public state
@@ -34,14 +34,21 @@ protected:
     std ::vector<Animal *> animals;
     sf::Texture backgroundTexture;
 
+    sf::Text gameSavedText;
+    bool gameSavedTextNeeded = false;
+    sf::Clock savedTextClock;
+
     virtual void loadGame();
     virtual void saveGame();
+
+    void loadCountdownScreen();
 
     virtual bool isEasy()
     {
         return 0;
     }
-  int point;
+    int point;
+
 public:
     Cano *currentBoat = NULL;
     Cano *nextBoat = NULL;
@@ -87,31 +94,30 @@ public:
     void processInput();
     void update();
     virtual void draw();
+    void drawTemplate();
     void createmap();
     void addblock(std::string terrainName);
     sf::RectangleShape background;
     void moveToGameOverMenu()
     {
-        _data->_states->addState(new endgameMenu(_data), true);
+        // _data->_states->addState(new endgameMenu(_data), true);
+        _data->_states->removeStateUntilOne();
+        _data->_states->addState(new endgameMenu(_data));
     }
-    void collisonWithCar( maincharacter *player, car * car1)
+    void collisonWithCar(maincharacter *player, car *car1)
     {
         if (player->getSprite().getGlobalBounds().intersects(car1->getSprite().getGlobalBounds()))
         {
             moveToGameOverMenu();
         }
-
     }
-  //collison with animal
-    void collisonWithAnimal( maincharacter *player, Animal * animal1)
+    // collison with animal
+    void collisonWithAnimal(maincharacter *player, Animal *animal1)
     {
         if (player->getSprite().getGlobalBounds().intersects(animal1->getSprite().getGlobalBounds()))
         {
             moveToGameOverMenu();
         }
-    
     }
-   
-   
 
 };

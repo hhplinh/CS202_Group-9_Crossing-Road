@@ -1,23 +1,25 @@
-
+#include "diffiMenu.hpp"
 #include "endgameMenu.hpp"
-
-
 
 endgameMenu::endgameMenu(data *data) : menu(data)
 {
     m_buttonsSelected.resize(NUM_BUTTONS, false);
     m_buttonsPressed.resize(NUM_BUTTONS, false);
     m_buttonsSelected[0] = true;
+
+    std::cerr << "endgameMenu constructor\n";
 }
 
 endgameMenu::~endgameMenu() {}
 
 void endgameMenu::init()
 {
+    std::cerr << "endgameMenu init\n";
     if (!m_buttons.empty())
     {
         return;
     }
+
 
     // set font, name and origin for each button
     std::string buttonNames[NUM_BUTTONS];
@@ -85,33 +87,43 @@ void endgameMenu::processInput()
         }
     }
     setColorSelect(m_buttons, m_buttonsSelected);
+
+    std::cerr << "endgameMenu processInput\n";
 }
 
 void endgameMenu::update()
 {
-
     if (m_buttonsPressed[RESTART])
     {
         m_buttonsPressed[RESTART] = false;
         _data->_states->removeStateUntilOne();
-       // _data->_states->addState(new maincharacter(_data));
+        _data->_states->addState(new diffiMenu(_data));
     }
     else if (m_buttonsPressed[MAIN_MENU])
     {
         m_buttonsPressed[MAIN_MENU] = false;
         _data->_states->removeStateUntilOne();
     }
+    std::cerr << "endgameMenu update\n";
 }
 
 void endgameMenu::draw()
 {
-    _data->_window->clear();
-    _data->_window->draw(background);
-    _data->_window->draw(score);
-
-    for (int i = 0; i < m_buttons.size(); i++)
+    if (isEventChanged)
     {
-        _data->_window->draw(m_buttons[i]);
+        isEventChanged = 0;
+
+        _data->_window->clear();
+        _data->_window->draw(background);
+        _data->_window->draw(score);
+
+        for (int i = 0; i < m_buttons.size(); i++)
+        {
+            _data->_window->draw(m_buttons[i]);
+        }
+        
+        _data->_window->display();
     }
-    _data->_window->display();
+
+    std::cerr << "endgameMenu draw\n";
 }

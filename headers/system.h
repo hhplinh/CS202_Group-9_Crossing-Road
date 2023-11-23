@@ -13,12 +13,19 @@ class data
 		_assets = new assetManager;
 		_states = new stateMachine;
 		_window = new sf::RenderWindow;
+
+		std::cerr << "in data constructor\n";
 	}
 	~data()
 	{
 		delete _assets;
+		_assets = nullptr;
+
 		delete _states;
+		_states = nullptr;
+
 		delete _window;
+		_window = nullptr;
 	}
 };
 class System

@@ -17,7 +17,6 @@ void mapeasyLoad::init()
   if (_data->_assets->isGameSaved() == true)
   {
     loadGame();
-  std::cerr << "block init" <<blocks.size() << std::endl;
 
     return;
   }
@@ -27,9 +26,7 @@ void mapeasyLoad::init()
   this->currentIndex = 0;
 
   this->createmap();
-
 }
-
 
 void mapLoad::init()
 { // do not init if resume from pause menu
@@ -48,7 +45,6 @@ void mapLoad::init()
   if (_data->_assets->isGameSaved() == true)
   {
     loadGame();
-  std::cerr << "block init" <<blocks.size() << std::endl;
     return;
   }
 
@@ -58,6 +54,29 @@ void mapLoad::init()
 
   this->currentIndex = 0;
   createmap();
-
 }
 
+void mapLoad::draw()
+{
+  drawTemplate();
+  if (isCountdownScreenNeeded == true)
+  {
+    _data->_window->setView(_data->_window->getDefaultView());
+    loadCountdownScreen();
+    isCountdownScreenNeeded = false;
+  }
+  _data->_window->display();
+}
+
+void mapeasyLoad::draw()
+{
+  drawTemplate();
+  if (isCountdownScreenNeeded == true)
+  {
+    _data->_window->setView(_data->_window->getDefaultView());
+    loadCountdownScreen();
+    isCountdownScreenNeeded = false;
+  }
+  _data->_window->display();
+
+}
