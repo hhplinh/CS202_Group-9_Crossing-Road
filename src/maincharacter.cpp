@@ -8,7 +8,7 @@ void maincharacter::init()
     col = 8;
     size = _data->_assets->getTexture(PENGUIN).getSize();
     p.setTexture(_data->_assets->getTexture(PENGUIN));
-    p.setPosition(1920 / 2 + size.x / col, 1080 - size.y / row);
+    p.setPosition(1920 / 2 + size.x / col, 1080 - 600);
 
     velocity.x = 0;
     velocity.y = 0;
