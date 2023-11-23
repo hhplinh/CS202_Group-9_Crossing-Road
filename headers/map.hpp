@@ -33,6 +33,12 @@ protected:
     std ::vector<Animal *> animals;
     sf::Texture backgroundTexture;
 
+    sf::Text gameSavedText;
+    bool gameSavedTextNeeded = false;
+    sf::Clock savedTextClock;
+
+
+
     virtual void loadGame();
     virtual void saveGame();
 

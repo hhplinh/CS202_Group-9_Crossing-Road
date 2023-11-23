@@ -2,8 +2,6 @@
 #include "resumeScreen.hpp"
 #include <SFML/System.hpp>
 
-
-
 menuPause::menuPause(data *data) : menu(data)
 {
     m_buttonsSelected.resize(NUM_BUTTONS, false);
