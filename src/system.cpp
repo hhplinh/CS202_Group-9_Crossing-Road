@@ -22,6 +22,8 @@ System::System() : _data(new data)
 }
 System::~System()
 {
+	delete _data;
+	_data = nullptr;
 }
 void System::run()
 {

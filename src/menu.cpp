@@ -13,7 +13,6 @@ menu::menu(data *data) : _data(data)
     background.setFillColor(sf::Color::White);
 
     std::cerr << "out menu constructor\n";
-
 }
 
 menu::~menu() {}
