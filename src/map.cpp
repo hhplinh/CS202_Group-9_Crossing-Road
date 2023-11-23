@@ -218,8 +218,9 @@ void map::update()
             {
                 //check if player is on boat
                 if (playerIsOnBoat == false)
-                {
+                {//reset view
                     //if not on boat, game over
+                    _data->_window->setView(_data->_window->getDefaultView());
                     this->moveToGameOverMenu();
                 }
             }

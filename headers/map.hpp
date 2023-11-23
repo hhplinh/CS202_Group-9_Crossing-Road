@@ -101,13 +101,14 @@ public:
     void moveToGameOverMenu()
     {
         // _data->_states->addState(new endgameMenu(_data), true);
-        _data->_states->removeStateUntilOne();
-        _data->_states->addState(new endgameMenu(_data));
+       // _data->_states->removeStateUntilOne();
+        _data->_states->addState(new endgameMenu(_data), true);
     }
     void collisonWithCar(maincharacter *player, car *car1)
     {
         if (player->getSprite().getGlobalBounds().intersects(car1->getSprite().getGlobalBounds()))
-        {
+        {   //reset view
+            _data->_window->setView(_data->_window->getDefaultView());
             moveToGameOverMenu();
         }
     }
@@ -115,7 +116,8 @@ public:
     void collisonWithAnimal(maincharacter *player, Animal *animal1)
     {
         if (player->getSprite().getGlobalBounds().intersects(animal1->getSprite().getGlobalBounds()))
-        {
+        {       //reset view
+            _data->_window->setView(_data->_window->getDefaultView());
             moveToGameOverMenu();
         }
     }
