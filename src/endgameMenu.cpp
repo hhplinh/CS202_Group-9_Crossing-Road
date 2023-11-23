@@ -37,6 +37,7 @@ void endgameMenu::init()
 
     score.setFont(_data->_assets->getFont(FONT2));
     // score.setString("Score: " + std::to_string(_data->_score));
+
     score.setString("Score: ");
     score.setCharacterSize(90);
     score.setOrigin(score.getLocalBounds().width / 2, score.getLocalBounds().height / 2);
@@ -45,6 +46,8 @@ void endgameMenu::init()
 
 void endgameMenu::processInput()
 {
+    std::cerr << "\nin endgameMenu processInput\n";
+
     sf::Event event;
     while (_data->_window->pollEvent(event))
     {
@@ -88,11 +91,12 @@ void endgameMenu::processInput()
     }
     setColorSelect(m_buttons, m_buttonsSelected);
 
-    std::cerr << "endgameMenu processInput\n";
+    std::cerr << "out endgameMenu processInput\n";
 }
 
 void endgameMenu::update()
 {
+    std::cerr << "in endgameMenu update\n";
     if (m_buttonsPressed[RESTART])
     {
         m_buttonsPressed[RESTART] = false;
@@ -109,6 +113,7 @@ void endgameMenu::update()
 
 void endgameMenu::draw()
 {
+    std::cerr << "in endgameMenu draw\n";
     if (isEventChanged)
     {
         isEventChanged = 0;

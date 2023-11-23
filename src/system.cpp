@@ -33,8 +33,10 @@ void System::run()
 	while (_data->_window->isOpen())
 	{
 		timeSinceLastFrame += clock.restart();
+
 		while (timeSinceLastFrame > TIME_PER_FRAME)
 		{
+		// std::cerr << "in run\n";
 			timeSinceLastFrame -= TIME_PER_FRAME;
 			_data->_states->processStateChange();
 			_data->_states->getCurrentState()->processInput();

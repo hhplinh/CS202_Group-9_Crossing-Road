@@ -22,12 +22,12 @@ protected:
 
     bool isEventChanged = true;
 
-    virtual void draw();
 public:
    
     menu(data *data);
     ~menu();
 
+    virtual void draw();
 
     bool isOnlyOneButtonOn(const std::vector<bool> &buttons);
     void turnOnButtonKeyDown(std::vector<bool> &buttonsSelected);

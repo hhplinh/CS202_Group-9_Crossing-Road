@@ -1,6 +1,7 @@
 #pragma once
 #include "state.h"
 #include "system.h"
+
 #include "maincharacter.hpp"
 
 #include "enemy.hpp"
@@ -14,8 +15,7 @@
 #include "trafficlight.hpp"
 #include "Animal.hpp"
 #include "endgameMenu.hpp"
-class menuPause;
-class endgameMenu;
+
 class map : public state
 {
 protected:
@@ -99,7 +99,6 @@ public:
     sf::RectangleShape background;
     void moveToGameOverMenu()
     {
-       
         _data->_states->removeStateUntilOne();
         _data->_states->addState(new endgameMenu(_data));
     }

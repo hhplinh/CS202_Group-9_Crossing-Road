@@ -1,5 +1,5 @@
 #pragma once
-	#include <iostream>
+#include <iostream>
 #include "SFML/Graphics.hpp"
 #include <vector>
 #include <string>
@@ -70,7 +70,7 @@ public:
 
 	std::string getSavedGamePath() { return PATH_SAVED_GAME; }
 	bool removeSavedGameFile();
-	
+
 	bool isEasyLevelSavedGame();
 	void setEasyLevelSavedGame(bool isSaved) { isEasyLevelSaved = isSaved; }
 };
