@@ -7,12 +7,10 @@
 
 menu::menu(data *data) : _data(data)
 {   
-    std::cerr << "in menu constructor\n";
     background.setTexture(&_data->_assets->getTexture(BACKGROUND));
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
 
-    std::cerr << "out menu constructor\n";
 
 }
 

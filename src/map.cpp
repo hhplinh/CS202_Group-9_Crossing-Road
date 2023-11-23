@@ -376,7 +376,6 @@ map ::map(data *data)
 
 map::~map()
 {
-    std::cerr << "map destructor called\n";
     saveGame();
     // delete dynamically alocated memory
     // reset view
