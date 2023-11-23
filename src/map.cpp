@@ -4,6 +4,7 @@
 #include "menuPause.hpp"
 #include "endgameMenu.hpp"
 #include "maincharacter.hpp"
+#include "resumeScreen.hpp"
 
 void map::init()
 { // do not init if resume from pause menu
@@ -262,6 +263,13 @@ void map::update()
 
 void map::draw()
 {
+    drawTemplate();
+    _data->_window->display();
+
+}
+
+void map::drawTemplate()
+{
     _data->_window->clear();
 
     _data->_window->draw(background);
@@ -303,11 +311,9 @@ void map::draw()
     }
     else if (gameSavedTextNeeded)
     {
-
         _data->_window->draw(gameSavedText);
     }
 
-    _data->_window->display();
 }
 
 void map::createmap()
@@ -505,4 +511,14 @@ void map::loadGame()
         saveFile.read((char *)&animalsSize, sizeof(int));
     }
     saveFile.close();
+}
+
+void map::loadCountdownScreen()
+{
+        // Save window screen to texture
+        backgroundTexture.create(_data->_window->getSize().x, _data->_window->getSize().y);
+        backgroundTexture.update((const sf::RenderWindow &)(*(_data->_window)));
+        _data->_assets->setBackgroundTexture(backgroundTexture);
+
+        _data->_states->addState(new ResumeScreen(_data), false);
 }

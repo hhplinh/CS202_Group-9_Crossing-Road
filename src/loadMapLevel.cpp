@@ -55,3 +55,25 @@ void mapLoad::init()
   this->currentIndex = 0;
   createmap();
 }
+
+void mapLoad::draw()
+{
+  drawTemplate();
+  if (isCountdownScreenNeeded == true)
+  {
+    loadCountdownScreen();
+    isCountdownScreenNeeded = false;
+  }
+  _data->_window->display();
+}
+
+void mapeasyLoad::draw()
+{
+  drawTemplate();
+  if (isCountdownScreenNeeded == true)
+  {
+    loadCountdownScreen();
+    isCountdownScreenNeeded = false;
+  }
+  _data->_window->display();
+}

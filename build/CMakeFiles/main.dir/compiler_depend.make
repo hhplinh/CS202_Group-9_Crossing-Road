@@ -2216,6 +2216,7 @@ CMakeFiles/main.dir/src/loadMapLevel.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/
   D:/CrossingRoadGame/CS202_Group-9/headers/mapeasy.hpp \
   D:/CrossingRoadGame/CS202_Group-9/headers/mapfeature.hpp \
   D:/CrossingRoadGame/CS202_Group-9/headers/menu.hpp \
+  D:/CrossingRoadGame/CS202_Group-9/headers/resumeScreen.hpp \
   D:/CrossingRoadGame/CS202_Group-9/headers/state.h \
   D:/CrossingRoadGame/CS202_Group-9/headers/stateMachine.h \
   D:/CrossingRoadGame/CS202_Group-9/headers/system.h \
@@ -2788,6 +2789,7 @@ CMakeFiles/main.dir/src/mainMenu.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/
   D:/CrossingRoadGame/CS202_Group-9/headers/mapeasy.hpp \
   D:/CrossingRoadGame/CS202_Group-9/headers/mapfeature.hpp \
   D:/CrossingRoadGame/CS202_Group-9/headers/menu.hpp \
+  D:/CrossingRoadGame/CS202_Group-9/headers/resumeScreen.hpp \
   D:/CrossingRoadGame/CS202_Group-9/headers/state.h \
   D:/CrossingRoadGame/CS202_Group-9/headers/stateMachine.h \
   D:/CrossingRoadGame/CS202_Group-9/headers/system.h \
@@ -3667,6 +3669,7 @@ CMakeFiles/main.dir/src/map.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/map.c
   D:/CrossingRoadGame/CS202_Group-9/headers/mapfeature.hpp \
   D:/CrossingRoadGame/CS202_Group-9/headers/menu.hpp \
   D:/CrossingRoadGame/CS202_Group-9/headers/menuPause.hpp \
+  D:/CrossingRoadGame/CS202_Group-9/headers/resumeScreen.hpp \
   D:/CrossingRoadGame/CS202_Group-9/headers/state.h \
   D:/CrossingRoadGame/CS202_Group-9/headers/stateMachine.h \
   D:/CrossingRoadGame/CS202_Group-9/headers/system.h \
@@ -6404,6 +6407,8 @@ C:/msys64/mingw64/include/wtypes.h:
 
 D:/CrossingRoadGame/CS202_Group-9/src/loadMapLevel.cpp:
 
+D:/CrossingRoadGame/CS202_Group-9/headers/resumeScreen.hpp:
+
 D:/CrossingRoadGame/CS202_Group-9/src/mainMenu.cpp:
 
 D:/CrossingRoadGame/CS202_Group-9/src/mainMenu0Load.cpp:
@@ -6417,8 +6422,6 @@ D:/CrossingRoadGame/CS202_Group-9/src/map.cpp:
 C:/msys64/mingw64/lib/gcc/x86_64-w64-mingw32/12.2.0/include/avx5124vnniwintrin.h:
 
 D:/CrossingRoadGame/CS202_Group-9/src/menuPause.cpp:
-
-D:/CrossingRoadGame/CS202_Group-9/headers/resumeScreen.hpp:
 
 C:/msys64/mingw64/include/mmiscapi2.h:
 

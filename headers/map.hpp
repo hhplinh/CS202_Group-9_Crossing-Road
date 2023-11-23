@@ -37,10 +37,10 @@ protected:
     bool gameSavedTextNeeded = false;
     sf::Clock savedTextClock;
 
-
-
     virtual void loadGame();
     virtual void saveGame();
+
+    void loadCountdownScreen();
 
     virtual bool isEasy()
     {
@@ -91,6 +91,7 @@ public:
     void processInput();
     void update();
     virtual void draw();
+    void drawTemplate();
     void createmap();
     void addblock(std::string terrainName);
     sf::RectangleShape background;
