@@ -27,7 +27,7 @@ public:
     menu(data *data);
     ~menu();
 
-    void draw();
+    virtual void draw();
 
     bool isOnlyOneButtonOn(const std::vector<bool> &buttons);
     void turnOnButtonKeyDown(std::vector<bool> &buttonsSelected);

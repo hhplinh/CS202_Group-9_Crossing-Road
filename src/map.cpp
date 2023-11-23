@@ -16,7 +16,7 @@ void map::init()
     player = new maincharacter(_data);
     player->init();
     this->blocks.clear();
-   this->point=0;
+    this->point = 0;
     this->river.clear();
     this->length = 10;
 
@@ -56,11 +56,13 @@ void map::processInput()
 }
 void map::update()
 {
-      
+
     player->update();
     float pos = player->getPosition().y;
-    if(pos>0) this->point+=(1080-pos);
-    else this->point+=abs(pos);
+    if (pos > 0)
+        this->point += (1080 - pos);
+    else
+        this->point += abs(pos);
     float l = (pos / 1080.0 + 1);
 
     float j = -l;
@@ -165,8 +167,6 @@ void map::update()
         {
             enemies[i]->run();
             collisonWithCar(player, enemies[i]);
-            
-            
         }
         if (enemies[i]->getposcar().x > 1920 || enemies[i]->getposcar().x < 0)
         {
@@ -270,7 +270,6 @@ void map::draw()
 {
     drawTemplate();
     _data->_window->display();
-
 }
 
 void map::drawTemplate()
@@ -318,7 +317,6 @@ void map::drawTemplate()
     {
         _data->_window->draw(gameSavedText);
     }
-
 }
 
 void map::createmap()
@@ -362,6 +360,7 @@ map ::map(data *data)
 
 map::~map()
 {
+    std::cerr << "map destructor called\n";
     saveGame();
     // delete dynamically alocated memory
     // reset view
@@ -437,14 +436,35 @@ void map::saveGame()
         int enemiesSize = enemies.size();
         saveFile.write((char *)&enemiesSize, sizeof(int));
 
+        //save enemies position
+        for (int i = 0; i < enemiesSize; i++)
+        {
+            sf::Vector2f enemyPos = enemies[i]->getposcar();
+            saveFile.write((char *)&enemyPos, sizeof(sf::Vector2f));
+        }
+
         // enemies2 = cano
         //  save enemies2 size
         int enemies2Size = enemies2.size();
         saveFile.write((char *)&enemies2Size, sizeof(int));
 
+        //save enemies2 position
+        for (int i = 0; i < enemies2Size; i++)
+        {
+            sf::Vector2f enemy2Pos = enemies2[i]->getPosCano();
+            saveFile.write((char *)&enemy2Pos, sizeof(sf::Vector2f));
+        }
+
         // save animals size
         int animalsSize = animals.size();
         saveFile.write((char *)&animalsSize, sizeof(int));
+
+        // save animals position
+        for (int i = 0; i < animalsSize; i++)
+        {
+            sf::Vector2f animalPos = animals[i]->getposAnimal();
+            saveFile.write((char *)&animalPos, sizeof(sf::Vector2f));
+        }
     }
     saveFile.close();
 }
@@ -508,22 +528,63 @@ void map::loadGame()
 
         int enemiesSize;
         saveFile.read((char *)&enemiesSize, sizeof(int));
+        enemies.clear();
+
+        for (int i = 0; i < enemiesSize; i++)
+        {
+            sf::Vector2f enemyPos;
+            saveFile.read((char *)&enemyPos, sizeof(sf::Vector2f));
+
+            car *newcar = new car(_data);
+            enemies.push_back(newcar);
+            enemies[enemies.size() - 1]->setposcar(sf::Vector2f(enemyPos.x, enemyPos.y));
+        }
 
         int enemies2Size;
         saveFile.read((char *)&enemies2Size, sizeof(int));
+        enemies2.clear();
+
+        for (int i = 0; i < enemies2Size; i++)
+        {
+            sf::Vector2f enemy2Pos;
+            saveFile.read((char *)&enemy2Pos, sizeof(sf::Vector2f));
+
+            Cano *newCano = new Cano(_data);
+            enemies2.push_back(newCano);
+            enemies2[enemies2.size() - 1]->setPosCano(sf::Vector2f(enemy2Pos.x, enemy2Pos.y));
+        }
 
         int animalsSize;
         saveFile.read((char *)&animalsSize, sizeof(int));
+        animals.clear();
+
+        for (int i = 0; i < animalsSize; i++)
+        {
+            sf::Vector2f animalPos;
+            saveFile.read((char *)&animalPos, sizeof(sf::Vector2f));
+
+            Animal *a;
+            if (isEasyLevelSaved)
+            {
+                a = new gau(_data);
+            }
+            else
+            {
+                a = new cop(_data);
+            }
+            animals.push_back(a);
+            animals.back()->setposAnimal(sf::Vector2f(animalPos.x, animalPos.y));
+        }
     }
     saveFile.close();
 }
 
 void map::loadCountdownScreen()
 {
-        // Save window screen to texture
-        backgroundTexture.create(_data->_window->getSize().x, _data->_window->getSize().y);
-        backgroundTexture.update((const sf::RenderWindow &)(*(_data->_window)));
-        _data->_assets->setBackgroundTexture(backgroundTexture);
+    // Save window screen to texture
+    backgroundTexture.create(_data->_window->getSize().x, _data->_window->getSize().y);
+    backgroundTexture.update((const sf::RenderWindow &)(*(_data->_window)));
+    _data->_assets->setBackgroundTexture(backgroundTexture);
 
-        _data->_states->addState(new ResumeScreen(_data), false);
+    _data->_states->addState(new ResumeScreen(_data), false);
 }

@@ -1,7 +1,5 @@
-
+#include "diffiMenu.hpp"
 #include "endgameMenu.hpp"
-
-
 
 endgameMenu::endgameMenu(data *data) : menu(data)
 {
@@ -94,7 +92,7 @@ void endgameMenu::update()
     {
         m_buttonsPressed[RESTART] = false;
         _data->_states->removeStateUntilOne();
-       // _data->_states->addState(new maincharacter(_data));
+        _data->_states->addState(new diffiMenu(_data));
     }
     else if (m_buttonsPressed[MAIN_MENU])
     {
@@ -105,13 +103,19 @@ void endgameMenu::update()
 
 void endgameMenu::draw()
 {
-    _data->_window->clear();
-    _data->_window->draw(background);
-    _data->_window->draw(score);
-
-    for (int i = 0; i < m_buttons.size(); i++)
+    if (isEventChanged)
     {
-        _data->_window->draw(m_buttons[i]);
+        isEventChanged = 0;
+
+        _data->_window->clear();
+        _data->_window->draw(background);
+        _data->_window->draw(score);
+
+        for (int i = 0; i < m_buttons.size(); i++)
+        {
+            _data->_window->draw(m_buttons[i]);
+        }
+        
+        _data->_window->display();
     }
-    _data->_window->display();
 }
