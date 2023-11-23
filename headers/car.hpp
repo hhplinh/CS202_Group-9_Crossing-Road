@@ -62,4 +62,5 @@ class car : public sf::Drawable
         }
       
       }
+      sf:: Sprite getSprite(){return sprite;}
       };
