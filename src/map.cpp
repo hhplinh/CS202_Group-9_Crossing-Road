@@ -15,7 +15,7 @@ void map::init()
     player = new maincharacter(_data);
     player->init();
     this->blocks.clear();
-
+   this->point=0;
     this->river.clear();
     this->length = 10;
 
@@ -55,10 +55,11 @@ void map::processInput()
 }
 void map::update()
 {
-
+      
     player->update();
     float pos = player->getPosition().y;
-
+    if(pos>0) this->point+=(1080-pos);
+    else this->point+=abs(pos);
     float l = (pos / 1080.0 + 1);
 
     float j = -l;

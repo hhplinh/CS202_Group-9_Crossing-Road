@@ -41,7 +41,7 @@ protected:
     {
         return 0;
     }
-
+  int point;
 public:
     Cano *currentBoat = NULL;
     Cano *nextBoat = NULL;
@@ -91,7 +91,7 @@ public:
     sf::RectangleShape background;
     void moveToGameOverMenu()
     {
-        _data->_states->addState(new endgameMenu(_data));
+        _data->_states->addState(new endgameMenu(_data), true);
     }
     void collisonWithCar( maincharacter *player, car * car1)
     {
