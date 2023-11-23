@@ -17,8 +17,13 @@ class data
 	~data()
 	{
 		delete _assets;
+		_assets = nullptr;
+
 		delete _states;
+		_states = nullptr;
+
 		delete _window;
+		_window = nullptr;
 	}
 };
 class System

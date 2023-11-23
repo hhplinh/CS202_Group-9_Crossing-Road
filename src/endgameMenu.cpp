@@ -6,16 +6,20 @@ endgameMenu::endgameMenu(data *data) : menu(data)
     m_buttonsSelected.resize(NUM_BUTTONS, false);
     m_buttonsPressed.resize(NUM_BUTTONS, false);
     m_buttonsSelected[0] = true;
+
+    std::cerr << "endgameMenu constructor\n";
 }
 
 endgameMenu::~endgameMenu() {}
 
 void endgameMenu::init()
 {
+    std::cerr << "endgameMenu init\n";
     if (!m_buttons.empty())
     {
         return;
     }
+
 
     // set font, name and origin for each button
     std::string buttonNames[NUM_BUTTONS];
@@ -83,11 +87,12 @@ void endgameMenu::processInput()
         }
     }
     setColorSelect(m_buttons, m_buttonsSelected);
+
+    std::cerr << "endgameMenu processInput\n";
 }
 
 void endgameMenu::update()
 {
-
     if (m_buttonsPressed[RESTART])
     {
         m_buttonsPressed[RESTART] = false;
@@ -99,6 +104,7 @@ void endgameMenu::update()
         m_buttonsPressed[MAIN_MENU] = false;
         _data->_states->removeStateUntilOne();
     }
+    std::cerr << "endgameMenu update\n";
 }
 
 void endgameMenu::draw()
@@ -118,4 +124,6 @@ void endgameMenu::draw()
         
         _data->_window->display();
     }
+
+    std::cerr << "endgameMenu draw\n";
 }

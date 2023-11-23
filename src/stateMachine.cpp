@@ -8,6 +8,7 @@ stateMachine::~stateMachine()
 	{
 		state *top = stackState.top();
 		delete top;
+		top = nullptr;
 		stackState.pop();
 	}
 }

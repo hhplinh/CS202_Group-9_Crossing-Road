@@ -1,6 +1,7 @@
-#include "map.hpp"
 #include <memory>
 #include <fstream>
+
+#include "map.hpp"
 #include "menuPause.hpp"
 #include "endgameMenu.hpp"
 #include "maincharacter.hpp"

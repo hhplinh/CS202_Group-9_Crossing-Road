@@ -4,6 +4,28 @@
 
 assetManager::assetManager()
 {
+	addTexture(TRAFFICLIGHT, "resources//Texture//Traffic light.png");
+	addTexture(BACKGROUND, "resources//Texture//bgMenu.png");
+	addTexture(ROAD, "resources//Texture//road.png");
+	addTexture(RIVER, "resources//Texture//River.png");
+	addFont(MAIN_FONT, "resources//Font//LilitaOne-Regular.ttf");
+	addFont(FONT2, "resources//Font//BlackOpsOne-Regular.ttf");
+	addTexture(GRASS, "resources//Texture//grass.png");
+	addTexture(CAR, "resources//Texture//Car 1.png");
+	addTexture(CAR2, "resources//Texture//Car 2.png");
+	addTexture(CAR3, "resources//Texture//Car 3.png");
+	addTexture(CAR4, "resources//Texture//Car 4.png");
+	addTexture(CAR5, "resources//Texture//Car 5.png");
+	addTexture(CANO, "resources//Texture//Cano.png");
+	addTexture(CANO2, "resources//Texture//Cano 2.png");
+	addTexture(COP, "resources//Texture//cop.png");
+	addTexture(VOI, "resources//Texture//Voi.png");
+	addTexture(GAU, "resources//Texture//Gau.png");
+	addTexture(TEGIAC, "resources//Texture//Tegiac.png");
+	addTexture(LACDA, "resources//Texture//Lacda.png");
+	addTexture(PENGUIN, "resources//Texture//Penguin.png");
+
+	addTexture(DIRT, "resources//Texture//dirt.png");
 }
 assetManager::~assetManager()
 {
