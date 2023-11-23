@@ -17,6 +17,7 @@ private:
         {MAIN_MENU, "Main Menu"}};
 
     sf::Text score;
+    sf::Text numScore;
 
 public:
     endgameMenu(data *data);

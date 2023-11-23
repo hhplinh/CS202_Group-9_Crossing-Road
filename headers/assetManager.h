@@ -50,6 +50,7 @@ protected:
 
 	const std::string PATH_SAVED_GAME = "save.bin";
 	bool isEasyLevelSaved;
+	int score = 0;
 
 public:
 	assetManager();
@@ -73,4 +74,7 @@ public:
 	
 	bool isEasyLevelSavedGame();
 	void setEasyLevelSavedGame(bool isSaved) { isEasyLevelSaved = isSaved; }
+
+	void setSCore(int score) { this->score = score; }
+	int getScore() { return score; }
 };

@@ -280,6 +280,16 @@ void map::update()
         trafficlights[i]->turn();
     }
     // std::cout << "current block : " << this->currentIndex << " : " << this->blocks.size() << std::endl;
+
+    score.setFont(_data->_assets->getFont(MAIN_FONT));
+    score.setString("Score: " + std::to_string(this->point));
+    score.setCharacterSize(70);
+    score.setOrigin(score.getLocalBounds().width / 2.f, score.getLocalBounds().height / 2.f);
+    score.setPosition(player->getPosition().x, player->getPosition().y - 400.f);
+    
+    score.setFillColor(sf::Color::White);
+    score.setOutlineColor(_data->_assets->getThemeColor());
+    score.setOutlineThickness(7.f);
 }
 
 void map::draw()
@@ -293,6 +303,8 @@ void map::drawTemplate()
     _data->_window->clear();
 
     _data->_window->draw(background);
+
+  
 
     for (int i = currentIndex; i < blocks.size(); i++)
     {
@@ -333,6 +345,9 @@ void map::drawTemplate()
     {
         _data->_window->draw(gameSavedText);
     }
+
+      //draw score
+    _data->_window->draw(score);
 }
 
 void map::createmap()
