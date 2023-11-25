@@ -229,7 +229,7 @@ void map::update()
             { // reset view
                 // if not on boat, game over
                 _data->_window->setView(_data->_window->getDefaultView());
-                this->moveToGameOverMenu();
+                this->endgame();
             }
         }
     }

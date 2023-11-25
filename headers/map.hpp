@@ -103,9 +103,10 @@ public:
     void createmap();
     void addblock(std::string terrainName);
     sf::RectangleShape background;
-    void moveToGameOverMenu()
+    void endgame()
     {
         _data->_assets->setSCore(point);
+        _data->_assets->removeSavedGameFile();
         _data->_states->addState(new endgameMenu(_data), true);
     }
     void collisonWithCar(maincharacter *player, car *car1)
@@ -113,7 +114,7 @@ public:
         if (player->getSprite().getGlobalBounds().intersects(car1->getSprite().getGlobalBounds()))
         { // reset view
             _data->_window->setView(_data->_window->getDefaultView());
-            moveToGameOverMenu();
+            endgame();
         }
     }
     // collison with animal
@@ -122,7 +123,7 @@ public:
         if (player->getSprite().getGlobalBounds().intersects(animal1->getSprite().getGlobalBounds()))
         { // reset view
             _data->_window->setView(_data->_window->getDefaultView());
-            moveToGameOverMenu();
+            endgame();
         }
     }
 };
