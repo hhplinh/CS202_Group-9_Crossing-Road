@@ -55,11 +55,13 @@ void map::processInput()
             savePressed = true;
         }
     }
+
 }
 void map::update()
 {
-
+    std::cerr << "update" << std::endl;
     player->update();
+    std::cerr << "update 2" << std::endl;
     float pos = player->getPosition().y;
     if (pos > 0)
         this->point += (1080 - pos);
@@ -70,6 +72,8 @@ void map::update()
     float j = -l;
     float k = int(l);
     float f = int(j);
+
+    std::cerr << "update 3" << std::endl;
     if (pos > 0)
     {
         currentIndex = 0;
@@ -81,8 +85,8 @@ void map::update()
     float o = pos / -1080.0f - int((pos) / -1080.0f);
 
     // //std::cout << o << std::endl;
+    std::cerr << "update 4" << std::endl;
     if (((pos / 1080.0f) < 0.200000f && pos > 0 && blocks.size() < 20) || (o > 0.7f && o < 0.8f && pos < 0.0f && blocks.size() - currentIndex < 50))
-
     {
         int z;
         for (int i = 0; i < 1; i++)
@@ -106,6 +110,8 @@ void map::update()
             }
         }
     }
+
+    std::cerr << "update 5" << std::endl;
 
     int u;
 
@@ -163,16 +169,20 @@ void map::update()
         }
     }
 
+
     for (int i = 0; i < enemies.size(); i++)
     {
+
         if (trafficlights[i]->carCanGo())
         {
             enemies[i]->run();
-            //  collisonWithCar(player, enemies[i]);
+
         }
+
         if (enemies[i]->getposcar().x > 1920 || enemies[i]->getposcar().x < 0)
         {
             enemies[i]->turnaround();
+
         }
     }
 
@@ -214,6 +224,7 @@ void map::update()
             break;
         }
     }
+    
     for (int i = 0; i < riverPos.size(); i++)
     { // check if pos of player is on river (>riverpos[i].y) (<riverpos[i].y+174)
         if (player->getSprite().getPosition().y > riverPos[i].y && player->getSprite().getPosition().y < riverPos[i].y + 174 - 50)
@@ -489,6 +500,24 @@ void map::saveGame()
             sf::Vector2f animalPos = animals[i]->getposAnimal();
             saveFile.write((char *)&animalPos, sizeof(sf::Vector2f));
         }
+
+        //save traffic lights, save all parameters of traffic lights
+        int trafficLightsSize = trafficlights.size();
+        saveFile.write((char *)&trafficLightsSize, sizeof(int));
+
+        // save traffic lights parameters
+        for (int i = 0; i < trafficLightsSize; i++)
+        {
+            int col = trafficlights[i]->getcol();
+            int row = trafficlights[i]->getrow();
+            sf::Vector2u size = trafficlights[i]->getsize();
+            bool isGreen = trafficlights[i]->getIsGreen();
+
+            saveFile.write((char *)&col, sizeof(int));
+            saveFile.write((char *)&row, sizeof(int));
+            saveFile.write((char *)&size, sizeof(sf::Vector2u));
+            saveFile.write((char *)&isGreen, sizeof(bool));
+        }
     }
     else
     {
@@ -602,6 +631,30 @@ void map::loadGame()
             }
             a->setposAnimal(sf::Vector2f(animalPos.x, animalPos.y));
             animals.push_back(a);
+        }
+
+        int trafficLightsSize;
+        saveFile.read((char *)&trafficLightsSize, sizeof(int));
+        trafficlights.clear();
+
+        for (int i = 0; i < trafficLightsSize; i++)
+        {
+            int col;
+            int row;
+            sf::Vector2u size;
+            bool isGreen;
+
+            saveFile.read((char *)&col, sizeof(int));
+            saveFile.read((char *)&row, sizeof(int));
+            saveFile.read((char *)&size, sizeof(sf::Vector2u));
+            saveFile.read((char *)&isGreen, sizeof(bool));
+
+            trafficlight *newtrafficlight = new trafficlight(_data);
+            newtrafficlight->setcol(col);
+            newtrafficlight->setrow(row);
+            newtrafficlight->setsize(size);
+            newtrafficlight->setIsGreen(isGreen);
+            trafficlights.push_back(newtrafficlight);
         }
     }
     else
