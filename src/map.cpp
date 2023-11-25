@@ -441,6 +441,7 @@ void map::saveGame()
         // save block size
         int blockSize = blocks.size();
         saveFile.write((char *)&blockSize, sizeof(int));
+        std::cerr << "block size: " << blockSize << std::endl;
 
         // save block terrain name and position
         for (int i = 0; i < blockSize; i++)
@@ -489,6 +490,10 @@ void map::saveGame()
             saveFile.write((char *)&animalPos, sizeof(sf::Vector2f));
         }
     }
+    else
+    {
+        std::cerr << "Unable to open file\n";
+    }
     saveFile.close();
 }
 
@@ -535,7 +540,7 @@ void map::loadGame()
             int len;
             saveFile.read((char *)&len, sizeof(int));
 
-            char *buffer = new char[len];
+            char *buffer = new char[len + 1];
             saveFile.read(buffer, len);
             std::string terrainName(buffer, len);
             delete[] buffer;
@@ -559,8 +564,8 @@ void map::loadGame()
             saveFile.read((char *)&enemyPos, sizeof(sf::Vector2f));
 
             car *newcar = new car(_data);
+            newcar->setposcar(sf::Vector2f(enemyPos.x, enemyPos.y));
             enemies.push_back(newcar);
-            enemies[enemies.size() - 1]->setposcar(sf::Vector2f(enemyPos.x, enemyPos.y));
         }
 
         int enemies2Size;
@@ -573,8 +578,8 @@ void map::loadGame()
             saveFile.read((char *)&enemy2Pos, sizeof(sf::Vector2f));
 
             Cano *newCano = new Cano(_data);
+            newCano->setPosCano(sf::Vector2f(enemy2Pos.x, enemy2Pos.y));
             enemies2.push_back(newCano);
-            enemies2[enemies2.size() - 1]->setPosCano(sf::Vector2f(enemy2Pos.x, enemy2Pos.y));
         }
 
         int animalsSize;
@@ -595,9 +600,13 @@ void map::loadGame()
             {
                 a = new cop(_data);
             }
+            a->setposAnimal(sf::Vector2f(animalPos.x, animalPos.y));
             animals.push_back(a);
-            animals.back()->setposAnimal(sf::Vector2f(animalPos.x, animalPos.y));
         }
+    }
+    else
+    {
+        std::cerr << "Unable to open file\n";
     }
     saveFile.close();
 }

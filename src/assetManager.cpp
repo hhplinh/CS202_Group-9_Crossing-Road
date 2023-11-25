@@ -108,5 +108,11 @@ bool assetManager::isEasyLevelSavedGame()
 		file.read((char *)&isEasyLevelSaved, sizeof(bool));
 		return isEasyLevelSaved;
 	}
+	else
+	{
+		std::cerr << "Error: file not open in check easy level\n";
+		return 0;
+	}
+	file.close();
 	return 1;
 }
