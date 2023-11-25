@@ -13,7 +13,8 @@ void map::init()
     // using state machine size
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
-
+    this->cooldownActive = false;
+    this->cooldownDuration=1.0f;
     player = new maincharacter(_data);
     player->init();
     this->blocks.clear();
@@ -167,7 +168,7 @@ void map::update()
         if (trafficlights[i]->carCanGo())
         {
             enemies[i]->run();
-            collisonWithCar(player, enemies[i]);
+          //  collisonWithCar(player, enemies[i]);
         }
         if (enemies[i]->getposcar().x > 1920 || enemies[i]->getposcar().x < 0)
         {
@@ -176,43 +177,46 @@ void map::update()
     }
 
     for (int i = 0; i < enemies2.size(); i++)
+    {  enemies2[i]->floatOnRiver();
+        if (player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds()) && !player->movingUp)
     {
-        enemies2[i]->floatOnRiver();
+        // Float with the boat
+        floatwithboat(player, enemies2[i]);
 
-        // If the player intersects with the boat's global bounds
-        if (player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds()))
+        // Check if player is next to the next boat (if it exists)
+        if (i + 1 < enemies2.size() && isnextto(enemies2[i], enemies2[i + 1]))
         {
-            // If the player is moving up, attempt to get off the boat
-            if (player->movingUp)
+            // Float with the nearby boat and set a cooldown period
+            if (!cooldownActive)
             {
-
-                /*  player->setPosition(
-                      player->getSprite().getPosition().x,
-                      player->getSprite().getPosition().y - 100
-
-                  );*/
-                if (i + 1 < enemies2.size())
-                {
-                    if (isnextto(enemies2[i], enemies2[i + 1]))
-                    {
-                        floatwithboat(player, enemies2[i + 1]);
-                    }
-                }
-                else
-                {
-                    // get off the boat
-                    player->setPosition(player->getSprite().getPosition().x, player->getSprite().getPosition().y - 100);
-                    this->playerIsOnBoat = false;
-                }
-            }
-            else
-            {
-                // If the player is not moving up, keep them on the boat
-                floatwithboat(player, enemies2[i]);
+                floatwithboat(player, enemies2[i + 1]);
+                cooldownClock.restart();
+                cooldownActive = true;
             }
         }
-    //check if player is on river iterate the riverpos
-        for (int i = 0; i < riverPos.size(); i++)
+    }
+    if (enemies2[i]->getPosCano().x > 1920 || enemies2[i]->getPosCano().x < 0)
+        {
+            enemies2[i]->turnAround();
+        }
+}
+
+// Set playerIsOnBoat to false by default
+playerIsOnBoat = false;
+
+// Check if the player is on any boat
+for (int i = 0; i < enemies2.size(); i++)
+{
+    if (player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds()))
+    {
+        playerIsOnBoat = true;
+        break;
+    }
+    
+        
+   
+    }
+           for (int i = 0; i < riverPos.size(); i++)
         {  //check if pos of player is on river (>riverpos[i].y) (<riverpos[i].y+174)
             if ( player->getSprite().getPosition().y > riverPos[i].y && player->getSprite().getPosition().y < riverPos[i].y + 174-50)
             {
@@ -226,16 +230,10 @@ void map::update()
             }
           
         }
-        // Turn the boat around if it goes off-screen
-        if (enemies2[i]->getPosCano().x > 1920 || enemies2[i]->getPosCano().x < 0)
-        {
-            enemies2[i]->turnAround();
-        }
-    }
     for (int i = 0; i < animals.size(); i++)
     { // std:: cout<< animals.size();
         animals[i]->AnimalRun();
-        collisonWithAnimal(player, animals[i]);
+       // collisonWithAnimal(player, animals[i]);
         if (animals[i]->getposAnimal().x > 1920 || animals[i]->getposAnimal().x < 0)
         {
             animals[i]->AnimalTurn();

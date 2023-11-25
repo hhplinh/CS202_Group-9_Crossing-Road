@@ -19,7 +19,10 @@ class endgameMenu;
 class map : public state
 {
 protected:
+ bool cooldownActive;
     sf::Vector2f pos1;
+     sf::Clock cooldownClock;
+        float cooldownDuration;
     bool mescpressed = false;
     bool savePressed = false;
     std ::vector<block *> blocks;
@@ -56,7 +59,7 @@ public:
     Cano *nextBoat = NULL;
     bool isnextto(Cano *currentBoat, Cano *nextBoat)
     {
-        if (currentBoat->getSprite().getPosition().x + currentBoat->getSprite().getGlobalBounds().width == nextBoat->getSprite().getPosition().x)
+        if (abs( currentBoat->getSprite().getPosition().x - nextBoat->getSprite().getPosition().x) < 300)
         {
             return true;
         }
