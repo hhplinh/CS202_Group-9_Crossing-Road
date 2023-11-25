@@ -62,9 +62,9 @@ void map::update()
     player->update();
     float pos = player->getPosition().y;
     if (pos > 0)
-        this->point += (1080 - pos);
+        this->point = (1080 - pos);
     else
-        this->point += abs(pos);
+        this->point = 1080 + abs(pos);
     float l = (pos / 1080.0 + 1);
 
     float j = -l;

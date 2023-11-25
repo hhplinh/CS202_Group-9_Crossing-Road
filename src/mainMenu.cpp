@@ -1,6 +1,7 @@
 #include "mainMenu.hpp"
 #include "loadMapLevel.hpp"
 #include "diffiMenu.hpp"
+#include "instructScr.hpp"
 #include "map.hpp"
 
 mainMenu::mainMenu(data *data) : menu(data)
@@ -100,10 +101,10 @@ void mainMenu::update()
             _data->_states->addState(new mapLoad(_data));
         }
     }
-    else if (m_buttonsPressed[SETTINGS])
+    else if (m_buttonsPressed[INSTRUCTION])
     {
-        m_buttonsPressed[SETTINGS] = false;
-        // Implement your "Settings" logic here
+        m_buttonsPressed[INSTRUCTION] = false;
+        _data->_states->addState(new instructScreen(_data));
     }
     else if (m_buttonsPressed[EXIT])
     {
