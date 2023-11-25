@@ -20,5 +20,6 @@ public:
 
 	void removeStateUntilOne();
 	int sizeState();
+	void removeAll();
 };
 
