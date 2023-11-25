@@ -169,7 +169,7 @@ void map::update()
         {
             enemies[i]->run();
         }
-
+   collisonWithCar(player, enemies[i]);
         if (enemies[i]->getposcar().x > 1920 || enemies[i]->getposcar().x < 0)
         {
             enemies[i]->turnaround();
@@ -231,7 +231,7 @@ void map::update()
     for (int i = 0; i < animals.size(); i++)
     { // std:: cout<< animals.size();
         animals[i]->AnimalRun();
-        collisonWithAnimal(player, animals[i]);
+         collisonWithAnimal(player, animals[i]);
         if (animals[i]->getposAnimal().x > 1920 || animals[i]->getposAnimal().x < 0)
         {
             animals[i]->AnimalTurn();
