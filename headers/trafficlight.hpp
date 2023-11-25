@@ -45,6 +45,16 @@ public:
         this->size = size;
     }
 
+    sf::Vector2f getpos()
+    {
+        return sprite.getPosition();
+    }
+
+    void setposSave(sf::Vector2f pos)
+    {
+        sprite.setPosition(pos);
+    }
+
     void setpos(float y)
     {
         // change sprite pos y

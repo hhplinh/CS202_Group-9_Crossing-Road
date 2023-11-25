@@ -6,6 +6,7 @@ class mapeasyLoad : public mapeasy
 {
 private:
   bool isCountdownScreenNeeded = true;
+  int numScreenDrawn = 0;
 
 public:
   mapeasyLoad(data *_data) : mapeasy(_data)

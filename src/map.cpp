@@ -59,9 +59,7 @@ void map::processInput()
 }
 void map::update()
 {
-    std::cerr << "update" << std::endl;
     player->update();
-    std::cerr << "update 2" << std::endl;
     float pos = player->getPosition().y;
     if (pos > 0)
         this->point += (1080 - pos);
@@ -73,7 +71,6 @@ void map::update()
     float k = int(l);
     float f = int(j);
 
-    std::cerr << "update 3" << std::endl;
     if (pos > 0)
     {
         currentIndex = 0;
@@ -85,7 +82,6 @@ void map::update()
     float o = pos / -1080.0f - int((pos) / -1080.0f);
 
     // //std::cout << o << std::endl;
-    std::cerr << "update 4" << std::endl;
     if (((pos / 1080.0f) < 0.200000f && pos > 0 && blocks.size() < 20) || (o > 0.7f && o < 0.8f && pos < 0.0f && blocks.size() - currentIndex < 50))
     {
         int z;
@@ -111,7 +107,6 @@ void map::update()
         }
     }
 
-    std::cerr << "update 5" << std::endl;
 
     int u;
 
@@ -452,7 +447,6 @@ void map::saveGame()
         // save block size
         int blockSize = blocks.size();
         saveFile.write((char *)&blockSize, sizeof(int));
-        std::cerr << "block size: " << blockSize << std::endl;
 
         // save block terrain name and position
         for (int i = 0; i < blockSize; i++)
@@ -512,11 +506,13 @@ void map::saveGame()
             int row = trafficlights[i]->getrow();
             sf::Vector2u size = trafficlights[i]->getsize();
             bool isGreen = trafficlights[i]->getIsGreen();
+            sf::Vector2f pos = trafficlights[i]->getpos();
 
             saveFile.write((char *)&col, sizeof(int));
             saveFile.write((char *)&row, sizeof(int));
             saveFile.write((char *)&size, sizeof(sf::Vector2u));
             saveFile.write((char *)&isGreen, sizeof(bool));
+
         }
     }
     else
@@ -648,6 +644,7 @@ void map::loadGame()
             saveFile.read((char *)&row, sizeof(int));
             saveFile.read((char *)&size, sizeof(sf::Vector2u));
             saveFile.read((char *)&isGreen, sizeof(bool));
+
 
             trafficlight *newtrafficlight = new trafficlight(_data);
             newtrafficlight->setcol(col);

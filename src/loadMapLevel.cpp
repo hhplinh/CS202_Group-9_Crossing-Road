@@ -18,19 +18,6 @@ void mapeasyLoad::init()
   {
     loadGame();
 
-    //cerr all size of vectors to debug
-    std::cerr << "blocks size: " << blocks.size() << std::endl;
-    std::cerr << "currentIndex: " << currentIndex << std::endl;
-    //animal, car, cano
-    std::cerr << "animal size: " << enemies.size() << std::endl;
-    std::cerr << "car size: " << enemies2.size() << std::endl;
-
-    std::cerr << "pos1.x: " << pos1.x << std::endl;
-    std::cerr << "pos1.y: " << pos1.y << std::endl;
-    std::cerr << "length: " << length << std::endl;
-    std::cerr << "player->getPos().x: " << player->getPosition().x << std::endl;
-    std::cerr << "player->getPos().y: " << player->getPosition().y << std::endl;
-
     return;
   }
 
@@ -71,7 +58,6 @@ void mapLoad::init()
 
 void mapLoad::draw()
 {
-  std::cerr << "draw" << std::endl;
   drawTemplate();
   if (isCountdownScreenNeeded == true)
   {
@@ -85,7 +71,6 @@ void mapLoad::draw()
 
 void mapeasyLoad::draw()
 {
-  std::cerr << "draw" << std::endl;
   drawTemplate();
   if (isCountdownScreenNeeded == true)
   {
