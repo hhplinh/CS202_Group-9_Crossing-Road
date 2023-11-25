@@ -512,6 +512,7 @@ void map::saveGame()
             saveFile.write((char *)&row, sizeof(int));
             saveFile.write((char *)&size, sizeof(sf::Vector2u));
             saveFile.write((char *)&isGreen, sizeof(bool));
+            saveFile.write((char *)&pos, sizeof(sf::Vector2f));
 
         }
     }
@@ -639,11 +640,13 @@ void map::loadGame()
             int row;
             sf::Vector2u size;
             bool isGreen;
+            sf::Vector2f pos;
 
             saveFile.read((char *)&col, sizeof(int));
             saveFile.read((char *)&row, sizeof(int));
             saveFile.read((char *)&size, sizeof(sf::Vector2u));
             saveFile.read((char *)&isGreen, sizeof(bool));
+            saveFile.read((char *)&pos, sizeof(sf::Vector2f));
 
 
             trafficlight *newtrafficlight = new trafficlight(_data);
@@ -651,6 +654,7 @@ void map::loadGame()
             newtrafficlight->setrow(row);
             newtrafficlight->setsize(size);
             newtrafficlight->setIsGreen(isGreen);
+            newtrafficlight->setposSave(pos);
             trafficlights.push_back(newtrafficlight);
         }
     }
