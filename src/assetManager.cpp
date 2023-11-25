@@ -24,7 +24,6 @@ assetManager::assetManager()
 	addTexture(TEGIAC, "resources//Texture//Tegiac.png");
 	addTexture(LACDA, "resources//Texture//Lacda.png");
 	addTexture(PENGUIN, "resources//Texture//Penguin.png");
-
 	addTexture(DIRT, "resources//Texture//dirt.png");
 }
 assetManager::~assetManager()

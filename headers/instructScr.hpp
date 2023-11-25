@@ -4,19 +4,15 @@
 #include <SFML/Graphics.hpp>
 
 #include <iostream>
+#include <string>
 
 class instructScreen : public state
 {
 private:
     data *_data;
-
-    sf::Clock clock;
-    bool isPaused;
-    int countdown;
-
-    sf::Text countdownText;
-    sf::Sprite backgroundSprite;
-    sf::Texture backgroundTexture;
+    const std::string INSTRUCT_PATH = "instruction.txt";
+    sf::Text instructText;
+    sf::RectangleShape backgroundSprite;
 
 public:
     instructScreen(data *data);
