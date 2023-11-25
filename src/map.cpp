@@ -283,7 +283,7 @@ for (int i = 0; i < enemies2.size(); i++)
     score.setString("Score: " + std::to_string(this->point));
     score.setCharacterSize(70);
     score.setOrigin(score.getLocalBounds().width / 2.f, score.getLocalBounds().height / 2.f);
-    score.setPosition(player->getPosition().x, player->getPosition().y - 400.f);
+    score.setPosition(_data->_window->getSize().x/2.f, player->getPosition().y - 400.f);
     
     score.setFillColor(sf::Color::White);
     score.setOutlineColor(_data->_assets->getThemeColor());
