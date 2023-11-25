@@ -7,25 +7,21 @@
 class mainMenu0Load : public menu
 {
 private:
-
     enum Button
     {
         PLAY,
-        SETTINGS,
+        INSTRUCTION,
         EXIT,
         NUM_BUTTONS
     };
-        // PAUSE,
-        // END,
 
     std::map<Button, std::string> buttonToString = {
         {PLAY, "Play"},
-        {SETTINGS, "Settings"},
+        {INSTRUCTION, "Instruction"},
         {EXIT, "Exit"},
     };
 
 public:
-
     mainMenu0Load(data *data);
     ~mainMenu0Load();
     void init();

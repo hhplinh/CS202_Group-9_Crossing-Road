@@ -1,11 +1,11 @@
 #include "mainMenu0Load.hpp"
 #include "diffiMenu.hpp"
+#include "instructScr.hpp"
 #include "map.hpp"
 
 
 mainMenu0Load::mainMenu0Load(data *data) : menu(data)
 {
-
     m_buttonsSelected.resize(NUM_BUTTONS, false);
     m_buttonsPressed.resize(NUM_BUTTONS, false);
     m_buttonsSelected[0] = true;
@@ -87,10 +87,10 @@ void mainMenu0Load::update()
         m_buttonsPressed[PLAY] = false;
         _data->_states->addState(new diffiMenu(_data));
     }
-    else if (m_buttonsPressed[SETTINGS])
+    else if (m_buttonsPressed[INSTRUCTION])
     {
-        m_buttonsPressed[SETTINGS] = false;
-        // Implement your "Settings" logic here
+        m_buttonsPressed[INSTRUCTION] = false;
+        _data->_states->addState(new instructScreen(_data));
     }
     else if (m_buttonsPressed[EXIT])
     {
