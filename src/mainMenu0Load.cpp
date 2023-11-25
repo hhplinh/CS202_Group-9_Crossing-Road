@@ -1,8 +1,8 @@
 #include "mainMenu0Load.hpp"
 #include "diffiMenu.hpp"
 #include "instructScr.hpp"
+#include "MainMenu.hpp"
 #include "map.hpp"
-
 
 mainMenu0Load::mainMenu0Load(data *data) : menu(data)
 {
@@ -14,7 +14,7 @@ mainMenu0Load::mainMenu0Load(data *data) : menu(data)
 mainMenu0Load::~mainMenu0Load() {}
 
 void mainMenu0Load::init()
-{ 
+{
     if (!m_buttons.empty())
     {
         return;
@@ -32,10 +32,9 @@ void mainMenu0Load::init()
         button.setPosition(1475, 390 + 150 * i);
         m_buttons.push_back(button);
     }
-
 }
 void mainMenu0Load::processInput()
-{  
+{
     sf::Event event;
     while (_data->_window->pollEvent(event))
     {
@@ -81,8 +80,12 @@ void mainMenu0Load::processInput()
 }
 
 void mainMenu0Load::update()
-{   // player->update();
-    if (m_buttonsPressed[PLAY])
+{
+    if (_data->_assets->isGameSaved() == true)
+    {
+        _data->_states->addState(new mainMenu(_data), true);
+    }
+    else if (m_buttonsPressed[PLAY])
     {
         m_buttonsPressed[PLAY] = false;
         _data->_states->addState(new diffiMenu(_data));

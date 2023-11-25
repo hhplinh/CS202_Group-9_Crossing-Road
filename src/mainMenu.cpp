@@ -2,11 +2,11 @@
 #include "loadMapLevel.hpp"
 #include "diffiMenu.hpp"
 #include "instructScr.hpp"
+#include "MainMenu0Load.hpp"
 #include "map.hpp"
 
 mainMenu::mainMenu(data *data) : menu(data)
 {
-
     m_buttonsSelected.resize(NUM_BUTTONS, false);
     m_buttonsPressed.resize(NUM_BUTTONS, false);
     m_buttonsSelected[0] = true;
@@ -82,8 +82,12 @@ void mainMenu::processInput()
 }
 
 void mainMenu::update()
-{ 
-    if (m_buttonsPressed[PLAY])
+{
+    if (_data->_assets->isGameSaved() == false)
+    {
+        _data->_states->addState(new mainMenu0Load(_data), true);
+    }
+    else if (m_buttonsPressed[PLAY])
     {
         m_buttonsPressed[PLAY] = false;
         _data->_states->addState(new diffiMenu(_data));
