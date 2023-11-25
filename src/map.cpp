@@ -14,7 +14,7 @@ void map::init()
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
     this->cooldownActive = false;
-    this->cooldownDuration=1.0f;
+    this->cooldownDuration = 1.0f;
     player = new maincharacter(_data);
     player->init();
     this->blocks.clear();
@@ -168,7 +168,7 @@ void map::update()
         if (trafficlights[i]->carCanGo())
         {
             enemies[i]->run();
-          //  collisonWithCar(player, enemies[i]);
+            //  collisonWithCar(player, enemies[i]);
         }
         if (enemies[i]->getposcar().x > 1920 || enemies[i]->getposcar().x < 0)
         {
@@ -177,63 +177,60 @@ void map::update()
     }
 
     for (int i = 0; i < enemies2.size(); i++)
-    {  enemies2[i]->floatOnRiver();
-        if (player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds()) && !player->movingUp)
     {
-        // Float with the boat
-        floatwithboat(player, enemies2[i]);
-
-        // Check if player is next to the next boat (if it exists)
-        if (i + 1 < enemies2.size() && isnextto(enemies2[i], enemies2[i + 1]))
+        enemies2[i]->floatOnRiver();
+        if (player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds()) && !player->movingUp)
         {
-            // Float with the nearby boat and set a cooldown period
-            if (!cooldownActive)
+            // Float with the boat
+            floatwithboat(player, enemies2[i]);
+
+            // Check if player is next to the next boat (if it exists)
+            if (i + 1 < enemies2.size() && isnextto(enemies2[i], enemies2[i + 1]))
             {
-                floatwithboat(player, enemies2[i + 1]);
-                cooldownClock.restart();
-                cooldownActive = true;
+                // Float with the nearby boat and set a cooldown period
+                if (!cooldownActive)
+                {
+                    floatwithboat(player, enemies2[i + 1]);
+                    cooldownClock.restart();
+                    cooldownActive = true;
+                }
             }
         }
-    }
-    if (enemies2[i]->getPosCano().x > 1920 || enemies2[i]->getPosCano().x < 0)
+        if (enemies2[i]->getPosCano().x > 1920 || enemies2[i]->getPosCano().x < 0)
         {
             enemies2[i]->turnAround();
         }
-}
+    }
 
-// Set playerIsOnBoat to false by default
-playerIsOnBoat = false;
+    // Set playerIsOnBoat to false by default
+    playerIsOnBoat = false;
 
-// Check if the player is on any boat
-for (int i = 0; i < enemies2.size(); i++)
-{
-    if (player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds()))
+    // Check if the player is on any boat
+    for (int i = 0; i < enemies2.size(); i++)
     {
-        playerIsOnBoat = true;
-        break;
-    }
-    
-        
-   
-    }
-           for (int i = 0; i < riverPos.size(); i++)
-        {  //check if pos of player is on river (>riverpos[i].y) (<riverpos[i].y+174)
-            if ( player->getSprite().getPosition().y > riverPos[i].y && player->getSprite().getPosition().y < riverPos[i].y + 174-50)
-            {
-                //check if player is on boat
-                if (playerIsOnBoat == false)
-                {//reset view
-                    //if not on boat, game over
-                    _data->_window->setView(_data->_window->getDefaultView());
-                    this->moveToGameOverMenu();
-                }
-            }
-          
+        if (player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds()))
+        {
+            playerIsOnBoat = true;
+            break;
         }
+    }
+    for (int i = 0; i < riverPos.size(); i++)
+    { // check if pos of player is on river (>riverpos[i].y) (<riverpos[i].y+174)
+        if (player->getSprite().getPosition().y > riverPos[i].y && player->getSprite().getPosition().y < riverPos[i].y + 174 - 50)
+        {
+            // check if player is on boat
+            if (playerIsOnBoat == false)
+            { // reset view
+                // if not on boat, game over
+                _data->_window->setView(_data->_window->getDefaultView());
+                this->moveToGameOverMenu();
+            }
+        }
+    }
     for (int i = 0; i < animals.size(); i++)
     { // std:: cout<< animals.size();
         animals[i]->AnimalRun();
-       // collisonWithAnimal(player, animals[i]);
+        // collisonWithAnimal(player, animals[i]);
         if (animals[i]->getposAnimal().x > 1920 || animals[i]->getposAnimal().x < 0)
         {
             animals[i]->AnimalTurn();
@@ -283,8 +280,8 @@ for (int i = 0; i < enemies2.size(); i++)
     score.setString("Score: " + std::to_string(this->point));
     score.setCharacterSize(70);
     score.setOrigin(score.getLocalBounds().width / 2.f, score.getLocalBounds().height / 2.f);
-    score.setPosition(_data->_window->getSize().x/2.f, player->getPosition().y - 400.f);
-    
+    score.setPosition(_data->_window->getSize().x / 2.f, player->getPosition().y - 400.f);
+
     score.setFillColor(sf::Color::White);
     score.setOutlineColor(_data->_assets->getThemeColor());
     score.setOutlineThickness(7.f);
@@ -301,8 +298,6 @@ void map::drawTemplate()
     _data->_window->clear();
 
     _data->_window->draw(background);
-
-  
 
     for (int i = currentIndex; i < blocks.size(); i++)
     {
@@ -344,7 +339,7 @@ void map::drawTemplate()
         _data->_window->draw(gameSavedText);
     }
 
-      //draw score
+    // draw score
     _data->_window->draw(score);
 }
 
@@ -464,7 +459,7 @@ void map::saveGame()
         int enemiesSize = enemies.size();
         saveFile.write((char *)&enemiesSize, sizeof(int));
 
-        //save enemies position
+        // save enemies position
         for (int i = 0; i < enemiesSize; i++)
         {
             sf::Vector2f enemyPos = enemies[i]->getposcar();
@@ -476,7 +471,7 @@ void map::saveGame()
         int enemies2Size = enemies2.size();
         saveFile.write((char *)&enemies2Size, sizeof(int));
 
-        //save enemies2 position
+        // save enemies2 position
         for (int i = 0; i < enemies2Size; i++)
         {
             sf::Vector2f enemy2Pos = enemies2[i]->getPosCano();
