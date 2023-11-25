@@ -59,7 +59,7 @@ void mapLoad::init()
 void mapLoad::draw()
 {
   drawTemplate();
-  int time = 10;
+  int time = 7;
   if (numScreenDrawn < time)
   {
     ++numScreenDrawn;
@@ -76,7 +76,7 @@ void mapLoad::draw()
 void mapeasyLoad::draw()
 {
   drawTemplate();
-  int time = 10;
+  int time = 7;
   if (numScreenDrawn < time)
   {
     ++numScreenDrawn;
