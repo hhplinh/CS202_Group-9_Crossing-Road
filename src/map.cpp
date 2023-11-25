@@ -55,7 +55,6 @@ void map::processInput()
             savePressed = true;
         }
     }
-
 }
 void map::update()
 {
@@ -106,7 +105,6 @@ void map::update()
             }
         }
     }
-
 
     int u;
 
@@ -164,20 +162,17 @@ void map::update()
         }
     }
 
-
     for (int i = 0; i < enemies.size(); i++)
     {
 
         if (trafficlights[i]->carCanGo())
         {
             enemies[i]->run();
-
         }
 
         if (enemies[i]->getposcar().x > 1920 || enemies[i]->getposcar().x < 0)
         {
             enemies[i]->turnaround();
-
         }
     }
 
@@ -219,7 +214,7 @@ void map::update()
             break;
         }
     }
-    
+
     for (int i = 0; i < riverPos.size(); i++)
     { // check if pos of player is on river (>riverpos[i].y) (<riverpos[i].y+174)
         if (player->getSprite().getPosition().y > riverPos[i].y && player->getSprite().getPosition().y < riverPos[i].y + 174 - 50)
@@ -495,7 +490,7 @@ void map::saveGame()
             saveFile.write((char *)&animalPos, sizeof(sf::Vector2f));
         }
 
-        //save traffic lights, save all parameters of traffic lights
+        // save traffic lights, save all parameters of traffic lights
         int trafficLightsSize = trafficlights.size();
         saveFile.write((char *)&trafficLightsSize, sizeof(int));
 
@@ -513,7 +508,6 @@ void map::saveGame()
             saveFile.write((char *)&size, sizeof(sf::Vector2u));
             saveFile.write((char *)&isGreen, sizeof(bool));
             saveFile.write((char *)&pos, sizeof(sf::Vector2f));
-
         }
     }
     else
@@ -648,7 +642,6 @@ void map::loadGame()
             saveFile.read((char *)&isGreen, sizeof(bool));
             saveFile.read((char *)&pos, sizeof(sf::Vector2f));
 
-
             trafficlight *newtrafficlight = new trafficlight(_data);
             newtrafficlight->setcol(col);
             newtrafficlight->setrow(row);
@@ -671,6 +664,7 @@ void map::loadCountdownScreen()
     backgroundTexture.create(_data->_window->getSize().x, _data->_window->getSize().y);
     backgroundTexture.update((const sf::RenderWindow &)(*(_data->_window)));
     _data->_assets->setBackgroundTexture(backgroundTexture);
+    _data->_window->setView(_data->_window->getDefaultView());
 
     _data->_states->addState(new ResumeScreen(_data), false);
 }

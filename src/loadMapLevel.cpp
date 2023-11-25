@@ -59,26 +59,33 @@ void mapLoad::init()
 void mapLoad::draw()
 {
   drawTemplate();
-  if (isCountdownScreenNeeded == true)
+  int time = 10;
+  if (numScreenDrawn < time)
   {
-    _data->_window->setView(_data->_window->getDefaultView());
+    ++numScreenDrawn;
+  }
+  else if (numScreenDrawn == time)
+  {
+    // _data->_window->setView(_data->_window->getDefaultView());
     loadCountdownScreen();
-    isCountdownScreenNeeded = false;
+    ++numScreenDrawn;
   }
   _data->_window->display();
-
 }
 
 void mapeasyLoad::draw()
 {
   drawTemplate();
-  if (isCountdownScreenNeeded == true)
+  int time = 10;
+  if (numScreenDrawn < time)
   {
-    _data->_window->setView(_data->_window->getDefaultView());
+    ++numScreenDrawn;
+  }
+  else if (numScreenDrawn == time)
+  {
+    // _data->_window->setView(_data->_window->getDefaultView());
     loadCountdownScreen();
-    isCountdownScreenNeeded = false;
+    ++numScreenDrawn;
   }
   _data->_window->display();
-
-
 }
