@@ -40,7 +40,6 @@ void map::processInput()
         if (event.type == sf::Event::Closed)
         {
             saveGame();
-
             _data->_window->close();
         }
 
@@ -257,7 +256,7 @@ void map::update()
         gameSavedText.setOutlineThickness(7.f);
 
         // position below player
-        gameSavedText.setPosition(player->getPosition().x, player->getPosition().y + 400.f);
+        gameSavedText.setPosition(_data->_window->getSize().x / 2.f, player->getPosition().y + 400.f);
 
         savePressed = false;
     }
@@ -268,11 +267,10 @@ void map::update()
         backgroundTexture.update((const sf::RenderWindow &)(*(_data->_window)));
         _data->_assets->setBackgroundTexture(backgroundTexture);
 
-        saveGame();
-
         mescpressed = false;
         _data->_window->setView(_data->_window->getDefaultView());
         _data->_states->addState((new menuPause(_data)), false);
+         saveGame();
     }
 
     for (int i = 0; i < trafficlights.size(); i++)
@@ -437,10 +435,6 @@ void map::saveGame()
         saveFile.write((char *)&pos1.x, sizeof(float));
         saveFile.write((char *)&pos1.y, sizeof(float));
 
-        // save player position
-        sf::Vector2f playerPos = player->getPosition();
-        saveFile.write((char *)&playerPos, sizeof(sf::Vector2f));
-
         // save block size
         int blockSize = blocks.size();
         saveFile.write((char *)&blockSize, sizeof(int));
@@ -467,18 +461,6 @@ void map::saveGame()
         {
             sf::Vector2f enemyPos = enemies[i]->getposcar();
             saveFile.write((char *)&enemyPos, sizeof(sf::Vector2f));
-        }
-
-        // enemies2 = cano
-        //  save enemies2 size
-        int enemies2Size = enemies2.size();
-        saveFile.write((char *)&enemies2Size, sizeof(int));
-
-        // save enemies2 position
-        for (int i = 0; i < enemies2Size; i++)
-        {
-            sf::Vector2f enemy2Pos = enemies2[i]->getPosCano();
-            saveFile.write((char *)&enemy2Pos, sizeof(sf::Vector2f));
         }
 
         // save animals size
@@ -511,6 +493,22 @@ void map::saveGame()
             saveFile.write((char *)&isGreen, sizeof(bool));
             saveFile.write((char *)&pos, sizeof(sf::Vector2f));
         }
+
+        // enemies2 = cano
+        //  save enemies2 size
+        int enemies2Size = enemies2.size();
+        saveFile.write((char *)&enemies2Size, sizeof(int));
+
+        // save enemies2 position
+        for (int i = 0; i < enemies2Size; i++)
+        {
+            sf::Vector2f enemy2Pos = enemies2[i]->getPosCano();
+            saveFile.write((char *)&enemy2Pos, sizeof(sf::Vector2f));
+        }
+
+        // save player position
+        sf::Vector2f playerPos = player->getPosition();
+        saveFile.write((char *)&playerPos, sizeof(sf::Vector2f));
     }
     else
     {
@@ -546,11 +544,6 @@ void map::loadGame()
 
         // save to retrieve later
         sf::Vector2f temp = pos1;
-
-        // load player position
-        sf::Vector2f playerPos;
-        saveFile.read((char *)&playerPos, sizeof(sf::Vector2f));
-        player->setPosition(playerPos.x, playerPos.y);
 
         // load block size
         int blockSize;
@@ -590,20 +583,6 @@ void map::loadGame()
             car *newcar = new car(_data);
             newcar->setposcar(sf::Vector2f(enemyPos.x, enemyPos.y));
             enemies.push_back(newcar);
-        }
-
-        int enemies2Size;
-        saveFile.read((char *)&enemies2Size, sizeof(int));
-        enemies2.clear();
-
-        for (int i = 0; i < enemies2Size; i++)
-        {
-            sf::Vector2f enemy2Pos;
-            saveFile.read((char *)&enemy2Pos, sizeof(sf::Vector2f));
-
-            Cano *newCano = new Cano(_data);
-            newCano->setPosCano(sf::Vector2f(enemy2Pos.x, enemy2Pos.y));
-            enemies2.push_back(newCano);
         }
 
         int animalsSize;
@@ -654,6 +633,27 @@ void map::loadGame()
             newtrafficlight->setposSave(pos);
             trafficlights.push_back(newtrafficlight);
         }
+
+        
+        int enemies2Size;
+        saveFile.read((char *)&enemies2Size, sizeof(int));
+        enemies2.clear();
+
+        for (int i = 0; i < enemies2Size; i++)
+        {
+            sf::Vector2f enemy2Pos;
+            saveFile.read((char *)&enemy2Pos, sizeof(sf::Vector2f));
+
+            Cano *newCano = new Cano(_data);
+            newCano->setPosCano(sf::Vector2f(enemy2Pos.x, enemy2Pos.y));
+            enemies2.push_back(newCano);
+        }
+
+                // load player position
+        sf::Vector2f playerPos;
+        saveFile.read((char *)&playerPos, sizeof(sf::Vector2f));
+        player->setPosition(playerPos.x, playerPos.y);
+
     }
     else
     {

@@ -1,3 +1,4 @@
   During gameplay:
 - Press "Esc" to pause game.
-- Press "S" to save game.
+- Game is saved automatically.
+- Press "S" to save game manually.
