@@ -33,7 +33,8 @@ class Animal
   void AnimalTurn();
   sf::Vector2u size;
   void AnimalRun();
-  
+
+  std::string getAnimalName();
 };
 class cop : public Animal
 { protected: 
@@ -45,10 +46,16 @@ class cop : public Animal
 
 
 };
+
 class tegiac : public Animal
 {
+   public:
+  ~tegiac() {}
+ 
+  tegiac(data* _data) ;
 
 };
+
 class lacda : public Animal
 {
 

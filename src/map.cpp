@@ -479,6 +479,12 @@ void map::saveGame()
         // save animals position
         for (int i = 0; i < animalsSize; i++)
         {
+            //save animal name
+            std::string animalName = animals[i]->getAnimalName();
+            int len = animalName.size();
+            saveFile.write((char *)&len, sizeof(int));
+            saveFile.write(animalName.c_str(), len);
+
             sf::Vector2f animalPos = animals[i]->getposAnimal();
             saveFile.write((char *)&animalPos, sizeof(sf::Vector2f));
         }
@@ -600,17 +606,25 @@ void map::loadGame()
 
         for (int i = 0; i < animalsSize; i++)
         {
+            int len;
+            saveFile.read((char *)&len, sizeof(int));
+
+            char *buffer = new char[len + 1];
+            saveFile.read(buffer, len);
+            std::string animalName(buffer, len);
+            delete[] buffer;
+
             sf::Vector2f animalPos;
             saveFile.read((char *)&animalPos, sizeof(sf::Vector2f));
 
             Animal *a;
-            if (isEasyLevelSaved)
-            {
-                a = new gau(_data);
-            }
-            else
+            if (animalName == "cop")
             {
                 a = new cop(_data);
+            }
+            else if (animalName == "gau")
+            {
+                a = new gau(_data);
             }
             a->setposAnimal(sf::Vector2f(animalPos.x, animalPos.y));
             animals.push_back(a);
