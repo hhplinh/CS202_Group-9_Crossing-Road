@@ -13,8 +13,9 @@ inputNameHighScore::~inputNameHighScore()
 
 void inputNameHighScore::init()
 {
-    backgroundSprite.setTexture(_data->_assets->getTexture("background"));
-    
+    backgroundSprite.setTexture(&_data->_assets->getTexture(BG_INPUT_NAME));
+    backgroundSprite.setSize(sf::Vector2f(_data->_window->getSize().x, _data->_window->getSize().y));
+
     // countdownText.setFont(_data->_assets->getFont(MAIN_FONT));
     // countdownText.setCharacterSize(200);
     // countdownText.setFillColor(sf::Color::White);
@@ -29,8 +30,21 @@ void inputNameHighScore::processInput()
     sf::Event event;
     while (_data->_window->pollEvent(event))
     {
+        isEventChanged = true;
         if (event.type == sf::Event::Closed)
             _data->_window->close();
+
+        else if (event.type == sf::Event::KeyPressed)
+        {
+            switch (event.key.code)
+            {
+            case sf::Keyboard::Return:
+                // _data->_states->addState(stateRef(new menuMain(_data)), true);
+                break;
+            default:
+                break;
+            }
+        }
     }
 }
 

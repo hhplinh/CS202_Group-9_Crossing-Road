@@ -21,6 +21,8 @@ class inputNameHighScore : public state
 {
 private:
     data *_data;
+
+    bool isEventChanged = true;
     sf::RectangleShape backgroundSprite;
     std::vector<sf::Text> name_score;
 
