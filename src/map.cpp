@@ -188,25 +188,33 @@ void map::update()
         {
             // Float with the boat
             floatwithboat(player, enemies2[i]);
-
-            // Check if player is next to the next boat (if it exists)
-            if (i + 1 < enemies2.size() && isnextto(enemies2[i], enemies2[i + 1]))
+ if (player->movingUp)
             {
-                // Float with the nearby boat and set a cooldown period
-                if (!cooldownActive)
+                /*  player->setPosition(
+                      player->getSprite().getPosition().x,
+                      player->getSprite().getPosition().y - 100
+                  );*/
+                if (i + 1 < enemies2.size())
                 {
-                    floatwithboat(player, enemies2[i + 1]);
-                    cooldownClock.restart();
-                    cooldownActive = true;
+                    if (isnextto(enemies2[i], enemies2[i + 1]))
+                    {
+                        floatwithboat(player, enemies2[i + 1]);
+                    }
                 }
-            }
+                else
+                {
+                    // get off the boat
+                    player->setPosition(player->getSprite().getPosition().x, player->getSprite().getPosition().y - 100);
+                    this->playerIsOnBoat = false;
+                }
         }
-        if (enemies2[i]->getPosCano().x > 1920 || enemies2[i]->getPosCano().x < 0)
+      
+    }
+      if (enemies2[i]->getPosCano().x > 1920 || enemies2[i]->getPosCano().x < 0)
         {
             enemies2[i]->turnAround();
         }
     }
-
     // Set playerIsOnBoat to false by default
     playerIsOnBoat = false;
 
