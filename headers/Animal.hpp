@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include"state.h"
+#include<string>
 #pragma once
 class Animal 
 {
@@ -12,7 +13,7 @@ class Animal
   float speed;
   int row , col;
   bool goR;
-  
+ std:: string name;
  sf :: Sprite sprite;
   public:
   sf::Sprite getSprite(){return this->sprite;}

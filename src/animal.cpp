@@ -57,7 +57,7 @@ void Animal :: init()
   cop :: cop(data* _data) : Animal(_data)
   {
   
-  
+  this->name="cop";
  this-> row =2;
   this->col=10;
   this->speed=5;
@@ -71,7 +71,7 @@ void Animal :: init()
     gau :: gau(data* _data) : Animal(_data)
   {
   
-  
+  this->name="gau";
  this-> row =2;
   this->col=10;
   this->speed=5;
