@@ -39,6 +39,8 @@ void map::processInput()
         player->processInput(event);
         if (event.type == sf::Event::Closed)
         {
+            saveGame();
+
             _data->_window->close();
         }
 
@@ -169,7 +171,7 @@ void map::update()
         {
             enemies[i]->run();
         }
-   collisonWithCar(player, enemies[i]);
+        collisonWithCar(player, enemies[i]);
         if (enemies[i]->getposcar().x > 1920 || enemies[i]->getposcar().x < 0)
         {
             enemies[i]->turnaround();
@@ -231,7 +233,7 @@ void map::update()
     for (int i = 0; i < animals.size(); i++)
     { // std:: cout<< animals.size();
         animals[i]->AnimalRun();
-         collisonWithAnimal(player, animals[i]);
+        collisonWithAnimal(player, animals[i]);
         if (animals[i]->getposAnimal().x > 1920 || animals[i]->getposAnimal().x < 0)
         {
             animals[i]->AnimalTurn();
@@ -265,6 +267,8 @@ void map::update()
         backgroundTexture.create(_data->_window->getSize().x, _data->_window->getSize().y);
         backgroundTexture.update((const sf::RenderWindow &)(*(_data->_window)));
         _data->_assets->setBackgroundTexture(backgroundTexture);
+
+        saveGame();
 
         mescpressed = false;
         _data->_window->setView(_data->_window->getDefaultView());
@@ -381,6 +385,7 @@ void map::addblock(std::string terrainName)
 map ::map(data *data)
 {
     _data = data;
+    point = 0;
 }
 
 map::~map()
@@ -425,13 +430,13 @@ void map::saveGame()
 
     if (saveFile.is_open())
     {
-        // save bool isEasyLevelSaved
+
         saveFile.write((char *)&isEasyLevel, sizeof(bool));
 
-        // save currentIndex
+        saveFile.write((char *)&point, sizeof(int));
+
         saveFile.write((char *)&currentIndex, sizeof(int));
 
-        // save pos1
         saveFile.write((char *)&pos1.x, sizeof(float));
         saveFile.write((char *)&pos1.y, sizeof(float));
 
@@ -533,6 +538,7 @@ void map::loadGame()
         bool isEasyLevelSaved;
         saveFile.read((char *)&isEasyLevelSaved, sizeof(bool));
 
+        saveFile.read((char *)&point, sizeof(int));
         // load currentIndex
         saveFile.read((char *)&currentIndex, sizeof(int));
 
