@@ -350,7 +350,6 @@ void map::drawTemplate()
 
 void map::createmap()
 {
-
     for (int i = 0; i < length; i++)
     {
 
@@ -385,7 +384,6 @@ void map::addblock(std::string terrainName)
 map ::map(data *data)
 {
     _data = data;
-    point = 0;
 }
 
 map::~map()
@@ -430,7 +428,6 @@ void map::saveGame()
 
     if (saveFile.is_open())
     {
-
         saveFile.write((char *)&isEasyLevel, sizeof(bool));
 
         saveFile.write((char *)&point, sizeof(int));
@@ -539,6 +536,7 @@ void map::loadGame()
         saveFile.read((char *)&isEasyLevelSaved, sizeof(bool));
 
         saveFile.read((char *)&point, sizeof(int));
+
         // load currentIndex
         saveFile.read((char *)&currentIndex, sizeof(int));
 

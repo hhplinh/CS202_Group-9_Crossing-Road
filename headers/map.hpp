@@ -52,7 +52,7 @@ protected:
     {
         return 0;
     }
-    int point;
+    int point = 0;
 
 public:
     Cano *currentBoat = NULL;
