@@ -37,7 +37,7 @@ void maincharacter::init()
     staminaBarBackground.setPosition(10, 10);
       staminaBar.setSize(sf::Vector2f(100, 20)); // Full width for full stamina
     staminaBar.setFillColor(sf::Color(100, 250, 50));
-    staminaBar.setPosition(11, 11); // 
+    staminaBar.setPosition(11,11 ); // 
      movingLeft = false;
     movingRight = false;
     movingUp = false;
@@ -190,7 +190,7 @@ void maincharacter::update() {
         } else  {
             stamina = std::max(stamina - staminaDrainRate, 0.0f);
         }
-  
+    staminaBar.setPosition(11 , this->getPosition().y - 50);
         displayStamina();
     
 }
