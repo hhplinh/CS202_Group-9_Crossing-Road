@@ -77,7 +77,7 @@ void map::update()
     }
     else
     {
-        currentIndex = int(1 + (pos) / -1080.0f) * 6;
+        currentIndex = int( (pos) / -1080.0f) * 6;
     }
     float o = pos / -1080.0f - int((pos) / -1080.0f);
 
