@@ -21,14 +21,11 @@ class inputNameHighScore : public state
 {
 private:
     data *_data;
-    const std::string INSTRUCT_PATH = "instruction.txt";
-    sf::Text instructText;
     sf::RectangleShape backgroundSprite;
     std::vector<sf::Text> name_score;
 
     const std::string SCORES_PATH = "scores.bin";
     const int NUM_SCORES = 5;
-
 
 public:
     inputNameHighScore(data *data);
