@@ -13,6 +13,8 @@ inputNameHighScore::~inputNameHighScore()
 
 void inputNameHighScore::init()
 {
+    backgroundSprite.setTexture(_data->_assets->getTexture("background"));
+    
     // countdownText.setFont(_data->_assets->getFont(MAIN_FONT));
     // countdownText.setCharacterSize(200);
     // countdownText.setFillColor(sf::Color::White);

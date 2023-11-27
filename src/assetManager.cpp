@@ -6,6 +6,8 @@ assetManager::assetManager()
 {
 	addTexture(TRAFFICLIGHT, "resources//Texture//Traffic light.png");
 	addTexture(BACKGROUND, "resources//Texture//bgMenu.png");
+	addTexture(BG_INPUT_NAME, "resources//Texture//bgInputName.png");
+	addTexture(LEADERBOARD, "resources//Texture//leaderboard.png");
 	addTexture(ROAD, "resources//Texture//road.png");
 	addTexture(RIVER, "resources//Texture//River.png");
 	addFont(MAIN_FONT, "resources//Font//LilitaOne-Regular.ttf");
