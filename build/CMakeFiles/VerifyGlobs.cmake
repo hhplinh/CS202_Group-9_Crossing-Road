@@ -6,12 +6,14 @@ cmake_policy(SET CMP0009 NEW)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "D:/CrossingRoadGame/CS202_Group-9/./src/*.cpp")
 set(OLD_GLOB
   "D:/CrossingRoadGame/CS202_Group-9/./src/GameMap.cpp"
+  "D:/CrossingRoadGame/CS202_Group-9/./src/Leaderboard.cpp"
   "D:/CrossingRoadGame/CS202_Group-9/./src/TerrainBlock.cpp"
   "D:/CrossingRoadGame/CS202_Group-9/./src/animal.cpp"
   "D:/CrossingRoadGame/CS202_Group-9/./src/assetManager.cpp"
   "D:/CrossingRoadGame/CS202_Group-9/./src/cano.cpp"
   "D:/CrossingRoadGame/CS202_Group-9/./src/diffiMenu.cpp"
   "D:/CrossingRoadGame/CS202_Group-9/./src/endgameMenu.cpp"
+  "D:/CrossingRoadGame/CS202_Group-9/./src/inputNameHighScore.cpp"
   "D:/CrossingRoadGame/CS202_Group-9/./src/instructScr.cpp"
   "D:/CrossingRoadGame/CS202_Group-9/./src/loadMapLevel.cpp"
   "D:/CrossingRoadGame/CS202_Group-9/./src/main.cpp"

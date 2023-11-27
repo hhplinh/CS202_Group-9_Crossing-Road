@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/main.dir/src/GameMap.cpp.obj"
   "CMakeFiles/main.dir/src/GameMap.cpp.obj.d"
+  "CMakeFiles/main.dir/src/Leaderboard.cpp.obj"
+  "CMakeFiles/main.dir/src/Leaderboard.cpp.obj.d"
   "CMakeFiles/main.dir/src/TerrainBlock.cpp.obj"
   "CMakeFiles/main.dir/src/TerrainBlock.cpp.obj.d"
   "CMakeFiles/main.dir/src/animal.cpp.obj"
@@ -13,6 +15,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/main.dir/src/diffiMenu.cpp.obj.d"
   "CMakeFiles/main.dir/src/endgameMenu.cpp.obj"
   "CMakeFiles/main.dir/src/endgameMenu.cpp.obj.d"
+  "CMakeFiles/main.dir/src/inputNameHighScore.cpp.obj"
+  "CMakeFiles/main.dir/src/inputNameHighScore.cpp.obj.d"
   "CMakeFiles/main.dir/src/instructScr.cpp.obj"
   "CMakeFiles/main.dir/src/instructScr.cpp.obj.d"
   "CMakeFiles/main.dir/src/loadMapLevel.cpp.obj"

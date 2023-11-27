@@ -83,11 +83,26 @@ CMakeFiles/main.dir/src/GameMap.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/GameMap.cpp.s"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\CrossingRoadGame\CS202_Group-9\src\GameMap.cpp -o CMakeFiles\main.dir\src\GameMap.cpp.s
 
+CMakeFiles/main.dir/src/Leaderboard.cpp.obj: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/src/Leaderboard.cpp.obj: CMakeFiles/main.dir/includes_CXX.rsp
+CMakeFiles/main.dir/src/Leaderboard.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/Leaderboard.cpp
+CMakeFiles/main.dir/src/Leaderboard.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/src/Leaderboard.cpp.obj"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/Leaderboard.cpp.obj -MF CMakeFiles\main.dir\src\Leaderboard.cpp.obj.d -o CMakeFiles\main.dir\src\Leaderboard.cpp.obj -c D:\CrossingRoadGame\CS202_Group-9\src\Leaderboard.cpp
+
+CMakeFiles/main.dir/src/Leaderboard.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/Leaderboard.cpp.i"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\CrossingRoadGame\CS202_Group-9\src\Leaderboard.cpp > CMakeFiles\main.dir\src\Leaderboard.cpp.i
+
+CMakeFiles/main.dir/src/Leaderboard.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/Leaderboard.cpp.s"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\CrossingRoadGame\CS202_Group-9\src\Leaderboard.cpp -o CMakeFiles\main.dir\src\Leaderboard.cpp.s
+
 CMakeFiles/main.dir/src/TerrainBlock.cpp.obj: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/TerrainBlock.cpp.obj: CMakeFiles/main.dir/includes_CXX.rsp
 CMakeFiles/main.dir/src/TerrainBlock.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/TerrainBlock.cpp
 CMakeFiles/main.dir/src/TerrainBlock.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/src/TerrainBlock.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/src/TerrainBlock.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/TerrainBlock.cpp.obj -MF CMakeFiles\main.dir\src\TerrainBlock.cpp.obj.d -o CMakeFiles\main.dir\src\TerrainBlock.cpp.obj -c D:\CrossingRoadGame\CS202_Group-9\src\TerrainBlock.cpp
 
 CMakeFiles/main.dir/src/TerrainBlock.cpp.i: cmake_force
@@ -102,7 +117,7 @@ CMakeFiles/main.dir/src/animal.cpp.obj: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/animal.cpp.obj: CMakeFiles/main.dir/includes_CXX.rsp
 CMakeFiles/main.dir/src/animal.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/animal.cpp
 CMakeFiles/main.dir/src/animal.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/src/animal.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.dir/src/animal.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/animal.cpp.obj -MF CMakeFiles\main.dir\src\animal.cpp.obj.d -o CMakeFiles\main.dir\src\animal.cpp.obj -c D:\CrossingRoadGame\CS202_Group-9\src\animal.cpp
 
 CMakeFiles/main.dir/src/animal.cpp.i: cmake_force
@@ -117,7 +132,7 @@ CMakeFiles/main.dir/src/assetManager.cpp.obj: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/assetManager.cpp.obj: CMakeFiles/main.dir/includes_CXX.rsp
 CMakeFiles/main.dir/src/assetManager.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/assetManager.cpp
 CMakeFiles/main.dir/src/assetManager.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.dir/src/assetManager.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main.dir/src/assetManager.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/assetManager.cpp.obj -MF CMakeFiles\main.dir\src\assetManager.cpp.obj.d -o CMakeFiles\main.dir\src\assetManager.cpp.obj -c D:\CrossingRoadGame\CS202_Group-9\src\assetManager.cpp
 
 CMakeFiles/main.dir/src/assetManager.cpp.i: cmake_force
@@ -132,7 +147,7 @@ CMakeFiles/main.dir/src/cano.cpp.obj: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/cano.cpp.obj: CMakeFiles/main.dir/includes_CXX.rsp
 CMakeFiles/main.dir/src/cano.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/cano.cpp
 CMakeFiles/main.dir/src/cano.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main.dir/src/cano.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/src/cano.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/cano.cpp.obj -MF CMakeFiles\main.dir\src\cano.cpp.obj.d -o CMakeFiles\main.dir\src\cano.cpp.obj -c D:\CrossingRoadGame\CS202_Group-9\src\cano.cpp
 
 CMakeFiles/main.dir/src/cano.cpp.i: cmake_force
@@ -147,7 +162,7 @@ CMakeFiles/main.dir/src/diffiMenu.cpp.obj: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/diffiMenu.cpp.obj: CMakeFiles/main.dir/includes_CXX.rsp
 CMakeFiles/main.dir/src/diffiMenu.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/diffiMenu.cpp
 CMakeFiles/main.dir/src/diffiMenu.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/src/diffiMenu.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/src/diffiMenu.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/diffiMenu.cpp.obj -MF CMakeFiles\main.dir\src\diffiMenu.cpp.obj.d -o CMakeFiles\main.dir\src\diffiMenu.cpp.obj -c D:\CrossingRoadGame\CS202_Group-9\src\diffiMenu.cpp
 
 CMakeFiles/main.dir/src/diffiMenu.cpp.i: cmake_force
@@ -162,7 +177,7 @@ CMakeFiles/main.dir/src/endgameMenu.cpp.obj: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/endgameMenu.cpp.obj: CMakeFiles/main.dir/includes_CXX.rsp
 CMakeFiles/main.dir/src/endgameMenu.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/endgameMenu.cpp
 CMakeFiles/main.dir/src/endgameMenu.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/src/endgameMenu.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/main.dir/src/endgameMenu.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/endgameMenu.cpp.obj -MF CMakeFiles\main.dir\src\endgameMenu.cpp.obj.d -o CMakeFiles\main.dir\src\endgameMenu.cpp.obj -c D:\CrossingRoadGame\CS202_Group-9\src\endgameMenu.cpp
 
 CMakeFiles/main.dir/src/endgameMenu.cpp.i: cmake_force
@@ -173,11 +188,26 @@ CMakeFiles/main.dir/src/endgameMenu.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/endgameMenu.cpp.s"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\CrossingRoadGame\CS202_Group-9\src\endgameMenu.cpp -o CMakeFiles\main.dir\src\endgameMenu.cpp.s
 
+CMakeFiles/main.dir/src/inputNameHighScore.cpp.obj: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/src/inputNameHighScore.cpp.obj: CMakeFiles/main.dir/includes_CXX.rsp
+CMakeFiles/main.dir/src/inputNameHighScore.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/inputNameHighScore.cpp
+CMakeFiles/main.dir/src/inputNameHighScore.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/main.dir/src/inputNameHighScore.cpp.obj"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/inputNameHighScore.cpp.obj -MF CMakeFiles\main.dir\src\inputNameHighScore.cpp.obj.d -o CMakeFiles\main.dir\src\inputNameHighScore.cpp.obj -c D:\CrossingRoadGame\CS202_Group-9\src\inputNameHighScore.cpp
+
+CMakeFiles/main.dir/src/inputNameHighScore.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/src/inputNameHighScore.cpp.i"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\CrossingRoadGame\CS202_Group-9\src\inputNameHighScore.cpp > CMakeFiles\main.dir\src\inputNameHighScore.cpp.i
+
+CMakeFiles/main.dir/src/inputNameHighScore.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/src/inputNameHighScore.cpp.s"
+	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\CrossingRoadGame\CS202_Group-9\src\inputNameHighScore.cpp -o CMakeFiles\main.dir\src\inputNameHighScore.cpp.s
+
 CMakeFiles/main.dir/src/instructScr.cpp.obj: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/instructScr.cpp.obj: CMakeFiles/main.dir/includes_CXX.rsp
 CMakeFiles/main.dir/src/instructScr.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/instructScr.cpp
 CMakeFiles/main.dir/src/instructScr.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/main.dir/src/instructScr.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/main.dir/src/instructScr.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/instructScr.cpp.obj -MF CMakeFiles\main.dir\src\instructScr.cpp.obj.d -o CMakeFiles\main.dir\src\instructScr.cpp.obj -c D:\CrossingRoadGame\CS202_Group-9\src\instructScr.cpp
 
 CMakeFiles/main.dir/src/instructScr.cpp.i: cmake_force
@@ -192,7 +222,7 @@ CMakeFiles/main.dir/src/loadMapLevel.cpp.obj: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/loadMapLevel.cpp.obj: CMakeFiles/main.dir/includes_CXX.rsp
 CMakeFiles/main.dir/src/loadMapLevel.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/loadMapLevel.cpp
 CMakeFiles/main.dir/src/loadMapLevel.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/main.dir/src/loadMapLevel.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/main.dir/src/loadMapLevel.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/loadMapLevel.cpp.obj -MF CMakeFiles\main.dir\src\loadMapLevel.cpp.obj.d -o CMakeFiles\main.dir\src\loadMapLevel.cpp.obj -c D:\CrossingRoadGame\CS202_Group-9\src\loadMapLevel.cpp
 
 CMakeFiles/main.dir/src/loadMapLevel.cpp.i: cmake_force
@@ -207,7 +237,7 @@ CMakeFiles/main.dir/src/main.cpp.obj: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/main.cpp.obj: CMakeFiles/main.dir/includes_CXX.rsp
 CMakeFiles/main.dir/src/main.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/main.cpp
 CMakeFiles/main.dir/src/main.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/main.dir/src/main.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/main.dir/src/main.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/main.cpp.obj -MF CMakeFiles\main.dir\src\main.cpp.obj.d -o CMakeFiles\main.dir\src\main.cpp.obj -c D:\CrossingRoadGame\CS202_Group-9\src\main.cpp
 
 CMakeFiles/main.dir/src/main.cpp.i: cmake_force
@@ -222,7 +252,7 @@ CMakeFiles/main.dir/src/mainMenu.cpp.obj: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/mainMenu.cpp.obj: CMakeFiles/main.dir/includes_CXX.rsp
 CMakeFiles/main.dir/src/mainMenu.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/mainMenu.cpp
 CMakeFiles/main.dir/src/mainMenu.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/main.dir/src/mainMenu.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/main.dir/src/mainMenu.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/mainMenu.cpp.obj -MF CMakeFiles\main.dir\src\mainMenu.cpp.obj.d -o CMakeFiles\main.dir\src\mainMenu.cpp.obj -c D:\CrossingRoadGame\CS202_Group-9\src\mainMenu.cpp
 
 CMakeFiles/main.dir/src/mainMenu.cpp.i: cmake_force
@@ -237,7 +267,7 @@ CMakeFiles/main.dir/src/mainMenu0Load.cpp.obj: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/mainMenu0Load.cpp.obj: CMakeFiles/main.dir/includes_CXX.rsp
 CMakeFiles/main.dir/src/mainMenu0Load.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/mainMenu0Load.cpp
 CMakeFiles/main.dir/src/mainMenu0Load.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/main.dir/src/mainMenu0Load.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/main.dir/src/mainMenu0Load.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/mainMenu0Load.cpp.obj -MF CMakeFiles\main.dir\src\mainMenu0Load.cpp.obj.d -o CMakeFiles\main.dir\src\mainMenu0Load.cpp.obj -c D:\CrossingRoadGame\CS202_Group-9\src\mainMenu0Load.cpp
 
 CMakeFiles/main.dir/src/mainMenu0Load.cpp.i: cmake_force
@@ -252,7 +282,7 @@ CMakeFiles/main.dir/src/maincharacter.cpp.obj: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/maincharacter.cpp.obj: CMakeFiles/main.dir/includes_CXX.rsp
 CMakeFiles/main.dir/src/maincharacter.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/maincharacter.cpp
 CMakeFiles/main.dir/src/maincharacter.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/main.dir/src/maincharacter.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/main.dir/src/maincharacter.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/maincharacter.cpp.obj -MF CMakeFiles\main.dir\src\maincharacter.cpp.obj.d -o CMakeFiles\main.dir\src\maincharacter.cpp.obj -c D:\CrossingRoadGame\CS202_Group-9\src\maincharacter.cpp
 
 CMakeFiles/main.dir/src/maincharacter.cpp.i: cmake_force
@@ -267,7 +297,7 @@ CMakeFiles/main.dir/src/map.cpp.obj: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/map.cpp.obj: CMakeFiles/main.dir/includes_CXX.rsp
 CMakeFiles/main.dir/src/map.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/map.cpp
 CMakeFiles/main.dir/src/map.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/main.dir/src/map.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/main.dir/src/map.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/map.cpp.obj -MF CMakeFiles\main.dir\src\map.cpp.obj.d -o CMakeFiles\main.dir\src\map.cpp.obj -c D:\CrossingRoadGame\CS202_Group-9\src\map.cpp
 
 CMakeFiles/main.dir/src/map.cpp.i: cmake_force
@@ -282,7 +312,7 @@ CMakeFiles/main.dir/src/mapfeature.cpp.obj: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/mapfeature.cpp.obj: CMakeFiles/main.dir/includes_CXX.rsp
 CMakeFiles/main.dir/src/mapfeature.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/mapfeature.cpp
 CMakeFiles/main.dir/src/mapfeature.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/main.dir/src/mapfeature.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/main.dir/src/mapfeature.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/mapfeature.cpp.obj -MF CMakeFiles\main.dir\src\mapfeature.cpp.obj.d -o CMakeFiles\main.dir\src\mapfeature.cpp.obj -c D:\CrossingRoadGame\CS202_Group-9\src\mapfeature.cpp
 
 CMakeFiles/main.dir/src/mapfeature.cpp.i: cmake_force
@@ -297,7 +327,7 @@ CMakeFiles/main.dir/src/menu.cpp.obj: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/menu.cpp.obj: CMakeFiles/main.dir/includes_CXX.rsp
 CMakeFiles/main.dir/src/menu.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/menu.cpp
 CMakeFiles/main.dir/src/menu.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/main.dir/src/menu.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/main.dir/src/menu.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/menu.cpp.obj -MF CMakeFiles\main.dir\src\menu.cpp.obj.d -o CMakeFiles\main.dir\src\menu.cpp.obj -c D:\CrossingRoadGame\CS202_Group-9\src\menu.cpp
 
 CMakeFiles/main.dir/src/menu.cpp.i: cmake_force
@@ -312,7 +342,7 @@ CMakeFiles/main.dir/src/menuPause.cpp.obj: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/menuPause.cpp.obj: CMakeFiles/main.dir/includes_CXX.rsp
 CMakeFiles/main.dir/src/menuPause.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/menuPause.cpp
 CMakeFiles/main.dir/src/menuPause.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/main.dir/src/menuPause.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/main.dir/src/menuPause.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/menuPause.cpp.obj -MF CMakeFiles\main.dir\src\menuPause.cpp.obj.d -o CMakeFiles\main.dir\src\menuPause.cpp.obj -c D:\CrossingRoadGame\CS202_Group-9\src\menuPause.cpp
 
 CMakeFiles/main.dir/src/menuPause.cpp.i: cmake_force
@@ -327,7 +357,7 @@ CMakeFiles/main.dir/src/resumeScreen.cpp.obj: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/resumeScreen.cpp.obj: CMakeFiles/main.dir/includes_CXX.rsp
 CMakeFiles/main.dir/src/resumeScreen.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/resumeScreen.cpp
 CMakeFiles/main.dir/src/resumeScreen.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/main.dir/src/resumeScreen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/main.dir/src/resumeScreen.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/resumeScreen.cpp.obj -MF CMakeFiles\main.dir\src\resumeScreen.cpp.obj.d -o CMakeFiles\main.dir\src\resumeScreen.cpp.obj -c D:\CrossingRoadGame\CS202_Group-9\src\resumeScreen.cpp
 
 CMakeFiles/main.dir/src/resumeScreen.cpp.i: cmake_force
@@ -342,7 +372,7 @@ CMakeFiles/main.dir/src/sqlmain.cpp.obj: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/sqlmain.cpp.obj: CMakeFiles/main.dir/includes_CXX.rsp
 CMakeFiles/main.dir/src/sqlmain.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/sqlmain.cpp
 CMakeFiles/main.dir/src/sqlmain.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/main.dir/src/sqlmain.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/main.dir/src/sqlmain.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/sqlmain.cpp.obj -MF CMakeFiles\main.dir\src\sqlmain.cpp.obj.d -o CMakeFiles\main.dir\src\sqlmain.cpp.obj -c D:\CrossingRoadGame\CS202_Group-9\src\sqlmain.cpp
 
 CMakeFiles/main.dir/src/sqlmain.cpp.i: cmake_force
@@ -357,7 +387,7 @@ CMakeFiles/main.dir/src/stateMachine.cpp.obj: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/stateMachine.cpp.obj: CMakeFiles/main.dir/includes_CXX.rsp
 CMakeFiles/main.dir/src/stateMachine.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/stateMachine.cpp
 CMakeFiles/main.dir/src/stateMachine.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/main.dir/src/stateMachine.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/main.dir/src/stateMachine.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/stateMachine.cpp.obj -MF CMakeFiles\main.dir\src\stateMachine.cpp.obj.d -o CMakeFiles\main.dir\src\stateMachine.cpp.obj -c D:\CrossingRoadGame\CS202_Group-9\src\stateMachine.cpp
 
 CMakeFiles/main.dir/src/stateMachine.cpp.i: cmake_force
@@ -372,7 +402,7 @@ CMakeFiles/main.dir/src/system.cpp.obj: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/src/system.cpp.obj: CMakeFiles/main.dir/includes_CXX.rsp
 CMakeFiles/main.dir/src/system.cpp.obj: D:/CrossingRoadGame/CS202_Group-9/src/system.cpp
 CMakeFiles/main.dir/src/system.cpp.obj: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/main.dir/src/system.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/main.dir/src/system.cpp.obj"
 	C:\msys64\mingw64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/src/system.cpp.obj -MF CMakeFiles\main.dir\src\system.cpp.obj.d -o CMakeFiles\main.dir\src\system.cpp.obj -c D:\CrossingRoadGame\CS202_Group-9\src\system.cpp
 
 CMakeFiles/main.dir/src/system.cpp.i: cmake_force
@@ -386,12 +416,14 @@ CMakeFiles/main.dir/src/system.cpp.s: cmake_force
 # Object files for target main
 main_OBJECTS = \
 "CMakeFiles/main.dir/src/GameMap.cpp.obj" \
+"CMakeFiles/main.dir/src/Leaderboard.cpp.obj" \
 "CMakeFiles/main.dir/src/TerrainBlock.cpp.obj" \
 "CMakeFiles/main.dir/src/animal.cpp.obj" \
 "CMakeFiles/main.dir/src/assetManager.cpp.obj" \
 "CMakeFiles/main.dir/src/cano.cpp.obj" \
 "CMakeFiles/main.dir/src/diffiMenu.cpp.obj" \
 "CMakeFiles/main.dir/src/endgameMenu.cpp.obj" \
+"CMakeFiles/main.dir/src/inputNameHighScore.cpp.obj" \
 "CMakeFiles/main.dir/src/instructScr.cpp.obj" \
 "CMakeFiles/main.dir/src/loadMapLevel.cpp.obj" \
 "CMakeFiles/main.dir/src/main.cpp.obj" \
@@ -411,12 +443,14 @@ main_OBJECTS = \
 main_EXTERNAL_OBJECTS =
 
 main.exe: CMakeFiles/main.dir/src/GameMap.cpp.obj
+main.exe: CMakeFiles/main.dir/src/Leaderboard.cpp.obj
 main.exe: CMakeFiles/main.dir/src/TerrainBlock.cpp.obj
 main.exe: CMakeFiles/main.dir/src/animal.cpp.obj
 main.exe: CMakeFiles/main.dir/src/assetManager.cpp.obj
 main.exe: CMakeFiles/main.dir/src/cano.cpp.obj
 main.exe: CMakeFiles/main.dir/src/diffiMenu.cpp.obj
 main.exe: CMakeFiles/main.dir/src/endgameMenu.cpp.obj
+main.exe: CMakeFiles/main.dir/src/inputNameHighScore.cpp.obj
 main.exe: CMakeFiles/main.dir/src/instructScr.cpp.obj
 main.exe: CMakeFiles/main.dir/src/loadMapLevel.cpp.obj
 main.exe: CMakeFiles/main.dir/src/main.cpp.obj
@@ -449,7 +483,7 @@ main.exe: D:/CrossingRoadGame/CS202_Group-9/SFML-2.6.0/lib/libFLAC.a
 main.exe: CMakeFiles/main.dir/linkLibs.rsp
 main.exe: CMakeFiles/main.dir/objects1.rsp
 main.exe: CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Linking CXX executable main.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\CrossingRoadGame\CS202_Group-9\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Linking CXX executable main.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\main.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

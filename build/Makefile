@@ -153,6 +153,30 @@ src/GameMap.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/GameMap.cpp.s
 .PHONY : src/GameMap.cpp.s
 
+src/Leaderboard.obj: src/Leaderboard.cpp.obj
+.PHONY : src/Leaderboard.obj
+
+# target to build an object file
+src/Leaderboard.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/Leaderboard.cpp.obj
+.PHONY : src/Leaderboard.cpp.obj
+
+src/Leaderboard.i: src/Leaderboard.cpp.i
+.PHONY : src/Leaderboard.i
+
+# target to preprocess a source file
+src/Leaderboard.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/Leaderboard.cpp.i
+.PHONY : src/Leaderboard.cpp.i
+
+src/Leaderboard.s: src/Leaderboard.cpp.s
+.PHONY : src/Leaderboard.s
+
+# target to generate assembly for a file
+src/Leaderboard.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/Leaderboard.cpp.s
+.PHONY : src/Leaderboard.cpp.s
+
 src/TerrainBlock.obj: src/TerrainBlock.cpp.obj
 .PHONY : src/TerrainBlock.obj
 
@@ -296,6 +320,30 @@ src/endgameMenu.s: src/endgameMenu.cpp.s
 src/endgameMenu.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/endgameMenu.cpp.s
 .PHONY : src/endgameMenu.cpp.s
+
+src/inputNameHighScore.obj: src/inputNameHighScore.cpp.obj
+.PHONY : src/inputNameHighScore.obj
+
+# target to build an object file
+src/inputNameHighScore.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/inputNameHighScore.cpp.obj
+.PHONY : src/inputNameHighScore.cpp.obj
+
+src/inputNameHighScore.i: src/inputNameHighScore.cpp.i
+.PHONY : src/inputNameHighScore.i
+
+# target to preprocess a source file
+src/inputNameHighScore.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/inputNameHighScore.cpp.i
+.PHONY : src/inputNameHighScore.cpp.i
+
+src/inputNameHighScore.s: src/inputNameHighScore.cpp.s
+.PHONY : src/inputNameHighScore.s
+
+# target to generate assembly for a file
+src/inputNameHighScore.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\main.dir\build.make CMakeFiles/main.dir/src/inputNameHighScore.cpp.s
+.PHONY : src/inputNameHighScore.cpp.s
 
 src/instructScr.obj: src/instructScr.cpp.obj
 .PHONY : src/instructScr.obj
@@ -645,6 +693,9 @@ help:
 	@echo ... src/GameMap.obj
 	@echo ... src/GameMap.i
 	@echo ... src/GameMap.s
+	@echo ... src/Leaderboard.obj
+	@echo ... src/Leaderboard.i
+	@echo ... src/Leaderboard.s
 	@echo ... src/TerrainBlock.obj
 	@echo ... src/TerrainBlock.i
 	@echo ... src/TerrainBlock.s
@@ -663,6 +714,9 @@ help:
 	@echo ... src/endgameMenu.obj
 	@echo ... src/endgameMenu.i
 	@echo ... src/endgameMenu.s
+	@echo ... src/inputNameHighScore.obj
+	@echo ... src/inputNameHighScore.i
+	@echo ... src/inputNameHighScore.s
 	@echo ... src/instructScr.obj
 	@echo ... src/instructScr.i
 	@echo ... src/instructScr.s
