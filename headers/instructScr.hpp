@@ -13,6 +13,7 @@ private:
     const std::string INSTRUCT_PATH = "instruction.txt";
     sf::Text instructText;
     sf::RectangleShape backgroundSprite;
+    sf::RectangleShape board;
 
 public:
     instructScreen(data *data);
@@ -22,4 +23,5 @@ public:
     void processInput();
     void update();
     void draw();
+    std::string loadTextFromFile(const std::string& filename);
 };

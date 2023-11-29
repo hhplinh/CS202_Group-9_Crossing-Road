@@ -12,7 +12,7 @@ class menu : public state
 protected:
     data *_data;
     sf::RectangleShape background;
-
+    sf::RectangleShape background2;
     std::vector<sf::Text> m_buttons{};
 
     const sf::Color COLOR_SELECT = sf::Color(248, 153, 56, 255);
