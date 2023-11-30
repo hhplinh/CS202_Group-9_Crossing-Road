@@ -4,6 +4,7 @@
 #include "instructScr.hpp"
 #include "MainMenu0Load.hpp"
 #include "map.hpp"
+#include "Music.hpp"
 
 mainMenu::mainMenu(data *data) : menu(data)
 {
