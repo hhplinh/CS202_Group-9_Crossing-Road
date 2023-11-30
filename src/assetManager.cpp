@@ -6,6 +6,7 @@ assetManager::assetManager()
 {
 	addTexture(TRAFFICLIGHT, "resources//Texture//Traffic light.png");
 	addTexture(BACKGROUND, "resources//Texture//bgMenu.png");
+	addTexture(BACKGROUND2, "resources//Texture//Background2.png");
 	addTexture(BG_INPUT_NAME, "resources//Texture//bgInputName.png");
 	addTexture(LEADERBOARD, "resources//Texture//leaderboard.png");
 	addTexture(ROAD, "resources//Texture//road.png");

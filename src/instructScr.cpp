@@ -10,16 +10,42 @@ instructScreen::instructScreen(data *data) : _data(data)
 instructScreen::~instructScreen()
 {
 }
+std::string instructScreen::loadTextFromFile(const std::string& filename) {
+    std::ifstream file(filename);
+    std::string content;
+    if (file.is_open()) {
+        std::string line;
+        while (std::getline(file, line)) {
+            content += line + "\n";
+        }
+        file.close();
+    }
+    else {
+        std::cerr << "Error opening file: " << filename << std::endl;
+    }
+    return content;
+}
 
 void instructScreen::init()
 {
-    // countdownText.setFont(_data->_assets->getFont(MAIN_FONT));
-    // countdownText.setCharacterSize(200);
-    // countdownText.setFillColor(sf::Color::White);
-    // countdownText.setOrigin(countdownText.getGlobalBounds().width / 2.f, countdownText.getGlobalBounds().height / 2.f);
-    // countdownText.setPosition(_data->_window->getSize().x / 2.f, _data->_window->getSize().y / 2.f);
-    // countdownText.setOutlineColor(_data->_assets->getThemeColor());
-    // countdownText.setOutlineThickness(7.f);
+    backgroundSprite.setTexture(&_data->_assets->getTexture(BACKGROUND2));
+    backgroundSprite.setSize(sf::Vector2f(1920, 1080));
+    backgroundSprite.setFillColor(sf::Color::White);
+
+    std::string insText = loadTextFromFile(INSTRUCT_PATH);
+    instructText.setFont(_data->_assets->getFont(MAIN_FONT));
+    instructText.setCharacterSize(75);
+    instructText.setFillColor(sf::Color::White);
+    instructText.setOrigin(instructText.getGlobalBounds().width / 2.f, instructText.getGlobalBounds().height / 2.f);
+    instructText.setString(insText);
+    instructText.setPosition(500.f, 350.f);
+    instructText.setOutlineColor(_data->_assets->getThemeColor());
+    instructText.setOutlineThickness(7.f);
+
+    board.setSize(sf::Vector2f(1150, 400));
+    board.setPosition(sf::Vector2f(475, 330));
+    board.setFillColor(sf::Color(255, 255, 255, 150));
+
 }
 
 void instructScreen::processInput()
@@ -61,11 +87,11 @@ void instructScreen::update()
 void instructScreen::draw()
 {
     _data->_window->clear();
-
     _data->_window->draw(backgroundSprite);
+    _data->_window->draw(instructText);
+    _data->_window->draw(board);
     //     _data->_window->draw(countdownText);
     // }
-
     _data->_window->display();
 }
 
