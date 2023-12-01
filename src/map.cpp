@@ -626,6 +626,10 @@ void map::loadGame()
             {
                 a = new gau(_data);
             }
+            else if (animalName == "tegiac")
+            {
+                a = new tegiac(_data);
+            }
             a->setposAnimal(sf::Vector2f(animalPos.x, animalPos.y));
             animals.push_back(a);
         }
