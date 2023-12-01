@@ -53,6 +53,7 @@ protected:
 
 	const std::string PATH_SAVED_GAME = "save.bin";
 	const std::string PATH_HIGH_SCORE = "highScore.bin";
+	const std::string PATH_PIC_SAVED_GAME = "saveGame.png";
 	
 	bool isEasyLevelSaved;
 	int score = 0;
@@ -94,6 +95,8 @@ public:
 
 	std::string setNameInputHighScore(const std::string& name) { return nameInputHighScore = name; }
 	std::string getNameInputHighScore() { return nameInputHighScore; }
+
+	std::string getSavedGamePicPath() { return PATH_PIC_SAVED_GAME; }
 
 	bool createHighScoreFile();
 };
