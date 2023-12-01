@@ -67,10 +67,11 @@ void mapLoad::draw()
   // else if (numScreenDrawn == time)
   // {
     // _data->_window->setView(_data->_window->getDefaultView());
-    loadCountdownScreen();
+    // loadCountdownScreen();
+    captureScreenToLoad();
+  _data->_window->display();
     // ++numScreenDrawn;
   // }
-  _data->_window->display();
 }
 
 void mapeasyLoad::draw()
@@ -84,8 +85,9 @@ void mapeasyLoad::draw()
   // else if (numScreenDrawn == time)
   // {
     // _data->_window->setView(_data->_window->getDefaultView());
-    loadCountdownScreen();
+    // loadCountdownScreen();
+    captureScreenToLoad();
+  _data->_window->display();
     // ++numScreenDrawn;
   // }
-  _data->_window->display();
 }

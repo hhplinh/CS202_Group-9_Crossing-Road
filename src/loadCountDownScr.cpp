@@ -22,10 +22,7 @@ void loadCountDownScreen::init()
     {
         std::cout << "Error loading background texture" << std::endl;
     }
-    else
-    {
-        backgroundSprite.setTexture(backgroundTexture);
-    }
+    backgroundSprite.setTexture(backgroundTexture);
 }
 
 void loadCountDownScreen::processInput()
