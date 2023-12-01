@@ -37,6 +37,7 @@ enum
 	LACDA,
 	COP,
 	PENGUIN,
+	CAT,
 	ORGE,
 	DIRT
 };
