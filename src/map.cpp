@@ -487,6 +487,9 @@ void map::saveGame()
 
             sf::Vector2f animalPos = animals[i]->getposAnimal();
             saveFile.write((char *)&animalPos, sizeof(sf::Vector2f));
+
+            bool isMovingRight = animals[i]->getGoR();
+            saveFile.write((char *)&isMovingRight, sizeof(bool));
         }
 
         // save traffic lights, save all parameters of traffic lights
@@ -617,6 +620,9 @@ void map::loadGame()
             sf::Vector2f animalPos;
             saveFile.read((char *)&animalPos, sizeof(sf::Vector2f));
 
+            bool isMovingRight;
+            saveFile.read((char *)&isMovingRight, sizeof(bool));
+
             Animal *a;
             if (animalName == "cop")
             {
@@ -631,6 +637,7 @@ void map::loadGame()
                 a = new tegiac(_data);
             }
             a->setposAnimal(sf::Vector2f(animalPos.x, animalPos.y));
+            a->setGoR(isMovingRight);
             animals.push_back(a);
         }
 
