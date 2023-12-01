@@ -45,6 +45,7 @@ void inputNameHighScore::processInput()
                 }
 
                 _data->_assets->setNameInputHighScore(input);
+                _data->_assets->saveHighScore(input, _data->_assets->getScore());
 
                 break;
             }
