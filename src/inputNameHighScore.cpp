@@ -1,4 +1,5 @@
 #include "inputNameHighScore.hpp"
+#include "Leaderboard.hpp"
 #include <fstream>
 #include <sstream>
 #include <algorithm>
@@ -46,6 +47,7 @@ void inputNameHighScore::processInput()
 
                 _data->_assets->setNameInputHighScore(input);
                 _data->_assets->saveHighScore(input, _data->_assets->getScore());
+                _data->_states->addState(new Leaderboard(_data), true);
 
                 break;
             }

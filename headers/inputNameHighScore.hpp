@@ -3,9 +3,7 @@
 #include "system.h"
 #include <SFML/Graphics.hpp>
 
-#include <iostream>
 #include <string>
-#include <vector>
 
 struct Player {
     std::string name;
@@ -24,7 +22,6 @@ private:
 
     bool isEventChanged = true;
     sf::RectangleShape backgroundSprite;
-    std::vector<sf::Text> name_score;
 
     const std::string SCORES_PATH = "scores.bin";
     const int NUM_SCORES = 5;

@@ -14,6 +14,8 @@
 #include "trafficlight.hpp"
 #include "Animal.hpp"
 #include "endgameMenu.hpp"
+#include "inputNameHighScore.hpp"
+
 class menuPause;
 class endgameMenu;
 class map : public state
@@ -107,7 +109,14 @@ public:
     {
         _data->_assets->setSCore(point);
         _data->_assets->removeSavedGameFile();
-        _data->_states->addState(new endgameMenu(_data), true);
+        if (_data->_assets->isInTopScore(point))
+        {
+            _data->_states->addState(new inputNameHighScore(_data), true);
+        }
+        else
+        {
+            _data->_states->addState(new endgameMenu(_data), true);
+        }
     }
     void collisonWithCar(maincharacter *player, car *car1)
     {
