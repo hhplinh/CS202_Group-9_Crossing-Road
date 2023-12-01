@@ -691,7 +691,10 @@ void map::loadCountdownScreen()
     backgroundTexture.create(_data->_window->getSize().x, _data->_window->getSize().y);
     backgroundTexture.update((const sf::RenderWindow &)(*(_data->_window)));
     _data->_assets->setBackgroundTexture(backgroundTexture);
-    _data->_window->setView(_data->_window->getDefaultView());
 
+    sf::Image image = backgroundTexture.copyToImage();
+    image.saveToFile("savedGame.png");
+
+    _data->_window->setView(_data->_window->getDefaultView());
     _data->_states->addState(new ResumeScreen(_data), false);
 }
