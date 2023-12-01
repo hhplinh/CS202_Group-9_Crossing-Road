@@ -57,6 +57,7 @@ void instructScreen::processInput()
     sf::Event event;
     while (_data->_window->pollEvent(event))
     {
+        isEventChanged = true;
         if (event.type == sf::Event::Closed)
             _data->_window->close();
 
@@ -73,11 +74,12 @@ void instructScreen::update()
 
 void instructScreen::draw()
 {
-    _data->_window->clear();
-    _data->_window->draw(backgroundSprite);
-    _data->_window->draw(instructText);
-    _data->_window->draw(board);
-    //     _data->_window->draw(countdownText);
-    // }
+    if (isEventChanged)
+    {
+        _data->_window->clear();
+        _data->_window->draw(backgroundSprite);
+        _data->_window->draw(board);
+        _data->_window->draw(instructText);
     _data->_window->display();
+    }
 }

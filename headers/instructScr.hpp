@@ -15,6 +15,8 @@ private:
     sf::RectangleShape backgroundSprite;
     sf::RectangleShape board;
 
+    bool isEventChanged = true;
+
 public:
     instructScreen(data *data);
     ~instructScreen();
