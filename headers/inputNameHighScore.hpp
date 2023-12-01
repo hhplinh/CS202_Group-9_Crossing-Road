@@ -19,6 +19,7 @@ private:
     std::string input{};
 
     sf::Text inputName;
+    sf::Text score;
 
 public:
     inputNameHighScore(data *data);
