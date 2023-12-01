@@ -21,13 +21,14 @@ void inputNameHighScore::init()
     inputName.setCharacterSize(32);
     inputName.setFillColor(sf::Color::White);
     inputName.setOrigin(inputName.getGlobalBounds().width / 2, inputName.getGlobalBounds().height / 2);
-    inputName.setPosition(10, 10);
+    inputName.setPosition(_data->_window->getSize().x / 2, _data->_window->getSize().y / 2 - 100);
 
     score.setFont(_data->_assets->getFont(MAIN_FONT));
     score.setCharacterSize(32);
+    score.setString(std::to_string(_data->_assets->getScore()));
     score.setFillColor(sf::Color::White);
     score.setOrigin(score.getGlobalBounds().width / 2, score.getGlobalBounds().height / 2);
-    score.setPosition(10, 50);
+    score.setPosition(_data->_window->getSize().x / 2, _data->_window->getSize().y / 2);
 }
 
 void inputNameHighScore::processInput()
@@ -39,12 +40,7 @@ void inputNameHighScore::processInput()
         if (event.type == sf::Event::Closed)
             _data->_window->close();
 
-        if (input.size() > MAX_NAME_LENGTH)
-        {
-            break;
-        }
-        
-        else if (event.type == sf::Event::KeyPressed)
+        if (event.type == sf::Event::KeyPressed)
         {
             switch (event.key.code)
             {
@@ -77,8 +73,10 @@ void inputNameHighScore::processInput()
             {
                 if (event.text.unicode >= 32 && event.text.unicode <= 126)
                 {
-
-                    input += static_cast<char>(event.text.unicode);
+                    if (input.size() <= MAX_NAME_LENGTH)
+                    {
+                        input += static_cast<char>(event.text.unicode);
+                    }
                 }
                 break;
             }
@@ -97,6 +95,7 @@ void inputNameHighScore::draw()
 {
     if (isEventChanged)
     {
+        isEventChanged = false;
         _data->_window->clear();
 
         _data->_window->draw(backgroundSprite);
@@ -105,7 +104,5 @@ void inputNameHighScore::draw()
         _data->_window->draw(score);
 
         _data->_window->display();
-
-        isEventChanged = false;
     }
 }
