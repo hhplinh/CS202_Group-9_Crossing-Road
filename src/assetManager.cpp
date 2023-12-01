@@ -118,3 +118,85 @@ bool assetManager::isEasyLevelSavedGame()
 	file.close();
 	return 1;
 }
+
+bool assetManager::saveHighScore(const std::string &name, int score)
+{
+	if (isInTopScore(score))
+	{
+		std::ifstream file(PATH_HIGH_SCORE);
+		if (file.good())
+		{
+			int minTopScore;
+			file >> minTopScore;
+			file.close();
+			std::vector<std::pair<std::string, int>> topScores;
+			std::ifstream file2(PATH_HIGH_SCORE);
+			if (file2.good())
+			{
+				std::string _name;
+				int _score;
+				while (file2 >> _name >> _score)
+				{
+					topScores.push_back(std::make_pair(_name, _score));
+				}
+				file2.close();
+
+				topScores.push_back(std::make_pair(name, score));
+				std::sort(topScores.begin(), topScores.end(), [](const std::pair<std::string, int> &a, const std::pair<std::string, int> &b)
+						  { return a.second > b.second; });
+
+				std::ofstream file3(PATH_HIGH_SCORE);
+				if (file3.good())
+				{
+					int siz = topScores.size();
+					file3 << topScores[siz-1].second << std::endl;
+					for (int i = 0; i < siz; i++)
+					{
+						file3 << topScores[i].first << " " << topScores[i].second << std::endl;
+					}
+					file3.close();
+					return 1;
+				}
+				else
+				{
+					std::cerr << "Error: file not open in save high score\n";
+					return 0;
+				}
+			}
+			else
+			{
+				std::cerr << "Error: file not open in save high score\n";
+				return 0;
+			}
+		}
+		else
+		{
+			std::cerr << "Error: file not open in save high score\n";
+			return 0;
+		}
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+bool assetManager::isInTopScore(int score)
+{
+	std::ifstream file(PATH_HIGH_SCORE);
+	if (file.good())
+	{
+		int minTopScore;
+		file >> minTopScore;
+		if (score > minTopScore)
+		{
+			file.close();
+			return 1;
+		}
+	}
+	else
+	{
+		std::cerr << "Error: file not open in check top score\n";
+		return 0;
+	}
+}
