@@ -33,22 +33,24 @@ std::string instructScreen::loadTextFromFile(const std::string &filename)
 
 void instructScreen::init()
 {
+    float padding = 50.f;
     backgroundSprite.setTexture(&_data->_assets->getTexture(BACKGROUND2));
     backgroundSprite.setSize(sf::Vector2f(1920, 1080));
     backgroundSprite.setFillColor(sf::Color::White);
 
     std::string insText = loadTextFromFile(INSTRUCT_PATH);
     instructText.setFont(_data->_assets->getFont(MAIN_FONT));
-    instructText.setCharacterSize(75);
+    instructText.setCharacterSize(55);
     instructText.setFillColor(sf::Color::White);
-    instructText.setOrigin(instructText.getGlobalBounds().width / 2.f, instructText.getGlobalBounds().height / 2.f);
     instructText.setString(insText);
-    instructText.setPosition(500.f, 350.f);
     instructText.setOutlineColor(_data->_assets->getThemeColor());
-    instructText.setOutlineThickness(7.f);
+    instructText.setOutlineThickness(5.f);
+    instructText.setOrigin(instructText.getGlobalBounds().width / 2.f, instructText.getGlobalBounds().height / 2.f);
+    instructText.setPosition(_data->_window->getSize().x / 2.f, _data->_window->getSize().y / 2.f + 100);
 
-    board.setSize(sf::Vector2f(1150, 400));
-    board.setPosition(sf::Vector2f(475, 330));
+    board.setSize(sf::Vector2f(instructText.getLocalBounds().width + padding * 2, instructText.getLocalBounds().height + padding * 2));
+    board.setOrigin(board.getLocalBounds().width / 2.f, board.getLocalBounds().height / 2.f);
+    board.setPosition(_data->_window->getSize().x / 2.f, _data->_window->getSize().y / 2.f + 100);
     board.setFillColor(sf::Color(255, 255, 255, 150));
 }
 
