@@ -15,6 +15,7 @@ private:
 
     const std::string SCORES_PATH = "scores.bin";
     const int NUM_SCORES = 5;
+    const int MAX_NAME_LENGTH = 10;
     
     std::string input{};
 

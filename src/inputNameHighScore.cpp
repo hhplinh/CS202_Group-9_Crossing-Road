@@ -37,6 +37,11 @@ void inputNameHighScore::processInput()
         if (event.type == sf::Event::Closed)
             _data->_window->close();
 
+        if (input.size() > MAX_NAME_LENGTH)
+        {
+            break;
+        }
+        
         else if (event.type == sf::Event::KeyPressed)
         {
             switch (event.key.code)
