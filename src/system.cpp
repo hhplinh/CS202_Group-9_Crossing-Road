@@ -18,6 +18,7 @@ System::System() : _data(new data)
 		_data->_states->addState(new mainMenu0Load(_data));
 	}
 	
+	_data->_assets->createHighScoreFile();
 
 	run();
 }

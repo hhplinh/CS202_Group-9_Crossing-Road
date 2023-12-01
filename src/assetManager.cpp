@@ -204,3 +204,30 @@ bool assetManager::isInTopScore(int score)
 		return 0;
 	}
 }
+
+bool assetManager::createHighScoreFile()
+{
+	std::ifstream file(PATH_HIGH_SCORE);
+	if (file.good())
+	{
+		file.close();
+		return 1;
+	}
+	else
+	{
+		file.close();
+		
+		std::ofstream fout(PATH_HIGH_SCORE);
+		if (fout.good())
+		{
+			fout << 0 << std::endl;
+			fout.close();
+			return 1;
+		}
+		else
+		{
+			std::cerr << "Error: file not open in create high score file\n";
+			return 0;
+		}
+	}
+}

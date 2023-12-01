@@ -94,4 +94,6 @@ public:
 
 	std::string setNameInputHighScore(const std::string& name) { return nameInputHighScore = name; }
 	std::string getNameInputHighScore() { return nameInputHighScore; }
+
+	bool createHighScoreFile();
 };
