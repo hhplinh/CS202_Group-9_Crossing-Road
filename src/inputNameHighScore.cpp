@@ -41,10 +41,17 @@ void inputNameHighScore::processInput()
         if (event.type == sf::Event::Closed)
             _data->_window->close();
 
-        if (event.type == sf::Event::KeyPressed)
+        else if (event.type == sf::Event::TextEntered)
         {
-            std::cerr << event.key.code << std::endl;
-
+            if (input.size() <= MAX_NAME_LENGTH && event.text.unicode < 128)
+            {
+                input += static_cast<char>(event.text.unicode);
+                inputName.setString(input);
+            }
+            break;
+        }
+        else if (event.type == sf::Event::KeyPressed)
+        {
             switch (event.key.code)
             {
             case sf::Keyboard::Enter:
@@ -65,17 +72,6 @@ void inputNameHighScore::processInput()
                 if (!input.empty())
                 {
                     input.pop_back();
-                }
-                break;
-
-            case sf::Event::KeyPressed:
-                std::cerr << "input: " << input.size() << std::endl;
-                if ((event.text.unicode >= sf::Keyboard::A && event.text.unicode <= sf::Keyboard::Z) || (event.text.unicode >= sf::Keyboard::Num0 && event.text.unicode <= sf::Keyboard::Num9))
-                {
-                    if (input.size() <= MAX_NAME_LENGTH)
-                    {
-                        input += static_cast<char>(event.text.unicode);
-                    }
                 }
                 break;
 
