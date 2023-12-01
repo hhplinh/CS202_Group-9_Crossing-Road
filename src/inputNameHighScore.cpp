@@ -20,11 +20,13 @@ void inputNameHighScore::init()
     inputName.setFont(_data->_assets->getFont(MAIN_FONT));
     inputName.setCharacterSize(32);
     inputName.setFillColor(sf::Color::White);
+    inputName.setOrigin(inputName.getGlobalBounds().width / 2, inputName.getGlobalBounds().height / 2);
     inputName.setPosition(10, 10);
 
     score.setFont(_data->_assets->getFont(MAIN_FONT));
     score.setCharacterSize(32);
     score.setFillColor(sf::Color::White);
+    score.setOrigin(score.getGlobalBounds().width / 2, score.getGlobalBounds().height / 2);
     score.setPosition(10, 50);
 }
 
@@ -46,7 +48,7 @@ void inputNameHighScore::processInput()
         {
             switch (event.key.code)
             {
-            case sf::Keyboard::Return:
+            case sf::Keyboard::Enter:
             {
                 inputName.setString(input);
 
