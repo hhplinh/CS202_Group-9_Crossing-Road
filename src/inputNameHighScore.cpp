@@ -20,6 +20,7 @@ void inputNameHighScore::init()
     inputName.setFont(_data->_assets->getFont(MAIN_FONT));
     inputName.setCharacterSize(32);
     inputName.setFillColor(sf::Color::White);
+    inputName.setString("");
     inputName.setOrigin(inputName.getGlobalBounds().width / 2, inputName.getGlobalBounds().height / 2);
     inputName.setPosition(_data->_window->getSize().x / 2, _data->_window->getSize().y / 2 - 100);
 
@@ -52,7 +53,6 @@ void inputNameHighScore::processInput()
                 {
                     break;
                 }
-
                 _data->_assets->setNameInputHighScore(input);
                 _data->_assets->saveHighScore(input, _data->_assets->getScore());
                 _data->_states->addState(new Leaderboard(_data), true);
