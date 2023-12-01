@@ -15,7 +15,6 @@ void Leaderboard::init()
 {
     backgroundSprite.setTexture(&_data->_assets->getTexture(LEADERBOARD));
     backgroundSprite.setSize(sf::Vector2f(1920, 1080));
-
 }
 
 void Leaderboard::processInput()
@@ -25,33 +24,22 @@ void Leaderboard::processInput()
     {
         if (event.type == sf::Event::Closed)
             _data->_window->close();
+        else if (event.type == sf::Event::KeyPressed)
+        {
+            switch (event.key.code)
+            {
+            case sf::Keyboard::Escape:
+                _data->_states->removeStateUntilOne();
+                break;
+            default:
+                break;
+            }
+        }
     }
 }
 
 void Leaderboard::update()
 {
-    // if (isPaused)
-    // {
-
-    //     if (clock.getElapsedTime().asSeconds() >= 1.f)
-    //     {
-    //         countdown--;
-    //         clock.restart();
-    //     }
-
-    //     if (countdown <= 0)
-    //     {
-    //         isPaused = false;
-    //         countdown = 3;
-    //     }
-
-    //     countdownText.setString(std::to_string(countdown));
-    // }
-    // else
-    // {
-    //     // game -> pause -> remove pause -> resume -> remove resume -> game
-    //     _data->_states->removeState(false);
-    // }
 }
 
 void Leaderboard::draw()

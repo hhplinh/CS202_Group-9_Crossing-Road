@@ -63,9 +63,21 @@ void instructScreen::processInput()
         if (event.type == sf::Event::Closed)
             _data->_window->close();
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+        else if (event.type == sf::Event::KeyPressed)
         {
-            _data->_states->addState(new mainMenu(_data), true);
+            switch (event.key.code)
+            {
+            case sf::Keyboard::Enter:
+            {
+                _data->_states->addState(new mainMenu(_data), true);
+                break;
+            }
+
+            default:
+            {
+                break;
+            }
+            }
         }
     }
 }
@@ -82,6 +94,6 @@ void instructScreen::draw()
         _data->_window->draw(backgroundSprite);
         _data->_window->draw(board);
         _data->_window->draw(instructText);
-    _data->_window->display();
+        _data->_window->display();
     }
 }

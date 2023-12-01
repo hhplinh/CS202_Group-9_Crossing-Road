@@ -27,13 +27,7 @@ void stateMachine::removeState(bool reinittheprevstate)
 
 void stateMachine::removeStateUntilOne()
 {
-	while (stackState.size() > 1)
-	{
-		state *top = stackState.top();
-		delete top;
-		stackState.pop();
-	}
-	stackState.top()->init();
+	_removeUntilOne = true;
 }
 
 int stateMachine::sizeState()
@@ -43,14 +37,27 @@ int stateMachine::sizeState()
 
 void stateMachine::processStateChange()
 {
+	if (_removeUntilOne)
+	{
+		_removeUntilOne = false;
+		while (stackState.size() > 1)
+		{
+			state *top = stackState.top();
+			delete top;
+			stackState.pop();
+		}
+		stackState.top()->init();
+		return;
+	}
 	if (_remove && !stackState.empty())
 	{
 		state *top = stackState.top();
 		delete top;
 		stackState.pop();
-		//stackState.top()->init();
-		if(_reinit) stackState.top()->init();
-		
+		// stackState.top()->init();
+		if (_reinit)
+			stackState.top()->init();
+
 		_remove = 0;
 	}
 	if (_add)

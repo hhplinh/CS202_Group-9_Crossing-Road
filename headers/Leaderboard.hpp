@@ -18,7 +18,6 @@ private:
 
     const std::string SCORES_PATH = _data->_assets->getHighScorePath();
 
-
 public:
     Leaderboard(data *data);
     ~Leaderboard();
