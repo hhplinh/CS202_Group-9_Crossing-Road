@@ -65,7 +65,7 @@ void Animal :: init()
    this->size.x/=col;
     this->size.y/=row;
   this->sprite.setTexture( _data->_assets->getTexture(COP));
- 
+ this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
 
   }
     gau :: gau(data* _data) : Animal(_data)
@@ -79,6 +79,6 @@ void Animal :: init()
    this->size.x/=col;
     this->size.y/=row;
   this->sprite.setTexture( _data->_assets->getTexture(GAU));
- 
+ this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
 
   }
