@@ -32,7 +32,7 @@ void mainMenu::init()
         button.setString(buttonNames[i]);
         button.setCharacterSize(110);
         button.setOrigin(button.getLocalBounds().width / 2.f, button.getLocalBounds().height / 2.f);
-        button.setPosition(1475, 310 + 150 * i);
+        button.setPosition(1300, 310 + 150 * i);
         m_buttons.push_back(button);
     }
 }
