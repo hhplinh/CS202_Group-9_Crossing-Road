@@ -1,5 +1,6 @@
 #include "mainMenu.hpp"
 #include "loadMapLevel.hpp"
+#include "leaderboard.hpp"
 #include "diffiMenu.hpp"
 #include "instructScr.hpp"
 #include "MainMenu0Load.hpp"
@@ -105,6 +106,11 @@ void mainMenu::update()
         {
             _data->_states->addState(new mapLoad(_data));
         }
+    }
+    else if (m_buttonsPressed[HIGHSCORE])
+    {
+        m_buttonsPressed[HIGHSCORE] = false;
+        _data->_states->addState(new Leaderboard(_data));
     }
     else if (m_buttonsPressed[INSTRUCTION])
     {
