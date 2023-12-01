@@ -56,6 +56,7 @@ protected:
 	
 	bool isEasyLevelSaved;
 	int score = 0;
+	int numHighScores = 5;
 
 public:
 	assetManager();
@@ -86,4 +87,6 @@ public:
 	bool saveHighScore(const std::string& name, int score);
 
 	bool isInTopScore(int score);
+
+	std::string getHighScorePath() { return PATH_HIGH_SCORE; }
 };

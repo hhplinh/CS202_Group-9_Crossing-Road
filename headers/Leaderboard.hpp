@@ -26,8 +26,7 @@ private:
     sf::RectangleShape backgroundSprite;
     std::vector<sf::Text> name_score;
 
-    const std::string SCORES_PATH = "scores.bin";
-    const int NUM_SCORES = 5;
+    const std::string SCORES_PATH = _data->_assets->getHighScorePath();
 
 
 public:
@@ -38,6 +37,4 @@ public:
     void processInput();
     void update();
     void draw();
-    void saveScore(const std::string& filename, const Player& player);
-    void printScores();
 };

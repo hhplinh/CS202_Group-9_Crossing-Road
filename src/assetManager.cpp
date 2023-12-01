@@ -149,8 +149,12 @@ bool assetManager::saveHighScore(const std::string &name, int score)
 				if (file3.good())
 				{
 					int siz = topScores.size();
-					file3 << topScores[siz-1].second << std::endl;
-					for (int i = 0; i < siz; i++)
+					if (numHighScores > siz)
+					{
+						numHighScores = siz;
+					}
+					file3 << topScores[numHighScores - 1].second << std::endl;
+					for (int i = 0; i < numHighScores; i++)
 					{
 						file3 << topScores[i].first << " " << topScores[i].second << std::endl;
 					}
