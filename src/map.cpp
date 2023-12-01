@@ -6,6 +6,7 @@
 #include "endgameMenu.hpp"
 #include "maincharacter.hpp"
 #include "resumeScreen.hpp"
+#include "loadCountDownScr.hpp"
 
 void map::init()
 { // do not init if resume from pause menu
@@ -61,7 +62,8 @@ void map::update()
 {
     player->update();
     float pos = player->getPosition().y;
-    if(pos==1080-600) this->point=0;
+    if (pos == 1080 - 600)
+        this->point = 0;
     else if (pos > 0)
         this->point = (1080 - pos);
     else
@@ -78,7 +80,7 @@ void map::update()
     }
     else
     {
-        currentIndex = int( (pos) / -1080.0f) * 6;
+        currentIndex = int((pos) / -1080.0f) * 6;
     }
     float o = pos / -1080.0f - int((pos) / -1080.0f);
 
@@ -185,7 +187,7 @@ void map::update()
         {
             // Float with the boat
             floatwithboat(player, enemies2[i]);
- if (player->movingUp)
+            if (player->movingUp)
             {
                 /*  player->setPosition(
                       player->getSprite().getPosition().x,
@@ -204,10 +206,9 @@ void map::update()
                     player->setPosition(player->getSprite().getPosition().x, player->getSprite().getPosition().y - 100);
                     this->playerIsOnBoat = false;
                 }
+            }
         }
-      
-    }
-      if (enemies2[i]->getPosCano().x > 1920 || enemies2[i]->getPosCano().x < 0)
+        if (enemies2[i]->getPosCano().x > 1920 || enemies2[i]->getPosCano().x < 0)
         {
             enemies2[i]->turnAround();
         }
@@ -279,7 +280,7 @@ void map::update()
         mescpressed = false;
         _data->_window->setView(_data->_window->getDefaultView());
         _data->_states->addState((new menuPause(_data)), false);
-         saveGame();
+        saveGame();
     }
 
     for (int i = 0; i < trafficlights.size(); i++)
@@ -479,7 +480,7 @@ void map::saveGame()
         // save animals position
         for (int i = 0; i < animalsSize; i++)
         {
-            //save animal name
+            // save animal name
             std::string animalName = animals[i]->getAnimalName();
             int len = animalName.size();
             saveFile.write((char *)&len, sizeof(int));
@@ -657,7 +658,6 @@ void map::loadGame()
             trafficlights.push_back(newtrafficlight);
         }
 
-        
         int enemies2Size;
         saveFile.read((char *)&enemies2Size, sizeof(int));
         enemies2.clear();
@@ -672,11 +672,10 @@ void map::loadGame()
             enemies2.push_back(newCano);
         }
 
-                // load player position
+        // load player position
         sf::Vector2f playerPos;
         saveFile.read((char *)&playerPos, sizeof(sf::Vector2f));
         player->setPosition(playerPos.x, playerPos.y);
-
     }
     else
     {
@@ -697,4 +696,16 @@ void map::loadCountdownScreen()
 
     _data->_window->setView(_data->_window->getDefaultView());
     _data->_states->addState(new ResumeScreen(_data), false);
+}
+
+void map::captureScreenToLoad()
+{
+    sf::Texture texture;
+    texture.create(_data->_window->getSize().x, _data->_window->getSize().y);
+    texture.update((const sf::RenderWindow &)(*(_data->_window)));
+    sf::Image screenshot = texture.copyToImage();
+    screenshot.saveToFile(_data->_assets->getSavedGamePicPath());
+
+    _data->_window->setView(_data->_window->getDefaultView());
+    _data->_states->addState(new loadCountDownScreen(_data), false);
 }
