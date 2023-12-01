@@ -14,7 +14,7 @@ void map::init()
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
     this->cooldownActive = false;
-    this->cooldownDuration=1.0f;
+    this->cooldownDuration = 1.0f;
     player = new maincharacter(_data);
     player->init();
     this->blocks.clear();
@@ -39,6 +39,7 @@ void map::processInput()
         player->processInput(event);
         if (event.type == sf::Event::Closed)
         {
+            saveGame();
             _data->_window->close();
         }
 
@@ -58,31 +59,31 @@ void map::processInput()
 }
 void map::update()
 {
-
     player->update();
     float pos = player->getPosition().y;
-    if (pos > 0)
-        this->point += (1080 - pos);
+    if(pos==1080-600) this->point=0;
+    else if (pos > 0)
+        this->point = (1080 - pos);
     else
-        this->point += abs(pos);
+        this->point = 1080 + abs(pos);
     float l = (pos / 1080.0 + 1);
 
     float j = -l;
     float k = int(l);
     float f = int(j);
+
     if (pos > 0)
     {
         currentIndex = 0;
     }
     else
     {
-        currentIndex = int(1 + (pos) / -1080.0f) * 6;
+        currentIndex = int( (pos) / -1080.0f) * 6;
     }
     float o = pos / -1080.0f - int((pos) / -1080.0f);
 
     // //std::cout << o << std::endl;
     if (((pos / 1080.0f) < 0.200000f && pos > 0 && blocks.size() < 20) || (o > 0.7f && o < 0.8f && pos < 0.0f && blocks.size() - currentIndex < 50))
-
     {
         int z;
         for (int i = 0; i < 1; i++)
@@ -165,11 +166,12 @@ void map::update()
 
     for (int i = 0; i < enemies.size(); i++)
     {
+
         if (trafficlights[i]->carCanGo())
         {
             enemies[i]->run();
-          //  collisonWithCar(player, enemies[i]);
         }
+        collisonWithCar(player, enemies[i]);
         if (enemies[i]->getposcar().x > 1920 || enemies[i]->getposcar().x < 0)
         {
             enemies[i]->turnaround();
@@ -177,63 +179,69 @@ void map::update()
     }
 
     for (int i = 0; i < enemies2.size(); i++)
-    {  enemies2[i]->floatOnRiver();
-        if (player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds()) && !player->movingUp)
     {
-        // Float with the boat
-        floatwithboat(player, enemies2[i]);
-
-        // Check if player is next to the next boat (if it exists)
-        if (i + 1 < enemies2.size() && isnextto(enemies2[i], enemies2[i + 1]))
+        enemies2[i]->floatOnRiver();
+        if (player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds()) && !player->movingUp)
         {
-            // Float with the nearby boat and set a cooldown period
-            if (!cooldownActive)
+            // Float with the boat
+            floatwithboat(player, enemies2[i]);
+ if (player->movingUp)
             {
-                floatwithboat(player, enemies2[i + 1]);
-                cooldownClock.restart();
-                cooldownActive = true;
-            }
+                /*  player->setPosition(
+                      player->getSprite().getPosition().x,
+                      player->getSprite().getPosition().y - 100
+                  );*/
+                if (i + 1 < enemies2.size())
+                {
+                    if (isnextto(enemies2[i], enemies2[i + 1]))
+                    {
+                        floatwithboat(player, enemies2[i + 1]);
+                    }
+                }
+                else
+                {
+                    // get off the boat
+                    player->setPosition(player->getSprite().getPosition().x, player->getSprite().getPosition().y - 100);
+                    this->playerIsOnBoat = false;
+                }
         }
+      
     }
-    if (enemies2[i]->getPosCano().x > 1920 || enemies2[i]->getPosCano().x < 0)
+      if (enemies2[i]->getPosCano().x > 1920 || enemies2[i]->getPosCano().x < 0)
         {
             enemies2[i]->turnAround();
         }
-}
+    }
+    // Set playerIsOnBoat to false by default
+    playerIsOnBoat = false;
 
-// Set playerIsOnBoat to false by default
-playerIsOnBoat = false;
-
-// Check if the player is on any boat
-for (int i = 0; i < enemies2.size(); i++)
-{
-    if (player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds()))
+    // Check if the player is on any boat
+    for (int i = 0; i < enemies2.size(); i++)
     {
-        playerIsOnBoat = true;
-        break;
-    }
-    
-        
-   
-    }
-           for (int i = 0; i < riverPos.size(); i++)
-        {  //check if pos of player is on river (>riverpos[i].y) (<riverpos[i].y+174)
-            if ( player->getSprite().getPosition().y > riverPos[i].y && player->getSprite().getPosition().y < riverPos[i].y + 174-50)
-            {
-                //check if player is on boat
-                if (playerIsOnBoat == false)
-                {//reset view
-                    //if not on boat, game over
-                    _data->_window->setView(_data->_window->getDefaultView());
-                    this->moveToGameOverMenu();
-                }
-            }
-          
+        if (player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds()))
+        {
+            playerIsOnBoat = true;
+            break;
         }
+    }
+
+    for (int i = 0; i < riverPos.size(); i++)
+    { // check if pos of player is on river (>riverpos[i].y) (<riverpos[i].y+174)
+        if (player->getSprite().getPosition().y > riverPos[i].y && player->getSprite().getPosition().y < riverPos[i].y + 174 - 50)
+        {
+            // check if player is on boat
+            if (playerIsOnBoat == false)
+            { // reset view
+                // if not on boat, game over
+                _data->_window->setView(_data->_window->getDefaultView());
+                this->endgame();
+            }
+        }
+    }
     for (int i = 0; i < animals.size(); i++)
     { // std:: cout<< animals.size();
         animals[i]->AnimalRun();
-       // collisonWithAnimal(player, animals[i]);
+        collisonWithAnimal(player, animals[i]);
         if (animals[i]->getposAnimal().x > 1920 || animals[i]->getposAnimal().x < 0)
         {
             animals[i]->AnimalTurn();
@@ -257,7 +265,7 @@ for (int i = 0; i < enemies2.size(); i++)
         gameSavedText.setOutlineThickness(7.f);
 
         // position below player
-        gameSavedText.setPosition(player->getPosition().x, player->getPosition().y + 400.f);
+        gameSavedText.setPosition(_data->_window->getSize().x / 2.f, player->getPosition().y + 400.f);
 
         savePressed = false;
     }
@@ -271,6 +279,7 @@ for (int i = 0; i < enemies2.size(); i++)
         mescpressed = false;
         _data->_window->setView(_data->_window->getDefaultView());
         _data->_states->addState((new menuPause(_data)), false);
+         saveGame();
     }
 
     for (int i = 0; i < trafficlights.size(); i++)
@@ -283,8 +292,8 @@ for (int i = 0; i < enemies2.size(); i++)
     score.setString("Score: " + std::to_string(this->point));
     score.setCharacterSize(70);
     score.setOrigin(score.getLocalBounds().width / 2.f, score.getLocalBounds().height / 2.f);
-    score.setPosition(_data->_window->getSize().x/2.f, player->getPosition().y - 400.f);
-    
+    score.setPosition(_data->_window->getSize().x / 2.f, player->getPosition().y - 400.f);
+
     score.setFillColor(sf::Color::White);
     score.setOutlineColor(_data->_assets->getThemeColor());
     score.setOutlineThickness(7.f);
@@ -301,8 +310,6 @@ void map::drawTemplate()
     _data->_window->clear();
 
     _data->_window->draw(background);
-
-  
 
     for (int i = currentIndex; i < blocks.size(); i++)
     {
@@ -344,13 +351,12 @@ void map::drawTemplate()
         _data->_window->draw(gameSavedText);
     }
 
-      //draw score
+    // draw score
     _data->_window->draw(score);
 }
 
 void map::createmap()
 {
-
     for (int i = 0; i < length; i++)
     {
 
@@ -429,19 +435,14 @@ void map::saveGame()
 
     if (saveFile.is_open())
     {
-        // save bool isEasyLevelSaved
         saveFile.write((char *)&isEasyLevel, sizeof(bool));
 
-        // save currentIndex
+        saveFile.write((char *)&point, sizeof(int));
+
         saveFile.write((char *)&currentIndex, sizeof(int));
 
-        // save pos1
         saveFile.write((char *)&pos1.x, sizeof(float));
         saveFile.write((char *)&pos1.y, sizeof(float));
-
-        // save player position
-        sf::Vector2f playerPos = player->getPosition();
-        saveFile.write((char *)&playerPos, sizeof(sf::Vector2f));
 
         // save block size
         int blockSize = blocks.size();
@@ -464,23 +465,11 @@ void map::saveGame()
         int enemiesSize = enemies.size();
         saveFile.write((char *)&enemiesSize, sizeof(int));
 
-        //save enemies position
+        // save enemies position
         for (int i = 0; i < enemiesSize; i++)
         {
             sf::Vector2f enemyPos = enemies[i]->getposcar();
             saveFile.write((char *)&enemyPos, sizeof(sf::Vector2f));
-        }
-
-        // enemies2 = cano
-        //  save enemies2 size
-        int enemies2Size = enemies2.size();
-        saveFile.write((char *)&enemies2Size, sizeof(int));
-
-        //save enemies2 position
-        for (int i = 0; i < enemies2Size; i++)
-        {
-            sf::Vector2f enemy2Pos = enemies2[i]->getPosCano();
-            saveFile.write((char *)&enemy2Pos, sizeof(sf::Vector2f));
         }
 
         // save animals size
@@ -490,9 +479,55 @@ void map::saveGame()
         // save animals position
         for (int i = 0; i < animalsSize; i++)
         {
+            //save animal name
+            std::string animalName = animals[i]->getAnimalName();
+            int len = animalName.size();
+            saveFile.write((char *)&len, sizeof(int));
+            saveFile.write(animalName.c_str(), len);
+
             sf::Vector2f animalPos = animals[i]->getposAnimal();
             saveFile.write((char *)&animalPos, sizeof(sf::Vector2f));
         }
+
+        // save traffic lights, save all parameters of traffic lights
+        int trafficLightsSize = trafficlights.size();
+        saveFile.write((char *)&trafficLightsSize, sizeof(int));
+
+        // save traffic lights parameters
+        for (int i = 0; i < trafficLightsSize; i++)
+        {
+            int col = trafficlights[i]->getcol();
+            int row = trafficlights[i]->getrow();
+            sf::Vector2u size = trafficlights[i]->getsize();
+            bool isGreen = trafficlights[i]->getIsGreen();
+            sf::Vector2f pos = trafficlights[i]->getpos();
+
+            saveFile.write((char *)&col, sizeof(int));
+            saveFile.write((char *)&row, sizeof(int));
+            saveFile.write((char *)&size, sizeof(sf::Vector2u));
+            saveFile.write((char *)&isGreen, sizeof(bool));
+            saveFile.write((char *)&pos, sizeof(sf::Vector2f));
+        }
+
+        // enemies2 = cano
+        //  save enemies2 size
+        int enemies2Size = enemies2.size();
+        saveFile.write((char *)&enemies2Size, sizeof(int));
+
+        // save enemies2 position
+        for (int i = 0; i < enemies2Size; i++)
+        {
+            sf::Vector2f enemy2Pos = enemies2[i]->getPosCano();
+            saveFile.write((char *)&enemy2Pos, sizeof(sf::Vector2f));
+        }
+
+        // save player position
+        sf::Vector2f playerPos = player->getPosition();
+        saveFile.write((char *)&playerPos, sizeof(sf::Vector2f));
+    }
+    else
+    {
+        std::cerr << "Unable to open file\n";
     }
     saveFile.close();
 }
@@ -513,6 +548,8 @@ void map::loadGame()
         bool isEasyLevelSaved;
         saveFile.read((char *)&isEasyLevelSaved, sizeof(bool));
 
+        saveFile.read((char *)&point, sizeof(int));
+
         // load currentIndex
         saveFile.read((char *)&currentIndex, sizeof(int));
 
@@ -522,11 +559,6 @@ void map::loadGame()
 
         // save to retrieve later
         sf::Vector2f temp = pos1;
-
-        // load player position
-        sf::Vector2f playerPos;
-        saveFile.read((char *)&playerPos, sizeof(sf::Vector2f));
-        player->setPosition(playerPos.x, playerPos.y);
 
         // load block size
         int blockSize;
@@ -540,7 +572,7 @@ void map::loadGame()
             int len;
             saveFile.read((char *)&len, sizeof(int));
 
-            char *buffer = new char[len];
+            char *buffer = new char[len + 1];
             saveFile.read(buffer, len);
             std::string terrainName(buffer, len);
             delete[] buffer;
@@ -564,10 +596,68 @@ void map::loadGame()
             saveFile.read((char *)&enemyPos, sizeof(sf::Vector2f));
 
             car *newcar = new car(_data);
+            newcar->setposcar(sf::Vector2f(enemyPos.x, enemyPos.y));
             enemies.push_back(newcar);
-            enemies[enemies.size() - 1]->setposcar(sf::Vector2f(enemyPos.x, enemyPos.y));
         }
 
+        int animalsSize;
+        saveFile.read((char *)&animalsSize, sizeof(int));
+        animals.clear();
+
+        for (int i = 0; i < animalsSize; i++)
+        {
+            int len;
+            saveFile.read((char *)&len, sizeof(int));
+
+            char *buffer = new char[len + 1];
+            saveFile.read(buffer, len);
+            std::string animalName(buffer, len);
+            delete[] buffer;
+
+            sf::Vector2f animalPos;
+            saveFile.read((char *)&animalPos, sizeof(sf::Vector2f));
+
+            Animal *a;
+            if (animalName == "cop")
+            {
+                a = new cop(_data);
+            }
+            else if (animalName == "gau")
+            {
+                a = new gau(_data);
+            }
+            a->setposAnimal(sf::Vector2f(animalPos.x, animalPos.y));
+            animals.push_back(a);
+        }
+
+        int trafficLightsSize;
+        saveFile.read((char *)&trafficLightsSize, sizeof(int));
+        trafficlights.clear();
+
+        for (int i = 0; i < trafficLightsSize; i++)
+        {
+            int col;
+            int row;
+            sf::Vector2u size;
+            bool isGreen;
+            sf::Vector2f pos;
+
+            saveFile.read((char *)&col, sizeof(int));
+            saveFile.read((char *)&row, sizeof(int));
+            saveFile.read((char *)&size, sizeof(sf::Vector2u));
+            saveFile.read((char *)&isGreen, sizeof(bool));
+            saveFile.read((char *)&pos, sizeof(sf::Vector2f));
+
+            trafficlight *newtrafficlight = new trafficlight(_data);
+            newtrafficlight->setcol(col);
+            newtrafficlight->setrow(row);
+            newtrafficlight->setsize(size);
+            newtrafficlight->setIsGreen(isGreen);
+            newtrafficlight->setposSave(pos);
+            trafficlights.push_back(newtrafficlight);
+        }
+
+        
         int enemies2Size;
         saveFile.read((char *)&enemies2Size, sizeof(int));
         enemies2.clear();
@@ -578,31 +668,19 @@ void map::loadGame()
             saveFile.read((char *)&enemy2Pos, sizeof(sf::Vector2f));
 
             Cano *newCano = new Cano(_data);
+            newCano->setPosCano(sf::Vector2f(enemy2Pos.x, enemy2Pos.y));
             enemies2.push_back(newCano);
-            enemies2[enemies2.size() - 1]->setPosCano(sf::Vector2f(enemy2Pos.x, enemy2Pos.y));
         }
 
-        int animalsSize;
-        saveFile.read((char *)&animalsSize, sizeof(int));
-        animals.clear();
+                // load player position
+        sf::Vector2f playerPos;
+        saveFile.read((char *)&playerPos, sizeof(sf::Vector2f));
+        player->setPosition(playerPos.x, playerPos.y);
 
-        for (int i = 0; i < animalsSize; i++)
-        {
-            sf::Vector2f animalPos;
-            saveFile.read((char *)&animalPos, sizeof(sf::Vector2f));
-
-            Animal *a;
-            if (isEasyLevelSaved)
-            {
-                a = new gau(_data);
-            }
-            else
-            {
-                a = new cop(_data);
-            }
-            animals.push_back(a);
-            animals.back()->setposAnimal(sf::Vector2f(animalPos.x, animalPos.y));
-        }
+    }
+    else
+    {
+        std::cerr << "Unable to open file\n";
     }
     saveFile.close();
 }
@@ -613,6 +691,7 @@ void map::loadCountdownScreen()
     backgroundTexture.create(_data->_window->getSize().x, _data->_window->getSize().y);
     backgroundTexture.update((const sf::RenderWindow &)(*(_data->_window)));
     _data->_assets->setBackgroundTexture(backgroundTexture);
+    _data->_window->setView(_data->_window->getDefaultView());
 
     _data->_states->addState(new ResumeScreen(_data), false);
 }

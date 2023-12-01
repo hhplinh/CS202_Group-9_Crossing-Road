@@ -1,11 +1,11 @@
 #include "mainMenu0Load.hpp"
 #include "diffiMenu.hpp"
+#include "instructScr.hpp"
+#include "MainMenu.hpp"
 #include "map.hpp"
-
 
 mainMenu0Load::mainMenu0Load(data *data) : menu(data)
 {
-
     m_buttonsSelected.resize(NUM_BUTTONS, false);
     m_buttonsPressed.resize(NUM_BUTTONS, false);
     m_buttonsSelected[0] = true;
@@ -14,7 +14,7 @@ mainMenu0Load::mainMenu0Load(data *data) : menu(data)
 mainMenu0Load::~mainMenu0Load() {}
 
 void mainMenu0Load::init()
-{ 
+{
     if (!m_buttons.empty())
     {
         return;
@@ -27,15 +27,14 @@ void mainMenu0Load::init()
         button.setFont(_data->_assets->getFont(MAIN_FONT));
         buttonNames[i] = buttonToString[static_cast<Button>(i)];
         button.setString(buttonNames[i]);
-        button.setCharacterSize(110);
+        button.setCharacterSize(100);
         button.setOrigin(button.getLocalBounds().width / 2.f, button.getLocalBounds().height / 2.f);
-        button.setPosition(1475, 390 + 150 * i);
+        button.setPosition(1470, 390 + 150 * i);
         m_buttons.push_back(button);
     }
-
 }
 void mainMenu0Load::processInput()
-{  
+{
     sf::Event event;
     while (_data->_window->pollEvent(event))
     {
@@ -81,16 +80,20 @@ void mainMenu0Load::processInput()
 }
 
 void mainMenu0Load::update()
-{   // player->update();
-    if (m_buttonsPressed[PLAY])
+{
+    if (_data->_assets->isGameSaved() == true)
+    {
+        _data->_states->addState(new mainMenu(_data), true);
+    }
+    else if (m_buttonsPressed[PLAY])
     {
         m_buttonsPressed[PLAY] = false;
         _data->_states->addState(new diffiMenu(_data));
     }
-    else if (m_buttonsPressed[SETTINGS])
+    else if (m_buttonsPressed[INSTRUCTION])
     {
-        m_buttonsPressed[SETTINGS] = false;
-        // Implement your "Settings" logic here
+        m_buttonsPressed[INSTRUCTION] = false;
+        _data->_states->addState(new instructScreen(_data));
     }
     else if (m_buttonsPressed[EXIT])
     {

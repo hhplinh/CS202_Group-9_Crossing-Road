@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include"state.h"
+#include<string>
 #pragma once
 class Animal 
 {
@@ -12,7 +13,7 @@ class Animal
   float speed;
   int row , col;
   bool goR;
-  
+ std:: string name;
  sf :: Sprite sprite;
   public:
   sf::Sprite getSprite(){return this->sprite;}
@@ -32,7 +33,8 @@ class Animal
   void AnimalTurn();
   sf::Vector2u size;
   void AnimalRun();
-  
+
+  std::string getAnimalName();
 };
 class cop : public Animal
 { protected: 
@@ -44,10 +46,16 @@ class cop : public Animal
 
 
 };
+
 class tegiac : public Animal
 {
+   public:
+  ~tegiac() {}
+ 
+  tegiac(data* _data) ;
 
 };
+
 class lacda : public Animal
 {
 

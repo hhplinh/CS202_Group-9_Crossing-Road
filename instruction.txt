@@ -1,0 +1,9 @@
+  During gameplay:
+- Press "Esc" to pause game.
+- Game is saved automatically.
+- Press "S" to save game manually.
+
+  In leaderboard:
+Press "Esc" to return to main menu.
+  
+  Done reading? "Enter" to return.

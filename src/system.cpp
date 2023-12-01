@@ -6,6 +6,7 @@
 System::System() : _data(new data)
 {
 	_data->_window->create(sf::VideoMode(1920, 1080), "Crossing Road", sf::Style::Close);
+
 	_data->_window->setMouseCursorVisible(false);
 	
 	if (_data->_assets->isGameSaved())
@@ -17,6 +18,7 @@ System::System() : _data(new data)
 		_data->_states->addState(new mainMenu0Load(_data));
 	}
 	
+	_data->_assets->createHighScoreFile();
 
 	run();
 }

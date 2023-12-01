@@ -6,6 +6,9 @@ assetManager::assetManager()
 {
 	addTexture(TRAFFICLIGHT, "resources//Texture//Traffic light.png");
 	addTexture(BACKGROUND, "resources//Texture//bgMenu.png");
+	addTexture(BACKGROUND2, "resources//Texture//Background2.png");
+	addTexture(BG_INPUT_NAME, "resources//Texture//bgInputName.png");
+	addTexture(LEADERBOARD, "resources//Texture//leaderboard.png");
 	addTexture(ROAD, "resources//Texture//road.png");
 	addTexture(RIVER, "resources//Texture//River.png");
 	addFont(MAIN_FONT, "resources//Font//LilitaOne-Regular.ttf");
@@ -24,7 +27,6 @@ assetManager::assetManager()
 	addTexture(TEGIAC, "resources//Texture//Tegiac.png");
 	addTexture(LACDA, "resources//Texture//Lacda.png");
 	addTexture(PENGUIN, "resources//Texture//Penguin.png");
-
 	addTexture(DIRT, "resources//Texture//dirt.png");
 }
 assetManager::~assetManager()
@@ -108,5 +110,124 @@ bool assetManager::isEasyLevelSavedGame()
 		file.read((char *)&isEasyLevelSaved, sizeof(bool));
 		return isEasyLevelSaved;
 	}
+	else
+	{
+		std::cerr << "Error: file not open in check easy level\n";
+		return 0;
+	}
+	file.close();
 	return 1;
+}
+
+bool assetManager::saveHighScore(const std::string &name, int score)
+{
+	if (isInTopScore(score))
+	{
+		std::ifstream file(PATH_HIGH_SCORE);
+		if (file.good())
+		{
+			int minTopScore;
+			file >> minTopScore;
+			file.close();
+			std::vector<std::pair<std::string, int>> topScores;
+			std::ifstream file2(PATH_HIGH_SCORE);
+			if (file2.good())
+			{
+				std::string _name;
+				int _score;
+				while (file2 >> _name >> _score)
+				{
+					topScores.push_back(std::make_pair(_name, _score));
+				}
+				file2.close();
+
+				topScores.push_back(std::make_pair(name, score));
+				std::sort(topScores.begin(), topScores.end(), [](const std::pair<std::string, int> &a, const std::pair<std::string, int> &b)
+						  { return a.second > b.second; });
+
+				std::ofstream file3(PATH_HIGH_SCORE);
+				if (file3.good())
+				{
+					int siz = topScores.size();
+					if (numHighScores > siz)
+					{
+						numHighScores = siz;
+					}
+					file3 << topScores[numHighScores - 1].second << std::endl;
+					for (int i = 0; i < numHighScores; i++)
+					{
+						file3 << topScores[i].first << " " << topScores[i].second << std::endl;
+					}
+					file3.close();
+					return 1;
+				}
+				else
+				{
+					std::cerr << "Error: file not open in save high score\n";
+					return 0;
+				}
+			}
+			else
+			{
+				std::cerr << "Error: file not open in save high score\n";
+				return 0;
+			}
+		}
+		else
+		{
+			std::cerr << "Error: file not open in save high score\n";
+			return 0;
+		}
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+bool assetManager::isInTopScore(int score)
+{
+	std::ifstream file(PATH_HIGH_SCORE);
+	if (file.good())
+	{
+		int minTopScore;
+		file >> minTopScore;
+		if (score > minTopScore)
+		{
+			file.close();
+			return 1;
+		}
+	}
+	else
+	{
+		std::cerr << "Error: file not open in check top score\n";
+		return 0;
+	}
+}
+
+bool assetManager::createHighScoreFile()
+{
+	std::ifstream file(PATH_HIGH_SCORE);
+	if (file.good())
+	{
+		file.close();
+		return 1;
+	}
+	else
+	{
+		file.close();
+		
+		std::ofstream fout(PATH_HIGH_SCORE);
+		if (fout.good())
+		{
+			fout << 0 << std::endl;
+			fout.close();
+			return 1;
+		}
+		else
+		{
+			std::cerr << "Error: file not open in create high score file\n";
+			return 0;
+		}
+	}
 }

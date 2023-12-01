@@ -98,8 +98,7 @@ void endgameMenu::update()
     if (m_buttonsPressed[RESTART])
     {
         m_buttonsPressed[RESTART] = false;
-        _data->_states->removeStateUntilOne();
-        _data->_states->addState(new diffiMenu(_data));
+        _data->_states->removeState(true);
     }
     else if (m_buttonsPressed[MAIN_MENU])
     {

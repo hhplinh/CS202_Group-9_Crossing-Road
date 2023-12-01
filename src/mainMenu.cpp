@@ -1,11 +1,14 @@
 #include "mainMenu.hpp"
 #include "loadMapLevel.hpp"
+#include "leaderboard.hpp"
 #include "diffiMenu.hpp"
+#include "instructScr.hpp"
+#include "MainMenu0Load.hpp"
 #include "map.hpp"
+#include "Music.hpp"
 
 mainMenu::mainMenu(data *data) : menu(data)
 {
-
     m_buttonsSelected.resize(NUM_BUTTONS, false);
     m_buttonsPressed.resize(NUM_BUTTONS, false);
     m_buttonsSelected[0] = true;
@@ -27,9 +30,9 @@ void mainMenu::init()
         button.setFont(_data->_assets->getFont(MAIN_FONT));
         buttonNames[i] = buttonToString[static_cast<Button>(i)];
         button.setString(buttonNames[i]);
-        button.setCharacterSize(110);
+        button.setCharacterSize(100);
         button.setOrigin(button.getLocalBounds().width / 2.f, button.getLocalBounds().height / 2.f);
-        button.setPosition(1475, 310 + 150 * i);
+        button.setPosition(1470, 250 + 150 * i);
         m_buttons.push_back(button);
     }
 }
@@ -81,8 +84,12 @@ void mainMenu::processInput()
 }
 
 void mainMenu::update()
-{ 
-    if (m_buttonsPressed[PLAY])
+{
+    if (_data->_assets->isGameSaved() == false)
+    {
+        _data->_states->addState(new mainMenu0Load(_data), true);
+    }
+    else if (m_buttonsPressed[PLAY])
     {
         m_buttonsPressed[PLAY] = false;
         _data->_states->addState(new diffiMenu(_data));
@@ -90,7 +97,6 @@ void mainMenu::update()
     else if (m_buttonsPressed[LOAD])
     {
         m_buttonsPressed[LOAD] = false;
-        // Implement your "Load Game" logic here
         if (_data->_assets->isEasyLevelSavedGame() == true)
         {
             _data->_states->addState(new mapeasyLoad(_data));
@@ -100,10 +106,15 @@ void mainMenu::update()
             _data->_states->addState(new mapLoad(_data));
         }
     }
-    else if (m_buttonsPressed[SETTINGS])
+    else if (m_buttonsPressed[LEADERBOARD])
     {
-        m_buttonsPressed[SETTINGS] = false;
-        // Implement your "Settings" logic here
+        m_buttonsPressed[LEADERBOARD] = false;
+        _data->_states->addState(new Leaderboard(_data));
+    }
+    else if (m_buttonsPressed[INSTRUCTION])
+    {
+        m_buttonsPressed[INSTRUCTION] = false;
+        _data->_states->addState(new instructScreen(_data));
     }
     else if (m_buttonsPressed[EXIT])
     {

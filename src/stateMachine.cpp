@@ -1,4 +1,5 @@
 #include "stateMachine.h"
+#include "MainMenu.hpp"
 stateMachine::stateMachine() : _add(0), _replace(0), _remove(0)
 {
 }
@@ -71,4 +72,15 @@ void stateMachine::processStateChange()
 state *&stateMachine::getCurrentState()
 {
 	return stackState.top();
+}
+
+void stateMachine::removeAll()
+{
+	while (!stackState.empty())
+	{
+		state *top = stackState.top();
+		delete top;
+		top = nullptr;
+		stackState.pop();
+	}
 }

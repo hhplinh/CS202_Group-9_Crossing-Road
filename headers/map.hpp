@@ -14,6 +14,8 @@
 #include "trafficlight.hpp"
 #include "Animal.hpp"
 #include "endgameMenu.hpp"
+#include "inputNameHighScore.hpp"
+
 class menuPause;
 class endgameMenu;
 class map : public state
@@ -103,17 +105,25 @@ public:
     void createmap();
     void addblock(std::string terrainName);
     sf::RectangleShape background;
-    void moveToGameOverMenu()
+    void endgame()
     {
         _data->_assets->setSCore(point);
-        _data->_states->addState(new endgameMenu(_data), true);
+        _data->_assets->removeSavedGameFile();
+        if (_data->_assets->isInTopScore(point))
+        {
+            _data->_states->addState(new inputNameHighScore(_data), true);
+        }
+        else
+        {
+            _data->_states->addState(new endgameMenu(_data), true);
+        }
     }
     void collisonWithCar(maincharacter *player, car *car1)
     {
         if (player->getSprite().getGlobalBounds().intersects(car1->getSprite().getGlobalBounds()))
         { // reset view
             _data->_window->setView(_data->_window->getDefaultView());
-            moveToGameOverMenu();
+            endgame();
         }
     }
     // collison with animal
@@ -122,7 +132,7 @@ public:
         if (player->getSprite().getGlobalBounds().intersects(animal1->getSprite().getGlobalBounds()))
         { // reset view
             _data->_window->setView(_data->_window->getDefaultView());
-            moveToGameOverMenu();
+            endgame();
         }
     }
 };

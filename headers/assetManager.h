@@ -8,6 +8,9 @@ enum
 {
 	PLAYER = 0,
 	BACKGROUND,
+	BACKGROUND2,
+	BG_INPUT_NAME,
+	LEADERBOARD,
 	ROCK,
 	ROCK1,
 	ROCK2,
@@ -49,8 +52,13 @@ protected:
 	const sf::Color THEME_COLOR = sf::Color(248, 153, 56, 255);
 
 	const std::string PATH_SAVED_GAME = "save.bin";
+	const std::string PATH_HIGH_SCORE = "highScore.bin";
+	
 	bool isEasyLevelSaved;
 	int score = 0;
+	int numHighScores = 5;
+
+	std::string nameInputHighScore;
 
 public:
 	assetManager();
@@ -77,4 +85,15 @@ public:
 
 	void setSCore(int score) { this->score = score; }
 	int getScore() { return score; }
+
+	bool saveHighScore(const std::string& name, int score);
+
+	bool isInTopScore(int score);
+
+	std::string getHighScorePath() { return PATH_HIGH_SCORE; }
+
+	std::string setNameInputHighScore(const std::string& name) { return nameInputHighScore = name; }
+	std::string getNameInputHighScore() { return nameInputHighScore; }
+
+	bool createHighScoreFile();
 };

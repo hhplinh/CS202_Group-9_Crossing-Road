@@ -5,25 +5,26 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
-class instructScreen : public state
+class Leaderboard : public state
 {
 private:
     data *_data;
     const std::string INSTRUCT_PATH = "instruction.txt";
     sf::Text instructText;
     sf::RectangleShape backgroundSprite;
-    sf::RectangleShape board;
+    std::vector<sf::Text> name_score;
 
-    bool isEventChanged = true;
+    const std::string SCORES_PATH = _data->_assets->getHighScorePath();
+
 
 public:
-    instructScreen(data *data);
-    ~instructScreen();
+    Leaderboard(data *data);
+    ~Leaderboard();
 
     void init();
     void processInput();
     void update();
     void draw();
-    std::string loadTextFromFile(const std::string& filename);
 };
