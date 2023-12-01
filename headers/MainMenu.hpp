@@ -12,7 +12,7 @@ private:
         PLAY,
         LOAD,
         INSTRUCTION,
-        HIGHSCORE,
+        LEADERBOARD,
         EXIT,
         NUM_BUTTONS
     };
@@ -23,7 +23,7 @@ private:
         {PLAY, "Play"},
         {LOAD, "Load"},
         {INSTRUCTION, "Instruction"},
-        {HIGHSCORE, "Highscore"},
+        {LEADERBOARD, "Leaderboard"},
         {EXIT, "Exit"},
     };
 

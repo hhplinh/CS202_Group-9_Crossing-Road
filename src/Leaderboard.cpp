@@ -13,13 +13,9 @@ Leaderboard::~Leaderboard()
 
 void Leaderboard::init()
 {
-    // countdownText.setFont(_data->_assets->getFont(MAIN_FONT));
-    // countdownText.setCharacterSize(200);
-    // countdownText.setFillColor(sf::Color::White);
-    // countdownText.setOrigin(countdownText.getGlobalBounds().width / 2.f, countdownText.getGlobalBounds().height / 2.f);
-    // countdownText.setPosition(_data->_window->getSize().x / 2.f, _data->_window->getSize().y / 2.f);
-    // countdownText.setOutlineColor(_data->_assets->getThemeColor());
-    // countdownText.setOutlineThickness(7.f);
+    backgroundSprite.setTexture(&_data->_assets->getTexture(LEADERBOARD));
+    backgroundSprite.setSize(sf::Vector2f(1920, 1080));
+
 }
 
 void Leaderboard::processInput()

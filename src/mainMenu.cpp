@@ -30,9 +30,9 @@ void mainMenu::init()
         button.setFont(_data->_assets->getFont(MAIN_FONT));
         buttonNames[i] = buttonToString[static_cast<Button>(i)];
         button.setString(buttonNames[i]);
-        button.setCharacterSize(110);
+        button.setCharacterSize(100);
         button.setOrigin(button.getLocalBounds().width / 2.f, button.getLocalBounds().height / 2.f);
-        button.setPosition(1300, 310 + 150 * i);
+        button.setPosition(1470, 250 + 150 * i);
         m_buttons.push_back(button);
     }
 }
@@ -106,9 +106,9 @@ void mainMenu::update()
             _data->_states->addState(new mapLoad(_data));
         }
     }
-    else if (m_buttonsPressed[HIGHSCORE])
+    else if (m_buttonsPressed[LEADERBOARD])
     {
-        m_buttonsPressed[HIGHSCORE] = false;
+        m_buttonsPressed[LEADERBOARD] = false;
         _data->_states->addState(new Leaderboard(_data));
     }
     else if (m_buttonsPressed[INSTRUCTION])
