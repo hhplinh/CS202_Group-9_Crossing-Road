@@ -97,7 +97,6 @@ void mainMenu::update()
     else if (m_buttonsPressed[LOAD])
     {
         m_buttonsPressed[LOAD] = false;
-        // Implement your "Load Game" logic here
         if (_data->_assets->isEasyLevelSavedGame() == true)
         {
             _data->_states->addState(new mapeasyLoad(_data));

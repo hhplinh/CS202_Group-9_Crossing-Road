@@ -28,6 +28,10 @@ private:
 
     const std::string SCORES_PATH = "scores.bin";
     const int NUM_SCORES = 5;
+    
+    std::string input{};
+
+    sf::Text inputName;
 
 public:
     inputNameHighScore(data *data);
@@ -37,6 +41,4 @@ public:
     void processInput();
     void update();
     void draw();
-    void saveScore(const std::string& filename, const Player& player);
-    void printScores();
 };
