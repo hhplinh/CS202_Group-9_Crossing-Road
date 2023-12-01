@@ -76,6 +76,8 @@ void inputNameHighScore::update()
 
 void inputNameHighScore::draw()
 {
+    if (isEventChanged)
+    {
     _data->_window->clear();
 
     _data->_window->draw(backgroundSprite);
@@ -83,4 +85,7 @@ void inputNameHighScore::draw()
     _data->_window->draw(inputName);
 
     _data->_window->display();
+
+    isEventChanged = false;
+    }
 }
