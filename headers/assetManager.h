@@ -52,7 +52,7 @@ protected:
 	const sf::Color THEME_COLOR = sf::Color(248, 153, 56, 255);
 
 	const std::string PATH_SAVED_GAME = "save.bin";
-	const std::string PATH_HIGH_SCORE = "highScore.bin";
+	const std::string PATH_HIGH_SCORE = "highScore.txt";
 	
 	bool isEasyLevelSaved;
 	int score = 0;
