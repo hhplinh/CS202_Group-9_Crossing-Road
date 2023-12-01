@@ -94,7 +94,9 @@ void inputNameHighScore::draw()
         _data->_window->clear();
 
         _data->_window->draw(backgroundSprite);
-
+        
+        inputName.setOrigin(inputName.getGlobalBounds().width / 2, inputName.getGlobalBounds().height / 2);
+        inputName.setPosition(_data->_window->getSize().x / 2, _data->_window->getSize().y / 2 + 100);
         _data->_window->draw(inputName);
         _data->_window->draw(score);
 
