@@ -36,33 +36,37 @@ void inputNameHighScore::processInput()
             switch (event.key.code)
             {
             case sf::Keyboard::Return:
-                // save name into asset
-                break;
+            {
+                inputName.setString(input);
 
-                // Get user input
+                if (input.empty())
+                {
+                    break;
+                }
+
+                _data->_assets->setNameInputHighScore(input);
+
+                break;
+            }
+
+            case sf::Keyboard::Backspace:
+            {
+                if (!input.empty())
+                {
+                    input.pop_back();
+                }
+                break;
+            }
+
             case sf::Event::TextEntered:
-                // Check if the key is valid (not backspace or return)
+            {
                 if (event.text.unicode >= 32 && event.text.unicode <= 126)
                 {
-                    // Append the character to the input string
+
                     input += static_cast<char>(event.text.unicode);
                 }
-                // Check if the key is backspace
-                else if (event.text.unicode == 8)
-                {
-                    // Delete the last character from the input string
-                    if (!input.empty())
-                    {
-                        input.pop_back();
-                    }
-                }
-                // Check if the key is return
-                else if (event.text.unicode == 13)
-                {
-                    // Update the text object with the input string
-                    inputName.setString(input);
-                }
                 break;
+            }
             default:
                 break;
             }
@@ -78,14 +82,14 @@ void inputNameHighScore::draw()
 {
     if (isEventChanged)
     {
-    _data->_window->clear();
+        _data->_window->clear();
 
-    _data->_window->draw(backgroundSprite);
+        _data->_window->draw(backgroundSprite);
 
-    _data->_window->draw(inputName);
+        _data->_window->draw(inputName);
 
-    _data->_window->display();
+        _data->_window->display();
 
-    isEventChanged = false;
+        isEventChanged = false;
     }
 }

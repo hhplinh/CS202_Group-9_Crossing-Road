@@ -58,6 +58,8 @@ protected:
 	int score = 0;
 	int numHighScores = 5;
 
+	std::string nameInputHighScore;
+
 public:
 	assetManager();
 	~assetManager();
@@ -89,4 +91,7 @@ public:
 	bool isInTopScore(int score);
 
 	std::string getHighScorePath() { return PATH_HIGH_SCORE; }
+
+	std::string setNameInputHighScore(const std::string& name) { return nameInputHighScore = name; }
+	std::string getNameInputHighScore() { return nameInputHighScore; }
 };
