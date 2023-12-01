@@ -18,14 +18,14 @@ void inputNameHighScore::init()
     backgroundSprite.setSize(sf::Vector2f(_data->_window->getSize().x, _data->_window->getSize().y));
 
     inputName.setFont(_data->_assets->getFont(MAIN_FONT));
-    inputName.setCharacterSize(32);
+    inputName.setCharacterSize(50);
     inputName.setFillColor(sf::Color::White);
-    inputName.setString("");
+    inputName.setString("Name");
     inputName.setOrigin(inputName.getGlobalBounds().width / 2, inputName.getGlobalBounds().height / 2);
-    inputName.setPosition(_data->_window->getSize().x / 2, _data->_window->getSize().y / 2 - 100);
+    inputName.setPosition(_data->_window->getSize().x / 2, _data->_window->getSize().y / 2 + 100);
 
     score.setFont(_data->_assets->getFont(MAIN_FONT));
-    score.setCharacterSize(32);
+    score.setCharacterSize(50);
     score.setString(std::to_string(_data->_assets->getScore()));
     score.setFillColor(sf::Color::White);
     score.setOrigin(score.getGlobalBounds().width / 2, score.getGlobalBounds().height / 2);
@@ -43,35 +43,34 @@ void inputNameHighScore::processInput()
 
         if (event.type == sf::Event::KeyPressed)
         {
+            std::cerr << event.key.code << std::endl;
+
             switch (event.key.code)
             {
             case sf::Keyboard::Enter:
-            {
+
                 inputName.setString(input);
 
-                if (input.empty())
+                if (!input.empty())
                 {
-                    break;
+                    _data->_assets->setNameInputHighScore(input);
+                    _data->_assets->saveHighScore(input, _data->_assets->getScore());
+                    _data->_states->addState(new Leaderboard(_data), true);
                 }
-                _data->_assets->setNameInputHighScore(input);
-                _data->_assets->saveHighScore(input, _data->_assets->getScore());
-                _data->_states->addState(new Leaderboard(_data), true);
 
                 break;
-            }
 
             case sf::Keyboard::Backspace:
-            {
+
                 if (!input.empty())
                 {
                     input.pop_back();
                 }
                 break;
-            }
 
-            case sf::Event::TextEntered:
-            {
-                if (event.text.unicode >= 32 && event.text.unicode <= 126)
+            case sf::Event::KeyPressed:
+                std::cerr << "input: " << input.size() << std::endl;
+                if ((event.text.unicode >= sf::Keyboard::A && event.text.unicode <= sf::Keyboard::Z) || (event.text.unicode >= sf::Keyboard::Num0 && event.text.unicode <= sf::Keyboard::Num9))
                 {
                     if (input.size() <= MAX_NAME_LENGTH)
                     {
@@ -79,7 +78,7 @@ void inputNameHighScore::processInput()
                     }
                 }
                 break;
-            }
+
             default:
                 break;
             }
