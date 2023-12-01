@@ -21,6 +21,11 @@ void inputNameHighScore::init()
     inputName.setCharacterSize(32);
     inputName.setFillColor(sf::Color::White);
     inputName.setPosition(10, 10);
+
+    score.setFont(_data->_assets->getFont(MAIN_FONT));
+    score.setCharacterSize(32);
+    score.setFillColor(sf::Color::White);
+    score.setPosition(10, 50);
 }
 
 void inputNameHighScore::processInput()
@@ -90,6 +95,7 @@ void inputNameHighScore::draw()
         _data->_window->draw(backgroundSprite);
 
         _data->_window->draw(inputName);
+        _data->_window->draw(score);
 
         _data->_window->display();
 
