@@ -53,10 +53,9 @@ void inputNameHighScore::processInput()
             }
             else if (input.size() <= MAX_NAME_LENGTH && event.text.unicode < 128)
             {
-                char c = static_cast<char>(event.text.unicode);
-                if (isalpha(c))
+                if (isprint(event.text.unicode))
                 {
-                    input += c;
+                    input += static_cast<char>(event.text.unicode);
                     inputName.setString(input);
                 }
             }
