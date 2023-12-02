@@ -96,5 +96,7 @@ public:
 	std::string setNameInputHighScore(const std::string& name) { return nameInputHighScore = name; }
 	std::string getNameInputHighScore() { return nameInputHighScore; }
 
+	std::string getSavedGamePicPath() { return PATH_PIC_SAVED_GAME; }
+
 	bool createHighScoreFile();
 };
