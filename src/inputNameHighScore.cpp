@@ -56,7 +56,7 @@ void inputNameHighScore::processInput()
                 char c = static_cast<char>(event.text.unicode);
                 if (isalpha(c))
                 {
-                    input += static_cast<char>(event.text.unicode);
+                    input += c;
                     inputName.setString(input);
                 }
             }
