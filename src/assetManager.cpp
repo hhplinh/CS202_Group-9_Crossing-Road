@@ -154,6 +154,7 @@ bool assetManager::saveHighScore(const std::string &name, int score)
 					{
 						numHighScores = siz;
 					}
+					file3 << siz << std::endl;
 					file3 << topScores[numHighScores - 1].second << std::endl;
 					for (int i = 0; i < numHighScores; i++)
 					{
@@ -191,6 +192,14 @@ bool assetManager::isInTopScore(int score)
 	std::ifstream file(PATH_HIGH_SCORE);
 	if (file.good())
 	{
+		int siz;
+		file >> siz;
+		if (siz < numHighScores)
+		{
+			file.close();
+			return 1;
+		}
+		
 		int minTopScore;
 		file >> minTopScore;
 		if (score > minTopScore)
