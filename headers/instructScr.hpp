@@ -5,6 +5,7 @@
 #include <string>
 // #include <SFML/Graphics/Shape.hpp>
 // #include <SFML/Graphics/RoundedRectangle.hpp>
+#include "RoundedRectangle.hpp"
 
 class instructScreen : public state
 {
