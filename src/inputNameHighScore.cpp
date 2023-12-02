@@ -29,7 +29,7 @@ void inputNameHighScore::init()
     score.setString(std::to_string(_data->_assets->getScore()));
     score.setFillColor(sf::Color::White);
     score.setOrigin(score.getGlobalBounds().width / 2, score.getGlobalBounds().height / 2);
-    score.setPosition(sf::Vector2f(1100,415));
+    score.setPosition(sf::Vector2f(1100, 415));
 }
 
 void inputNameHighScore::processInput()
@@ -43,10 +43,22 @@ void inputNameHighScore::processInput()
 
         else if (event.type == sf::Event::TextEntered)
         {
-            if (input.size() <= MAX_NAME_LENGTH && event.text.unicode < 128)
+            if (event.text.unicode == '\b')
             {
-                input += static_cast<char>(event.text.unicode);
-                inputName.setString(input);
+                if (!input.empty())
+                {
+                    input.erase(input.size() - 1, 1);
+                    inputName.setString(input);
+                }
+            }
+            else if (input.size() <= MAX_NAME_LENGTH && event.text.unicode < 128)
+            {
+                char c = static_cast<char>(event.text.unicode);
+                if (isalpha(c))
+                {
+                    input += static_cast<char>(event.text.unicode);
+                    inputName.setString(input);
+                }
             }
             break;
         }
@@ -67,13 +79,13 @@ void inputNameHighScore::processInput()
 
                 break;
 
-            case sf::Keyboard::Backspace:
+                // case sf::Keyboard::Backspace:
 
-                if (!input.empty())
-                {
-                    input.pop_back();
-                }
-                break;
+                //     if (!input.empty())
+                //     {
+                //         input.pop_back();
+                //     }
+                //     break;
 
             default:
                 break;
@@ -94,9 +106,9 @@ void inputNameHighScore::draw()
         _data->_window->clear();
 
         _data->_window->draw(backgroundSprite);
-        
+
         inputName.setOrigin(inputName.getGlobalBounds().width / 2, inputName.getGlobalBounds().height / 2);
-        inputName.setPosition(_data->_window->getSize().x / 2+20, _data->_window->getSize().y / 2 + 180);
+        inputName.setPosition(_data->_window->getSize().x / 2 + 20, _data->_window->getSize().y / 2 + 180);
         _data->_window->draw(inputName);
         _data->_window->draw(score);
 
