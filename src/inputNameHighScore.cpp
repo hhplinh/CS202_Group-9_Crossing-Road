@@ -22,14 +22,14 @@ void inputNameHighScore::init()
     inputName.setFillColor(sf::Color::White);
     inputName.setString("Name");
     inputName.setOrigin(inputName.getGlobalBounds().width / 2, inputName.getGlobalBounds().height / 2);
-    inputName.setPosition(_data->_window->getSize().x / 2, _data->_window->getSize().y / 2 + 100);
+    inputName.setPosition(_data->_window->getSize().x / 2, (_data->_window->getSize().y / 2) + 400);
 
     score.setFont(_data->_assets->getFont(MAIN_FONT));
     score.setCharacterSize(50);
     score.setString(std::to_string(_data->_assets->getScore()));
     score.setFillColor(sf::Color::White);
     score.setOrigin(score.getGlobalBounds().width / 2, score.getGlobalBounds().height / 2);
-    score.setPosition(_data->_window->getSize().x / 2, _data->_window->getSize().y / 2);
+    score.setPosition(sf::Vector2f(1100,415));
 }
 
 void inputNameHighScore::processInput()
@@ -96,7 +96,7 @@ void inputNameHighScore::draw()
         _data->_window->draw(backgroundSprite);
         
         inputName.setOrigin(inputName.getGlobalBounds().width / 2, inputName.getGlobalBounds().height / 2);
-        inputName.setPosition(_data->_window->getSize().x / 2, _data->_window->getSize().y / 2 + 100);
+        inputName.setPosition(_data->_window->getSize().x / 2+20, _data->_window->getSize().y / 2 + 180);
         _data->_window->draw(inputName);
         _data->_window->draw(score);
 
