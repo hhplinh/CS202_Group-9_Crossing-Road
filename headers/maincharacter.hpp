@@ -40,7 +40,7 @@ class maincharacter //public state
 	void processInput(sf :: Event event);
     void processInput();
 	virtual void update();
-	void draw();
+	virtual void draw();
     void move();
     void setPosition(float x,float y);
     sf::Vector2f getPosition();
