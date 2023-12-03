@@ -2,9 +2,10 @@
 #include "state.h"
 #include "system.h"
 #include <SFML/Graphics.hpp>
-
+#include <SFML/Graphics/Shape.hpp>
 #include <iostream>
 #include <string>
+#include <SFML/Graphics/RoundedRectangle.hpp>
 
 class instructScreen : public state
 {
@@ -14,7 +15,7 @@ private:
     sf::Text instructText;
     sf::RectangleShape backgroundSprite;
     sf::RectangleShape board;
-
+    sf::RoundedRectangleShape roundedRectangle;
     bool isEventChanged = true;
 
 public:
@@ -27,3 +28,4 @@ public:
     void draw();
     std::string loadTextFromFile(const std::string& filename);
 };
+

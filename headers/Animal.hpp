@@ -1,32 +1,43 @@
-#include"enemy.hpp"
-#include<random>
+#include "enemy.hpp"
+#include <random>
 #include "system.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include"state.h"
-#include<string>
+#include "state.h"
+#include <string>
 #pragma once
-class Animal 
+class Animal
 {
-  protected :
-  data * _data;
+protected:
+  data *_data;
   float speed;
-  int row , col;
+  int row, col;
   bool goR;
- std:: string name;
- sf :: Sprite sprite;
-  public:
-  sf::Sprite getSprite(){return this->sprite;}
-   sf::Clock frameTimer; // Timer to control the frame rate
-  const sf::Time frameDuration = sf::seconds(1.f / 10);
-   virtual ~Animal() {}
-  sf::Vector2f getposAnimal(){return this->sprite.getPosition();}
-  Animal(data* _data);
-  void setposAnimal( sf::Vector2f posblock);
-  void init();
-  //normal draw without sf drawable using window
+  std::string name;
+  sf ::Sprite sprite;
 
-  void draw ()
+public:
+  sf::Sprite getSprite() { return this->sprite; }
+  sf::Clock frameTimer; // Timer to control the frame rate
+  const sf::Time frameDuration = sf::seconds(1.f / 10);
+  virtual ~Animal() {}
+  sf::Vector2f getposAnimal() { return this->sprite.getPosition(); }
+  Animal(data *_data);
+  void setposAnimal(sf::Vector2f posblock);
+  void init();
+  // normal draw without sf drawable using window
+
+  void setGoR(bool gor)
+  {
+    this->goR = gor;
+  }
+
+  bool getGoR()
+  {
+    return this->goR;
+  }
+
+  void draw()
   {
     _data->_window->draw(sprite);
   }
@@ -37,37 +48,32 @@ class Animal
   std::string getAnimalName();
 };
 class cop : public Animal
-{ protected: 
-
-  public:
+{
+protected:
+public:
   ~cop() {}
- 
-  cop(data* _data) ;
 
-
+  cop(data *_data);
 };
 
 class tegiac : public Animal
 {
-   public:
+public:
   ~tegiac() {}
- 
-  tegiac(data* _data) ;
 
+  tegiac(data *_data);
 };
 
 class lacda : public Animal
 {
-
 };
 class voi : public Animal
 {
-
 };
 class gau : public Animal
 {
-    public:
+public:
   ~gau() {}
- 
-  gau(data* _data) ;
+
+  gau(data *_data);
 };

@@ -86,7 +86,6 @@ gau ::gau(data *_data) : Animal(_data)
 
 tegiac ::tegiac(data *_data) : Animal(_data)
 {
-
   this->name = "tegiac";
   this->row = 2;
   this->col = 10;
@@ -95,4 +94,5 @@ tegiac ::tegiac(data *_data) : Animal(_data)
   this->size.x /= col;
   this->size.y /= row;
   this->sprite.setTexture(_data->_assets->getTexture(TEGIAC));
+  this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
 }

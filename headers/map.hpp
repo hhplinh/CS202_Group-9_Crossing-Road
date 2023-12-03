@@ -38,6 +38,7 @@ protected:
     int currentIndex;
     std ::vector<Animal *> animals;
     sf::Texture backgroundTexture;
+    sf::Sprite backgroundSprite;
 
     sf::Text gameSavedText;
     bool gameSavedTextNeeded = false;
@@ -101,6 +102,7 @@ public:
     void processInput();
     void update();
     virtual void draw();
+    void captureScreenToLoad();
     void drawTemplate();
     void createmap();
     void addblock(std::string terrainName);

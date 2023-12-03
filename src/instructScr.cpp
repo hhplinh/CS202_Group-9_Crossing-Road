@@ -51,7 +51,15 @@ void instructScreen::init()
     board.setSize(sf::Vector2f(instructText.getLocalBounds().width + padding * 2, instructText.getLocalBounds().height + padding * 2));
     board.setOrigin(board.getLocalBounds().width / 2.f, board.getLocalBounds().height / 2.f);
     board.setPosition(_data->_window->getSize().x / 2.f, _data->_window->getSize().y / 2.f + 100);
-    board.setFillColor(sf::Color(255, 255, 255, 150));
+    board.setFillColor(sf::Color(253, 233, 190, 150));
+
+    roundedRectangle.setSize(sf::Vector2f(instructText.getLocalBounds().width + padding * 2, instructText.getLocalBounds().height + padding * 2));
+    roundedRectangle.setCornersRadius(5);
+    roundedRectangle.setOutlineThickness(5);
+    roundedRectangle.setOrigin(board.getLocalBounds().width / 2.f, board.getLocalBounds().height / 2.f);
+    roundedRectangle.setPosition(_data->_window->getSize().x / 2.f, _data->_window->getSize().y / 2.f + 100);
+    roundedRectangle.setFillColor(sf::Color(253, 233, 190, 150));
+    //window.draw(roundedRectangle);
 }
 
 void instructScreen::processInput()
@@ -92,8 +100,9 @@ void instructScreen::draw()
     {
         _data->_window->clear();
         _data->_window->draw(backgroundSprite);
-        _data->_window->draw(board);
+        //_data->_window->draw(board);
         _data->_window->draw(instructText);
+        _data->_window->draw(roundedRectangle);
         _data->_window->display();
     }
 }

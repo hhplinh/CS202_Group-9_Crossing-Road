@@ -27,7 +27,7 @@ void mainMenu0Load::init()
         button.setFont(_data->_assets->getFont(MAIN_FONT));
         buttonNames[i] = buttonToString[static_cast<Button>(i)];
         button.setString(buttonNames[i]);
-        button.setCharacterSize(100);
+        button.setCharacterSize(110);
         button.setOrigin(button.getLocalBounds().width / 2.f, button.getLocalBounds().height / 2.f);
         button.setPosition(1470, 390 + 150 * i);
         m_buttons.push_back(button);

@@ -28,7 +28,7 @@ void diffiMenu::init()
         button.setString(buttonNames[i]);
         button.setCharacterSize(110);
         button.setOrigin(button.getLocalBounds().width / 2.f, button.getLocalBounds().height / 2.f);
-        button.setPosition(1475, 350 + 150 * i);
+        button.setPosition(1470, 390 + 150 * i);
         m_buttons.push_back(button);
     }
 

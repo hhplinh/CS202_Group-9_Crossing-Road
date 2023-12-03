@@ -27,6 +27,7 @@ assetManager::assetManager()
 	addTexture(TEGIAC, "resources//Texture//Tegiac.png");
 	addTexture(LACDA, "resources//Texture//Lacda.png");
 	addTexture(PENGUIN, "resources//Texture//Penguin.png");
+	addTexture(CAT, "resources//Texture//Cat.png");
 	addTexture(DIRT, "resources//Texture//dirt.png");
 }
 assetManager::~assetManager()
@@ -198,11 +199,10 @@ bool assetManager::isInTopScore(int score)
 			return 1;
 		}
 	}
-	else
-	{
-		std::cerr << "Error: file not open in check top score\n";
-		return 0;
-	}
+
+	std::cerr << "Error: file not open in check top score\n";
+	file.close();
+	return 0;
 }
 
 bool assetManager::createHighScoreFile()
@@ -216,7 +216,7 @@ bool assetManager::createHighScoreFile()
 	else
 	{
 		file.close();
-		
+
 		std::ofstream fout(PATH_HIGH_SCORE);
 		if (fout.good())
 		{
@@ -227,6 +227,7 @@ bool assetManager::createHighScoreFile()
 		else
 		{
 			std::cerr << "Error: file not open in create high score file\n";
+			fout.close();
 			return 0;
 		}
 	}
