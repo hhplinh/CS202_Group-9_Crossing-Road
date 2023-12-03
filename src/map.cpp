@@ -715,7 +715,7 @@ void map::captureScreenToLoad()
     texture.create(_data->_window->getSize().x, _data->_window->getSize().y);
     texture.update((const sf::RenderWindow &)(*(_data->_window)));
     sf::Image screenshot = texture.copyToImage();
-    screenshot.saveToFile(_data->_assets->getSavedGamePicPath());
+    screenshot.saveToFile(_data->_assets->getSavedGamePath());
 
     _data->_window->setView(_data->_window->getDefaultView());
     _data->_states->addState(new loadCountDownScreen(_data), false);

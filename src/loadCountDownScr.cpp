@@ -18,7 +18,7 @@ void loadCountDownScreen::init()
     countdownText.setOutlineColor(_data->_assets->getThemeColor());
     countdownText.setOutlineThickness(7.f);
 
-    if (!backgroundTexture.loadFromFile(_data->_assets->getSavedGamePicPath()))
+    if (!backgroundTexture.loadFromFile(_data->_assets->getSavedGamePath()))
     {
         std::cout << "Error loading background texture" << std::endl;
     }

@@ -209,6 +209,6 @@ void maincharacter::displayStamina()
 
 void maincharacter::drawStaminaBar(sf::RenderTarget &target) const
 {
-    target.draw(staminaBarBackground);
+    //target.draw(staminaBarBackground);
     target.draw(staminaBar);
 }

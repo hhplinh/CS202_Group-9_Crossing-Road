@@ -39,5 +39,15 @@ class maincharactereasy : public maincharacter
     camera.setCenter(1920 / 2, p.getPosition().y);
     _data->_window->setView(camera);
    }
+   
+void draw()
+{
+
+    //_data->_window->clear();
+
+    _data->_window->draw(p);
+   // drawStaminaBar(*_data->_window);
+    // _data->_window->display();
+}
 
 };
