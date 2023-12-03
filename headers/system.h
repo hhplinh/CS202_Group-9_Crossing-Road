@@ -5,6 +5,17 @@
 class data
 {
 	public:
+	bool isEndgame;
+	int score; // Add a score variable
+
+    void setScore(int newScore) {
+        score = newScore;
+    }
+
+    int getScore() const {
+        return score;
+    }
+	sf::Clock endgameStartTime;
 	assetManager* _assets;
 	stateMachine* _states;
 	sf::RenderWindow* _window;

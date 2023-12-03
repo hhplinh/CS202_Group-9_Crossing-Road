@@ -12,6 +12,7 @@ void map::init()
 { // do not init if resume from pause menu
   // check the state size
     // using state machine size
+    this->gameIsOver = false;
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
     this->cooldownActive = false;
@@ -19,7 +20,7 @@ void map::init()
     player = new maincharacter(_data);
     player->init();
     this->blocks.clear();
-    this->point = 0;
+    _data->score = 0;
     this->river.clear();
     this->length = 10;
 
@@ -63,11 +64,18 @@ void map::update()
     player->update();
     float pos = player->getPosition().y;
     if (pos == 1080 - 600)
-        this->point = 0;
+       { this->point = 0;
+        _data->score = this->point;}
     else if (pos > 0)
-        this->point = (1080 - pos);
+        
+        {this->point = (1080 - pos);
+        _data->score = this->point;
+        }
     else
-        this->point = 1080 + abs(pos);
+      
+      {  this->point = 1080 + abs(pos);
+        _data->score = this->point;
+      }
     float l = (pos / 1080.0 + 1);
 
     float j = -l;

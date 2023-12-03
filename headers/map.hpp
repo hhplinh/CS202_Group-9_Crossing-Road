@@ -22,6 +22,7 @@ class map : public state
 {
 protected:
  bool cooldownActive;
+ bool gameIsOver;
     sf::Vector2f pos1;
      sf::Clock cooldownClock;
         float cooldownDuration;
@@ -111,30 +112,40 @@ public:
     {
         _data->_assets->setSCore(point);
         _data->_assets->removeSavedGameFile();
-        if (_data->_assets->isInTopScore(point))
-        {
-            _data->_states->addState(new inputNameHighScore(_data), true);
-        }
-        else
-        {
-            _data->_states->addState(new endgameMenu(_data), true);
-        }
+        
+        //wait for 2 seconds
+      
+        this->player->getSprite().setTextureRect(sf::IntRect(0,player-> size.y * 4, player->size.x,player-> size.y));
+      this->player->draw();
+        _data->_window->display();
+     
+
+    // Mark the start of the endgame
+    _data->isEndgame = true;
+    _data->endgameStartTime.restart(); 
+
     }
     void collisonWithCar(maincharacter *player, car *car1)
     {
         if (player->getSprite().getGlobalBounds().intersects(car1->getSprite().getGlobalBounds()))
         { // reset view
-            _data->_window->setView(_data->_window->getDefaultView());
+           // _data->_window->setView(_data->_window->getDefaultView());
             endgame();
+            //_data->_window->setView(_data->_window->getDefaultView());
         }
+    }
+    int getPoint()
+    {
+        return point;
     }
     // collison with animal
     void collisonWithAnimal(maincharacter *player, Animal *animal1)
     {
         if (player->getSprite().getGlobalBounds().intersects(animal1->getSprite().getGlobalBounds()))
         { // reset view
-            _data->_window->setView(_data->_window->getDefaultView());
+            //_data->_window->setView(_data->_window->getDefaultView());
             endgame();
+          //  _data->_window->setView(_data->_window->getDefaultView());
         }
     }
 };
