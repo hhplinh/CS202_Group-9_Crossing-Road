@@ -31,6 +31,12 @@ void Cano::setPosCano(sf::Vector2f posRiver) {
 
 void Cano::turnAround() {
     isMovingRight = !isMovingRight;
+    //rotate the sprite around the center of the sprite
+
+    
+    
+
+
 }
 
 void Cano::draw(sf::RenderTarget& target, sf::RenderStates states) const {
