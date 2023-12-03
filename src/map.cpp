@@ -6,7 +6,6 @@
 #include "endgameMenu.hpp"
 #include "maincharacter.hpp"
 #include "resumeScreen.hpp"
-#include "loadCountDownScr.hpp"
 
 void map::init()
 { // do not init if resume from pause menu
@@ -709,14 +708,15 @@ void map::loadCountdownScreen()
     _data->_states->addState(new ResumeScreen(_data), false);
 }
 
-void map::captureScreenToLoad()
-{
-    sf::Texture texture;
-    texture.create(_data->_window->getSize().x, _data->_window->getSize().y);
-    texture.update((const sf::RenderWindow &)(*(_data->_window)));
-    sf::Image screenshot = texture.copyToImage();
-    screenshot.saveToFile(_data->_assets->getSavedGamePath());
+// void map::captureScreenToLoad()
+// {
+//     sf::Texture texture;
+//     texture.create(_data->_window->getSize().x, _data->_window->getSize().y);
+//     texture.update((const sf::RenderWindow &)(*(_data->_window)));
+    
+//     // sf::Image screenshot = texture.copyToImage();
+//     // screenshot.saveToFile(_data->_assets->getSavedGamePicPath());
 
-    _data->_window->setView(_data->_window->getDefaultView());
-    _data->_states->addState(new loadCountDownScreen(_data), false);
-}
+//     _data->_window->setView(_data->_window->getDefaultView());
+//     _data->_states->addState(new loadCountDownScreen(_data), false);
+// }

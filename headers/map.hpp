@@ -102,7 +102,6 @@ public:
     void processInput();
     void update();
     virtual void draw();
-    void captureScreenToLoad();
     void drawTemplate();
     void createmap();
     void addblock(std::string terrainName);

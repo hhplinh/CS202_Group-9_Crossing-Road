@@ -2,10 +2,10 @@
 #include "state.h"
 #include "system.h"
 #include <SFML/Graphics.hpp>
-#include <SFML/Graphics/Shape.hpp>
-#include <iostream>
 #include <string>
-#include <SFML/Graphics/RoundedRectangle.hpp>
+// #include <SFML/Graphics/Shape.hpp>
+// #include <SFML/Graphics/RoundedRectangle.hpp>
+#include "RoundedRectangle.hpp"
 
 class instructScreen : public state
 {
