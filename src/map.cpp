@@ -666,6 +666,18 @@ void map::loadGame()
             {
                 a = new tegiac(_data);
             }
+            else if (animalName == "voi")
+            {
+                a = new voi(_data);
+            }
+            else if (animalName == "lacda")
+            {
+                a = new lacda(_data);
+            }
+            else
+            {
+                a = new cop(_data);
+            }
             a->setposAnimal(sf::Vector2f(animalPos.x, animalPos.y));
             a->setGoR(isMovingRight);
             animals.push_back(a);
