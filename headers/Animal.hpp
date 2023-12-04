@@ -64,12 +64,6 @@ public:
   tegiac(data *_data);
 };
 
-class lacda : public Animal
-{
-};
-class voi : public Animal
-{
-};
 class gau : public Animal
 {
 public:
@@ -77,3 +71,22 @@ public:
 
   gau(data *_data);
 };
+
+class lacda : public Animal
+{
+protected:
+public:
+  ~lacda() {}
+
+  lacda(data *_data);
+};
+
+
+class voi : public Animal
+{
+protected:
+public:
+  ~voi() {}
+
+  voi(data *_data);
+ };
