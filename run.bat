@@ -1,1 +1,2 @@
-build\main
+@echo off
+start "" "build\main"
