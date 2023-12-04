@@ -150,11 +150,23 @@ void map::update()
                 {
                     grasspos.push_back(blocks[i]->getpos());
                     addedgrass = false;
-                    u = rand() % 2;
+                    u = rand() % 5;
                     Animal *a;
                     if (u == 1)
                     {
                         a = new cop(_data);
+                    }
+                    else if (u == 2)
+                    {
+                        a = new tegiac(_data);
+                    }
+                    else if (u == 3)
+                    {
+                        a = new voi(_data);
+                    }
+                    else if (u == 4)
+                    {
+                        a = new lacda(_data);
                     }
                     else
                         a = new gau(_data);
