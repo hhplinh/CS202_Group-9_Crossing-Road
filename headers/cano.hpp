@@ -11,6 +11,8 @@ private:
     float speed;
     data* _data;
     sf::Sprite sprite;
+    int row, col;
+    sf:: Vector2u size;
 
 public:
     Cano(data* _data);

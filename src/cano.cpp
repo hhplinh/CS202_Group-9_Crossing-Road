@@ -6,17 +6,26 @@
 #include "cano.hpp"
 
 Cano::Cano(data* _data) : _data(_data) {
-    sprite.setTexture(_data->_assets->getTexture(CANO));
-
+   
+    this->row = 2;
+    this->col = 1;
+    this-> size = _data->_assets->getTexture(CANO2).getSize();
+    size.x /= col;
+    size.y /= row;
+     sprite.setTexture(_data->_assets->getTexture(CANO2));
+     sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
     int z = rand() % 2;
     this->speed = 3;
 
     if (z == 1) {
         this->isMovingRight = true;
+        this->sprite.setTextureRect(sf::IntRect(0, size.y, size.x, size.y));
         this->sprite.setPosition(1000, 0); // Set the initial position
     }
     else {
+
         this->isMovingRight = false;
+        this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
         this->sprite.setPosition(1000, 0); // Set the initial position
     }
 }
@@ -31,7 +40,14 @@ void Cano::setPosCano(sf::Vector2f posRiver) {
 
 void Cano::turnAround() {
     isMovingRight = !isMovingRight;
-    //rotate the sprite around the center of the sprite
+    if( isMovingRight == true)
+    {
+        sprite.setTextureRect(sf::IntRect(0, size.y, size.x, size.y));
+    }
+    else
+    {
+        sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
+    }
 
     
     

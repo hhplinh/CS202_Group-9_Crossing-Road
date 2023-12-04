@@ -20,7 +20,7 @@ assetManager::assetManager()
 	addTexture(CAR4, "resources//Texture//Car 4.png");
 	addTexture(CAR5, "resources//Texture//Car 5.png");
 	addTexture(CANO, "resources//Texture//Cano.png");
-	addTexture(CANO2, "resources//Texture//Cano 2.png");
+	addTexture(CANO2, "resources//Texture//Cano2.png");
 	addTexture(COP, "resources//Texture//cop.png");
 	addTexture(VOI, "resources//Texture//Voi.png");
 	addTexture(GAU, "resources//Texture//Gau.png");
