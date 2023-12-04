@@ -110,6 +110,14 @@ public:
     {
         _data->_assets->setSCore(point);
         _data->_assets->removeSavedGameFile();
+        sf::Clock clockend;
+        player->getSprite().setTextureRect(sf::IntRect(0, player->size.y*4, player->size.x, player->size.y));
+        while (clockend.getElapsedTime().asSeconds() < 1)
+        {
+          
+            player->draw();
+            
+        }
         if (_data->_assets->isInTopScore(point))
         {
             _data->_states->addState(new inputNameHighScore(_data), true);
