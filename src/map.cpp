@@ -6,6 +6,7 @@
 #include "endgameMenu.hpp"
 #include "maincharacter.hpp"
 #include "resumeScreen.hpp"
+#include "Animal.hpp"
 
 void map::init()
 { // do not init if resume from pause menu
@@ -59,6 +60,12 @@ void map::processInput()
 }
 void map::update()
 {
+    if (isEndgame)
+    {
+        player->setDeadTexture();
+
+        return;
+    }
     player->update();
     float pos = player->getPosition().y;
     if (pos == 1080 - 600)
@@ -135,21 +142,21 @@ void map::update()
                 {
                     roadpos.push_back(blocks[i]->getpos());
                     addedroad = false;
-                    int z=rand()%4;
+                    int z = rand() % 4;
                     car *newcar = new car(_data);
-                    if(z==1)
+                    if (z == 1)
                     {
                         newcar = new car2(_data);
                     }
-                    else if(z==2)
+                    else if (z == 2)
                     {
                         newcar = new car3(_data);
                     }
-                    else if(z==3)
+                    else if (z == 3)
                     {
                         newcar = new car4(_data);
                     }
-                   
+
                     else
                     {
                         newcar = new car5(_data);
@@ -263,8 +270,8 @@ void map::update()
             if (playerIsOnBoat == false)
             { // reset view
                 // if not on boat, game over
-                _data->_window->setView(_data->_window->getDefaultView());
-                this->endgame();
+                // _data->_window->setView(_data->_window->getDefaultView());
+                isEndgame = true;
             }
         }
     }
@@ -370,6 +377,12 @@ void map::drawTemplate()
     }
 
     player->draw();
+
+    if (isEndgame && endgameClock.getElapsedTime().asSeconds() >= 3.f)
+    {
+        isEndgame = false;
+        endgame();
+    }
 
     // show text for 3 seconds
     if (gameSavedTextNeeded && savedTextClock.getElapsedTime().asSeconds() >= 3.f)
@@ -755,7 +768,7 @@ void map::loadCountdownScreen()
 //     sf::Texture texture;
 //     texture.create(_data->_window->getSize().x, _data->_window->getSize().y);
 //     texture.update((const sf::RenderWindow &)(*(_data->_window)));
-    
+
 //     // sf::Image screenshot = texture.copyToImage();
 //     // screenshot.saveToFile(_data->_assets->getSavedGamePicPath());
 

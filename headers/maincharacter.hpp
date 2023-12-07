@@ -58,4 +58,9 @@ class maincharacter //public state
     {
         this->velocity.x = speed;
     }
+
+    void setDeadTexture()
+    {
+        p.setTextureRect(sf::IntRect(0, size.y * 4, size.x, size.y));
+    }
 };
