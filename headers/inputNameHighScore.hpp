@@ -15,7 +15,7 @@ private:
 
     const std::string SCORES_PATH = _data->_assets->getHighScorePath();
     const int NUM_SCORES = 5;
-    const int MAX_NAME_LENGTH = 15;
+    const int MAX_NAME_LENGTH = 14;
     
     std::string input{};
 

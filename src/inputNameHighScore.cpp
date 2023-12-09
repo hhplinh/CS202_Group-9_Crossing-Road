@@ -77,15 +77,6 @@ void inputNameHighScore::processInput()
                 }
 
                 break;
-
-                // case sf::Keyboard::Backspace:
-
-                //     if (!input.empty())
-                //     {
-                //         input.pop_back();
-                //     }
-                //     break;
-
             default:
                 break;
             }
