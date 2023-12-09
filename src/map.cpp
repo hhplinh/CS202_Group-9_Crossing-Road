@@ -382,13 +382,21 @@ void map::drawTemplate()
     }
 
     player->draw();
-    std::cerr << isEndgame << std::endl;
 
-    if (isEndgame && endgameClock.getElapsedTime().asSeconds() >= 5.f)
+    if (isEndgame)
     {
-        isEndgame = false;
-        endgameClock.restart();
-        endgame();
+        if (!initEndgameClock)
+        {
+            initEndgameClock = true;
+            endgameClock.restart();
+        }
+
+        if (endgameClock.getElapsedTime().asSeconds() >= 3.f)
+        {
+            isEndgame = false;
+            endgameClock.restart();
+            endgame();
+        }
     }
 
     // show text for 3 seconds
@@ -832,8 +840,6 @@ void map::loadCountdownScreen()
 
     _data->_window->setView(_data->_window->getDefaultView());
     _data->_states->addState(new ResumeScreen(_data), false);
-
-    std::cerr << "loadCountdownScreen" << std::endl;
 }
 
 void map::endgame()

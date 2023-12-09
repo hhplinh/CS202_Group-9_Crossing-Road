@@ -24,6 +24,8 @@ private:
     bool isEndgame = false;
     sf::Clock endgameClock;
 
+    bool initEndgameClock = false;
+
 protected:
     bool cooldownActive;
     sf::Vector2f pos1;
