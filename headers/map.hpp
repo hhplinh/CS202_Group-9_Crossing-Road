@@ -20,11 +20,15 @@ class menuPause;
 class endgameMenu;
 class map : public state
 {
+private:
+    bool isEndgame = false;
+    sf::Clock endgameClock;
+
 protected:
- bool cooldownActive;
+    bool cooldownActive;
     sf::Vector2f pos1;
-     sf::Clock cooldownClock;
-        float cooldownDuration;
+    sf::Clock cooldownClock;
+    float cooldownDuration;
     bool mescpressed = false;
     bool savePressed = false;
     std ::vector<block *> blocks;
@@ -62,7 +66,7 @@ public:
     Cano *nextBoat = NULL;
     bool isnextto(Cano *currentBoat, Cano *nextBoat)
     {
-        if (abs( currentBoat->getSprite().getPosition().x - nextBoat->getSprite().getPosition().x) < 300)
+        if (abs(currentBoat->getSprite().getPosition().x - nextBoat->getSprite().getPosition().x) < 300)
         {
             return true;
         }
@@ -118,13 +122,36 @@ public:
         {
             _data->_states->addState(new endgameMenu(_data), true);
         }
+        _data->_window->setView(_data->_window->getDefaultView());
     }
+
+    // void endgame()
+    // {
+    //     _data->_assets->setSCore(point);
+    //     _data->_assets->removeSavedGameFile();
+    //     sf::Clock clockend;
+    // player->getSprite().setTextureRect(sf::IntRect(0, player->size.y*4, player->size.x, player->size.y));
+    //     while (clockend.getElapsedTime().asSeconds() < 1)
+    //     {
+
+    //         player->draw();
+
+    //     }
+    //     if (_data->_assets->isInTopScore(point))
+    //     {
+    //         _data->_states->addState(new inputNameHighScore(_data), true);
+    //     }
+    //     else
+    //     {
+    //         _data->_states->addState(new endgameMenu(_data), true);
+    //     }
+    // }
     void collisonWithCar(maincharacter *player, car *car1)
     {
         if (player->getSprite().getGlobalBounds().intersects(car1->getSprite().getGlobalBounds()))
         { // reset view
-            _data->_window->setView(_data->_window->getDefaultView());
-            endgame();
+            // _data->_window->setView(_data->_window->getDefaultView());
+            isEndgame = true;
         }
     }
     // collison with animal
@@ -132,8 +159,8 @@ public:
     {
         if (player->getSprite().getGlobalBounds().intersects(animal1->getSprite().getGlobalBounds()))
         { // reset view
-            _data->_window->setView(_data->_window->getDefaultView());
-            endgame();
+            // _data->_window->setView(_data->_window->getDefaultView());
+            isEndgame = true;
         }
     }
 };

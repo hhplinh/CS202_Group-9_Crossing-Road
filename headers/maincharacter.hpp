@@ -40,7 +40,7 @@ class maincharacter //public state
 	void processInput(sf :: Event event);
     void processInput();
 	virtual void update();
-	void draw();
+	virtual void draw();
     void move();
     void setPosition(float x,float y);
     sf::Vector2f getPosition();
@@ -57,5 +57,10 @@ class maincharacter //public state
     void setspeed(float speed)
     {
         this->velocity.x = speed;
+    }
+
+    void setDeadTexture()
+    {
+        p.setTextureRect(sf::IntRect(0, size.y * 4, size.x, size.y));
     }
 };

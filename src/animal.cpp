@@ -96,3 +96,29 @@ tegiac ::tegiac(data *_data) : Animal(_data)
   this->sprite.setTexture(_data->_assets->getTexture(TEGIAC));
   this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
 }
+voi ::voi(data *_data) : Animal(_data)
+{
+  this->name = "voi";
+  this->row = 2;
+  this->col = 10;
+  this->speed = 5;
+  this->size = _data->_assets->getTexture(VOI).getSize();
+  this->size.x /= col;
+  this->size.y /= row;
+  this->sprite.setTexture(_data->_assets->getTexture(VOI));
+  this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
+}
+lacda ::lacda(data *_data) : Animal(_data)
+{
+  this->name = "lacda";
+  this->row = 2;
+  this->col = 10;
+  this->speed = 5;
+  this->size = _data->_assets->getTexture(LACDA).getSize();
+  this->size.x /= col;
+  this->size.y /= row;
+  this->sprite.setTexture(_data->_assets->getTexture(LACDA));
+  this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
+}
+
+

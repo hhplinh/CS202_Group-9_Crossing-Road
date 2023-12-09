@@ -6,6 +6,7 @@
 #include "endgameMenu.hpp"
 #include "maincharacter.hpp"
 #include "resumeScreen.hpp"
+#include "Animal.hpp"
 
 void map::init()
 { // do not init if resume from pause menu
@@ -59,6 +60,12 @@ void map::processInput()
 }
 void map::update()
 {
+    if (isEndgame)
+    {
+        player->setDeadTexture();
+
+        return;
+    }
     player->update();
     float pos = player->getPosition().y;
     if (pos == 1080 - 600)
@@ -84,7 +91,7 @@ void map::update()
     float o = pos / -1080.0f - int((pos) / -1080.0f);
 
     // //std::cout << o << std::endl;
-    if (((pos / 1080.0f) < 0.200000f && pos > 0 && blocks.size() < 20) || (o > 0.7f && o < 0.8f && pos < 0.0f && blocks.size() - currentIndex < 50))
+    if (((pos / 1080.0f) < 0.200000f && pos > 0 && blocks.size() < 50) || (o > 0.7f && o < 0.8f && pos < 0.0f && blocks.size() - currentIndex < 100))
     {
         int z;
         for (int i = 0; i < 1; i++)
@@ -135,7 +142,25 @@ void map::update()
                 {
                     roadpos.push_back(blocks[i]->getpos());
                     addedroad = false;
+                    int z = rand() % 4;
                     car *newcar = new car(_data);
+                    if (z == 1)
+                    {
+                        newcar = new car2(_data);
+                    }
+                    else if (z == 2)
+                    {
+                        newcar = new car3(_data);
+                    }
+                    else if (z == 3)
+                    {
+                        newcar = new car4(_data);
+                    }
+
+                    else
+                    {
+                        newcar = new car5(_data);
+                    }
                     trafficlight *newtrafficlight = new trafficlight(_data);
                     enemies.push_back(newcar);
                     enemies[enemies.size() - 1]->setposcar(sf::Vector2f(roadpos.back().x, roadpos.back().y + 50));
@@ -150,11 +175,23 @@ void map::update()
                 {
                     grasspos.push_back(blocks[i]->getpos());
                     addedgrass = false;
-                    u = rand() % 2;
+                    u = rand() % 5;
                     Animal *a;
                     if (u == 1)
                     {
                         a = new cop(_data);
+                    }
+                    else if (u == 2)
+                    {
+                        a = new tegiac(_data);
+                    }
+                    else if (u == 3)
+                    {
+                        a = new voi(_data);
+                    }
+                    else if (u == 4)
+                    {
+                        a = new lacda(_data);
                     }
                     else
                         a = new gau(_data);
@@ -233,8 +270,8 @@ void map::update()
             if (playerIsOnBoat == false)
             { // reset view
                 // if not on boat, game over
-                _data->_window->setView(_data->_window->getDefaultView());
-                this->endgame();
+                // _data->_window->setView(_data->_window->getDefaultView());
+                isEndgame = true;
             }
         }
     }
@@ -340,6 +377,12 @@ void map::drawTemplate()
     }
 
     player->draw();
+
+    if (isEndgame && endgameClock.getElapsedTime().asSeconds() >= 3.f)
+    {
+        isEndgame = false;
+        endgame();
+    }
 
     // show text for 3 seconds
     if (gameSavedTextNeeded && savedTextClock.getElapsedTime().asSeconds() >= 3.f)
@@ -636,6 +679,18 @@ void map::loadGame()
             {
                 a = new tegiac(_data);
             }
+            else if (animalName == "voi")
+            {
+                a = new voi(_data);
+            }
+            else if (animalName == "lacda")
+            {
+                a = new lacda(_data);
+            }
+            else
+            {
+                a = new cop(_data);
+            }
             a->setposAnimal(sf::Vector2f(animalPos.x, animalPos.y));
             a->setGoR(isMovingRight);
             animals.push_back(a);
@@ -713,7 +768,7 @@ void map::loadCountdownScreen()
 //     sf::Texture texture;
 //     texture.create(_data->_window->getSize().x, _data->_window->getSize().y);
 //     texture.update((const sf::RenderWindow &)(*(_data->_window)));
-    
+
 //     // sf::Image screenshot = texture.copyToImage();
 //     // screenshot.saveToFile(_data->_assets->getSavedGamePicPath());
 
