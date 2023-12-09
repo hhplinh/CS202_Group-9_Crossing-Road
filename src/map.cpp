@@ -435,6 +435,7 @@ void map::addblock(std::string terrainName)
 map ::map(data *data)
 {
     _data = data;
+    isEndgame = false;
 }
 
 map::~map()
@@ -762,6 +763,8 @@ void map::loadCountdownScreen()
 
     _data->_window->setView(_data->_window->getDefaultView());
     _data->_states->addState(new ResumeScreen(_data), false);
+
+    std::cerr << "loadCountdownScreen" << std::endl;
 }
 
 // void map::captureScreenToLoad()

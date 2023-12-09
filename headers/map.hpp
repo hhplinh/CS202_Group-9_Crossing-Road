@@ -91,8 +91,8 @@ public:
     std::vector<sf ::Vector2f> grasspos;
     map(data *data);
     map();
-    // virtual ~map();
-    ~map();
+    virtual ~map();
+    // ~map();
 
     void addcar();
     bool addedroad = false;
@@ -103,8 +103,8 @@ public:
     int newRiverIdx = -1;
     int newTrafficLightIdx = -1;
     virtual void init();
-    void processInput();
-    void update();
+    virtual void processInput();
+    virtual void update();
     virtual void draw();
     void drawTemplate();
     void createmap();

@@ -56,54 +56,57 @@ void mapLoad::init()
   createmap();
 }
 
-// void mapLoad::draw()
-// {
-//   drawTemplate();
-//   int time = 7;
-//   if (numScreenDrawn < time)
-//   {
-//     ++numScreenDrawn;
-//   }
-//   else if (numScreenDrawn == time)
-//   {
-//     // _data->_window->setView(_data->_window->getDefaultView());
-//     loadCountdownScreen();
-//     ++numScreenDrawn;
-//   }
-//   _data->_window->display();
-// }
-
-// void mapeasyLoad::draw()
-// {
-//   drawTemplate();
-//   int time = 7;
-//   if (numScreenDrawn < time)
-//   {
-//     ++numScreenDrawn;
-//   }
-//   else if (numScreenDrawn == time)
-//   {
-//     // _data->_window->setView(_data->_window->getDefaultView());
-//     loadCountdownScreen();
-//     ++numScreenDrawn;
-//   }
-//   _data->_window->display();
-// }
-
 void mapLoad::draw()
 {
   drawTemplate();
-
-  loadCountdownScreen();
-
+  int time = 1;
+  if (numScreenDrawn < time)
+  {
+    ++numScreenDrawn;
+  }
+  else if (numScreenDrawn == time)
+  {
+    // _data->_window->setView(_data->_window->getDefaultView());
+    loadCountdownScreen();
+    ++numScreenDrawn;
+  }
   _data->_window->display();
 }
 
 void mapeasyLoad::draw()
 {
   drawTemplate();
-
-  loadCountdownScreen();
-
+  int time = 1;
+  if (numScreenDrawn < time)
+  {
+    ++numScreenDrawn;
+  }
+  else if (numScreenDrawn == time)
+  {
+    // _data->_window->setView(_data->_window->getDefaultView());
+    loadCountdownScreen();
+    ++numScreenDrawn;
+  }
   _data->_window->display();
 }
+
+// void mapLoad::draw()
+// {
+//   drawTemplate();
+
+//   loadCountdownScreen();
+//   std::cerr << "draw" << std::endl;
+
+
+//   _data->_window->display();
+// }
+
+// void mapeasyLoad::draw()
+// {
+//   drawTemplate();
+
+//   loadCountdownScreen();
+//   std::cerr << "draw" << std::endl;
+
+//   _data->_window->display();
+// }
