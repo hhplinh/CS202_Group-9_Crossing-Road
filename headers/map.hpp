@@ -27,6 +27,7 @@ private:
     bool initEndgameClock = false;
 
 protected:
+    int indexBoatWithPlayer;
     bool cooldownActive;
     sf::Vector2f pos1;
     sf::Clock cooldownClock;

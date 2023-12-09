@@ -18,6 +18,11 @@ void mapeasyLoad::init()
   {
     loadGame();
 
+    if (playerIsOnBoat)
+    {
+      floatwithboat(player, enemies2[indexBoatWithPlayer]);
+    }
+
     return;
   }
 
@@ -45,6 +50,12 @@ void mapLoad::init()
   if (_data->_assets->isGameSaved() == true)
   {
     loadGame();
+    
+    if (playerIsOnBoat)
+    {
+      floatwithboat(player, enemies2[indexBoatWithPlayer]);
+    }
+    
     return;
   }
 

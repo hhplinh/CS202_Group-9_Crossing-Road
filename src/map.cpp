@@ -228,6 +228,7 @@ void map::update()
         {
             // Float with the boat
             floatwithboat(player, enemies2[i]);
+            indexBoatWithPlayer = i;
             if (player->movingUp)
             {
                 /*  player->setPosition(
@@ -450,6 +451,7 @@ map ::map(data *data)
 {
     _data = data;
     // isEndgame = false;
+    indexBoatWithPlayer = -1;
 }
 
 map::~map()
@@ -619,6 +621,9 @@ void map::saveGame()
         // save player position
         sf::Vector2f playerPos = player->getPosition();
         saveFile.write((char *)&playerPos, sizeof(sf::Vector2f));
+        
+        saveFile.write((char *)&playerIsOnBoat, sizeof(bool));
+        saveFile.write((char *)&indexBoatWithPlayer, sizeof(int));
     }
     else
     {
@@ -820,6 +825,9 @@ void map::loadGame()
         sf::Vector2f playerPos;
         saveFile.read((char *)&playerPos, sizeof(sf::Vector2f));
         player->setPosition(playerPos.x, playerPos.y);
+
+        saveFile.read((char *)&playerIsOnBoat, sizeof(bool));
+        saveFile.read((char *)&indexBoatWithPlayer, sizeof(int));
     }
     else
     {
