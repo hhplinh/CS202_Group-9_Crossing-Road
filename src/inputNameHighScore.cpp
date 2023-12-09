@@ -22,7 +22,7 @@ void inputNameHighScore::init()
     inputName.setFillColor(sf::Color::White);
     inputName.setString("Name");
     inputName.setOrigin(inputName.getGlobalBounds().width / 2, inputName.getGlobalBounds().height / 2);
-    inputName.setPosition(_data->_window->getSize().x / 2, (_data->_window->getSize().y / 2) + 400);
+    inputName.setPosition(_data->_window->getSize().x / 2 + 20, _data->_window->getSize().y / 2 + 180);
 
     score.setFont(_data->_assets->getFont(MAIN_FONT));
     score.setCharacterSize(50);
@@ -101,13 +101,14 @@ void inputNameHighScore::draw()
 {
     if (isEventChanged)
     {
+        inputName.setOrigin(inputName.getGlobalBounds().width / 2, inputName.getGlobalBounds().height / 2);
+        inputName.setPosition(_data->_window->getSize().x / 2 + 20, _data->_window->getSize().y / 2 + 180);
+
         isEventChanged = false;
         _data->_window->clear();
 
         _data->_window->draw(backgroundSprite);
 
-        inputName.setOrigin(inputName.getGlobalBounds().width / 2, inputName.getGlobalBounds().height / 2);
-        inputName.setPosition(_data->_window->getSize().x / 2 + 20, _data->_window->getSize().y / 2 + 180);
         _data->_window->draw(inputName);
         _data->_window->draw(score);
 
