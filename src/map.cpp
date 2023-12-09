@@ -545,6 +545,7 @@ void map::saveGame()
             {
                 idCar = 0;
             }
+            saveFile.write((char *)&idCar, sizeof(int));
         }
 
         // save animals size
@@ -612,7 +613,7 @@ void map::saveGame()
     }
     saveFile.close();
 }
-//add bool isMovingRight to every animal, car, canoe
+// add bool isMovingRight to every animal, car, canoe
 void map::loadGame()
 {
     if (_data->_assets->isGameSaved() == false)
@@ -682,48 +683,34 @@ void map::loadGame()
             int idCar;
             saveFile.read((char *)&idCar, sizeof(int));
 
+            car *newcar;
             if (idCar == 0)
             {
-                car *newcar = new car(_data);
-                newcar->setposcar(sf::Vector2f(enemyPos.x, enemyPos.y));
-                newcar->setGoR(isMovingRight);
-                enemies.push_back(newcar);
+                newcar = new car(_data);
             }
             else if (idCar == 1)
             {
-                car2 *newcar = new car2(_data);
-                newcar->setposcar(sf::Vector2f(enemyPos.x, enemyPos.y));
-                newcar->setGoR(isMovingRight);
-                enemies.push_back(newcar);
+                newcar = new car2(_data);
             }
             else if (idCar == 2)
             {
-                car3 *newcar = new car3(_data);
-                newcar->setposcar(sf::Vector2f(enemyPos.x, enemyPos.y));
-                newcar->setGoR(isMovingRight);
-                enemies.push_back(newcar);
+                newcar = new car3(_data);
             }
             else if (idCar == 3)
             {
-                car4 *newcar = new car4(_data);
-                newcar->setposcar(sf::Vector2f(enemyPos.x, enemyPos.y));
-                newcar->setGoR(isMovingRight);
-                enemies.push_back(newcar);
+                newcar = new car4(_data);
             }
             else if (idCar == 4)
             {
-                car5 *newcar = new car5(_data);
-                newcar->setposcar(sf::Vector2f(enemyPos.x, enemyPos.y));
-                newcar->setGoR(isMovingRight);
-                enemies.push_back(newcar);
+                newcar = new car5(_data);
             }
             else
             {
-                car *newcar = new car(_data);
-                newcar->setposcar(sf::Vector2f(enemyPos.x, enemyPos.y));
-                newcar->setGoR(isMovingRight);
-                enemies.push_back(newcar);
+                newcar = new car(_data);
             }
+            newcar->setposcar(sf::Vector2f(enemyPos.x, enemyPos.y));
+            newcar->setGoR(isMovingRight);
+            enemies.push_back(newcar);
         }
 
         int animalsSize;

@@ -40,7 +40,7 @@ public:
       return "CAR";
     }
   }
-  
+
   bool isRight() { return istoright; }
   void setGoR(bool istoright) { this->istoright = istoright; }
   sf::FloatRect getGlobalBounds() { return sprite.getGlobalBounds(); }
