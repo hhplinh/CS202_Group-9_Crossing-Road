@@ -378,9 +378,10 @@ void map::drawTemplate()
 
     player->draw();
 
-    if (isEndgame && endgameClock.getElapsedTime().asSeconds() >= 3.f)
+    if (isEndgame && endgameClock.getElapsedTime().asSeconds() >= 5.f)
     {
         isEndgame = false;
+        endgameClock.restart();
         endgame();
     }
 
