@@ -43,7 +43,7 @@ void Leaderboard::init()
     backgroundSprite.setTexture(&_data->_assets->getTexture(LEADERBOARD));
     backgroundSprite.setSize(sf::Vector2f(1920, 1080));
 
-    std::vector<Player> players = loadPlayerData("highScore.txt");
+    std::vector<Player> players = loadPlayerData(SCORES_PATH);
     if (!players.empty())
     {
         playerNameText.setString("");
