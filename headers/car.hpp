@@ -71,7 +71,7 @@ public:
   sf::Vector2f getposcar() { return sprite.getPosition(); }
   car(data *_data) : _data(_data)
   {
-    sprite.setTexture(_data->_assets->getTexture(CAR));
+    //sprite.setTexture(_data->_assets->getTexture(CAR));
     // resize the car to fit the road
     sprite.setScale(0.5, 0.5);
     int z;
