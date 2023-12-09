@@ -835,15 +835,17 @@ void map::loadCountdownScreen()
     std::cerr << "loadCountdownScreen" << std::endl;
 }
 
-// void map::captureScreenToLoad()
-// {
-//     sf::Texture texture;
-//     texture.create(_data->_window->getSize().x, _data->_window->getSize().y);
-//     texture.update((const sf::RenderWindow &)(*(_data->_window)));
-
-//     // sf::Image screenshot = texture.copyToImage();
-//     // screenshot.saveToFile(_data->_assets->getSavedGamePicPath());
-
-//     _data->_window->setView(_data->_window->getDefaultView());
-//     _data->_states->addState(new loadCountDownScreen(_data), false);
-// }
+void map::endgame()
+{
+    _data->_assets->setSCore(point);
+    _data->_assets->removeSavedGameFile();
+    if (_data->_assets->isInTopScore(point))
+    {
+        _data->_states->addState(new inputNameHighScore(_data), true);
+    }
+    else
+    {
+        _data->_states->addState(new endgameMenu(_data), true);
+    }
+    _data->_window->setView(_data->_window->getDefaultView());
+}

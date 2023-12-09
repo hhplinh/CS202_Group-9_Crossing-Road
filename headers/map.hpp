@@ -110,42 +110,9 @@ public:
     void createmap();
     void addblock(std::string terrainName);
     sf::RectangleShape background;
-    void endgame()
-    {
-        _data->_assets->setSCore(point);
-        _data->_assets->removeSavedGameFile();
-        if (_data->_assets->isInTopScore(point))
-        {
-            _data->_states->addState(new inputNameHighScore(_data), true);
-        }
-        else
-        {
-            _data->_states->addState(new endgameMenu(_data), true);
-        }
-        _data->_window->setView(_data->_window->getDefaultView());
-    }
 
-    // void endgame()
-    // {
-    //     _data->_assets->setSCore(point);
-    //     _data->_assets->removeSavedGameFile();
-    //     sf::Clock clockend;
-    // player->getSprite().setTextureRect(sf::IntRect(0, player->size.y*4, player->size.x, player->size.y));
-    //     while (clockend.getElapsedTime().asSeconds() < 1)
-    //     {
+    void endgame();
 
-    //         player->draw();
-
-    //     }
-    //     if (_data->_assets->isInTopScore(point))
-    //     {
-    //         _data->_states->addState(new inputNameHighScore(_data), true);
-    //     }
-    //     else
-    //     {
-    //         _data->_states->addState(new endgameMenu(_data), true);
-    //     }
-    // }
     void collisonWithCar(maincharacter *player, car *car1)
     {
         if (player->getSprite().getGlobalBounds().intersects(car1->getSprite().getGlobalBounds()))
