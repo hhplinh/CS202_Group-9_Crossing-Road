@@ -382,6 +382,7 @@ void map::drawTemplate()
     }
 
     player->draw();
+    std::cerr << isEndgame << std::endl;
 
     if (isEndgame && endgameClock.getElapsedTime().asSeconds() >= 5.f)
     {

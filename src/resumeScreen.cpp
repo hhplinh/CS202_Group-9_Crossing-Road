@@ -3,7 +3,6 @@
 
 ResumeScreen::ResumeScreen(data *data) : isPaused(true), countdown(3), _data(data)
 {
-    
 }
 
 ResumeScreen::~ResumeScreen()
@@ -22,8 +21,6 @@ void ResumeScreen::init()
 
     backgroundTexture = _data->_assets->getBackgroundTexture();
     backgroundSprite.setTexture(backgroundTexture);
-
-    std::cerr << "ResumeScreen in" << std::endl;
 }
 
 void ResumeScreen::processInput()
@@ -34,8 +31,6 @@ void ResumeScreen::processInput()
         if (event.type == sf::Event::Closed)
             _data->_window->close();
     }
-
-    std::cerr << "ResumeScreen processInput" << std::endl;
 }
 
 void ResumeScreen::update()
@@ -62,7 +57,6 @@ void ResumeScreen::update()
         // game -> pause -> remove pause -> resume -> remove resume -> game
         _data->_states->removeState(false);
     }
-    std::cerr << "ResumeScreen update" << std::endl;
 }
 
 void ResumeScreen::draw()
@@ -75,6 +69,4 @@ void ResumeScreen::draw()
     }
 
     _data->_window->display();
-
-    std::cerr << "ResumeScreen" << std::endl;
 }
