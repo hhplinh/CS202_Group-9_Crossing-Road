@@ -13,10 +13,38 @@ protected:
   sf ::Sprite sprite;
 
 public:
+  std::string getCarType()
+  {
+    if (sprite.getTexture() == &_data->_assets->getTexture(CAR))
+    {
+      return "CAR";
+    }
+    else if (sprite.getTexture() == &_data->_assets->getTexture(CAR2))
+    {
+      return "CAR2";
+    }
+    else if (sprite.getTexture() == &_data->_assets->getTexture(CAR3))
+    {
+      return "CAR3";
+    }
+    else if (sprite.getTexture() == &_data->_assets->getTexture(CAR4))
+    {
+      return "CAR4";
+    }
+    else if (sprite.getTexture() == &_data->_assets->getTexture(CAR5))
+    {
+      return "CAR5";
+    }
+    else
+    {
+      return "CAR";
+    }
+  }
+  
   bool isRight() { return istoright; }
   void setGoR(bool istoright) { this->istoright = istoright; }
   sf::FloatRect getGlobalBounds() { return sprite.getGlobalBounds(); }
-  void setposcar(sf::Vector2f posblock) { sprite.setPosition(sprite.getPosition().x, posblock.y); }
+  void setposcar(sf::Vector2f posblock) { sprite.setPosition(posblock.x, posblock.y); }
   void turnaround()
   {
     istoright = !istoright;
@@ -43,7 +71,7 @@ public:
   sf::Vector2f getposcar() { return sprite.getPosition(); }
   car(data *_data) : _data(_data)
   {
-    // sprite.setTexture(_data->_assets->getTexture(CAR));
+    sprite.setTexture(_data->_assets->getTexture(CAR));
     // resize the car to fit the road
     sprite.setScale(0.5, 0.5);
     int z;
