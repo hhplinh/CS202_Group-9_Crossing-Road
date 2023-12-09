@@ -158,9 +158,13 @@ void map::update()
                         newcar = new car4(_data);
                     }
 
-                    else
+                    else if (z == 4)
                     {
                         newcar = new car5(_data);
+                    }
+                    else
+                    {
+                        newcar = new car(_data);
                     }
                     trafficlight *newtrafficlight = new trafficlight(_data);
                     enemies.push_back(newcar);
@@ -436,7 +440,7 @@ void map::addblock(std::string terrainName)
 map ::map(data *data)
 {
     _data = data;
-    isEndgame = false;
+    // isEndgame = false;
 }
 
 map::~map()
@@ -626,29 +630,24 @@ void map::loadGame()
     saveFile.open(_data->_assets->getSavedGamePath(), std::ios::binary);
     if (saveFile.is_open())
     {
-        // load bool isEasyLevelSaved
         bool isEasyLevelSaved;
         saveFile.read((char *)&isEasyLevelSaved, sizeof(bool));
 
         saveFile.read((char *)&point, sizeof(int));
 
-        // load currentIndex
         saveFile.read((char *)&currentIndex, sizeof(int));
 
-        // load pos1
         saveFile.read((char *)&pos1.x, sizeof(float));
         saveFile.read((char *)&pos1.y, sizeof(float));
 
         // save to retrieve later
         sf::Vector2f temp = pos1;
 
-        // load block size
         int blockSize;
         saveFile.read((char *)&blockSize, sizeof(int));
 
         blocks.clear();
 
-        // load block terrain name
         for (int i = 0; i < blockSize; i++)
         {
             int len;
