@@ -83,8 +83,8 @@ void Leaderboard::init()
             playerScoreText.setOutlineColor(_data->_assets->getThemeColor());
             playerScoreText.setOutlineThickness(5.f);
             playerScoreText.setOrigin(playerScoreText.getGlobalBounds().width / 2.f, playerScoreText.getGlobalBounds().height / 2.f);
-            playerNameText.setPosition(_data->_window->getSize().x / 2.f - 70, _data->_window->getSize().y / 2.f + 170);
-            playerScoreText.setPosition(_data->_window->getSize().x / 2.f + 175, _data->_window->getSize().y / 2.f + 175);
+            playerNameText.setPosition(_data->_window->getSize().x / 2.f - 65, _data->_window->getSize().y / 2.f + 185);
+            playerScoreText.setPosition(_data->_window->getSize().x / 2.f + 255, _data->_window->getSize().y / 2.f + 192);
         }
     }
 }
