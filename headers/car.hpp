@@ -13,10 +13,9 @@ protected:
   sf ::Sprite sprite;
 
 public:
-  void foo()
-  {
-  }
-  sf ::FloatRect getGlobalBounds() { return sprite.getGlobalBounds(); }
+  bool isRight() { return istoright; }
+  void setGoR(bool istoright) { this->istoright = istoright; }
+  sf::FloatRect getGlobalBounds() { return sprite.getGlobalBounds(); }
   void setposcar(sf::Vector2f posblock) { sprite.setPosition(sprite.getPosition().x, posblock.y); }
   void turnaround()
   {
@@ -44,8 +43,8 @@ public:
   sf::Vector2f getposcar() { return sprite.getPosition(); }
   car(data *_data) : _data(_data)
   {
-   // sprite.setTexture(_data->_assets->getTexture(CAR));
-//resize the car to fit the road
+    // sprite.setTexture(_data->_assets->getTexture(CAR));
+    // resize the car to fit the road
     sprite.setScale(0.5, 0.5);
     int z;
     this->speed = 30;
@@ -63,7 +62,7 @@ public:
   }
   sf::Sprite getSprite() { return sprite; }
 };
-class car2: public car
+class car2 : public car
 {
 public:
   car2(data *_data) : car(_data)
@@ -71,7 +70,7 @@ public:
     sprite.setTexture(_data->_assets->getTexture(CAR2));
   }
 };
-class car3: public car
+class car3 : public car
 {
 public:
   car3(data *_data) : car(_data)
@@ -79,7 +78,7 @@ public:
     sprite.setTexture(_data->_assets->getTexture(CAR3));
   }
 };
-class car4: public car
+class car4 : public car
 {
 public:
   car4(data *_data) : car(_data)
@@ -87,7 +86,7 @@ public:
     sprite.setTexture(_data->_assets->getTexture(CAR4));
   }
 };
-class car5: public car
+class car5 : public car
 {
 public:
   car5(data *_data) : car(_data)

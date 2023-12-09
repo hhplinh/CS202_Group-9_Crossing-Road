@@ -7,6 +7,7 @@
 #include "maincharacter.hpp"
 #include "resumeScreen.hpp"
 #include "Animal.hpp"
+#include "cano.hpp"
 
 void map::init()
 { // do not init if resume from pause menu
@@ -515,6 +516,9 @@ void map::saveGame()
         {
             sf::Vector2f enemyPos = enemies[i]->getposcar();
             saveFile.write((char *)&enemyPos, sizeof(sf::Vector2f));
+
+            bool isMovingRight = enemies[i]->isRight();
+            saveFile.write((char *)&isMovingRight, sizeof(bool));
         }
 
         // save animals size
@@ -567,6 +571,9 @@ void map::saveGame()
         {
             sf::Vector2f enemy2Pos = enemies2[i]->getPosCano();
             saveFile.write((char *)&enemy2Pos, sizeof(sf::Vector2f));
+
+            bool isMovingRight = enemies2[i]->isGoR();
+            saveFile.write((char *)&isMovingRight, sizeof(bool));
         }
 
         // save player position
@@ -579,7 +586,7 @@ void map::saveGame()
     }
     saveFile.close();
 }
-
+//add bool isMovingRight to every animal, car, canoe
 void map::loadGame()
 {
     if (_data->_assets->isGameSaved() == false)
@@ -643,8 +650,12 @@ void map::loadGame()
             sf::Vector2f enemyPos;
             saveFile.read((char *)&enemyPos, sizeof(sf::Vector2f));
 
+            bool isMovingRight;
+            saveFile.read((char *)&isMovingRight, sizeof(bool));
+
             car *newcar = new car(_data);
             newcar->setposcar(sf::Vector2f(enemyPos.x, enemyPos.y));
+            newcar->setGoR(isMovingRight);
             enemies.push_back(newcar);
         }
 
@@ -734,8 +745,12 @@ void map::loadGame()
             sf::Vector2f enemy2Pos;
             saveFile.read((char *)&enemy2Pos, sizeof(sf::Vector2f));
 
+            bool isMovingRight;
+            saveFile.read((char *)&isMovingRight, sizeof(bool));
+
             Cano *newCano = new Cano(_data);
             newCano->setPosCano(sf::Vector2f(enemy2Pos.x, enemy2Pos.y));
+            newCano->setGoR(isMovingRight);
             enemies2.push_back(newCano);
         }
 

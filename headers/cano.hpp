@@ -34,8 +34,13 @@ public:
         return this->speed;
     }
     sf::Vector2f getPosCano();
-    bool getgoR()
+    bool isGoR()
     {
         return this->isMovingRight;
+    }
+
+    void setGoR(bool isMovingRight)
+    {
+        this->isMovingRight = isMovingRight;
     }
 };
