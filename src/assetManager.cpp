@@ -109,15 +109,12 @@ bool assetManager::isEasyLevelSavedGame()
 	if (file.good())
 	{
 		file.read((char *)&isEasyLevelSaved, sizeof(bool));
+		file.close();
 		return isEasyLevelSaved;
 	}
-	else
-	{
-		std::cerr << "Error: file not open in check easy level\n";
-		return 0;
-	}
+	std::cerr << "Error: file not open in check easy level\n";
 	file.close();
-	return 1;
+	return 0;
 }
 
 bool assetManager::saveHighScore(const std::string &name, int score)
@@ -200,7 +197,7 @@ bool assetManager::isInTopScore(int score)
 			file.close();
 			return 1;
 		}
-		
+
 		if (score >= minTopScore)
 		{
 			file.close();
