@@ -2,3 +2,4 @@
 build/
 save.bin
 highScore.txt
+*.o
