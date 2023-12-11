@@ -3,6 +3,7 @@
 #include "instructScr.hpp"
 #include "MainMenu.hpp"
 #include "map.hpp"
+#include "Leaderboard.hpp"
 
 mainMenu0Load::mainMenu0Load(data *data) : menu(data)
 {
@@ -94,6 +95,11 @@ void mainMenu0Load::update()
     {
         m_buttonsPressed[INSTRUCTION] = false;
         _data->_states->addState(new instructScreen(_data));
+    }
+    else if (m_buttonsPressed[LEADERBOARD])
+    {
+        m_buttonsPressed[LEADERBOARD] = false;
+        _data->_states->addState(new Leaderboard(_data));
     }
     else if (m_buttonsPressed[EXIT])
     {
