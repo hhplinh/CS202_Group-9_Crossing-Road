@@ -11,15 +11,15 @@ private:
     {
         PLAY,
         INSTRUCTION,
-        EXIT,
         LEADERBOARD,
+        EXIT,
         NUM_BUTTONS
     };
 
     std::map<Button, std::string> buttonToString = {
         {PLAY, "Play"},
-        {INSTRUCTION, "Instruction"},
         {LEADERBOARD, "Leaderboard"},
+        {INSTRUCTION, "Instruction"},
         {EXIT, "Exit"},
     };
 
