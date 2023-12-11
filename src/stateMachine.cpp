@@ -5,13 +5,7 @@ stateMachine::stateMachine() : _add(0), _replace(0), _remove(0)
 }
 stateMachine::~stateMachine()
 {
-	while (!stackState.empty())
-	{
-		state *top = stackState.top();
-		delete top;
-		top = nullptr;
-		stackState.pop();
-	}
+	removeAll();
 }
 void stateMachine::addState(state *state, bool replace)
 {
