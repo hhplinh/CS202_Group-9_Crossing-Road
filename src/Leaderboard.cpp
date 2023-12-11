@@ -109,8 +109,9 @@ void Leaderboard::draw()
     _data->_window->clear();
 
     _data->_window->draw(backgroundSprite);
-    std::vector<Player> players = loadPlayerData(SCORES_PATH);
-    for (int i = 0; i < players.size(); i++)
+    // std::vector<Player> players = loadPlayerData(SCORES_PATH);
+    int len = playerNameText.size();
+    for (int i = 0; i < len; i++)
     {
         _data->_window->draw(playerNameText[i]);
         _data->_window->draw(playerScoreText[i]);

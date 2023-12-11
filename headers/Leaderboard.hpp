@@ -20,7 +20,6 @@ private:
     const std::string INSTRUCT_PATH = "instruction.txt";
     sf::Text instructText;
     sf::RectangleShape backgroundSprite;
-    std::vector<sf::Text> name_score;
     std::vector<sf::Text> playerNameText;
     std::vector<sf::Text> playerScoreText;
     const std::string SCORES_PATH = _data->_assets->getHighScorePath();
