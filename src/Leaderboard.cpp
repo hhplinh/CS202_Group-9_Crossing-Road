@@ -48,7 +48,6 @@ void Leaderboard::init()
     {
         for (int i = 0; i < players.size(); i++)
         {
-
             sf::Text nameText;
             sf::Text scoreText;
 
