@@ -48,11 +48,9 @@ void Leaderboard::init()
     {
         for (int i = 0; i < players.size(); i++)
         {
-            playerNameText.emplace_back();
-            playerScoreText.emplace_back();
 
-            sf::Text& nameText = playerNameText.back();
-            sf::Text& scoreText = playerScoreText.back();
+            sf::Text nameText;
+            sf::Text scoreText;
 
             nameText.setFont(_data->_assets->getFont(MAIN_FONT));
             nameText.setCharacterSize(55);
@@ -73,6 +71,9 @@ void Leaderboard::init()
 
             nameText.setString(players[i].name);
             scoreText.setString(std::to_string(players[i].highScore));
+
+            playerNameText.push_back(nameText);
+            playerScoreText.push_back(scoreText);
         }
     }
 }
