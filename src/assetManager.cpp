@@ -15,10 +15,10 @@ assetManager::assetManager()
 	addFont(FONT2, "resources//Font//BlackOpsOne-Regular.ttf");
 	addTexture(GRASS, "resources//Texture//grass.png");
 	addTexture(CAR, "resources//Texture//Car 1.png");
-	addTexture(CAR2, "resources//Texture//Car 2.png");
-	addTexture(CAR3, "resources//Texture//Car 3.png");
-	addTexture(CAR4, "resources//Texture//Car 4.png");
-	addTexture(CAR5, "resources//Texture//Car 5.png");
+	addTexture(CAR2, "resources//Texture//car2.png");
+	addTexture(CAR3, "resources//Texture//car3.png");
+	addTexture(CAR4, "resources//Texture//car4.png");
+	addTexture(CAR5, "resources//Texture//car5.png");
 	addTexture(CANO, "resources//Texture//Cano.png");
 	addTexture(CANO2, "resources//Texture//Cano2.png");
 	addTexture(COP, "resources//Texture//cop.png");

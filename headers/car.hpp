@@ -11,6 +11,11 @@ protected:
   float speed;
   data *_data;
   sf ::Sprite sprite;
+  int row, col;
+
+
+    sf::Vector2u size;
+    
 
 public:
   std::string getCarType()
@@ -47,7 +52,7 @@ public:
   void setposcar(sf::Vector2f posblock) { sprite.setPosition(posblock.x, posblock.y); }
   void turnaround()
   {
-    istoright = !istoright;
+    this->istoright = !istoright;
   }
   void draw(sf::RenderTarget &target, sf::RenderStates states) const
   {
@@ -60,19 +65,27 @@ public:
   {
 
     if (istoright == true)
-    {
+    { this->sprite.setTextureRect(sf::IntRect(0, size.y, size.x, size.y)); 
       sprite.move(speed, 0);
     }
     else
-    {
+    {this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y)); 
       sprite.move(-speed, 0);
     }
-  }
-  sf::Vector2f getposcar() { return sprite.getPosition(); }
+}
+
+  
+  sf::Vector2f getposcar() 
+  { return sprite.getPosition(); }
   car(data *_data) : _data(_data)
   {
     //sprite.setTexture(_data->_assets->getTexture(CAR));
     // resize the car to fit the road
+    this->row=2;
+    this->col=1;
+   this->size = _data->_assets->getTexture(CAR2).getSize();
+    this->size.x = this->size.x / col;
+    this->size.y = this->size.y / row;
     sprite.setScale(0.5, 0.5);
     int z;
     this->speed = 30;
@@ -88,14 +101,16 @@ public:
       this->sprite.setPosition(1000, 0);
     }
   }
-  sf::Sprite getSprite() { return sprite; }
+  sf::Sprite getSprite() 
+  { return sprite; }
 };
 class car2 : public car
 {
 public:
   car2(data *_data) : car(_data)
   {
-    sprite.setTexture(_data->_assets->getTexture(CAR2));
+    this->sprite.setTexture(_data->_assets->getTexture(CAR2));
+ 
   }
 };
 class car3 : public car
@@ -103,7 +118,8 @@ class car3 : public car
 public:
   car3(data *_data) : car(_data)
   {
-    sprite.setTexture(_data->_assets->getTexture(CAR3));
+   this->sprite.setTexture(_data->_assets->getTexture(CAR3));
+
   }
 };
 class car4 : public car
@@ -111,7 +127,8 @@ class car4 : public car
 public:
   car4(data *_data) : car(_data)
   {
-    sprite.setTexture(_data->_assets->getTexture(CAR4));
+  this->sprite.setTexture(_data->_assets->getTexture(CAR4));
+
   }
 };
 class car5 : public car
@@ -119,6 +136,7 @@ class car5 : public car
 public:
   car5(data *_data) : car(_data)
   {
-    sprite.setTexture(_data->_assets->getTexture(CAR5));
+this->sprite.setTexture(_data->_assets->getTexture(CAR5));
+
   }
 };
