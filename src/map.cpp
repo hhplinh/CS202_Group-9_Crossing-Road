@@ -145,27 +145,24 @@ void map::update()
                     addedroad = false;
                     int z = rand() % 4;
                     car *newcar = new car(_data);
-                    if (z == 1)
+                    if (z == 0)
                     {
                         newcar = new car2(_data);
                     }
-                    else if (z == 2)
+                    else if (z == 1)
                     {
                         newcar = new car3(_data);
                     }
-                    else if (z == 3)
+                    else if (z == 2)
                     {
                         newcar = new car4(_data);
                     }
 
-                    else if (z == 4)
+                    else if (z == 3)
                     {
                         newcar = new car5(_data);
                     }
-                    else
-                    {
-                        newcar = new car(_data);
-                    }
+                   
                     trafficlight *newtrafficlight = new trafficlight(_data);
                     enemies.push_back(newcar);
                     enemies[enemies.size() - 1]->setposcar(sf::Vector2f(roadpos.back().x, roadpos.back().y + 50));
