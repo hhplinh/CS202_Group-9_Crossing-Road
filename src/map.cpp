@@ -162,7 +162,7 @@ void map::update()
                     {
                         newcar = new car5(_data);
                     }
-                   
+
                     trafficlight *newtrafficlight = new trafficlight(_data);
                     enemies.push_back(newcar);
                     enemies[enemies.size() - 1]->setposcar(sf::Vector2f(roadpos.back().x, roadpos.back().y + 50));
@@ -281,7 +281,7 @@ void map::update()
     for (int i = 0; i < animals.size(); i++)
     { // std:: cout<< animals.size();
         animals[i]->AnimalRun();
-       collisonWithAnimal(player, animals[i]);
+        collisonWithAnimal(player, animals[i]);
         if (animals[i]->getposAnimal().x > 1920 || animals[i]->getposAnimal().x < 0)
         {
             animals[i]->AnimalTurn();
@@ -589,14 +589,16 @@ void map::saveGame()
         {
             int col = trafficlights[i]->getcol();
             int row = trafficlights[i]->getrow();
-            sf::Vector2u size = trafficlights[i]->getsize();
+            // sf::Vector2u size = trafficlights[i]->getsize();
             bool isGreen = trafficlights[i]->getIsGreen();
+            bool isRed = trafficlights[i]->getIsRed();
             sf::Vector2f pos = trafficlights[i]->getpos();
 
             saveFile.write((char *)&col, sizeof(int));
             saveFile.write((char *)&row, sizeof(int));
-            saveFile.write((char *)&size, sizeof(sf::Vector2u));
+            // saveFile.write((char *)&size, sizeof(sf::Vector2u));
             saveFile.write((char *)&isGreen, sizeof(bool));
+            saveFile.write((char *)&isRed, sizeof(bool));
             saveFile.write((char *)&pos, sizeof(sf::Vector2f));
         }
 
@@ -618,7 +620,7 @@ void map::saveGame()
         // save player position
         sf::Vector2f playerPos = player->getPosition();
         saveFile.write((char *)&playerPos, sizeof(sf::Vector2f));
-        
+
         saveFile.write((char *)&playerIsOnBoat, sizeof(bool));
         saveFile.write((char *)&indexBoatWithPlayer, sizeof(int));
     }
@@ -779,23 +781,24 @@ void map::loadGame()
 
         for (int i = 0; i < trafficLightsSize; i++)
         {
-            int col;
-            int row;
+            int col, row;
             sf::Vector2u size;
-            bool isGreen;
+            bool isGreen, isRed;
             sf::Vector2f pos;
 
             saveFile.read((char *)&col, sizeof(int));
             saveFile.read((char *)&row, sizeof(int));
-            saveFile.read((char *)&size, sizeof(sf::Vector2u));
+            // saveFile.read((char *)&size, sizeof(sf::Vector2u));
             saveFile.read((char *)&isGreen, sizeof(bool));
+            saveFile.read((char *)&isRed, sizeof(bool));
             saveFile.read((char *)&pos, sizeof(sf::Vector2f));
 
             trafficlight *newtrafficlight = new trafficlight(_data);
             newtrafficlight->setcol(col);
             newtrafficlight->setrow(row);
-            newtrafficlight->setsize(size);
+            // newtrafficlight->setsize(size);
             newtrafficlight->setIsGreen(isGreen);
+            newtrafficlight->setIsRed(isRed);
             newtrafficlight->setposSave(pos);
             trafficlights.push_back(newtrafficlight);
         }

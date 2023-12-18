@@ -74,6 +74,16 @@ public:
     {
         this->isGreen = isGreen;
     }
+
+    bool getIsRed()
+    {
+        return isRed;
+    }
+
+    void setIsRed(bool isRed)
+    {
+        this->isRed = isRed;
+    }
     
     trafficlight(data *_data) : _data(_data) { init(); }
     void init()
