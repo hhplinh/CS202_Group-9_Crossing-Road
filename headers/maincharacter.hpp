@@ -47,6 +47,7 @@ public:
     {
         return this->p;
     }
+    sf::Vector2f getPosPlayer();
     void updateStamina();  // Method to update the character's stamina
     void displayStamina(); // Method to update the stamina bar size
     void drawStaminaBar(sf::RenderTarget &target) const;

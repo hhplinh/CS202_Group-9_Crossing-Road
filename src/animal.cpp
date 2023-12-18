@@ -1,16 +1,44 @@
 #include "Animal.hpp"
 Animal ::Animal(data *_data) : _data(_data)
 {
-  this->init();
+  // this->init();
+  int z;
+
+  z = rand() % 2;
+  if (z == 1)
+  {
+    this->goR = true;
+    // this-> sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
+    this->sprite.setPosition(0, 0);
+  }
+  else
+  {
+    this->goR = false;
+    //  this-> sprite.setTextureRect(sf::IntRect(0, size.y, size.x, size.y));
+    this->sprite.setPosition(1000, 0);
+  }
 }
 void Animal::setposAnimal(sf::Vector2f posblock)
 {
-  sprite.setPosition(this->sprite.getPosition().x, posblock.y);
+  sprite.setPosition(posblock.x, posblock.y);
 }
 
 void Animal ::AnimalTurn()
 {
   this->goR = !goR;
+}
+
+void Animal::setGoR(bool _gor)
+{
+  this->goR = _gor;
+  if (this->goR)
+  {
+    this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
+  }
+  else
+  {
+    this->sprite.setTextureRect(sf::IntRect(0, size.y, size.x, size.y));
+  }
 }
 
 std::string Animal ::getAnimalName()
@@ -48,13 +76,13 @@ void Animal ::init()
   if (z == 1)
   {
     this->goR = true;
-    //  this-> sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
+    // this-> sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
     this->sprite.setPosition(0, 0);
   }
   else
   {
     this->goR = false;
-    //      this-> sprite.setTextureRect(sf::IntRect(0, size.y, size.x, size.y));
+    //  this-> sprite.setTextureRect(sf::IntRect(0, size.y, size.x, size.y));
     this->sprite.setPosition(1000, 0);
   }
 }
@@ -69,7 +97,15 @@ cop ::cop(data *_data) : Animal(_data)
   this->size.x /= col;
   this->size.y /= row;
   this->sprite.setTexture(_data->_assets->getTexture(COP));
-  this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
+  // this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
+  if (this->goR)
+  {
+    this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
+  }
+  else
+  {
+    this->sprite.setTextureRect(sf::IntRect(0, size.y, size.x, size.y));
+  }
 }
 gau ::gau(data *_data) : Animal(_data)
 {
@@ -81,7 +117,14 @@ gau ::gau(data *_data) : Animal(_data)
   this->size.x /= col;
   this->size.y /= row;
   this->sprite.setTexture(_data->_assets->getTexture(GAU));
-  this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
+  if (this->goR)
+  {
+    this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
+  }
+  else
+  {
+    this->sprite.setTextureRect(sf::IntRect(0, size.y, size.x, size.y));
+  }
 }
 
 tegiac ::tegiac(data *_data) : Animal(_data)
@@ -94,7 +137,14 @@ tegiac ::tegiac(data *_data) : Animal(_data)
   this->size.x /= col;
   this->size.y /= row;
   this->sprite.setTexture(_data->_assets->getTexture(TEGIAC));
-  this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
+  if (this->goR)
+  {
+    this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
+  }
+  else
+  {
+    this->sprite.setTextureRect(sf::IntRect(0, size.y, size.x, size.y));
+  }
 }
 voi ::voi(data *_data) : Animal(_data)
 {
@@ -106,7 +156,14 @@ voi ::voi(data *_data) : Animal(_data)
   this->size.x /= col;
   this->size.y /= row;
   this->sprite.setTexture(_data->_assets->getTexture(VOI));
-  this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
+  if (this->goR)
+  {
+    this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
+  }
+  else
+  {
+    this->sprite.setTextureRect(sf::IntRect(0, size.y, size.x, size.y));
+  }
 }
 lacda ::lacda(data *_data) : Animal(_data)
 {
@@ -118,7 +175,12 @@ lacda ::lacda(data *_data) : Animal(_data)
   this->size.x /= col;
   this->size.y /= row;
   this->sprite.setTexture(_data->_assets->getTexture(LACDA));
-  this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
+  if (this->goR)
+  {
+    this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
+  }
+  else
+  {
+    this->sprite.setTextureRect(sf::IntRect(0, size.y, size.x, size.y));
+  }
 }
-
-

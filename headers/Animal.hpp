@@ -27,11 +27,7 @@ public:
   void init();
   // normal draw without sf drawable using window
 
-  void setGoR(bool gor)
-  {
-    this->goR = gor;
-  }
-
+  void setGoR(bool gor);
   bool getGoR()
   {
     return this->goR;
@@ -81,7 +77,6 @@ public:
   lacda(data *_data);
 };
 
-
 class voi : public Animal
 {
 protected:
@@ -89,4 +84,4 @@ public:
   ~voi() {}
 
   voi(data *_data);
- };
+};

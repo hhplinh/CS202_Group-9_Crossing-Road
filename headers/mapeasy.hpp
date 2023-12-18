@@ -3,11 +3,10 @@
 #include <fstream>
 class mapeasy : public map
 {
-private:
-
 public:
   mapeasy(data *_data) : map(_data)
   {
+    isEasy = true;
   }
 
   virtual void init()
@@ -28,11 +27,6 @@ public:
     this->currentIndex = 0;
 
     this->createmap();
-  }
-
-  bool isEasy()
-  {
-    return 1;
   }
 
 };

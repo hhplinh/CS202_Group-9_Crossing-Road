@@ -162,7 +162,7 @@ void map::update()
                     {
                         newcar = new car5(_data);
                     }
-                   
+
                     trafficlight *newtrafficlight = new trafficlight(_data);
                     enemies.push_back(newcar);
                     enemies[enemies.size() - 1]->setposcar(sf::Vector2f(roadpos.back().x, roadpos.back().y + 50));
@@ -252,32 +252,9 @@ void map::update()
             enemies2[i]->turnAround();
         }
     }
-    // Set playerIsOnBoat to false by default
-    playerIsOnBoat = false;
+    checkOnBoat();
+    processOnRiver();
 
-    // Check if the player is on any boat
-    for (int i = 0; i < enemies2.size(); i++)
-    {
-        if (player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds()))
-        {
-            playerIsOnBoat = true;
-            break;
-        }
-    }
-
-    for (int i = 0; i < riverPos.size(); i++)
-    { // check if pos of player is on river (>riverpos[i].y) (<riverpos[i].y+174)
-        if (player->getSprite().getPosition().y > riverPos[i].y && player->getSprite().getPosition().y < riverPos[i].y + 174 - 50)
-        {
-            // check if player is on boat
-            if (playerIsOnBoat == false)
-            { // reset view
-                // if not on boat, game over
-                // _data->_window->setView(_data->_window->getDefaultView());
-                isEndgame = true;
-            }
-        }
-    }
     for (int i = 0; i < animals.size(); i++)
     { // std:: cout<< animals.size();
         animals[i]->AnimalRun();
@@ -449,6 +426,7 @@ map ::map(data *data)
     _data = data;
     // isEndgame = false;
     indexBoatWithPlayer = -1;
+    isEasy = false;
 }
 
 map::~map()
@@ -486,7 +464,7 @@ map::~map()
 
 void map::saveGame()
 {
-    bool isEasyLevel = isEasy();
+    bool isEasyLevel = isEasy;
 
     _data->_assets->setEasyLevelSavedGame(isEasyLevel);
     std::ofstream saveFile(_data->_assets->getSavedGamePath(), std::ios::binary);
@@ -589,14 +567,16 @@ void map::saveGame()
         {
             int col = trafficlights[i]->getcol();
             int row = trafficlights[i]->getrow();
-            sf::Vector2u size = trafficlights[i]->getsize();
+            // sf::Vector2u size = trafficlights[i]->getsize();
             bool isGreen = trafficlights[i]->getIsGreen();
+            bool isRed = trafficlights[i]->getIsRed();
             sf::Vector2f pos = trafficlights[i]->getpos();
 
             saveFile.write((char *)&col, sizeof(int));
             saveFile.write((char *)&row, sizeof(int));
-            saveFile.write((char *)&size, sizeof(sf::Vector2u));
+            // saveFile.write((char *)&size, sizeof(sf::Vector2u));
             saveFile.write((char *)&isGreen, sizeof(bool));
+            saveFile.write((char *)&isRed, sizeof(bool));
             saveFile.write((char *)&pos, sizeof(sf::Vector2f));
         }
 
@@ -618,9 +598,17 @@ void map::saveGame()
         // save player position
         sf::Vector2f playerPos = player->getPosition();
         saveFile.write((char *)&playerPos, sizeof(sf::Vector2f));
-        
+
         saveFile.write((char *)&playerIsOnBoat, sizeof(bool));
         saveFile.write((char *)&indexBoatWithPlayer, sizeof(int));
+
+        //save riverPos
+        int riverPosSize = riverPos.size();
+        saveFile.write((char *)&riverPosSize, sizeof(int));
+        for (int i = 0; i < riverPos.size(); i++)
+        {
+            saveFile.write((char *)&riverPos[i], sizeof(sf::Vector2f));
+        }
     }
     else
     {
@@ -779,23 +767,24 @@ void map::loadGame()
 
         for (int i = 0; i < trafficLightsSize; i++)
         {
-            int col;
-            int row;
+            int col, row;
             sf::Vector2u size;
-            bool isGreen;
+            bool isGreen, isRed;
             sf::Vector2f pos;
 
             saveFile.read((char *)&col, sizeof(int));
             saveFile.read((char *)&row, sizeof(int));
-            saveFile.read((char *)&size, sizeof(sf::Vector2u));
+            // saveFile.read((char *)&size, sizeof(sf::Vector2u));
             saveFile.read((char *)&isGreen, sizeof(bool));
+            saveFile.read((char *)&isRed, sizeof(bool));
             saveFile.read((char *)&pos, sizeof(sf::Vector2f));
 
             trafficlight *newtrafficlight = new trafficlight(_data);
             newtrafficlight->setcol(col);
             newtrafficlight->setrow(row);
-            newtrafficlight->setsize(size);
+            // newtrafficlight->setsize(size);
             newtrafficlight->setIsGreen(isGreen);
+            newtrafficlight->setIsRed(isRed);
             newtrafficlight->setposSave(pos);
             trafficlights.push_back(newtrafficlight);
         }
@@ -825,6 +814,17 @@ void map::loadGame()
 
         saveFile.read((char *)&playerIsOnBoat, sizeof(bool));
         saveFile.read((char *)&indexBoatWithPlayer, sizeof(int));
+
+        // load riverPos
+        riverPos.clear();
+        int riverPosSize;
+        saveFile.read((char *)&riverPosSize, sizeof(int));
+        for (int i = 0; i < riverPosSize; i++)
+        {
+            sf::Vector2f pos;
+            saveFile.read((char *)&pos, sizeof(sf::Vector2f));
+            riverPos.push_back(pos);
+        }
     }
     else
     {
@@ -860,4 +860,72 @@ void map::endgame()
         _data->_states->addState(new endgameMenu(_data), true);
     }
     _data->_window->setView(_data->_window->getDefaultView());
+}
+
+void map::checkOnBoat()
+{
+    // Set playerIsOnBoat to false by default
+    playerIsOnBoat = false;
+
+    // Check if the player is on any boat
+    for (int i = 0; i < enemies2.size(); i++)
+    {
+        if (player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds()))
+        {
+            playerIsOnBoat = true;
+            break;
+        }
+    }
+}
+
+void map::processOnRiver()
+{
+    for (int i = 0; i < riverPos.size(); i++)
+    { // check if pos of player is on river (>riverpos[i].y) (<riverpos[i].y+174)
+        float playerY = player->getPosPlayer().y;
+        if (playerY > riverPos[i].y && playerY < riverPos[i].y + 174 - 50)
+        {
+            // check if player is on boat
+            if (playerIsOnBoat == false)
+            { // reset view
+                // if not on boat, game over
+                // _data->_window->setView(_data->_window->getDefaultView());
+                isEndgame = true;
+            }
+        }
+    }
+}
+
+void map::initLoadMap()
+{
+    background.setSize(sf::Vector2f(1920, 1080));
+    background.setFillColor(sf::Color::White);
+
+    this->blocks.clear();
+    this->river.clear();
+    this->length = 10;
+
+    if (_data->_assets->isGameSaved() == true)
+    {
+        loadGame();
+    }
+    if (playerIsOnBoat)
+    {
+        floatwithboat(player, enemies2[indexBoatWithPlayer]);
+    }
+
+    checkOnBoat();
+    processOnRiver();
+}
+
+void map::drawLoadMap()
+{
+    drawTemplate();
+    if (isCountdownNeeded)
+    {
+        // _data->_window->setView(_data->_window->getDefaultView());
+        loadCountdownScreen();
+        isCountdownNeeded = false;
+    }
+    _data->_window->display();
 }
