@@ -20,7 +20,7 @@ Animal ::Animal(data *_data) : _data(_data)
 }
 void Animal::setposAnimal(sf::Vector2f posblock)
 {
-  sprite.setPosition(this->sprite.getPosition().x, posblock.y);
+  sprite.setPosition(posblock.x, posblock.y);
 }
 
 void Animal ::AnimalTurn()
