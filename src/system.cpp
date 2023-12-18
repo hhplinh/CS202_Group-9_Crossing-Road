@@ -9,7 +9,7 @@ System::System() : _data(new data)
 	_data->_window->create(sf::VideoMode(1920, 1080), "Crossing Road", sf::Style::Close);
 
 	_data->_window->setMouseCursorVisible(false);
-	
+
 	if (_data->_assets->isGameSaved())
 	{
 		_data->_states->addState(new mainMenu(_data));
@@ -18,9 +18,9 @@ System::System() : _data(new data)
 	{
 		_data->_states->addState(new mainMenu0Load(_data));
 	}
-	
+
 	_data->_assets->createHighScoreFile();
-	
+
 	run();
 }
 System::~System()
@@ -37,11 +37,13 @@ void System::run()
 	{
 		std::cerr << "ERROR LOADING MUSIC" << std::endl;
 	}
-	music.setVolume(50);
-	music.setLoop(true);
-	music.play();
-
-	std::cerr << "Music is playing" << std::endl;
+	else
+	{
+		music.setVolume(50);
+		music.setLoop(true);
+		music.play();
+		std::cerr << "Music is playing" << std::endl;
+	}
 
 	while (_data->_window->isOpen())
 	{
