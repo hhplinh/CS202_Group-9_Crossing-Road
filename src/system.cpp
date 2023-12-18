@@ -1,7 +1,7 @@
 #include "system.h"
 #include "mainMenu.hpp"
 #include "MainMenu0Load.hpp"
-#include "SFML/Audio.hpp"
+#include <SFML/Audio.hpp>
 
 #include <iostream>
 System::System() : _data(new data)

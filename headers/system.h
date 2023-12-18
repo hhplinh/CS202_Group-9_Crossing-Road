@@ -1,7 +1,6 @@
 #pragma once
 #include"assetManager.h"
 #include"stateMachine.h"
-#include<vector>
 class data
 {
 	public:
