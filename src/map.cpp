@@ -883,7 +883,6 @@ void map::processOnRiver()
     for (int i = 0; i < riverPos.size(); i++)
     { // check if pos of player is on river (>riverpos[i].y) (<riverpos[i].y+174)
         float playerY = player->getPosPlayer().y;
-    std::cerr << playerY << " " << riverPos[i].y << " " << riverPos[i].y + 174 - 50 << std::endl;
         if (playerY > riverPos[i].y && playerY < riverPos[i].y + 174 - 50)
         {
             // check if player is on boat
