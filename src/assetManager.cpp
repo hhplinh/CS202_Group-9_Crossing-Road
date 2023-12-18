@@ -204,8 +204,11 @@ bool assetManager::isInTopScore(int score)
 			return 1;
 		}
 	}
+	else
+	{
+		std::cerr << "Error: file not open in check top score\n";
+	}
 
-	std::cerr << "Error: file not open in check top score\n";
 	file.close();
 	return 0;
 }
