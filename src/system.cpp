@@ -1,6 +1,7 @@
 #include "system.h"
 #include "mainMenu.hpp"
 #include "MainMenu0Load.hpp"
+#include "SFML/Audio.hpp"
 
 #include <iostream>
 System::System() : _data(new data)
@@ -19,7 +20,7 @@ System::System() : _data(new data)
 	}
 	
 	_data->_assets->createHighScoreFile();
-
+	
 	run();
 }
 System::~System()
@@ -29,6 +30,16 @@ void System::run()
 {
 	sf::Clock clock;
 	sf::Time timeSinceLastFrame = sf::Time::Zero;
+
+	sf::Music music;
+
+	if (!music.openFromFile("BackgroundMusic.ogg"))
+	{
+		std::cout << "ERROR LOADING MUSIC" << std::endl;
+	}
+	music.play();
+	music.setVolume(50);
+	music.setLoop(true);
 
 	while (_data->_window->isOpen())
 	{
