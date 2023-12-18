@@ -110,6 +110,7 @@ public:
   car2(data *_data) : car(_data)
   {
     this->sprite.setTexture(_data->_assets->getTexture(CAR2));
+    this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
  
   }
 };
@@ -119,6 +120,7 @@ public:
   car3(data *_data) : car(_data)
   {
    this->sprite.setTexture(_data->_assets->getTexture(CAR3));
+   this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
 
   }
 };
@@ -128,6 +130,7 @@ public:
   car4(data *_data) : car(_data)
   {
   this->sprite.setTexture(_data->_assets->getTexture(CAR4));
+  this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
 
   }
 };
@@ -137,6 +140,7 @@ public:
   car5(data *_data) : car(_data)
   {
 this->sprite.setTexture(_data->_assets->getTexture(CAR5));
+this->sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
 
   }
 };

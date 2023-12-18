@@ -281,7 +281,7 @@ void map::update()
     for (int i = 0; i < animals.size(); i++)
     { // std:: cout<< animals.size();
         animals[i]->AnimalRun();
-        collisonWithAnimal(player, animals[i]);
+       collisonWithAnimal(player, animals[i]);
         if (animals[i]->getposAnimal().x > 1920 || animals[i]->getposAnimal().x < 0)
         {
             animals[i]->AnimalTurn();
