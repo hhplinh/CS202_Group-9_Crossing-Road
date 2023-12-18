@@ -31,17 +31,17 @@ void System::run()
 	sf::Clock clock;
 	sf::Time timeSinceLastFrame = sf::Time::Zero;
 
-	sf::Music music;
+	// sf::Music music;
 
-	if (!music.openFromFile("BackgroundMusic.ogg"))
-	{
-		std::cerr << "ERROR LOADING MUSIC" << std::endl;
-	}
-	music.setVolume(50);
-	music.setLoop(true);
-	music.play();
+	// if (!music.openFromFile("BackgroundMusic.ogg"))
+	// {
+	// 	std::cerr << "ERROR LOADING MUSIC" << std::endl;
+	// }
+	// music.setVolume(50);
+	// music.setLoop(true);
+	// music.play();
 
-	std::cerr << "Music is playing" << std::endl;
+	// std::cerr << "Music is playing" << std::endl;
 
 	while (_data->_window->isOpen())
 	{
