@@ -57,12 +57,9 @@ protected:
     sf::Text score;
 
     void loadCountdownScreen();
-
-    virtual bool isEasy()
-    {
-        return 0;
-    }
     int point = 0;
+
+    const bool isEasy = 0;
 
 public:
     Cano *currentBoat = NULL;
@@ -117,6 +114,8 @@ public:
     void endgame();
     void checkOnBoat();
     void processOnRiver();
+    void initLoadMap();
+    void drawLoadMap();
 
     void collisonWithCar(maincharacter *player, car *car1)
     {

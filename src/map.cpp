@@ -463,7 +463,7 @@ map::~map()
 
 void map::saveGame()
 {
-    bool isEasyLevel = isEasy();
+    bool isEasyLevel = isEasy;
 
     _data->_assets->setEasyLevelSavedGame(isEasyLevel);
     std::ofstream saveFile(_data->_assets->getSavedGamePath(), std::ios::binary);
@@ -873,4 +873,40 @@ void map::processOnRiver()
             }
         }
     }
+}
+
+void map::initLoadMap()
+{
+    background.setSize(sf::Vector2f(1920, 1080));
+    background.setFillColor(sf::Color::White);
+
+    this->blocks.clear();
+    this->river.clear();
+    this->length = 10;
+
+    if (_data->_assets->isGameSaved() == true)
+    {
+        loadGame();
+
+        if (playerIsOnBoat)
+        {
+            floatwithboat(player, enemies2[indexBoatWithPlayer]);
+        }
+
+        checkOnBoat();
+        processOnRiver();
+    }
+}
+
+void map::drawLoadMap()
+{
+    drawTemplate();
+    static bool hasRun = false;
+    if (!hasRun)
+    {
+        // _data->_window->setView(_data->_window->getDefaultView());
+        loadCountdownScreen();
+        hasRun = true;
+    }
+    _data->_window->display();
 }

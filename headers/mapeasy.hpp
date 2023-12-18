@@ -3,7 +3,8 @@
 #include <fstream>
 class mapeasy : public map
 {
-private:
+protected:
+const bool isEasy = 1;
 
 public:
   mapeasy(data *_data) : map(_data)
@@ -28,11 +29,6 @@ public:
     this->currentIndex = 0;
 
     this->createmap();
-  }
-
-  bool isEasy()
-  {
-    return 1;
   }
 
 };
