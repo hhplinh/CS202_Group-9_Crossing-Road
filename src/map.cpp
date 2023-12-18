@@ -887,15 +887,14 @@ void map::initLoadMap()
     if (_data->_assets->isGameSaved() == true)
     {
         loadGame();
-
-        if (playerIsOnBoat)
-        {
-            floatwithboat(player, enemies2[indexBoatWithPlayer]);
-        }
-
-        checkOnBoat();
-        processOnRiver();
     }
+    if (playerIsOnBoat)
+    {
+        floatwithboat(player, enemies2[indexBoatWithPlayer]);
+    }
+
+    checkOnBoat();
+    processOnRiver();
 }
 
 void map::drawLoadMap()
