@@ -252,32 +252,9 @@ void map::update()
             enemies2[i]->turnAround();
         }
     }
-    // Set playerIsOnBoat to false by default
-    playerIsOnBoat = false;
+    checkOnBoat();
+    processOnRiver();
 
-    // Check if the player is on any boat
-    for (int i = 0; i < enemies2.size(); i++)
-    {
-        if (player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds()))
-        {
-            playerIsOnBoat = true;
-            break;
-        }
-    }
-
-    for (int i = 0; i < riverPos.size(); i++)
-    { // check if pos of player is on river (>riverpos[i].y) (<riverpos[i].y+174)
-        if (player->getSprite().getPosition().y > riverPos[i].y && player->getSprite().getPosition().y < riverPos[i].y + 174 - 50)
-        {
-            // check if player is on boat
-            if (playerIsOnBoat == false)
-            { // reset view
-                // if not on boat, game over
-                // _data->_window->setView(_data->_window->getDefaultView());
-                isEndgame = true;
-            }
-        }
-    }
     for (int i = 0; i < animals.size(); i++)
     { // std:: cout<< animals.size();
         animals[i]->AnimalRun();
@@ -863,4 +840,37 @@ void map::endgame()
         _data->_states->addState(new endgameMenu(_data), true);
     }
     _data->_window->setView(_data->_window->getDefaultView());
+}
+
+void map::checkOnBoat()
+{
+    // Set playerIsOnBoat to false by default
+    playerIsOnBoat = false;
+
+    // Check if the player is on any boat
+    for (int i = 0; i < enemies2.size(); i++)
+    {
+        if (player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds()))
+        {
+            playerIsOnBoat = true;
+            break;
+        }
+    }
+}
+
+void map::processOnRiver()
+{
+    for (int i = 0; i < riverPos.size(); i++)
+    { // check if pos of player is on river (>riverpos[i].y) (<riverpos[i].y+174)
+        if (player->getSprite().getPosition().y > riverPos[i].y && player->getSprite().getPosition().y < riverPos[i].y + 174 - 50)
+        {
+            // check if player is on boat
+            if (playerIsOnBoat == false)
+            { // reset view
+                // if not on boat, game over
+                // _data->_window->setView(_data->_window->getDefaultView());
+                isEndgame = true;
+            }
+        }
+    }
 }

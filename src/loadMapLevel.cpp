@@ -23,6 +23,9 @@ void mapeasyLoad::init()
       floatwithboat(player, enemies2[indexBoatWithPlayer]);
     }
 
+    checkOnBoat();
+    processOnRiver();
+
     return;
   }
 
@@ -55,6 +58,9 @@ void mapLoad::init()
     {
       floatwithboat(player, enemies2[indexBoatWithPlayer]);
     }
+
+    checkOnBoat();
+    processOnRiver();
     
     return;
   }

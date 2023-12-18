@@ -115,6 +115,8 @@ public:
     sf::RectangleShape background;
 
     void endgame();
+    void checkOnBoat();
+    void processOnRiver();
 
     void collisonWithCar(maincharacter *player, car *car1)
     {
