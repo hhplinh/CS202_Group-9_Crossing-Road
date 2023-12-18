@@ -35,11 +35,13 @@ void System::run()
 
 	if (!music.openFromFile("BackgroundMusic.ogg"))
 	{
-		std::cout << "ERROR LOADING MUSIC" << std::endl;
+		std::cerr << "ERROR LOADING MUSIC" << std::endl;
 	}
-	music.play();
 	music.setVolume(50);
 	music.setLoop(true);
+	music.play();
+
+	std::cerr << "Music is playing" << std::endl;
 
 	while (_data->_window->isOpen())
 	{
