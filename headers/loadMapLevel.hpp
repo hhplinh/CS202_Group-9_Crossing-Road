@@ -12,6 +12,7 @@ public:
   {
     player = new maincharactereasy(_data);
     player->init();
+    isCountdownNeeded = true;
   }
 
   void init();
@@ -28,6 +29,7 @@ public:
   {
     player = new maincharacter(_data);
     player->init();
+    isCountdownNeeded = true;
   }
 
   void init();

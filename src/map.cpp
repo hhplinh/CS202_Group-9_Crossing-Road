@@ -601,6 +601,14 @@ void map::saveGame()
 
         saveFile.write((char *)&playerIsOnBoat, sizeof(bool));
         saveFile.write((char *)&indexBoatWithPlayer, sizeof(int));
+
+        //save riverPos
+        int riverPosSize = riverPos.size();
+        saveFile.write((char *)&riverPosSize, sizeof(int));
+        for (int i = 0; i < riverPos.size(); i++)
+        {
+            saveFile.write((char *)&riverPos[i], sizeof(sf::Vector2f));
+        }
     }
     else
     {
@@ -806,6 +814,17 @@ void map::loadGame()
 
         saveFile.read((char *)&playerIsOnBoat, sizeof(bool));
         saveFile.read((char *)&indexBoatWithPlayer, sizeof(int));
+
+        // load riverPos
+        riverPos.clear();
+        int riverPosSize;
+        saveFile.read((char *)&riverPosSize, sizeof(int));
+        for (int i = 0; i < riverPosSize; i++)
+        {
+            sf::Vector2f pos;
+            saveFile.read((char *)&pos, sizeof(sf::Vector2f));
+            riverPos.push_back(pos);
+        }
     }
     else
     {
@@ -863,7 +882,9 @@ void map::processOnRiver()
 {
     for (int i = 0; i < riverPos.size(); i++)
     { // check if pos of player is on river (>riverpos[i].y) (<riverpos[i].y+174)
-        if (player->getSprite().getPosition().y > riverPos[i].y && player->getSprite().getPosition().y < riverPos[i].y + 174 - 50)
+        float playerY = player->getPosPlayer().y;
+    std::cerr << playerY << " " << riverPos[i].y << " " << riverPos[i].y + 174 - 50 << std::endl;
+        if (playerY > riverPos[i].y && playerY < riverPos[i].y + 174 - 50)
         {
             // check if player is on boat
             if (playerIsOnBoat == false)
@@ -901,12 +922,11 @@ void map::initLoadMap()
 void map::drawLoadMap()
 {
     drawTemplate();
-    static bool hasRun = false;
-    if (!hasRun)
+    if (isCountdownNeeded)
     {
         // _data->_window->setView(_data->_window->getDefaultView());
         loadCountdownScreen();
-        hasRun = true;
+        isCountdownNeeded = false;
     }
     _data->_window->display();
 }

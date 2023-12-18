@@ -201,6 +201,11 @@ void maincharacter::updateStamina()
     displayStamina();
 }
 
+sf::Vector2f maincharacter::getPosPlayer()
+{
+    return p.getPosition();
+}
+
 void maincharacter::displayStamina()
 {
     float currentWidth = (static_cast<float>(stamina) / MAX_STAMINA) * 100;

@@ -59,6 +59,7 @@ protected:
     void loadCountdownScreen();
     int point = 0;
     bool isEasy;
+    bool isCountdownNeeded = true;
 
 
 public:
