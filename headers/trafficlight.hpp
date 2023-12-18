@@ -83,9 +83,23 @@ public:
         size = _data->_assets->getTexture(TRAFFICLIGHT).getSize();
         this->size.x /= col;
         this->size.y /= row;
-        this->isGreen = true;
-        sprite.setTexture(_data->_assets->getTexture(TRAFFICLIGHT));
-        sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
+        int z;
+        z=rand()%2;
+        if(z==1)
+        {
+            this->isGreen = false;
+            this->isRed = true;
+            sprite.setTexture(_data->_assets->getTexture(TRAFFICLIGHT));
+            sprite.setTextureRect(sf::IntRect(size.x, 0, size.x, size.y));
+        }
+        else
+        {
+            this->isGreen = true;
+            this->isRed = false;
+            sprite.setTexture(_data->_assets->getTexture(TRAFFICLIGHT));
+            sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
+        }
+     
     }
     void draw(sf::RenderTarget &target, sf::RenderStates states) const
     {

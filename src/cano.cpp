@@ -13,7 +13,7 @@ Cano::Cano(data* _data) : _data(_data) {
     size.x /= col;
     size.y /= row;
      sprite.setTexture(_data->_assets->getTexture(CANO2));
-     sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
+    // sprite.setTextureRect(sf::IntRect(0, 0, size.x, size.y));
     int z = rand() % 2;
     this->speed = 3;
 
