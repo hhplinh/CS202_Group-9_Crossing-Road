@@ -426,6 +426,7 @@ map ::map(data *data)
     _data = data;
     // isEndgame = false;
     indexBoatWithPlayer = -1;
+    isEasy = false;
 }
 
 map::~map()

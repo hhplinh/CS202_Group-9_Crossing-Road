@@ -3,12 +3,10 @@
 #include <fstream>
 class mapeasy : public map
 {
-protected:
-const bool isEasy = 1;
-
 public:
   mapeasy(data *_data) : map(_data)
   {
+    isEasy = true;
   }
 
   virtual void init()

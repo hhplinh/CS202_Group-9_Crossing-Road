@@ -58,8 +58,8 @@ protected:
 
     void loadCountdownScreen();
     int point = 0;
+    bool isEasy;
 
-    const bool isEasy = 0;
 
 public:
     Cano *currentBoat = NULL;
