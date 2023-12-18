@@ -39,8 +39,5 @@ public:
         return this->isMovingRight;
     }
 
-    void setGoR(bool isMovingRight)
-    {
-        this->isMovingRight = isMovingRight;
-    }
+    void setGoR(bool isMovingRight);
 };
