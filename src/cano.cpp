@@ -40,7 +40,7 @@ sf::FloatRect Cano::getGlobalBounds()
 
 void Cano::setPosCano(sf::Vector2f posRiver)
 {
-    sprite.setPosition(sprite.getPosition().x, posRiver.y);
+    sprite.setPosition(posRiver.x, posRiver.y);
 }
 
 void Cano::turnAround()
