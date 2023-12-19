@@ -23,6 +23,7 @@ private:
     std::vector<sf::Text> playerNameText;
     std::vector<sf::Text> playerScoreText;
     const std::string SCORES_PATH = _data->_assets->getHighScorePath();
+    bool isEventChanged;
 
 public:
     Leaderboard(data *data);

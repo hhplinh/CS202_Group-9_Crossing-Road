@@ -69,7 +69,7 @@ void instructScreen::processInput()
             {
             case sf::Keyboard::Enter:
             {
-                _data->_states->addState(new mainMenu(_data), true);
+                _data->_states->removeStateUntilOne();
                 break;
             }
 

@@ -4,6 +4,6 @@
 - Press "S" to save game manually.
 
   In leaderboard:
-Press "Esc" to return to main menu.
+Press "Esc" or "Enter" to return to main menu.
   
   Done reading? "Enter" to return.
