@@ -25,7 +25,7 @@ private:
 
 public:
     mainMenu0Load(data *data);
-    ~mainMenu0Load();
+    virtual ~mainMenu0Load();
     void init();
     void processInput();
     void update();

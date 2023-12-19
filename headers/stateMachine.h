@@ -14,7 +14,7 @@ private:
 
 public:
 	stateMachine();
-	~stateMachine();
+	virtual ~stateMachine();
 	void addState(state *state, bool replace = 0);
 	void removeState(bool reinittheprevstate = 1);
 	void processStateChange();

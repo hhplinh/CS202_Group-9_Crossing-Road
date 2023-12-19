@@ -63,7 +63,7 @@ protected:
 
 public:
 	assetManager();
-	~assetManager();
+	virtual ~assetManager();
 	void addTexture(int id, std::string filePath);
 	void addFont(int id, std::string filePath);
 	sf::Texture &getTexture(int id);

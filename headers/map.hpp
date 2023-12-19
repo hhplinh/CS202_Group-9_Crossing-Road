@@ -93,7 +93,6 @@ public:
     map(data *data);
     map();
     virtual ~map();
-    // ~map();
 
     void addcar();
     bool addedroad = false;

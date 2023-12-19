@@ -14,7 +14,7 @@ class data
 		_window = new sf::RenderWindow;
 
 	}
-	~data()
+	virtual ~data()
 	{
 		delete _assets;
 		_assets = nullptr;
@@ -33,7 +33,7 @@ private:
 	const sf::Time TIME_PER_FRAME = sf::seconds(1.f / 60.f);
 public:
 	System();
-	~System();
+	virtual ~System();
 	void run();
 };
 

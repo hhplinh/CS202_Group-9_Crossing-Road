@@ -25,7 +25,7 @@ protected:
 public:
    
     menu(data *data);
-    ~menu();
+    virtual ~menu();
 
     virtual void draw();
 

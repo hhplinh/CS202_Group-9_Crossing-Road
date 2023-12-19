@@ -30,7 +30,7 @@ private:
 public:
 
     mainMenu(data *data);
-    ~mainMenu();
+    virtual ~mainMenu();
     void init();
     void processInput();
     void update();

@@ -25,6 +25,8 @@ System::System() : _data(new data)
 }
 System::~System()
 {
+	delete _data;
+	_data = nullptr;
 }
 void System::run()
 {
@@ -42,7 +44,6 @@ void System::run()
 		music.setVolume(50);
 		music.setLoop(true);
 		music.play();
-		std::cerr << "Music is playing" << std::endl;
 	}
 
 	while (_data->_window->isOpen())
