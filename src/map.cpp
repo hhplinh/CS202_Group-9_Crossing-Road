@@ -431,11 +431,14 @@ map ::map(data *data)
 
 map::~map()
 {
-    saveGame();
+    if (!isEndgame)
+    {
+        saveGame();
+    }
     // delete dynamically alocated memory
     // reset view
 
-    _data->_window->setView(_data->_window->getDefaultView());
+    // _data->_window->setView(_data->_window->getDefaultView());
     // delete all the block and enemies
 
     for (int i = 0; i < blocks.size(); i++)
@@ -602,7 +605,7 @@ void map::saveGame()
         saveFile.write((char *)&playerIsOnBoat, sizeof(bool));
         saveFile.write((char *)&indexBoatWithPlayer, sizeof(int));
 
-        //save riverPos
+        // save riverPos
         int riverPosSize = riverPos.size();
         saveFile.write((char *)&riverPosSize, sizeof(int));
         for (int i = 0; i < riverPos.size(); i++)
