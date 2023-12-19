@@ -21,7 +21,7 @@ class endgameMenu;
 class map : public state
 {
 private:
-    bool isEndgame = false;
+    bool isEndgame;
     sf::Clock endgameClock;
 
     bool initEndgameClock = false;

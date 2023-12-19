@@ -368,7 +368,7 @@ void map::drawTemplate()
 
         if (endgameClock.getElapsedTime().asSeconds() >= 3.f)
         {
-            isEndgame = false;
+            // isEndgame = false;
             endgameClock.restart();
             endgame();
         }
@@ -421,10 +421,10 @@ void map::addblock(std::string terrainName)
     this->pos1.y -= 174.0 - 15 - 5;
 }
 
-map ::map(data *data)
+map::map(data *data)
 {
     _data = data;
-    // isEndgame = false;
+    isEndgame = false;
     indexBoatWithPlayer = -1;
     isEasy = false;
 }
