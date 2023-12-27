@@ -195,14 +195,10 @@ void maincharacter::processMovedDown()
         _data->_window->setView(camera);
     }
 
-    if (p.getPosition().y >= (deadPos.y + _data->_window->getSize().y / 2))
+    if (p.getPosition().y >= (deadPos.y + _data->_window->getSize().y / 2 - p.getGlobalBounds().height / 2))
     {
         isDead = true;
-        std::cerr << "dead" << std::endl;
     }
-    std::cerr << "deadPos.y: " << deadPos.y << std::endl;
-    std::cerr << "end screen: " << deadPos.y - _data->_window->getSize().y / 2 << std::endl;
-    std::cerr << "p.pos.y: " << p.getPosition().y << std::endl;
 }
 void maincharacter::update()
 {
