@@ -59,7 +59,7 @@ void map::processInput()
             }
         }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
         {
             savePressed = true;
         }
