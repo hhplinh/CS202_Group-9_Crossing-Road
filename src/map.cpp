@@ -319,7 +319,16 @@ void map::update()
     score.setString("Score: " + std::to_string(this->point));
     score.setCharacterSize(70);
     score.setOrigin(score.getLocalBounds().width / 2.f, score.getLocalBounds().height / 2.f);
-    score.setPosition(_data->_window->getSize().x / 2.f, player->getPosition().y - 400.f);
+    // score.setPosition(_data->_window->getSize().x / 2.f, player->getPosition().y - 400.f);
+
+    sf::View currentView = _data->_window->getView();
+    // sf::FloatRect viewport = currentView.getViewport();
+    // float topOfScreen = viewport.top * _data->_window->getSize().y;
+    // score.setPosition(_data->_window->getSize().x / 2.f, topOfScreen + 400.f);
+
+    sf::Vector2f spritePosition = player->getPosition();
+    sf::Vector2f screenPosition = (sf::Vector2f)(_data->_window->mapCoordsToPixel(spritePosition, currentView));
+    score.setPosition(_data->_window->getSize().x / 2.f, player->getPosition().y - screenPosition.y + 80.f);
 
     score.setFillColor(sf::Color::White);
     score.setOutlineColor(_data->_assets->getThemeColor());
