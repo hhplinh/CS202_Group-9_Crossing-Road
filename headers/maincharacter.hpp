@@ -16,6 +16,7 @@ protected:
     sf::Texture texture;
     sf::Sprite p;
     bool movingRight;
+    bool movingDown;
 
     sf::Clock moveCooldownTimer;
     bool movingLeft;

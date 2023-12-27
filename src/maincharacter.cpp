@@ -77,12 +77,14 @@ void maincharacter::move()
         p.move(-10, 0);
         moved = true;
     }
-    /*else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-     {
-         int ytexture = (p.getTextureRect().top + size.y) % (size.y * row);
-         p.setTextureRect(sf::IntRect(0, ytexture, size.x, size.y));
-         p.move(0, 2);
-     }*/
+    else if (movingDown)
+    {
+        int xtexture = (p.getTextureRect().left + size.x) % (size.x * 4);
+        p.setTextureRect(sf::IntRect(xtexture, size.y, size.x, size.y));
+        p.move(0, 10);
+        moved = true;
+    }
+
     isMoving = moved;
 }
 
@@ -118,7 +120,21 @@ void maincharacter::processInput(sf ::Event event)
         case sf::Keyboard::Left:
             movingLeft = true;
             break;
-            // Add cases for other keys if needed
+        case sf::Keyboard::Down:
+            movingDown = true;
+            break;
+        case sf::Keyboard::W:
+            movingUp = true;
+            break;
+        case sf::Keyboard::A:
+            movingLeft = true;
+            break;
+        case sf::Keyboard::S:
+            movingDown = true;
+            break;
+        case sf::Keyboard::D:
+            movingRight = true;
+            break;
         }
     }
 
@@ -136,7 +152,21 @@ void maincharacter::processInput(sf ::Event event)
         case sf::Keyboard::Left:
             movingLeft = false;
             break;
-            // Add cases for other keys if needed
+        case sf::Keyboard::Down:
+            movingDown = false;
+            break;
+        case sf::Keyboard::W:
+            movingUp = false;
+            break;
+        case sf::Keyboard::A:
+            movingLeft = false;
+            break;
+        case sf::Keyboard::S:
+            movingDown = false;
+            break;
+        case sf::Keyboard::D:
+            movingRight = false;
+            break;
         }
     }
 }
@@ -214,6 +244,6 @@ void maincharacter::displayStamina()
 
 void maincharacter::drawStaminaBar(sf::RenderTarget &target) const
 {
-    //target.draw(staminaBarBackground);
+    // target.draw(staminaBarBackground);
     target.draw(staminaBar);
 }
