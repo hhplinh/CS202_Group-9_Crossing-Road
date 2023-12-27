@@ -97,10 +97,10 @@ void maincharacter::move()
 
     isMoving = moved;
 
-    if (movedDown == false)
-    {
-        deadPos = p.getPosition();
-    }
+    // if (movedDown == false)
+    // {
+    //     deadPos = p.getPosition();
+    // }
 }
 
 sf::Vector2f maincharacter::getPosition()
@@ -191,8 +191,12 @@ void maincharacter::processMovedDown()
     // Update the camera to follow the character
     if (movedDown == false)
     {
-        camera.setCenter(1920 / 2, p.getPosition().y);
-        _data->_window->setView(camera);
+        if (p.getPosition().y <= deadPos.y)
+        {
+            deadPos = p.getPosition();
+            camera.setCenter(1920 / 2, p.getPosition().y);
+            _data->_window->setView(camera);
+        }
     }
 
     if (p.getPosition().y >= (deadPos.y + _data->_window->getSize().y / 2 - p.getGlobalBounds().height / 2))
