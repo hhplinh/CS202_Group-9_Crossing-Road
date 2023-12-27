@@ -20,7 +20,7 @@ void maincharacter::init()
     camera.setSize(1920, 1080);
 
     // Center the camera on the player
-    camera.setCenter(1920, 1080);
+    camera.setCenter(1920/2, p.getPosition().y);
 
     // Set the initial view to the camera
     _data->_window->setView(camera);
@@ -39,9 +39,14 @@ void maincharacter::init()
     movingLeft = false;
     movingRight = false;
     movingUp = false;
+    movingDown = false;
 }
 
-maincharacter::maincharacter(data *data) : _data(data) {}
+maincharacter::maincharacter(data *data) : _data(data)
+{
+    movedDown = true;
+    isDead = false;
+}
 
 void maincharacter::draw()
 {
@@ -62,6 +67,7 @@ void maincharacter::move()
         p.setTextureRect(sf::IntRect(xtexture, size.y * 2, size.x, size.y));
         p.move(10, 0);
         moved = true;
+        movedDown = false;
     }
     else if (movingUp)
     {
@@ -69,6 +75,7 @@ void maincharacter::move()
         p.setTextureRect(sf::IntRect(xtexture, size.y, size.x, size.y));
         p.move(0, -10);
         moved = true;
+        movedDown = false;
     }
     else if (movingLeft)
     {
@@ -76,6 +83,7 @@ void maincharacter::move()
         p.setTextureRect(sf::IntRect(xtexture, size.y * 3, size.x, size.y));
         p.move(-10, 0);
         moved = true;
+        movedDown = false;
     }
     else if (movingDown)
     {
@@ -83,6 +91,7 @@ void maincharacter::move()
         p.setTextureRect(sf::IntRect(xtexture, size.y, size.x, size.y));
         p.move(0, 10);
         moved = true;
+        movedDown = true;
     }
 
     isMoving = moved;
@@ -170,6 +179,21 @@ void maincharacter::processInput(sf ::Event event)
         }
     }
 }
+
+void maincharacter::processMovedDown()
+{
+    // Update the camera to follow the character
+    if (movedDown == false)
+    {
+        camera.setCenter(1920 / 2, p.getPosition().y);
+        _data->_window->setView(camera);
+    }
+    // else
+    // {
+    //     camera.setCenter(_data->_window->getView().getCenter().x, _data->_window->getView().getCenter().y);
+    //     _data->_window->setView(camera);
+    // }
+}
 void maincharacter::update()
 {
     // Update the stamina first
@@ -203,9 +227,7 @@ void maincharacter::update()
         // Additional logic for character in fallen state (if necessary)
     }
 
-    // Update the camera to follow the character
-    camera.setCenter(1920 / 2, p.getPosition().y);
-    _data->_window->setView(camera);
+    processMovedDown();
 }
 
 void maincharacter::updateStamina()

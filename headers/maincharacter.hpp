@@ -17,8 +17,13 @@ protected:
     sf::Sprite p;
     bool movingRight;
     bool movingDown;
+    bool movedDown;
+    bool isDead;
+    sf::Vector2f deadPos;
 
     sf::Clock moveCooldownTimer;
+    sf::Clock movingDownTimer;
+
     bool movingLeft;
     sf::Vector2f velocity;
     bool mApressed = 0;
@@ -40,6 +45,7 @@ public:
     void processInput();
     virtual void update();
     virtual void draw();
+    virtual void processMovedDown();
     void move();
     void setPosition(float x, float y);
     sf::Vector2f getPosition();
@@ -62,5 +68,10 @@ public:
     void setDeadTexture()
     {
         p.setTextureRect(sf::IntRect(0, size.y * 4, size.x, size.y));
+    }
+
+    bool getIsDead()
+    {
+        return isDead;
     }
 };

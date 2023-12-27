@@ -39,6 +39,12 @@ void map::processInput()
     while (_data->_window->pollEvent(event))
     {
         player->processInput(event);
+        
+        if (player->getIsDead())
+        {
+            isEndgame = true;
+        }
+
         if (event.type == sf::Event::Closed)
         {
             saveGame();
