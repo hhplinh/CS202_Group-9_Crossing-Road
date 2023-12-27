@@ -74,4 +74,9 @@ public:
     {
         return isDead;
     }
+
+    bool getIsMovedDown()
+    {
+        return movedDown;
+    }
 };

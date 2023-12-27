@@ -240,7 +240,7 @@ void maincharacter::updateStamina()
 {
     // std::cout << "Stamina: " << stamina << ", Up: " << movingUp << ", Left: " << movingLeft << ", Right: " << movingRight << ", Recovery: " << staminaRecoveryRate << ", Drain: " << staminaDrainRate << std::endl;
 
-    if (!movingUp && !movingLeft && !movingRight || ((movingUp || movingLeft || movingRight) && isFallen))
+    if (!movingUp && !movingLeft && !movingRight && !movingDown || ((movingUp || movingLeft || movingRight || movingDown) && isFallen))
     {
         if (stamina + staminaRecoveryRate < MAX_STAMINA)
         {

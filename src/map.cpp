@@ -39,7 +39,7 @@ void map::processInput()
     while (_data->_window->pollEvent(event))
     {
         player->processInput(event);
-        
+
         if (player->getIsDead())
         {
             isEndgame = true;
@@ -75,12 +75,16 @@ void map::update()
     }
     player->update();
     float pos = player->getPosition().y;
-    if (pos == 1080 - 600)
-        this->point = 0;
-    else if (pos > 0)
-        this->point = (1080 - pos);
-    else
-        this->point = 1080 + abs(pos);
+
+    if (player->getIsMovedDown() == false)
+    {
+        if (pos == 1080 - 600)
+            this->point = 0;
+        else if (pos > 0)
+            this->point = (1080 - pos);
+        else
+            this->point = 1080 + abs(pos);
+    }
     float l = (pos / 1080.0 + 1);
 
     float j = -l;
