@@ -61,7 +61,6 @@ protected:
     bool isEasy;
     bool isCountdownNeeded = true;
 
-
 public:
     Cano *currentBoat = NULL;
     Cano *nextBoat = NULL;

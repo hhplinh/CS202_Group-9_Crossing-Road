@@ -20,7 +20,7 @@ void maincharacter::init()
     camera.setSize(1920, 1080);
 
     // Center the camera on the player
-    camera.setCenter(1920/2, p.getPosition().y);
+    camera.setCenter(1920 / 2, p.getPosition().y);
 
     // Set the initial view to the camera
     _data->_window->setView(camera);
@@ -40,6 +40,7 @@ void maincharacter::init()
     movingRight = false;
     movingUp = false;
     movingDown = false;
+    deadPos = p.getPosition();
 }
 
 maincharacter::maincharacter(data *data) : _data(data)
@@ -95,13 +96,18 @@ void maincharacter::move()
     }
 
     isMoving = moved;
+
+    if (movedDown == false)
+    {
+        deadPos = p.getPosition();
+    }
 }
 
 sf::Vector2f maincharacter::getPosition()
 {
-    p.getPosition();
     return p.getPosition();
 }
+
 void maincharacter::setPosition(float x, float y)
 {
     p.setPosition(x, y);
@@ -188,11 +194,15 @@ void maincharacter::processMovedDown()
         camera.setCenter(1920 / 2, p.getPosition().y);
         _data->_window->setView(camera);
     }
-    // else
-    // {
-    //     camera.setCenter(_data->_window->getView().getCenter().x, _data->_window->getView().getCenter().y);
-    //     _data->_window->setView(camera);
-    // }
+
+    if (p.getPosition().y >= (deadPos.y + _data->_window->getSize().y / 2))
+    {
+        isDead = true;
+        std::cerr << "dead" << std::endl;
+    }
+    std::cerr << "deadPos.y: " << deadPos.y << std::endl;
+    std::cerr << "end screen: " << deadPos.y - _data->_window->getSize().y / 2 << std::endl;
+    std::cerr << "p.pos.y: " << p.getPosition().y << std::endl;
 }
 void maincharacter::update()
 {
