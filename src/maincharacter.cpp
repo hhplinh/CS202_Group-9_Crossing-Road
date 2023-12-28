@@ -189,9 +189,10 @@ void maincharacter::processMovedDown()
     sf::View currentView = _data->_window->getView();
     sf::Vector2f screenPosition = (sf::Vector2f)(_data->_window->mapCoordsToPixel(playerPos, currentView));
 
-    if (playerPosY >= (playerPosY - screenPosition.y + _data->_window->getSize().y - p.getGlobalBounds().height + 1.f))
+    if (playerPosY >= (playerPosY - screenPosition.y + _data->_window->getSize().y - p.getGlobalBounds().height - 15.f))
     {
         isDead = true;
+        return;
     }
 
     if (movedDown == false)
