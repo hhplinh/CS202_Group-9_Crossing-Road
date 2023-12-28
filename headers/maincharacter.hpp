@@ -19,7 +19,7 @@ protected:
     bool movingDown;
     bool movedDown;
     bool isDead;
-    sf::Vector2f deadPos;
+    sf::Vector2f moveCamPos;
 
     sf::Clock moveCooldownTimer;
     sf::Clock movingDownTimer;

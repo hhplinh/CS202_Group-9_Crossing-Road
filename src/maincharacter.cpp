@@ -40,7 +40,7 @@ void maincharacter::init()
     movingRight = false;
     movingUp = false;
     movingDown = false;
-    deadPos = p.getPosition();
+    moveCamPos = p.getPosition();
 }
 
 maincharacter::maincharacter(data *data) : _data(data)
@@ -99,7 +99,7 @@ void maincharacter::move()
 
     // if (movedDown == false)
     // {
-    //     deadPos = p.getPosition();
+    //     moveCamPos = p.getPosition();
     // }
 }
 
@@ -190,15 +190,15 @@ void maincharacter::processMovedDown()
 {
     if (movedDown == false)
     {
-        if (p.getPosition().y <= deadPos.y)
+        if (p.getPosition().y <= moveCamPos.y)
         {
-            deadPos = p.getPosition();
+            moveCamPos = p.getPosition();
             camera.setCenter(1920 / 2, p.getPosition().y);
             _data->_window->setView(camera);
         }
     }
 
-    // if (p.getPosition().y >= (deadPos.y + _data->_window->getSize().y / 2 - p.getGlobalBounds().height))
+    // if (p.getPosition().y >= (moveCamPos.y + _data->_window->getSize().y / 2 - p.getGlobalBounds().height))
     sf::View currentView = _data->_window->getView();
     sf::Vector2f playerPos = p.getPosition();
     sf::Vector2f screenPosition = (sf::Vector2f)(_data->_window->mapCoordsToPixel(playerPos, currentView));
