@@ -279,20 +279,19 @@ void map::update()
     {
         saveGame();
 
-        gameSavedTextNeeded = true;
-        savedTextClock.restart();
-
         gameSavedText.setFont(_data->_assets->getFont(MAIN_FONT));
         gameSavedText.setString("Game saved!");
         gameSavedText.setCharacterSize(110);
-        gameSavedText.setOrigin(gameSavedText.getLocalBounds().width / 2.f, gameSavedText.getLocalBounds().height / 2.f);
 
         gameSavedText.setFillColor(sf::Color::White);
         gameSavedText.setOutlineColor(_data->_assets->getThemeColor());
         gameSavedText.setOutlineThickness(7.f);
 
-        // position below player
-        gameSavedText.setPosition(_data->_window->getSize().x / 2.f, player->getPosition().y + 400.f);
+        gameSavedText.setOrigin(gameSavedText.getLocalBounds().width / 2.f, gameSavedText.getLocalBounds().height / 2.f);
+        // gameSavedText.setPosition(_data->_window->getSize().x / 2.f, player->getPosition().y + 400.f);
+
+        gameSavedTextNeeded = true;
+        savedTextClock.restart();
 
         savePressed = false;
     }
@@ -313,7 +312,6 @@ void map::update()
     {
         trafficlights[i]->turn();
     }
-    // std::cout << "current block : " << this->currentIndex << " : " << this->blocks.size() << std::endl;
 
     score.setFont(_data->_assets->getFont(MAIN_FONT));
     score.setString("Score: " + std::to_string(this->point));
@@ -333,6 +331,10 @@ void map::update()
     score.setFillColor(sf::Color::White);
     score.setOutlineColor(_data->_assets->getThemeColor());
     score.setOutlineThickness(7.f);
+
+    gameSavedText.setPosition(_data->_window->getSize().x / 2.f, player->getPosition().y - screenPosition.y + _data->_window->getSize().y - gameSavedText.getGlobalBounds().height - 50.f);
+
+    gameOverText.setPosition(_data->_window->getSize().x / 2.f, score.getGlobalBounds().top + score.getLocalBounds().height + 50.f);
 }
 
 void map::draw()
@@ -379,6 +381,7 @@ void map::drawTemplate()
 
     if (isEndgame)
     {
+        _data->_window->draw(gameOverText);
         if (!initEndgameClock)
         {
             initEndgameClock = true;
@@ -393,7 +396,6 @@ void map::drawTemplate()
         }
     }
 
-    // show text for 3 seconds
     if (gameSavedTextNeeded && savedTextClock.getElapsedTime().asSeconds() >= 3.f)
     {
         gameSavedTextNeeded = false;
@@ -403,7 +405,6 @@ void map::drawTemplate()
         _data->_window->draw(gameSavedText);
     }
 
-    // draw score
     _data->_window->draw(score);
 }
 
@@ -446,6 +447,15 @@ map::map(data *data)
     isEndgame = false;
     indexBoatWithPlayer = -1;
     isEasy = false;
+
+    // gameOverText.setFont(_data->_assets->getFont(MAIN_FONT));
+    // gameOverText.setString("Game Over!");
+    // gameOverText.setCharacterSize(110);
+
+    // gameOverText.setFillColor(sf::Color::White);
+    // gameOverText.setOutlineColor(_data->_assets->getThemeColor());
+    // gameOverText.setOutlineThickness(7.f);
+    // gameOverText.setOrigin(gameOverText.getLocalBounds().width / 2.f, gameOverText.getLocalBounds().height / 2.f);
 }
 
 map::~map()

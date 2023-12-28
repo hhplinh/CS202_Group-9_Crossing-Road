@@ -50,6 +50,7 @@ protected:
     sf::Text gameSavedText;
     bool gameSavedTextNeeded = false;
     sf::Clock savedTextClock;
+    sf::Text gameOverText;
 
     virtual void loadGame();
     virtual void saveGame();
