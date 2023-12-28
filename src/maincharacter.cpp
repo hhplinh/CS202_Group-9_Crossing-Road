@@ -205,6 +205,7 @@ void maincharacter::processMovedDown()
         }
     }
 }
+
 void maincharacter::update()
 {
     // Update the stamina first
@@ -279,4 +280,29 @@ void maincharacter::drawStaminaBar(sf::RenderTarget &target) const
 {
     // target.draw(staminaBarBackground);
     target.draw(staminaBar);
+}
+
+void maincharacter::setspeed(float speed)
+{
+    velocity.x = speed;
+}
+
+void maincharacter::setDeadTexture()
+{
+    p.setTextureRect(sf::IntRect(0, size.y * 4, size.x, size.y));
+}
+
+bool maincharacter::getIsDead()
+{
+    return isDead;
+}
+
+bool maincharacter::getIsMovedDown()
+{
+    return movedDown;
+}
+
+sf::Vector2f maincharacter::getMoveCamPos()
+{
+    return moveCamPos;
 }

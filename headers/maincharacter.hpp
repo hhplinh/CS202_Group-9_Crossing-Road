@@ -60,23 +60,10 @@ public:
     void drawStaminaBar(sf::RenderTarget &target) const;
     // get the stamina bar state
     int getStamina() const { return stamina; }
-    void setspeed(float speed)
-    {
-        this->velocity.x = speed;
-    }
 
-    void setDeadTexture()
-    {
-        p.setTextureRect(sf::IntRect(0, size.y * 4, size.x, size.y));
-    }
-
-    bool getIsDead()
-    {
-        return isDead;
-    }
-
-    bool getIsMovedDown()
-    {
-        return movedDown;
-    }
+    void setspeed(float speed);
+    void setDeadTexture();
+    bool getIsDead();
+    bool getIsMovedDown();
+    sf::Vector2f getMoveCamPos();
 };

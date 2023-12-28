@@ -73,10 +73,11 @@ void map::update()
 
         return;
     }
+
     player->update();
     float pos = player->getPosition().y;
 
-    if (player->getIsMovedDown() == false)
+    if ((player->getIsMovedDown() == false && player->getMoveCamPos().y >= player->getPosition().y))
     {
         if (pos == 1080 - 600)
             this->point = 0;
