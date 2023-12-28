@@ -326,7 +326,7 @@ void map::update()
 
     sf::Vector2f spritePosition = player->getPosition();
     sf::Vector2f screenPosition = (sf::Vector2f)(_data->_window->mapCoordsToPixel(spritePosition, currentView));
-    score.setPosition(_data->_window->getSize().x / 2.f, player->getPosition().y - screenPosition.y + 80.f);
+    score.setPosition(_data->_window->getSize().x / 2.f, player->getPosition().y - screenPosition.y + 50.f);
 
     score.setFillColor(sf::Color::White);
     score.setOutlineColor(_data->_assets->getThemeColor());
