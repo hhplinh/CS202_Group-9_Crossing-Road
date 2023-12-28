@@ -188,7 +188,6 @@ void maincharacter::processInput(sf ::Event event)
 
 void maincharacter::processMovedDown()
 {
-    // Update the camera to follow the character
     if (movedDown == false)
     {
         if (p.getPosition().y <= deadPos.y)
@@ -199,7 +198,7 @@ void maincharacter::processMovedDown()
         }
     }
 
-    if (p.getPosition().y >= (deadPos.y + _data->_window->getSize().y / 2 - p.getGlobalBounds().height / 2))
+    if (p.getPosition().y >= (deadPos.y + _data->_window->getSize().y / 2 - p.getGlobalBounds().height))
     {
         isDead = true;
     }
