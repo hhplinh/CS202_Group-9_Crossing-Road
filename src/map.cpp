@@ -70,7 +70,6 @@ void map::update()
     if (isEndgame)
     {
         player->setDeadTexture();
-
         return;
     }
 
