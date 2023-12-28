@@ -281,7 +281,7 @@ void map::update()
 
         gameSavedText.setFont(_data->_assets->getFont(MAIN_FONT));
         gameSavedText.setString("Game saved!");
-        gameSavedText.setCharacterSize(110);
+        gameSavedText.setCharacterSize(80);
 
         gameSavedText.setFillColor(sf::Color::White);
         gameSavedText.setOutlineColor(_data->_assets->getThemeColor());
@@ -315,22 +315,18 @@ void map::update()
 
     score.setFont(_data->_assets->getFont(MAIN_FONT));
     score.setString("Score: " + std::to_string(this->point));
-    score.setCharacterSize(70);
-    score.setOrigin(score.getLocalBounds().width / 2.f, score.getLocalBounds().height / 2.f);
-    // score.setPosition(_data->_window->getSize().x / 2.f, player->getPosition().y - 400.f);
-
-    sf::View currentView = _data->_window->getView();
-    // sf::FloatRect viewport = currentView.getViewport();
-    // float topOfScreen = viewport.top * _data->_window->getSize().y;
-    // score.setPosition(_data->_window->getSize().x / 2.f, topOfScreen + 400.f);
-
-    sf::Vector2f spritePosition = player->getPosition();
-    sf::Vector2f screenPosition = (sf::Vector2f)(_data->_window->mapCoordsToPixel(spritePosition, currentView));
-    score.setPosition(_data->_window->getSize().x / 2.f, player->getPosition().y - screenPosition.y + 50.f);
+    score.setCharacterSize(80);
 
     score.setFillColor(sf::Color::White);
     score.setOutlineColor(_data->_assets->getThemeColor());
     score.setOutlineThickness(7.f);
+
+    sf::View currentView = _data->_window->getView();
+    sf::Vector2f spritePosition = player->getPosition();
+    sf::Vector2f screenPosition = (sf::Vector2f)(_data->_window->mapCoordsToPixel(spritePosition, currentView));
+
+    score.setOrigin(score.getLocalBounds().width / 2.f, score.getLocalBounds().height / 2.f);
+    score.setPosition(_data->_window->getSize().x / 2.f, player->getPosition().y - screenPosition.y + 50.f);
 
     gameSavedText.setPosition(_data->_window->getSize().x / 2.f, player->getPosition().y - screenPosition.y + _data->_window->getSize().y - gameSavedText.getGlobalBounds().height - 50.f);
 
@@ -448,14 +444,14 @@ map::map(data *data)
     indexBoatWithPlayer = -1;
     isEasy = false;
 
-    // gameOverText.setFont(_data->_assets->getFont(MAIN_FONT));
-    // gameOverText.setString("Game Over!");
-    // gameOverText.setCharacterSize(110);
+    gameOverText.setFont(_data->_assets->getFont(MAIN_FONT));
+    gameOverText.setString("Game Over!");
+    gameOverText.setCharacterSize(80);
 
-    // gameOverText.setFillColor(sf::Color::White);
-    // gameOverText.setOutlineColor(_data->_assets->getThemeColor());
-    // gameOverText.setOutlineThickness(7.f);
-    // gameOverText.setOrigin(gameOverText.getLocalBounds().width / 2.f, gameOverText.getLocalBounds().height / 2.f);
+    gameOverText.setFillColor(sf::Color::White);
+    gameOverText.setOutlineColor(_data->_assets->getThemeColor());
+    gameOverText.setOutlineThickness(7.f);
+    gameOverText.setOrigin(gameOverText.getLocalBounds().width / 2.f, gameOverText.getLocalBounds().height / 2.f);
 }
 
 map::~map()
