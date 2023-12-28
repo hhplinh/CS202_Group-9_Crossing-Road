@@ -198,7 +198,13 @@ void maincharacter::processMovedDown()
         }
     }
 
-    if (p.getPosition().y >= (deadPos.y + _data->_window->getSize().y / 2 - p.getGlobalBounds().height))
+    // if (p.getPosition().y >= (deadPos.y + _data->_window->getSize().y / 2 - p.getGlobalBounds().height))
+    sf::View currentView = _data->_window->getView();
+    sf::Vector2f playerPos = p.getPosition();
+    sf::Vector2f screenPosition = (sf::Vector2f)(_data->_window->mapCoordsToPixel(playerPos, currentView));
+    float playerPosY = screenPosition.y;
+
+    if (playerPosY >= (playerPosY - screenPosition.y + _data->_window->getSize().y - p.getGlobalBounds().height))
     {
         isDead = true;
     }
