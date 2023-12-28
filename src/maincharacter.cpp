@@ -186,6 +186,14 @@ void maincharacter::processMovedDown()
     sf::Vector2f playerPos = p.getPosition();
     float playerPosY = playerPos.y;
 
+    sf::View currentView = _data->_window->getView();
+    sf::Vector2f screenPosition = (sf::Vector2f)(_data->_window->mapCoordsToPixel(playerPos, currentView));
+
+    if (playerPosY >= (playerPosY - screenPosition.y + _data->_window->getSize().y - p.getGlobalBounds().height + 1.f))
+    {
+        isDead = true;
+    }
+
     if (movedDown == false)
     {
         if (playerPosY <= moveCamPos.y)
@@ -194,14 +202,6 @@ void maincharacter::processMovedDown()
             camera.setCenter(1920 / 2, playerPosY);
             _data->_window->setView(camera);
         }
-    }
-    
-    sf::View currentView = _data->_window->getView();
-    sf::Vector2f screenPosition = (sf::Vector2f)(_data->_window->mapCoordsToPixel(playerPos, currentView));
-
-    if (playerPosY >= (playerPosY - screenPosition.y + _data->_window->getSize().y - p.getGlobalBounds().height))
-    {
-        isDead = true;
     }
 }
 void maincharacter::update()
