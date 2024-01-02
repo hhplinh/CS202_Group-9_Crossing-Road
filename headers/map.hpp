@@ -52,15 +52,15 @@ protected:
     sf::Clock savedTextClock;
     sf::Text gameOverText;
 
-    virtual void loadGame();
-    virtual void saveGame();
 
     sf::Text score;
-
-    void loadCountdownScreen();
     int point = 0;
     bool isEasy;
     bool isCountdownNeeded = true;
+
+    virtual void loadGame();
+    virtual void saveGame();
+    void loadCountdownScreen();
 
 public:
     Cano *currentBoat = NULL;
