@@ -298,6 +298,8 @@ void map::update()
 
     if (mescpressed == true)
     {
+        // focusOnPlayer();
+
         backgroundTexture.create(_data->_window->getSize().x, _data->_window->getSize().y);
         backgroundTexture.update((const sf::RenderWindow &)(*(_data->_window)));
         _data->_assets->setBackgroundTexture(backgroundTexture);
@@ -936,13 +938,7 @@ void map::initLoadMap()
     checkOnBoat();
     processOnRiver();
 
-    // sf::View camera;
-
-    // camera.setSize(1920, 1080);
-
-    // camera.setCenter(1920 / 2, player->getPosition().y);
-
-    // _data->_window->setView(camera);
+    focusOnPlayer();
 }
 
 void map::drawLoadMap()
@@ -954,4 +950,12 @@ void map::drawLoadMap()
         isCountdownNeeded = false;
     }
     _data->_window->display();
+}
+
+void map::focusOnPlayer()
+{
+    sf::View camera;
+    camera.setSize(1920, 1080);
+    camera.setCenter(1920 / 2, player->getPosition().y);
+    _data->_window->setView(camera);
 }

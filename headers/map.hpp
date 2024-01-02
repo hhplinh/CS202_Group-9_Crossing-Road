@@ -116,6 +116,7 @@ public:
     void processOnRiver();
     void initLoadMap();
     void drawLoadMap();
+    void focusOnPlayer();
 
     void collisonWithCar(maincharacter *player, car *car1)
     {
