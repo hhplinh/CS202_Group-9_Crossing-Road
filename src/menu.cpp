@@ -6,7 +6,7 @@
 #include "endgameMenu.hpp"
 
 menu::menu(data *data) : _data(data)
-{   
+{
     background.setTexture(&_data->_assets->getTexture(BACKGROUND));
     background.setSize(sf::Vector2f(1920, 1080));
 }
@@ -15,6 +15,8 @@ menu::~menu() {}
 
 void menu::draw()
 {
+    _data->_window->setView(_data->_window->getDefaultView());
+
     if (isEventChanged)
     {
         isEventChanged = 0;

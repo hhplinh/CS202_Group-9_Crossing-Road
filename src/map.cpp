@@ -303,7 +303,7 @@ void map::update()
         _data->_assets->setBackgroundTexture(backgroundTexture);
 
         mescpressed = false;
-        _data->_window->setView(_data->_window->getDefaultView());
+        // _data->_window->setView(_data->_window->getDefaultView());
         _data->_states->addState((new menuPause(_data)), false);
         saveGame();
     }
@@ -871,7 +871,7 @@ void map::loadCountdownScreen()
     // sf::Image image = backgroundTexture.copyToImage();
     // image.saveToFile("saveGame.png");
 
-    _data->_window->setView(_data->_window->getDefaultView());
+    // _data->_window->setView(_data->_window->getDefaultView());
     _data->_states->addState(new ResumeScreen(_data), false);
 }
 
