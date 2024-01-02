@@ -24,6 +24,7 @@ void maincharacter::init()
 
     // Set the initial view to the camera
     _data->_window->setView(camera);
+
     MAX_STAMINA = 100;
     mApressed = false;
     stamina = MAX_STAMINA;
@@ -305,4 +306,9 @@ bool maincharacter::getIsMovedDown()
 sf::Vector2f maincharacter::getMoveCamPos()
 {
     return moveCamPos;
+}
+
+void maincharacter::setMoveCamPos(const sf::Vector2f &_moveCamPos)
+{
+    moveCamPos = _moveCamPos;
 }

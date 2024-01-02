@@ -22,7 +22,6 @@ void menuPause::init()
     background.setSize(sf::Vector2f(1920, 1080));
     background.setFillColor(sf::Color::White);
 
-    // set font, name and origin for each button
     std::string buttonNames[NUM_BUTTONS];
     for (int i = 0; i < NUM_BUTTONS; i++)
     {

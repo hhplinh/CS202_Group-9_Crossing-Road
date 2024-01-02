@@ -66,4 +66,5 @@ public:
     bool getIsDead();
     bool getIsMovedDown();
     sf::Vector2f getMoveCamPos();
+    void setMoveCamPos(const sf::Vector2f& _moveCamPos);
 };

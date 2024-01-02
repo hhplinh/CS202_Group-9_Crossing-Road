@@ -121,7 +121,6 @@ public:
     {
         if (player->getSprite().getGlobalBounds().intersects(car1->getSprite().getGlobalBounds()))
         { // reset view
-            // _data->_window->setView(_data->_window->getDefaultView());
             isEndgame = true;
         }
     }
@@ -130,7 +129,6 @@ public:
     {
         if (player->getSprite().getGlobalBounds().intersects(animal1->getSprite().getGlobalBounds()))
         { // reset view
-            // _data->_window->setView(_data->_window->getDefaultView());
             isEndgame = true;
         }
     }

@@ -303,7 +303,6 @@ void map::update()
         _data->_assets->setBackgroundTexture(backgroundTexture);
 
         mescpressed = false;
-        // _data->_window->setView(_data->_window->getDefaultView());
         _data->_states->addState((new menuPause(_data)), false);
         saveGame();
     }
@@ -314,7 +313,7 @@ void map::update()
     }
 
     score.setFont(_data->_assets->getFont(MAIN_FONT));
-    score.setString("Score: " + std::to_string(this->point));
+    score.setString("Score: " + std::to_string(point));
     score.setCharacterSize(80);
 
     score.setFillColor(sf::Color::White);
@@ -463,7 +462,6 @@ map::~map()
     // delete dynamically alocated memory
     // reset view
 
-    // _data->_window->setView(_data->_window->getDefaultView());
     // delete all the block and enemies
 
     for (int i = 0; i < blocks.size(); i++)
@@ -508,11 +506,12 @@ void map::saveGame()
         saveFile.write((char *)&pos1.x, sizeof(float));
         saveFile.write((char *)&pos1.y, sizeof(float));
 
-        // save block size
+        sf::Vector2f moveCamPos = player->getMoveCamPos();
+        saveFile.write((char *)&moveCamPos, sizeof(sf::Vector2f));
+
         int blockSize = blocks.size();
         saveFile.write((char *)&blockSize, sizeof(int));
 
-        // save block terrain name and position
         for (int i = 0; i < blockSize; i++)
         {
             std::string terrainName = blocks[i]->getTerrainName();
@@ -525,11 +524,9 @@ void map::saveGame()
         }
 
         // enemies = car
-        //  save enemies size
         int enemiesSize = enemies.size();
         saveFile.write((char *)&enemiesSize, sizeof(int));
 
-        // save enemies position
         for (int i = 0; i < enemiesSize; i++)
         {
             sf::Vector2f enemyPos = enemies[i]->getposcar();
@@ -566,14 +563,11 @@ void map::saveGame()
             saveFile.write((char *)&idCar, sizeof(int));
         }
 
-        // save animals size
         int animalsSize = animals.size();
         saveFile.write((char *)&animalsSize, sizeof(int));
 
-        // save animals position
         for (int i = 0; i < animalsSize; i++)
         {
-            // save animal name
             std::string animalName = animals[i]->getAnimalName();
             int len = animalName.size();
             saveFile.write((char *)&len, sizeof(int));
@@ -586,11 +580,9 @@ void map::saveGame()
             saveFile.write((char *)&isMovingRight, sizeof(bool));
         }
 
-        // save traffic lights, save all parameters of traffic lights
         int trafficLightsSize = trafficlights.size();
         saveFile.write((char *)&trafficLightsSize, sizeof(int));
 
-        // save traffic lights parameters
         for (int i = 0; i < trafficLightsSize; i++)
         {
             int col = trafficlights[i]->getcol();
@@ -609,11 +601,9 @@ void map::saveGame()
         }
 
         // enemies2 = cano
-        //  save enemies2 size
         int enemies2Size = enemies2.size();
         saveFile.write((char *)&enemies2Size, sizeof(int));
 
-        // save enemies2 position
         for (int i = 0; i < enemies2Size; i++)
         {
             sf::Vector2f enemy2Pos = enemies2[i]->getPosCano();
@@ -623,14 +613,12 @@ void map::saveGame()
             saveFile.write((char *)&isMovingRight, sizeof(bool));
         }
 
-        // save player position
         sf::Vector2f playerPos = player->getPosition();
         saveFile.write((char *)&playerPos, sizeof(sf::Vector2f));
 
         saveFile.write((char *)&playerIsOnBoat, sizeof(bool));
         saveFile.write((char *)&indexBoatWithPlayer, sizeof(int));
 
-        // save riverPos
         int riverPosSize = riverPos.size();
         saveFile.write((char *)&riverPosSize, sizeof(int));
         for (int i = 0; i < riverPos.size(); i++)
@@ -657,6 +645,7 @@ void map::loadGame()
     saveFile.open(_data->_assets->getSavedGamePath(), std::ios::binary);
     if (saveFile.is_open())
     {
+
         bool isEasyLevelSaved;
         saveFile.read((char *)&isEasyLevelSaved, sizeof(bool));
 
@@ -666,6 +655,10 @@ void map::loadGame()
 
         saveFile.read((char *)&pos1.x, sizeof(float));
         saveFile.read((char *)&pos1.y, sizeof(float));
+
+        sf::Vector2f moveCamPos;
+        saveFile.read((char *)&moveCamPos, sizeof(sf::Vector2f));
+        player->setMoveCamPos(moveCamPos);
 
         // save to retrieve later
         sf::Vector2f temp = pos1;
@@ -870,7 +863,6 @@ void map::loadCountdownScreen()
 
     // sf::Image image = backgroundTexture.copyToImage();
     // image.saveToFile("saveGame.png");
-
     // _data->_window->setView(_data->_window->getDefaultView());
     _data->_states->addState(new ResumeScreen(_data), false);
 }
@@ -917,7 +909,6 @@ void map::processOnRiver()
             if (playerIsOnBoat == false)
             { // reset view
                 // if not on boat, game over
-                // _data->_window->setView(_data->_window->getDefaultView());
                 isEndgame = true;
             }
         }
@@ -944,6 +935,14 @@ void map::initLoadMap()
 
     checkOnBoat();
     processOnRiver();
+
+    // sf::View camera;
+
+    // camera.setSize(1920, 1080);
+
+    // camera.setCenter(1920 / 2, player->getPosition().y);
+
+    // _data->_window->setView(camera);
 }
 
 void map::drawLoadMap()
@@ -951,7 +950,6 @@ void map::drawLoadMap()
     drawTemplate();
     if (isCountdownNeeded)
     {
-        // _data->_window->setView(_data->_window->getDefaultView());
         loadCountdownScreen();
         isCountdownNeeded = false;
     }
