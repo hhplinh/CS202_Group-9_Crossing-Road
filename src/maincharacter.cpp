@@ -19,8 +19,14 @@ void maincharacter::init()
     // Set the initial view size to the size of the window
     camera.setSize(1920, 1080);
 
-    // Center the camera on the player
-    camera.setCenter(1920 / 2, p.getPosition().y);
+    if (p.getPosition().y > 1080 / 2)
+    {
+        camera.setCenter(1920 / 2, 1080 / 2);
+    }
+    else
+    {
+        camera.setCenter(1920 / 2, p.getPosition().y);
+    }
 
     // Set the initial view to the camera
     _data->_window->setView(camera);
