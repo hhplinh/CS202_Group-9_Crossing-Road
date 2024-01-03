@@ -1,12 +1,14 @@
 #include "maincharacter.hpp"
 
+static const float INITIAL_PLAYER_POS_Y = 1080 / 2 - 120;
+
 void maincharacter::init()
 {
     row = 5;
     col = 8;
     size = _data->_assets->getTexture(PENGUIN).getSize();
     p.setTexture(_data->_assets->getTexture(PENGUIN));
-    p.setPosition(1920 / 2 + size.x / col, 1080 - 600);
+    p.setPosition(1920 / 2 + size.x / col, INITIAL_PLAYER_POS_Y);
 
     velocity.x = 0;
     velocity.y = 0;
@@ -19,9 +21,9 @@ void maincharacter::init()
     // Set the initial view size to the size of the window
     camera.setSize(1920, 1080);
 
-    if (p.getPosition().y > 1080 / 2)
+    if (p.getPosition().y >= 1080 / 2)
     {
-        camera.setCenter(1920 / 2, 1080 / 2);
+        camera.setCenter(1920 / 2, INITIAL_PLAYER_POS_Y);
     }
     else
     {
@@ -202,7 +204,7 @@ void maincharacter::processMovedDown()
         return;
     }
 
-    if (movedDown == false || isMoving == false)
+    if (movedDown == false || ((isMoving == false) && (p.getPosition().y <= INITIAL_PLAYER_POS_Y)))
     {
         if (playerPosY <= moveCamPos.y)
         {
@@ -210,6 +212,11 @@ void maincharacter::processMovedDown()
             camera.setCenter(1920 / 2, playerPosY);
             _data->_window->setView(camera);
         }
+    }
+    else if (isMoving == false)
+    {
+        camera.setCenter(1920 / 2, INITIAL_PLAYER_POS_Y);
+        _data->_window->setView(camera);
     }
 }
 
