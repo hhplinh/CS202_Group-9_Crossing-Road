@@ -15,10 +15,10 @@ menu::~menu() {}
 
 void menu::draw()
 {
-    _data->_window->setView(_data->_window->getDefaultView());
 
     if (isEventChanged)
     {
+        _data->_window->setView(_data->_window->getDefaultView());
         isEventChanged = 0;
 
         _data->_window->clear();

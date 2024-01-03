@@ -89,7 +89,6 @@ void menuPause::update()
         m_buttonsPressed[RESUME] = false;
         
         _data->_states->removeState(false);
-        // _data->_window->setView(_data->_window->getDefaultView());
         _data->_states->addState(new ResumeScreen(_data));
     }
     else if (m_buttonsPressed[MAIN_MENU])
