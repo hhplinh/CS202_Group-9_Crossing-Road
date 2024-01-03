@@ -202,7 +202,7 @@ void maincharacter::processMovedDown()
         return;
     }
 
-    if (movedDown == false)
+    if (movedDown == false || isMoving == false)
     {
         if (playerPosY <= moveCamPos.y)
         {
