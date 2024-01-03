@@ -634,7 +634,7 @@ void map::saveGame()
     }
     saveFile.close();
 }
-// add bool isMovingRight to every animal, car, canoe
+
 void map::loadGame()
 {
     if (_data->_assets->isGameSaved() == false)
@@ -830,7 +830,6 @@ void map::loadGame()
             enemies2.push_back(newCano);
         }
 
-        // load player position
         sf::Vector2f playerPos;
         saveFile.read((char *)&playerPos, sizeof(sf::Vector2f));
         player->setPosition(playerPos.x, playerPos.y);
@@ -838,7 +837,6 @@ void map::loadGame()
         saveFile.read((char *)&playerIsOnBoat, sizeof(bool));
         saveFile.read((char *)&indexBoatWithPlayer, sizeof(int));
 
-        // load riverPos
         riverPos.clear();
         int riverPosSize;
         saveFile.read((char *)&riverPosSize, sizeof(int));
@@ -865,7 +863,7 @@ void map::loadCountdownScreen()
 
     sf::Image image = backgroundTexture.copyToImage();
     image.saveToFile("saveGame.png");
-    // _data->_window->setView(_data->_window->getDefaultView());
+    _data->_window->setView(_data->_window->getDefaultView());
     _data->_states->addState(new ResumeScreen(_data), false);
 }
 
