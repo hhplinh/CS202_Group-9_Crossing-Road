@@ -33,10 +33,10 @@ void maincharacter::init()
     // Set the initial view to the camera
     _data->_window->setView(camera);
 
-    MAX_STAMINA = 100;
+    MAX_STAMINA = 200;
     mApressed = false;
     stamina = MAX_STAMINA;
-    staminaRecoveryRate = 1;
+    staminaRecoveryRate = 2;
     staminaDrainRate = 4;
     isMoving = false;
     staminaBarBackground.setSize(sf::Vector2f(102, 22)); // Plus border
@@ -234,7 +234,7 @@ void maincharacter::update()
         // Set the fallen texture
         p.setTextureRect(sf::IntRect(0, size.y * 4, size.x, size.y));
     }
-    else if (isFallen && moveCooldownTimer.getElapsedTime().asSeconds() >= 2.0f)
+    else if (isFallen && moveCooldownTimer.getElapsedTime().asSeconds() >= 1.0f)
     {
         // Recover from fallen state
         isFallen = false;
@@ -275,7 +275,7 @@ void maincharacter::updateStamina()
     {
         stamina = std::max(stamina - staminaDrainRate, 0.0f);
     }
-    staminaBar.setPosition(11, this->getPosition().y - 50);
+    staminaBar.setPosition(getPosition().x, getPosition().y - 100);
     displayStamina();
 }
 
