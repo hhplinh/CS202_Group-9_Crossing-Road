@@ -213,7 +213,7 @@ void maincharacter::processMovedDown()
             _data->_window->setView(camera);
         }
     }
-    else if (isMoving == false)
+    else if ((isMoving == false) && (p.getPosition().y <= INITIAL_PLAYER_POS_Y))
     {
         camera.setCenter(1920 / 2, INITIAL_PLAYER_POS_Y);
         _data->_window->setView(camera);
