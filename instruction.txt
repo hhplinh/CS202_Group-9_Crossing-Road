@@ -3,6 +3,7 @@
 - Game is saved automatically.
 - Press "X" to save game manually.
 - Car speedups gradually.
+- Penguin may dance on the boat.
 
   In leaderboard:
 Press "Esc" or "Enter" to return to main menu.
