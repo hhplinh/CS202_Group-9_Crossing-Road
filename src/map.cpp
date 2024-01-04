@@ -79,11 +79,11 @@ void map::update()
     if ((player->getIsMovedDown() == false && player->getMoveCamPos().y >= player->getPosition().y))
     {
         if (pos == 1080 - 600)
-            this->point = 0;
+            point = 0;
         else if (pos > 0)
-            this->point = (1080 - pos);
+            point = (1080 - pos) / 10;
         else
-            this->point = 1080 + abs(pos);
+            point = 1080 + abs(pos) / 10;
     }
     float l = (pos / 1080.0 + 1);
 
@@ -171,6 +171,11 @@ void map::update()
                     else if (z == 3)
                     {
                         newcar = new car5(_data);
+                    }
+
+                    if (point % 100 == 0)
+                    {
+                        newcar->increaseSpeed(2);
                     }
 
                     trafficlight *newtrafficlight = new trafficlight(_data);

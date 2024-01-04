@@ -67,9 +67,12 @@ public:
   {
     target.draw(sprite);
   }
-  void setspeed(float speed) { this->speed = speed; }
+  void setSpeed(float _speed) { speed = _speed; }
 
-  float getspeed() { return this->speed; }
+  float getSpeed() { return speed; }
+
+  void increaseSpeed(float _speed) { speed += _speed; }
+
   void run()
   {
 
@@ -100,7 +103,7 @@ public:
     this->size.y = this->size.y / row;
     sprite.setScale(0.5, 0.5);
     int z;
-    this->speed = 30;
+    this->speed = 20;
     z = rand() % 2;
     if (z == 1)
     {
