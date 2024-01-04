@@ -7,9 +7,9 @@
 class diffiMenu : public menu
 {
 private:
-
     enum Button
     {
+        KID,
         EASY,
         DIFFICULT,
         BACK,
@@ -19,6 +19,7 @@ private:
         // END,
 
     std::map<Button, std::string> buttonToString = {
+        {KID, "Kid"},
         {EASY, "Easy"},
         {DIFFICULT, "Difficult"},
         {BACK, "Back"},

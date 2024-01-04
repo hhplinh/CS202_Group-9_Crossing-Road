@@ -1,12 +1,18 @@
+#pragma once
+
 #include "map.hpp"
 #include "maincharactereasy.hpp"
 #include <fstream>
-class mapeasy : public map
+class mapeasy :public map
 {
 public:
   mapeasy(data *_data) : map(_data)
   {
     isEasy = true;
+  }
+
+  virtual ~mapeasy()
+  {
   }
 
   virtual void init()

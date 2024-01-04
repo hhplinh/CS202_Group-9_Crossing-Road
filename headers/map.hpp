@@ -21,11 +21,11 @@ class endgameMenu;
 class map : public state
 {
 private:
-    bool isEndgame;
     sf::Clock endgameClock;
     bool initEndgameClock = false;
 
 protected:
+    bool isEndgame;
     int indexBoatWithPlayer;
     bool cooldownActive;
     sf::Vector2f pos1;
@@ -60,6 +60,7 @@ protected:
     virtual void saveGame();
     void loadCountdownScreen();
     void centerOnBoat(maincharacter *player, Cano *cano1);
+    void drawTemplateNoPlayer();
 
 public:
     Cano *currentBoat = NULL;

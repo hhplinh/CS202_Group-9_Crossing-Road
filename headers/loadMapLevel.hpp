@@ -1,3 +1,4 @@
+#pragma once
 #include "mapeasy.hpp"
 #include "resumeScreen.hpp"
 #include <fstream>
@@ -14,6 +15,7 @@ public:
     player->init();
     isCountdownNeeded = true;
   }
+  virtual ~mapeasyLoad() {}
 
   void init();
   void draw();
@@ -31,6 +33,7 @@ public:
     player->init();
     isCountdownNeeded = true;
   }
+  virtual ~mapLoad() {}
 
   void init();
   void draw();
