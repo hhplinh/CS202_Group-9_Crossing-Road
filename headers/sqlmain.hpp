@@ -11,7 +11,7 @@
 
 static int callback(void *NotUsed, int argc, char **argv, char **azColName);
 // void run(int argc, char* argv[]);
-void loadLibSQL();
+// void loadLibSQL();
 void run();
 
 void a();
