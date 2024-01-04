@@ -2,6 +2,7 @@
 - Press "Esc" to pause game.
 - Game is saved automatically.
 - Press "X" to save game manually.
+- Car speedups gradually.
 
   In leaderboard:
 Press "Esc" or "Enter" to return to main menu.
