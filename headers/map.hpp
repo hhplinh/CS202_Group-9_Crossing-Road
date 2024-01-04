@@ -23,7 +23,6 @@ class map : public state
 private:
     bool isEndgame;
     sf::Clock endgameClock;
-
     bool initEndgameClock = false;
 
 protected:
@@ -52,7 +51,6 @@ protected:
     sf::Clock savedTextClock;
     sf::Text gameOverText;
 
-
     sf::Text score;
     int point = 0;
     bool isEasy;
@@ -61,6 +59,7 @@ protected:
     virtual void loadGame();
     virtual void saveGame();
     void loadCountdownScreen();
+    void centerOnBoat(maincharacter *player, Cano *cano1);
 
 public:
     Cano *currentBoat = NULL;
@@ -72,12 +71,6 @@ public:
             return true;
         }
         return false;
-    }
-    bool floatwithboat(maincharacter *player, Cano *cano1)
-    { // set player pos to the middle of the boat
-        player->setPosition(cano1->getSprite().getPosition().x + cano1->getSprite().getGlobalBounds().width / 2 - player->size.x / 2, cano1->getSprite().getPosition().y + cano1->getSprite().getGlobalBounds().height / 2 - player->size.y / 2);
-        this->playerIsOnBoat = true;
-        return 1;
     }
 
     // get the current window screen
@@ -114,6 +107,7 @@ public:
     void endgame();
     void checkOnBoat();
     void processOnRiver();
+    void floatWithBoat(maincharacter *player, Cano *cano1);
     void initLoadMap();
     void drawLoadMap();
     void focusOnPlayer();

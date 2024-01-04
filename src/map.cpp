@@ -238,31 +238,38 @@ void map::update()
     for (int i = 0; i < enemies2.size(); i++)
     {
         enemies2[i]->floatOnRiver();
-        if (player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds()) && !player->movingUp)
+        if (player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds()))
         {
-            // Float with the boat
-            floatwithboat(player, enemies2[i]);
-            indexBoatWithPlayer = i;
-            if (player->movingUp)
+            if (!player->movingUp)
             {
-                /*  player->setPosition(
-                      player->getSprite().getPosition().x,
-                      player->getSprite().getPosition().y - 100
-                  );*/
-                if (i + 1 < enemies2.size())
-                {
-                    if (isnextto(enemies2[i], enemies2[i + 1]))
-                    {
-                        floatwithboat(player, enemies2[i + 1]);
-                    }
-                }
-                else
-                {
-                    // get off the boat
-                    player->setPosition(player->getSprite().getPosition().x, player->getSprite().getPosition().y - 100);
-                    this->playerIsOnBoat = false;
-                }
+                floatWithBoat(player, enemies2[i]);
+                indexBoatWithPlayer = i;
             }
+            else
+            {
+                centerOnBoat(player, enemies2[i]);
+            }
+
+            // if (player->movingUp)
+            // {
+            //     /*  player->setPosition(
+            //           player->getSprite().getPosition().x,
+            //           player->getSprite().getPosition().y - 100
+            //       );*/
+            //     if (i + 1 < enemies2.size())
+            //     {
+            //         if (isnextto(enemies2[i], enemies2[i + 1]))
+            //         {
+            //             floatWithBoat(player, enemies2[i + 1]);
+            //         }
+            //     }
+            //     else
+            //     {
+            //         // get off the boat
+            //         player->setPosition(player->getSprite().getPosition().x, player->getSprite().getPosition().y - 100);
+            //         this->playerIsOnBoat = false;
+            //     }
+            // }
         }
         if (enemies2[i]->getPosCano().x > 1920 || enemies2[i]->getPosCano().x < 0)
         {
@@ -904,6 +911,17 @@ void map::checkOnBoat()
     }
 }
 
+void map::floatWithBoat(maincharacter *player, Cano *cano1)
+{
+    player->setPosition(cano1->getSprite().getPosition().x + cano1->getSprite().getGlobalBounds().width / 2 - player->size.x / 2, player->getPosition().y);
+    playerIsOnBoat = true;
+}
+
+void map::centerOnBoat(maincharacter *player, Cano *cano1)
+{
+    player->setPosition(cano1->getSprite().getPosition().x + cano1->getSprite().getGlobalBounds().width / 2 - player->size.x / 2, player->getPosition().y);
+}
+
 void map::processOnRiver()
 {
     for (int i = 0; i < riverPos.size(); i++)
@@ -936,7 +954,7 @@ void map::initLoadMap()
     }
     if (playerIsOnBoat)
     {
-        floatwithboat(player, enemies2[indexBoatWithPlayer]);
+        floatWithBoat(player, enemies2[indexBoatWithPlayer]);
     }
 
     checkOnBoat();
