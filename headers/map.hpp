@@ -88,7 +88,7 @@ public:
     map();
     virtual ~map();
 
-    void addcar();
+    // void addcar();
     bool addedroad = false;
     bool addedRiver = false;
     bool addedgrass = false;

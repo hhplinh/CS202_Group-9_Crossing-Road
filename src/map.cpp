@@ -83,7 +83,7 @@ void map::update()
         else if (pos > 0)
             point = (1080 - pos) / 10;
         else
-            point = 1080 + abs(pos) / 10;
+            point = (1080 + abs(pos)) / 10;
     }
     float l = (pos / 1080.0 + 1);
 
