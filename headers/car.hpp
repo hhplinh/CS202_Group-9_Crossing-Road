@@ -103,7 +103,7 @@ public:
     this->size.y = this->size.y / row;
     sprite.setScale(0.5, 0.5);
     int z;
-    this->speed = 20;
+    this->speed = 15;
     z = rand() % 2;
     if (z == 1)
     {

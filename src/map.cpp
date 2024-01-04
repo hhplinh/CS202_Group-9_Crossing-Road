@@ -173,9 +173,11 @@ void map::update()
                         newcar = new car5(_data);
                     }
 
-                    if (point % 100 == 0)
+                    static int const SCORE_THRESHOLD_FOR_SPEED_INC = 100, INC_SPEED = 1;
+
+                    if (point > SCORE_THRESHOLD_FOR_SPEED_INC)
                     {
-                        newcar->increaseSpeed(2);
+                        newcar->increaseSpeed(INC_SPEED * (point / SCORE_THRESHOLD_FOR_SPEED_INC));
                     }
 
                     trafficlight *newtrafficlight = new trafficlight(_data);
