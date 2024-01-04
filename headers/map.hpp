@@ -23,7 +23,6 @@ class map : public state
 private:
     bool isEndgame;
     sf::Clock endgameClock;
-
     bool initEndgameClock = false;
 
 protected:
@@ -60,6 +59,7 @@ protected:
     virtual void loadGame();
     virtual void saveGame();
     void loadCountdownScreen();
+    void centerOnBoat(maincharacter *player, Cano *cano1);
 
 public:
     Cano *currentBoat = NULL;

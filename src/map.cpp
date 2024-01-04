@@ -238,11 +238,18 @@ void map::update()
     for (int i = 0; i < enemies2.size(); i++)
     {
         enemies2[i]->floatOnRiver();
-        if (player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds()) && !player->movingUp)
+        if (player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds()))
         {
-            // Float with the boat
-            floatWithBoat(player, enemies2[i]);
-            indexBoatWithPlayer = i;
+            if (!player->movingUp)
+            {
+                floatWithBoat(player, enemies2[i]);
+                indexBoatWithPlayer = i;
+            }
+            else
+            {
+                centerOnBoat(player, enemies2[i]);
+            }
+
             // if (player->movingUp)
             // {
             //     /*  player->setPosition(
@@ -908,6 +915,11 @@ void map::floatWithBoat(maincharacter *player, Cano *cano1)
 {
     player->setPosition(cano1->getSprite().getPosition().x + cano1->getSprite().getGlobalBounds().width / 2 - player->size.x / 2, player->getPosition().y);
     playerIsOnBoat = true;
+}
+
+void map::centerOnBoat(maincharacter *player, Cano *cano1)
+{
+    player->setPosition(cano1->getSprite().getPosition().x + cano1->getSprite().getGlobalBounds().width / 2 - player->size.x / 2, player->getPosition().y);
 }
 
 void map::processOnRiver()
