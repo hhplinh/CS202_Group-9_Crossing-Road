@@ -1,4 +1,5 @@
   During gameplay:
+- Kid level: immortal in 5s.
 - Press "Esc" to pause game.
 - Game is saved automatically.
 - Press "X" to save game manually.

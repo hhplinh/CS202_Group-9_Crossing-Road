@@ -40,7 +40,7 @@ void instructScreen::init()
 
     std::string insText = loadTextFromFile(INSTRUCT_PATH);
     instructText.setFont(_data->_assets->getFont(MAIN_FONT));
-    instructText.setCharacterSize(55);
+    instructText.setCharacterSize(45);
     instructText.setFillColor(sf::Color::White);
     instructText.setString(insText);
     instructText.setOutlineColor(_data->_assets->getThemeColor());

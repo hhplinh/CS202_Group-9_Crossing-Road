@@ -419,6 +419,67 @@ void map::drawTemplate()
     _data->_window->draw(score);
 }
 
+void map::drawTemplateNoPlayer()
+{
+    _data->_window->clear();
+
+    _data->_window->draw(background);
+
+    for (int i = currentIndex; i < blocks.size(); i++)
+    {
+        if (currentIndex < blocks.size())
+        {
+            blocks[i]->draw();
+        }
+    }
+    // draw the car
+    for (int i = 0; i < enemies.size(); i++)
+    {
+        _data->_window->draw(*enemies[i]);
+    }
+    for (int i = 0; i < trafficlights.size(); i++)
+    {
+        _data->_window->draw(*trafficlights[i]);
+    }
+    // draw the cano
+    for (int i = 0; i < enemies2.size(); i++)
+    {
+        _data->_window->draw(*enemies2[i]);
+    }
+    for (int i = 0; i < animals.size(); i++)
+    {
+        animals[i]->draw();
+    }
+
+    if (isEndgame)
+    {
+        _data->_window->draw(gameOverText);
+        if (!initEndgameClock)
+        {
+            initEndgameClock = true;
+            endgameClock.restart();
+        }
+
+        if (endgameClock.getElapsedTime().asSeconds() >= 3.f)
+        {
+            // isEndgame = false;
+            endgameClock.restart();
+            endgame();
+        }
+    }
+
+    if (gameSavedTextNeeded && savedTextClock.getElapsedTime().asSeconds() >= 3.f)
+    {
+        gameSavedTextNeeded = false;
+    }
+    else if (gameSavedTextNeeded)
+    {
+        _data->_window->draw(gameSavedText);
+    }
+
+    _data->_window->draw(score);
+}
+
 void map::createmap()
 {
     for (int i = 0; i < length; i++)

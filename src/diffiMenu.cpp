@@ -1,19 +1,20 @@
 #include "diffiMenu.hpp"
 #include "maincharacter.hpp"
-#include "map.hpp"
-#include"mapeasy.hpp"
+#include "mapKid.h"
 
 diffiMenu::diffiMenu(data *data) : menu(data)
 {
     m_buttonsSelected.resize(NUM_BUTTONS, false);
     m_buttonsPressed.resize(NUM_BUTTONS, false);
     m_buttonsSelected[0] = true;
+
+    isEventChanged = 1;
 }
 
 diffiMenu::~diffiMenu() {}
 
 void diffiMenu::init()
-{ 
+{
     if (!m_buttons.empty())
     {
         return;
@@ -31,10 +32,9 @@ void diffiMenu::init()
         button.setPosition(1470, 390 + 150 * i);
         m_buttons.push_back(button);
     }
-
 }
 void diffiMenu::processInput()
-{  
+{
     sf::Event event;
     while (_data->_window->pollEvent(event))
     {
@@ -80,16 +80,21 @@ void diffiMenu::processInput()
 }
 
 void diffiMenu::update()
-{  
-    if (m_buttonsPressed[EASY])
-    {   
+{
+    if (m_buttonsPressed[KID])
+    {
+        m_buttonsPressed[KID] = false;
+        _data->_states->addState(new mapKid(_data));
+    }
+    else if (m_buttonsPressed[EASY])
+    {
         m_buttonsPressed[EASY] = false;
-         _data->_states->addState(new mapeasy(_data));
+        _data->_states->addState(new mapeasy(_data));
     }
     else if (m_buttonsPressed[DIFFICULT])
     {
         m_buttonsPressed[DIFFICULT] = false;
-         _data->_states->addState(new map(_data));
+        _data->_states->addState(new map(_data));
     }
     else if (m_buttonsPressed[BACK])
     {
