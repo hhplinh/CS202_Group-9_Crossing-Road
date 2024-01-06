@@ -3,6 +3,7 @@ project(SFMLProject)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
 
 # Find the SFML library
 set(SFML_STATIC_LIBRARIES TRUE)
