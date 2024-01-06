@@ -238,7 +238,7 @@ void map::update()
     for (int i = 0; i < enemies2.size(); i++)
     {
         enemies2[i]->floatOnRiver();
-        if ((player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds())) && (player->getPosition().y >= enemies2[i]->getPosCano().y))
+        if ((player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds())) && (player->getPosition().y > enemies2[i]->getPosCano().y))
         {
             if (!player->movingUp)
             {
