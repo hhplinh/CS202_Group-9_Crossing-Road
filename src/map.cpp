@@ -238,8 +238,11 @@ void map::update()
     for (int i = 0; i < enemies2.size(); i++)
     {
         enemies2[i]->floatOnRiver();
-        if ((player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds())) && (player->getPosition().y > enemies2[i]->getPosCano().y))
+        if ((player->getSprite().getGlobalBounds().intersects(enemies2[i]->getGlobalBounds())) && (player->getSprite().getGlobalBounds().top + player->getSprite().getGlobalBounds().height / 2.f < enemies2[i]->getGlobalBounds().top + enemies2[i]->getGlobalBounds().height))
         {
+        std::cerr << "1st " << player->getSprite().getGlobalBounds().top << " " << player->getSprite().getGlobalBounds().height << std::endl;
+        std::cerr << "2nd " << enemies2[i]->getGlobalBounds().top << " " << enemies2[i]->getGlobalBounds().height << std::endl;
+
             if (!player->movingUp)
             {
                 floatWithBoat(player, enemies2[i]);
