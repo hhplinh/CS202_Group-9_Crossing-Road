@@ -75,7 +75,10 @@ void maincharacter::move()
     {
         int xtexture = (p.getTextureRect().left + size.x) % (size.x * col);
         p.setTextureRect(sf::IntRect(xtexture, size.y * 2, size.x, size.y));
-        p.move(10, 0);
+        if (p.getPosition().x < 1920 - size.x)
+        {
+            p.move(10, 0);
+        }
         moved = true;
         movedDown = false;
     }
@@ -91,7 +94,10 @@ void maincharacter::move()
     {
         int xtexture = (p.getTextureRect().left + size.x) % (size.x * col);
         p.setTextureRect(sf::IntRect(xtexture, size.y * 3, size.x, size.y));
-        p.move(-10, 0);
+        if (p.getPosition().x > 0)
+        {
+            p.move(-10, 0);
+        }
         moved = true;
         movedDown = false;
     }
