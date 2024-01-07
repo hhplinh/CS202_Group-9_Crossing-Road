@@ -47,9 +47,10 @@ void System::run()
 	// 	music.play();
 	// }
 
-	MusicManager::getInstance().loadMusic("BackgroundMusic.ogg");
-	MusicManager::getInstance().configureMusic(50, true);
-	MusicManager::getInstance().playMusic();	
+	MusicManager &musicManager = MusicManager::getInstance();
+	musicManager.loadMusic("BackgroundMusic.ogg");
+	musicManager.configureMusic(50, true);
+	musicManager.playMusic();
 
 	while (_data->_window->isOpen())
 	{
