@@ -1,7 +1,6 @@
 #pragma once
 
 #include "menu.hpp"
-
 #include <map>
 
 class mainMenu0Load : public menu
@@ -11,6 +10,7 @@ private:
     {
         PLAY,
         INSTRUCTION,
+        MUSIC_ON,
         LEADERBOARD,
         EXIT,
         NUM_BUTTONS
@@ -19,6 +19,7 @@ private:
     std::map<Button, std::string> buttonToString = {
         {PLAY, "Play"},
         {LEADERBOARD, "Leaderboard"},
+        {MUSIC_ON, "Music On"},
         {INSTRUCTION, "Instruction"},
         {EXIT, "Exit"},
     };

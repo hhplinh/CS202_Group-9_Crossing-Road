@@ -3,8 +3,8 @@
 - Press "Esc" to pause game.
 - Game is saved automatically.
 - Press "X" to save game manually.
+- Press "Enter" to toggle music in menu.
 - Car speedups gradually.
-- Penguin may dance on the boat.
 
   In leaderboard:
 Press "Esc" or "Enter" to return to main menu.

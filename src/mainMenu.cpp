@@ -4,6 +4,7 @@
 #include "diffiMenu.hpp"
 #include "instructScr.hpp"
 #include "MainMenu0Load.hpp"
+#include "musicManager.h"
 #include "map.hpp"
 
 mainMenu::mainMenu(data *data) : menu(data)
@@ -31,7 +32,7 @@ void mainMenu::init()
         button.setString(buttonNames[i]);
         button.setCharacterSize(100);
         button.setOrigin(button.getLocalBounds().width / 2.f, button.getLocalBounds().height / 2.f);
-        button.setPosition(1470, 250 + 150 * i);
+        button.setPosition(1470, 220 + 130 * i);
         m_buttons.push_back(button);
     }
 }
@@ -114,6 +115,11 @@ void mainMenu::update()
     {
         m_buttonsPressed[INSTRUCTION] = false;
         _data->_states->addState(new instructScreen(_data));
+    }
+    else if (m_buttonsPressed[MUSIC_ON])
+    {
+        m_buttonsPressed[MUSIC_ON] = false;
+        toggleMusicText(m_buttons[MUSIC_ON], MusicManager::getInstance().toggleMusic());
     }
     else if (m_buttonsPressed[EXIT])
     {

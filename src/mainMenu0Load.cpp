@@ -4,6 +4,7 @@
 #include "MainMenu.hpp"
 #include "map.hpp"
 #include "Leaderboard.hpp"
+#include "musicManager.h"
 
 mainMenu0Load::mainMenu0Load(data *data) : menu(data)
 {
@@ -30,7 +31,7 @@ void mainMenu0Load::init()
         button.setString(buttonNames[i]);
         button.setCharacterSize(100);
         button.setOrigin(button.getLocalBounds().width / 2.f, button.getLocalBounds().height / 2.f);
-        button.setPosition(1470, 320 + 150 * i);
+        button.setPosition(1470, 245 + 150 * i);
         m_buttons.push_back(button);
     }
 }
@@ -100,6 +101,11 @@ void mainMenu0Load::update()
     {
         m_buttonsPressed[LEADERBOARD] = false;
         _data->_states->addState(new Leaderboard(_data));
+    }
+    else if (m_buttonsPressed[MUSIC_ON])
+    {
+        m_buttonsPressed[MUSIC_ON] = false;
+        toggleMusicText(m_buttons[MUSIC_ON], MusicManager::getInstance().toggleMusic());
     }
     else if (m_buttonsPressed[EXIT])
     {
