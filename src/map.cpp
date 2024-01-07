@@ -102,7 +102,7 @@ void map::update()
     float o = pos / -1080.0f - int((pos) / -1080.0f);
 
     // //std::cout << o << std::endl;
-    if (((pos / 1080.0f) < 0.200000f && pos > 0 && blocks.size() < 50) || (o > 0.7f && o < 0.8f && pos < 0.0f && blocks.size() - currentIndex < 100))
+    if (((pos / 1080.0f) < 0.200000f && pos > 0 && blocks.size() < 50) || (o > 0.7f && o < 0.8f && pos < 0.0f && blocks.size() - currentIndex < 90))
     {
         int z;
         for (int i = 0; i < 1; i++)
