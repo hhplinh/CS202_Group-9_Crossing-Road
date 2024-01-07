@@ -182,7 +182,7 @@ void map::update()
 
                     trafficlight *newtrafficlight = new trafficlight(_data);
                     enemies.push_back(newcar);
-                    enemies[enemies.size() - 1]->setposcar(sf::Vector2f(roadpos.back().x, roadpos.back().y + 40));
+                    enemies[enemies.size() - 1]->setposcar(sf::Vector2f(roadpos.back().x, roadpos.back().y + 50));
                     trafficlights.push_back(newtrafficlight);
                     trafficlights[trafficlights.size() - 1]->setpos(roadpos.back().y);
                 }
