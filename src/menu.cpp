@@ -124,3 +124,15 @@ void menu::toggleMusicText(sf::Text &musicText, bool isMusicOn)
         musicText.setString("Music Off");
     }
 }
+
+void menu::initMusicText(sf::Text &musicText, bool isMusicOn)
+{
+    if (isMusicOn)
+    {
+        musicText.setString("Music On");
+    }
+    else
+    {
+        musicText.setString("Music Off");
+    }
+}

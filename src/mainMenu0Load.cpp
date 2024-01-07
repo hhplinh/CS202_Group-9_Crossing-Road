@@ -34,6 +34,8 @@ void mainMenu0Load::init()
         button.setPosition(1470, 245 + 150 * i);
         m_buttons.push_back(button);
     }
+
+    initMusicText(m_buttons[MUSIC_ON], MusicManager::getInstance().isPlaying());
 }
 void mainMenu0Load::processInput()
 {

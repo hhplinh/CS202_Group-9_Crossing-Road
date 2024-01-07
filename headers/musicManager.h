@@ -13,6 +13,7 @@ public:
     void playMusic();
     bool loadMusic(const std::string& filename);
     void configureMusic(int volume, bool loop);
+    bool isPlaying() const;
 
 private:
     sf::Music music;
