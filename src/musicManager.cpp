@@ -36,3 +36,9 @@ bool MusicManager::loadMusic(const std::string &filename)
     }
     return true;
 }
+
+void MusicManager::configureMusic(int volume, bool loop)
+{
+    music.setVolume(volume);
+    music.setLoop(loop);
+}

@@ -1,6 +1,7 @@
 #include "system.h"
 #include "mainMenu.hpp"
 #include "MainMenu0Load.hpp"
+#include "musicManager.h"
 #include <SFML/Audio.hpp>
 
 #include <iostream>
@@ -33,18 +34,22 @@ void System::run()
 	sf::Clock clock;
 	sf::Time timeSinceLastFrame = sf::Time::Zero;
 
-	sf::Music music;
+	// sf::Music music;
 
-	if (!music.openFromFile("BackgroundMusic.ogg"))
-	{
-		std::cerr << "ERROR LOADING MUSIC" << std::endl;
-	}
-	else
-	{
-		music.setVolume(50);
-		music.setLoop(true);
-		music.play();
-	}
+	// if (!music.openFromFile("BackgroundMusic.ogg"))
+	// {
+	// 	std::cerr << "ERROR LOADING MUSIC" << std::endl;
+	// }
+	// else
+	// {
+	// 	music.setVolume(50);
+	// 	music.setLoop(true);
+	// 	music.play();
+	// }
+
+	MusicManager::getInstance().loadMusic("BackgroundMusic.ogg");
+	MusicManager::getInstance().configureMusic(50, true);
+	MusicManager::getInstance().playMusic();	
 
 	while (_data->_window->isOpen())
 	{

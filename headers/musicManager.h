@@ -12,6 +12,7 @@ public:
     bool toggleMusic();
     void playMusic();
     bool loadMusic(const std::string& filename);
+    void configureMusic(int volume, bool loop);
 
 private:
     sf::Music music;
