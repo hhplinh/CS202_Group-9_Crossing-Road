@@ -42,3 +42,8 @@ void MusicManager::configureMusic(int volume, bool loop)
     music.setVolume(volume);
     music.setLoop(loop);
 }
+
+bool MusicManager::isPlaying() const
+{
+    return music.getStatus() == sf::Music::Playing;
+}
