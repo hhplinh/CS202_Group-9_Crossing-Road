@@ -12,6 +12,7 @@ private:
         PLAY,
         LOAD,
         INSTRUCTION,
+        MUSIC_ON,
         LEADERBOARD,
         EXIT,
         NUM_BUTTONS
@@ -23,6 +24,7 @@ private:
         {PLAY, "Play"},
         {LOAD, "Load"},
         {INSTRUCTION, "Instruction"},
+        {MUSIC_ON, "Music On"},
         {LEADERBOARD, "Leaderboard"},
         {EXIT, "Exit"},
     };

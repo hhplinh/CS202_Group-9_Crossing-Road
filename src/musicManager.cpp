@@ -4,7 +4,7 @@ bool MusicManager::toggleMusic()
 {
     if (music.getStatus() == sf::Music::Playing)
     {
-        music.stop();
+        music.pause();
         return 0;
     }
     else

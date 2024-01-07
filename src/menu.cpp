@@ -112,3 +112,15 @@ void menu::setColorSelect(std::vector<sf::Text> &m_buttons, std::vector<bool> &m
         }
     }
 }
+
+void menu::toggleMusicText(sf::Text &musicText, bool isMusicOn)
+{
+    if (isMusicOn)
+    {
+        musicText.setString("Music On");
+    }
+    else
+    {
+        musicText.setString("Music Off");
+    }
+}

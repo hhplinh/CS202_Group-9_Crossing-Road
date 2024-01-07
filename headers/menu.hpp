@@ -34,4 +34,5 @@ public:
     void turnOnButtonKeyUp(std::vector<bool> &buttonsSelected);
     void turnOnButtonKeyEnter(std::vector<bool> &buttonsSelected, std::vector<bool> &buttonsPressed);
     void setColorSelect(std::vector<sf::Text> &m_buttons, std::vector<bool> &m_buttonsSelected, sf::Color COLOR_SELECT = sf::Color(248, 153, 56, 255));
+    void toggleMusicText(sf::Text &musicText, bool isMusicOn);
 };
