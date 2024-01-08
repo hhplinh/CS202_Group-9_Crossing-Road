@@ -23,19 +23,17 @@ std::vector<Player> loadPlayerData(const std::string &filename)
     }
 
     std::string line;
+    std::getline(file, line);
+    std::getline(file, line);
+
     while (std::getline(file, line))
     {
-        std::istringstream iss(line);
         Player player;
+        player.name = line;
 
-        if (iss >> player.name >> player.highScore)
-        {
-            players.push_back(player);
-        }
-        else
-        {
-            std::cerr << "Error parsing line: " << line << std::endl;
-        }
+        file >> player.highScore;
+        file.ignore();
+        players.push_back(player);
     }
 
     file.close();

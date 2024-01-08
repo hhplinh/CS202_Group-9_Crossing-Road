@@ -158,7 +158,7 @@ bool assetManager::saveHighScore(const std::string &name, int score)
 
 				for (int i = 0; i < siz; i++)
 				{
-					save << topScores[i].first << " " << topScores[i].second << std::endl;
+					save << topScores[i].first << "\n" << topScores[i].second << std::endl;
 				}
 				save.close();
 				return 1;
