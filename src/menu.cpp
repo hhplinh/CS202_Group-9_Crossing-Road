@@ -9,13 +9,21 @@ menu::menu(data *data) : _data(data)
 {
     background.setTexture(&_data->_assets->getTexture(BACKGROUND));
     background.setSize(sf::Vector2f(1920, 1080));
+
+    creditText.setFont(_data->_assets->getFont(MAIN_FONT));
+    creditText.setString("by Huynh Ha Phuong Linh, Pham Gia Nguyen,\n Le Nguyen Anh Khoi, Le Quoc Huy");
+    creditText.setCharacterSize(30);
+    creditText.setFillColor(COLOR_SELECT);
+    creditText.setOrigin(creditText.getLocalBounds().width / 2.f, creditText.getLocalBounds().height / 2.f);
+    creditText.setPosition(creditText.getLocalBounds().width / 2.f + 10, creditText.getLocalBounds().height / 2.f + 10);
+
+
 }
 
 menu::~menu() {}
 
 void menu::draw()
 {
-
     if (isEventChanged)
     {
         _data->_window->setView(_data->_window->getDefaultView());
@@ -29,6 +37,8 @@ void menu::draw()
         {
             _data->_window->draw(m_buttons[i]);
         }
+
+        _data->_window->draw(creditText);
         _data->_window->display();
     }
 }

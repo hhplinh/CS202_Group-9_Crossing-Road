@@ -22,6 +22,8 @@ protected:
 
     bool isEventChanged = true;
 
+    sf::Text creditText;
+
 public:
    
     menu(data *data);
