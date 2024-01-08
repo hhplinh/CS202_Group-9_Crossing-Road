@@ -184,3 +184,13 @@ lacda ::lacda(data *_data) : Animal(_data)
     this->sprite.setTextureRect(sf::IntRect(0, size.y, size.x, size.y));
   }
 }
+
+void Animal::setSpeed(float _speed)
+{
+  speed = _speed;
+}
+
+float Animal::getSpeed()
+{
+  return speed;
+}

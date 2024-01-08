@@ -17,6 +17,8 @@ protected:
   sf ::Sprite sprite;
 
 public:
+  Animal() {}
+
   sf::Sprite getSprite() { return this->sprite; }
   sf::Clock frameTimer; // Timer to control the frame rate
   const sf::Time frameDuration = sf::seconds(1.f / 10);
@@ -39,9 +41,13 @@ public:
   }
   void AnimalTurn();
   sf::Vector2u size;
-  void AnimalRun();
+  virtual void AnimalRun();
 
   std::string getAnimalName();
+
+  void setSpeed(float _speed);
+
+  float getSpeed();
 };
 class cop : public Animal
 {
