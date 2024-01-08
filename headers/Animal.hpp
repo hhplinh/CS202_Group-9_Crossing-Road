@@ -5,6 +5,9 @@
 #include <iostream>
 #include "state.h"
 #include <string>
+
+#include "AnimalDec.h"
+
 #pragma once
 class Animal
 {
@@ -15,6 +18,8 @@ protected:
   bool goR;
   std::string name;
   sf ::Sprite sprite;
+
+  friend class AnimalDecorator;
 
 public:
   Animal() {}
