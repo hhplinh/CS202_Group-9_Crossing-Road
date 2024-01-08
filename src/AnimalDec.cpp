@@ -1,7 +1,7 @@
 #include "AnimalDec.h"
 
-void AnimalDecorator::AnimalRun()
+void AnimalDecorator::AnimalRun override()
 {
-    AnimalDecorator::AnimalRun();
     animal->setSpeed(animal->getSpeed() * 2);
+
 }
